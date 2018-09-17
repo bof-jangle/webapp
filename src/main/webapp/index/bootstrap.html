@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>about bootstrap</title>
+<link rel="stylesheet" type="text/css" href="../css/backSystem.css" />
+</head>
+<body>
+	<div class="content">
+		<div class="menuBox">
+				<div data-for="bootstrap/1.html" class="active">
+					子页面1
+				</div>
+				<div data-for="bootstrap/2.html">
+					子页面2
+				</div>
+		</div>
+			<iframe id="rightIframe" name="rightIframe" width="100%" style="border:0px;" src="bootstrap/1.html"></iframe>
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".menuBox").on("click","div",function(){
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+				$("#rightIframe").attr("src",""+$(this).data("for"));
+			});
+		});
+	</script>
+</body>
+</html>

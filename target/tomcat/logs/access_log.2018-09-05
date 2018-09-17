@@ -1,0 +1,9 @@
+127.0.0.1 - - [05/Sep/2018:19:46:59 +0800] "GET / HTTP/1.1" 200 610 http-bio-80-exec-1 75
+127.0.0.1 - - [05/Sep/2018:19:46:59 +0800] "GET /index/welcome.html HTTP/1.1" 304 - http-bio-80-exec-3 9
+127.0.0.1 - - [05/Sep/2018:19:46:59 +0800] "GET /images/%E5%86%B0%E5%86%A0%E5%85%AC%E4%B8%BB.jpg HTTP/1.1" 304 - http-bio-80-exec-4 5
+127.0.0.1 - - [05/Sep/2018:19:47:01 +0800] "GET /index/bootstrap.html HTTP/1.1" 304 - http-bio-80-exec-5 5
+127.0.0.1 - - [05/Sep/2018:19:47:02 +0800] "GET /index/easyUI.html HTTP/1.1" 304 - http-bio-80-exec-6 3
+127.0.0.1 - - [05/Sep/2018:19:47:03 +0800] "GET /index/bootstrap/1.html HTTP/1.1" 304 - http-bio-80-exec-7 5
+127.0.0.1 - - [05/Sep/2018:19:47:03 +0800] "GET /index/bootstrap/2.html HTTP/1.1" 304 - http-bio-80-exec-8 5
+127.0.0.1 - - [05/Sep/2018:19:47:04 +0800] "GET /index/bootstrap/3.html HTTP/1.1" 304 - http-bio-80-exec-9 3
+127.0.0.1 - - [05/Sep/2018:19:47:04 +0800] "GET /index/bootstrap/4.html HTTP/1.1" 304 - http-bio-80-exec-10 6

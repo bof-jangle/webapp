@@ -1,0 +1,18 @@
+.btn:focus{outline:none;}
+/*主界面*/
+.header{line-height:60px;padding:0 3%;background:rgb(220,100,90);color:#fff}
+.banner{color:#252525;font-size:12px;position:absolute;bottom:20px;left:50%;margin-left:-100px;}
+#cybercafeName{font-size:24px;cursor:pointer;}
+.userBox{position:relative;color:#fff;cursor:pointer;z-index:999;}
+.content{width:100%;}
+.menuBox{height:100%;width:15%;background:rgb(59,73,102);padding-top:20px;display:inline-block;min-height:520px;}
+.menuBox div{line-height:50px;color:#fff;text-align:center;font-size:16px;cursor:pointer;position:relative;}
+.menuBox div.active,.menuBox div:hover,.menuBox div:focus{background:rgb(87,103,137)}
+.menuBox div.active:after{content:"";position:absolute;top:20px;right:0px;width:0px;height:0px;border-top:8px solid transparent;border-left:8px solid transparent;border-bottom:8px solid transparent;border-right:8px solid white;}
+#mainFrame{width:84.5%;display:inline-block;vertical-align:top;}
+#rightIframe{width:84.5%;display:inline-block;vertical-align:top;}
+.treeLeft ul li{line-height:50px;color:#fff;text-align:center;font-size:16px;cursor:pointer;position:relative;}
+
+
+
+
