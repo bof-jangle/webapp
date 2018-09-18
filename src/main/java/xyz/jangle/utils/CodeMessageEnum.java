@@ -6,8 +6,9 @@ package xyz.jangle.utils;
  */
 public enum CodeMessageEnum {
 	
-	success("10001","操作成功"),
-	error("10002","操作失败");
+	exception("10003","操作异常"),
+	error("10002","操作失败"),
+	success("10001","操作成功");
 
 	private String code;
 

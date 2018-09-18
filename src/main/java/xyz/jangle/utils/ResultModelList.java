@@ -13,16 +13,12 @@ import java.util.List;
 public class ResultModelList<T> extends ResultModel<T> {
 
 	private List<T> list;
-	
-	public ResultModelList() {
-		
-	}
 
-	public ResultModelList(T t) {
+	public ResultModelList() {
 		super();
 		this.list = new ArrayList<T>();
 	}
-	
+
 	public ResultModelList(CodeMessageEnum cmEnum) {
 		this();
 		this.setCodeMessage(cmEnum);

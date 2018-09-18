@@ -8,6 +8,7 @@ import xyz.jangle.service.B;
 
 @Service
 public class BImpl implements B {
+	@SuppressWarnings("unused")
 	@Autowired
 	private A a;
 
