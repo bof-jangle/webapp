@@ -1,0 +1,17 @@
+127.0.0.1 - - [18/Sep/2018:09:39:07 +0800] "GET /index.html HTTP/1.1" 200 774 http-bio-80-exec-1 71
+127.0.0.1 - - [18/Sep/2018:09:39:07 +0800] "GET /css/backSystem.css HTTP/1.1" 304 - http-bio-80-exec-3 23
+127.0.0.1 - - [18/Sep/2018:09:39:07 +0800] "GET /index/welcome.html HTTP/1.1" 304 - http-bio-80-exec-4 18
+127.0.0.1 - - [18/Sep/2018:09:39:07 +0800] "GET /favicon.ico HTTP/1.1" 404 5 http-bio-80-exec-5 6
+127.0.0.1 - - [18/Sep/2018:09:39:08 +0800] "GET /index/easyUI.html HTTP/1.1" 200 1204 http-bio-80-exec-6 3
+127.0.0.1 - - [18/Sep/2018:09:39:08 +0800] "GET /js/jquery-3.3.1.min.js HTTP/1.1" 304 - http-bio-80-exec-7 6
+127.0.0.1 - - [18/Sep/2018:09:39:09 +0800] "GET /index/utils/getEasyUIList HTTP/1.1" 200 532 http-bio-80-exec-8 43
+127.0.0.1 - - [18/Sep/2018:09:39:10 +0800] "GET /index/react.html HTTP/1.1" 200 874 http-bio-80-exec-9 4
+127.0.0.1 - - [18/Sep/2018:09:39:12 +0800] "GET /index/react/2.html HTTP/1.1" 200 128 http-bio-80-exec-10 2
+127.0.0.1 - - [18/Sep/2018:09:39:12 +0800] "GET /index/bootstrap.html HTTP/1.1" 200 867 http-bio-80-exec-10 4
+127.0.0.1 - - [18/Sep/2018:09:39:12 +0800] "GET /index/bootstrap/1.html HTTP/1.1" 304 - http-bio-80-exec-10 5
+127.0.0.1 - - [18/Sep/2018:09:39:22 +0800] "GET /mvc/hello HTTP/1.1" 500 4065 http-bio-80-exec-5 981
+127.0.0.1 - - [18/Sep/2018:09:42:53 +0800] "GET /mvc/hello HTTP/1.1" 200 669 http-bio-80-exec-7 696
+127.0.0.1 - - [18/Sep/2018:09:42:53 +0800] "GET /js/hello.js HTTP/1.1" 304 - http-bio-80-exec-7 3
+127.0.0.1 - - [18/Sep/2018:09:43:56 +0800] "GET /mvc/hello HTTP/1.1" 200 669 http-bio-80-exec-3 612
+127.0.0.1 - - [18/Sep/2018:09:43:58 +0800] "GET /mvc/hello HTTP/1.1" 200 669 http-bio-80-exec-3 621
+127.0.0.1 - - [18/Sep/2018:09:44:10 +0800] "GET / HTTP/1.1" 200 774 http-bio-80-exec-3 8
