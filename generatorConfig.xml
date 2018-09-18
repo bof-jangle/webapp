@@ -12,7 +12,7 @@
     <sqlMapGenerator targetPackage="xyz.jangle.mapper" targetProject="webapp" />
     <!-- DAO配置 -->
     <javaClientGenerator targetPackage="xyz.jangle.dao" targetProject="webapp" type="XMLMAPPER" />
-    <table schema="角色表" tableName="d_role">
+    <table schema="用户表" tableName="d_user">
     	<!-- 这里可以配置表字段，不配置则为全部 -->
 <!--       <columnOverride column="???" property="???" /> -->
     </table>

@@ -1,10 +1,8 @@
 package xyz.jangle.service.impl;
 
-import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 
 import xyz.jangle.model.DUser;
 import xyz.jangle.service.DUserService;
@@ -16,7 +14,6 @@ public class DUserServiceImplTest extends JUnitRunSupport{
 	private DUserService dUserService;
 
 	@Test
-	@Rollback(false)
 	public void testSave() {
 		
 		DUser dUser =new DUser();
@@ -24,7 +21,6 @@ public class DUserServiceImplTest extends JUnitRunSupport{
 		dUser.setUsrCode("2");
 		dUser.setUsrPassword("2");
 		dUserService.save(dUser);
-		
 	}
 
 }
