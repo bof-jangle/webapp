@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>简单的业务系统demo</title>
+<link rel="stylesheet" type="text/css" href="../css/backSystem.css" />
+</head>
+<body>
+	<div class="content">
+		<div class="menuBox">
+				<div data-for="demo/user.html" class="active">
+					用户管理
+				</div>
+				<div data-for="demo/role.html">
+					角色管理
+				</div>
+		</div>
+			<iframe id="rightIframe" name="rightIframe" width="100%" style="border:0px;height:800px;" src="demo/user.html"></iframe>
+	</div>
+	<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+	<script type="text/javascript">
+		$(function(){
+			$(".menuBox").on("click","div",function(){
+				$(this).addClass("active");
+				$(this).siblings().removeClass("active");
+				$("#rightIframe").attr("src",""+$(this).data("for"));
+			});
+		});
+	</script>
+</body>
+</html>
