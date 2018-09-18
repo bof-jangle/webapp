@@ -9,6 +9,9 @@ import xyz.jangle.dao.DUserMapper;
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
 import xyz.jangle.service.DUserService;
+import xyz.jangle.utils.CodeMessageEnum;
+import xyz.jangle.utils.ResultModel;
+import xyz.jangle.utils.ResultModelList;
 
 @Service
 public class DUserServiceImpl implements DUserService {
@@ -17,15 +20,17 @@ public class DUserServiceImpl implements DUserService {
 	private DUserMapper dUserMapper;
 
 	@Override
-	public int save(DUser dUser) {
+	public ResultModel<DUser> save(DUser dUser) {
 		dUserMapper.save(dUser);
-		return 0;
+		return new ResultModel<DUser>(CodeMessageEnum.success);
 	}
 
 	@Override
-	public List<DUser> selectByExample(DUserExample example) {
+	public ResultModelList<DUser> selectByExample(DUserExample example) {
+		ResultModelList<DUser> resultModelList;
 		List<DUser> list = dUserMapper.selectByExample(example);
-		return list;
+		resultModelList = new ResultModelList<DUser>(list);
+		return resultModelList;
 	}
 
 }

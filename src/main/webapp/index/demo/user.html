@@ -55,7 +55,11 @@
 				},
 				success : function(data) {
 					console.log(data);
-					data = data.users;
+					if(data.code!="10001"){
+						alert(data.message);
+						return;
+					}
+					data = data.list;
 					if (data) {
 						applies = data ? data : [];
 					}

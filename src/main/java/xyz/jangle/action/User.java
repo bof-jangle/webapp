@@ -1,35 +1,28 @@
 package xyz.jangle.action;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
 import xyz.jangle.service.DUserService;
+import xyz.jangle.utils.ResultModelList;
 
 @Controller
 @RequestMapping("/**/user")
 public class User {
-	
+
 	@Autowired
 	private DUserService dUserService;
-	
+
 	@RequestMapping("/selectUsers")
 	@ResponseBody
-	public Map<String, Object> selectByExample() {
-		Map<String, Object> map = new HashMap<>();
+	public ResultModelList<DUser> selectByExample() {
 		DUserExample dUserExample = new DUserExample();
-		List<DUser> list = dUserService.selectByExample(dUserExample );
-		map.put("users", list);
-		return map;
+		ResultModelList<DUser> res = dUserService.selectByExample(dUserExample);
+		return res;
 	}
-	
-	
+
 }

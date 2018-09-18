@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import xyz.jangle.dao.UserMapper;
 import xyz.jangle.model.User;
 import xyz.jangle.service.UserService;
+import xyz.jangle.utils.ResultModelList;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -19,7 +20,8 @@ public class UserServiceImpl implements UserService {
 	UserMapper userMapper;
 
 	@Override
-	public List<User> getAllUser() {
+	public ResultModelList<User> getAllUser() {
+		ResultModelList<User> res;
 		logger.info("UserServiceImpl Method.");
 		logger.info("这是一段中文");
 		System.out.println("这也是一段中文");
@@ -31,7 +33,8 @@ public class UserServiceImpl implements UserService {
 		}*/
 //		User user = userMapper.findById(1);
 //		System.out.println("单用户信息查询，Name:" + user.getUserName());
-		return userList;
+		res = new ResultModelList<User>(userList);
+		return res;
 	}
 
 }

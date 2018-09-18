@@ -4,7 +4,12 @@ $(function() {
 		type : "post",
 		dataType : "json",
 		success : function(data) {
-			$.each(data.users, function(index, item) {
+			console.log(data);
+			if(data.code!="10001"){
+				alert(data.message);
+				return;
+			}
+			$.each(data.list, function(index, item) {
 				$("table").append(
 						"<tr>" + "<td>" + index + "</td>" + "<td>"
 								+ item.userName + "</td>" + "<td>"

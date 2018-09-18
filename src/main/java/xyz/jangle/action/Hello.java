@@ -25,7 +25,7 @@ public class Hello {
 	public ModelAndView hello(
 			@RequestParam(value = "id", required = false) Integer id) {
 		System.out.println("全都一起上吧，我根本没在怕，啦蜡辣拉拉");
-		List<User> users = userService.getAllUser();
+		List<User> users = userService.getAllUser().getList();
 		System.out.println("测试被切面干预的方法结果是否还可用 "+users.get(0).getUserName());
 		System.out.println("这是return位置 " +userService.getAllUser());
 		ModelAndView mav = new ModelAndView("hello"); // 参数为试图名称 viewName
