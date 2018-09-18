@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context id="context1">
+  	<!-- jdbc连接 -->
+    <jdbcConnection connectionURL="jdbc:mysql://123.207.169.16:3306/demo" driverClass="com.mysql.jdbc.Driver" password="mysql1234!.hpy" userId="hpy" >
+    	<property name="useInformationSchema" value="true"></property>
+    </jdbcConnection>
+    <!-- model配置 -->
+    <javaModelGenerator targetPackage="xyz.jangle.model" targetProject="webapp" />
+    <!-- 映射文件配置 -->
+    <sqlMapGenerator targetPackage="xyz.jangle.mapper" targetProject="webapp" />
+    <!-- DAO配置 -->
+    <javaClientGenerator targetPackage="xyz.jangle.dao" targetProject="webapp" type="XMLMAPPER" />
+    <table schema="角色表" tableName="d_role">
+    	<!-- 这里可以配置表字段，不配置则为全部 -->
+<!--       <columnOverride column="???" property="???" /> -->
+    </table>
+  </context>
+</generatorConfiguration>
