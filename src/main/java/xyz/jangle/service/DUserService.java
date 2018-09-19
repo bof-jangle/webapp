@@ -17,5 +17,10 @@ public interface DUserService {
 	 * @return
 	 */
 	ResultModelList<DUser> selectByExample(DUserExample example);
+	/**
+	 * 嵌套事务的测试
+	 * @return
+	 */
+	ResultModelList<DUser> nestedTransactionTest();
 
 }

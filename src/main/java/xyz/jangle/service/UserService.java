@@ -10,5 +10,10 @@ public interface UserService {
 	 * @return
 	 */
 	public ResultModelList<User> getAllUser();
+	/**
+	 * test for nestedTransactionTest
+	 * @return
+	 */
+	public ResultModelList<User> save();
 
 }

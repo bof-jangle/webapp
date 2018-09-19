@@ -6,10 +6,9 @@
         id:必须与对应接口的某个对应的方法名一致  
      -->  
     <mapper namespace="xyz.jangle.dao.UserMapper">  
-          
-          <!-- 暂不可用 -->
+        <!-- for test -->
         <insert id="save" parameterType="User">  
-            insert into table_name(name,age) values(#{userName},#{userAge})  
+            insert into c_tenant(name) values(#{userName})
         </insert>
           
           <!-- 暂不可用 -->

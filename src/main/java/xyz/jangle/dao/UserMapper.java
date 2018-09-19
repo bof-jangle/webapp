@@ -5,8 +5,12 @@ import java.util.List;
 import xyz.jangle.model.User;
 
 public interface UserMapper {
+	/**
+	 * 
+	 * @param user
+	 */
+	void save(User user);
 	
-	void sava();
 	boolean update(User user);
 	boolean delete(int id);
 	User findById(int id);
