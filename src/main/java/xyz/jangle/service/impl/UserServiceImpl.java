@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
 		user.setUserName("0919-c");
 		user.setUserAge("19");
 		userMapper.save(user);
+		int i=1/0;	//用于创建异常
 		return new ResultModelList<User>();
 	}
 

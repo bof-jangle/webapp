@@ -5,15 +5,26 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript">
+	$(function(){
+		alert("ready");
+		alert(test2(123));
+	});
+</script>
 <script type="text/javascript">
 
-function test(i){
+var test = function (i){
 	var len =2;
 	var j = i + ( i < 0 ? len : 0 );
 	return j
 }
 alert(test(1));
+
+var test2 = function(a,b,c) {
+	return ""+a+b+c;
+}
+alert(test2(1,2));
 </script>
 </body>
 </html>

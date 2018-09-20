@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import xyz.jangle.dao.DUserMapper;
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
+import xyz.jangle.model.User;
 import xyz.jangle.service.DUserService;
 import xyz.jangle.service.UserService;
 import xyz.jangle.utils.CodeMessageEnum;
@@ -45,9 +46,9 @@ public class DUserServiceImpl implements DUserService {
 		dUser.setUsrName("0919");
 		dUser.setUsrCode("0919");
 		dUser.setUsrPassword("0919");
+		ResultModelList<User> resultModelList = userService.save();
 		dUserMapper.save(dUser);
-		userService.save();
-		return new ResultModelList<DUser>();
+		return new ResultModelList<DUser>(resultModelList.getCode(),resultModelList.getMessage());
 	}
 
 }

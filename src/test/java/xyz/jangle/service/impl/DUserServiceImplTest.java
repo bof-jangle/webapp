@@ -35,7 +35,7 @@ public class DUserServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testNestedTransactionTest() {
 		ResultModelList<DUser> resultModelList = dUserService.nestedTransactionTest();
-		assertEquals(CodeMessageEnum.success.getCode(), resultModelList.getCode());
+		assertEquals(CodeMessageEnum.exception.getCode(), resultModelList.getCode());
 	}
 
 }

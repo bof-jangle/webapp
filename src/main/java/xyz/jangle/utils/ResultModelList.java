@@ -19,6 +19,12 @@ public class ResultModelList<T> extends ResultModel<T> {
 		this.list = new ArrayList<T>();
 	}
 
+	public ResultModelList(String code, String msg) {
+		this();
+		this.setCode(code);
+		this.setMessage(msg);
+	}
+
 	public ResultModelList(CodeMessageEnum cmEnum) {
 		this();
 		this.setCodeMessage(cmEnum);
