@@ -29,7 +29,7 @@
         <!-- 1. 数据源 : DriverManagerDataSource -->  
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-        <property name="url" value="jdbc:mysql://123.207.169.16:3306/demo" />
+        <property name="url" value="jdbc:mysql://jangle.xyz:3306/demo" />
         <property name="username" value="hpy" />  
         <property name="password" value="mysql1234!.hpy" /> 
     </bean>  
