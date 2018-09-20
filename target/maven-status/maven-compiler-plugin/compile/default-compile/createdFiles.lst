@@ -1,7 +1,0 @@
-xyz\jangle\dao\UserMapper.class
-xyz\jangle\service\UserService.class
-xyz\jangle\action\Hello.class
-xyz\jangle\aop\ExecuteIntercept.class
-xyz\jangle\action\HelloAjax.class
-xyz\jangle\model\User.class
-xyz\jangle\service\impl\UserServiceImpl.class

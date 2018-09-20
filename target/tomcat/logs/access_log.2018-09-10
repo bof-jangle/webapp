@@ -1,2 +1,0 @@
-172.16.2.16 - - [10/Sep/2018:10:59:38 +0800] "GET /favicon.ico HTTP/1.1" 404 5 http-bio-80-exec-1 425
-172.16.2.16 - - [10/Sep/2018:10:59:52 +0800] "GET /favicon.ico HTTP/1.1" 404 5 http-bio-80-exec-2 7
