@@ -155,16 +155,24 @@
 
 		<sourceDirectory>src/main/java</sourceDirectory>
 		<!-- 如果不添加此节点 mybatis的mapper.xml文件都会被漏掉。 -->
-		<resources>
-           <resource>
-               <directory>src/main/java</directory>
-               <includes>
-                   <include>**/*.properties</include>
-                   <include>**/*.xml</include>
-               </includes>
-               <filtering>false</filtering>
-           </resource>
-      	</resources>
+	<resources>
+		<resource>
+			<directory>src/main/java</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+			</includes>
+			<filtering>false</filtering>
+		</resource>
+		<resource>
+			<directory>src/main/resouces</directory>
+			<includes>
+				<include>**/*.properties</include>
+				<include>**/*.xml</include>
+			</includes>
+			<filtering>false</filtering>
+		</resource>
+	</resources>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -175,6 +183,37 @@
 					<encoding>utf8</encoding>
 				</configuration>
 			</plugin>
+			<!-- 待测试，打包时即package 时将war打到指定目录 -->
+			<!--
+			<plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-dependency-plugin</artifactId>
+			    <version>2.8</version>
+			    <executions>
+			        <execution>
+			            <id>copy-war</id>
+			            <phase>package</phase>
+			            <goals>
+			                <goal>copy</goal>
+			            </goals>
+			            <configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>${project.artifactId}</artifactId>
+									<version>${project.version}</version>
+									<type>${project.packaging}</type>
+								</artifactItem>
+							</artifactItems>
+			                <outputDirectory>/usr/tomcat/apache-tomcat-7.0.90/webapps</outputDirectory>
+			                <includes>
+			                    <include>*.war</include>
+			                </includes>
+			            </configuration>
+			        </execution>
+			    </executions>
+			</plugin>
+			 -->
 
 			<!-- Embedded Apache Tomcat required for testing war -->
 
