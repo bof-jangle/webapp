@@ -25,7 +25,7 @@ public class UserServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testSave() {
 		ResultModelList<User> resultModelList = userService.save();
-		assertEquals(CodeMessageEnum.success.getCode(), resultModelList.getCode());
+		assertEquals(CodeMessageEnum.exception.getCode(), resultModelList.getCode());
 	}
 	
 	@Test
