@@ -1,5 +1,8 @@
 package xyz.jangle.action;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import xyz.jangle.service.DUserService;
 import xyz.jangle.utils.CodeMessageEnum;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
+import xyz.jangle.utils.ResultModelMap;
 
 @Controller
 @RequestMapping("/**/user")
@@ -32,12 +36,23 @@ public class User {
 
 	@RequestMapping("/login")
 	@ResponseBody
-	public ResultModel<DUser> login(@RequestParam(required=false) String code, @RequestParam(required=false) String password, HttpSession httpSession) {
-		System.out.println("userName:"+httpSession.getAttribute("userName"));
-		System.out.println("userId:"+httpSession.getAttribute("userId"));
+	public ResultModel<DUser> login(@RequestParam(required = false) String code,
+			@RequestParam(required = false) String password, HttpSession httpSession) {
+		System.out.println("userName:" + httpSession.getAttribute("userName"));
+		System.out.println("userId:" + httpSession.getAttribute("userId"));
 		System.out.println(code);
 		System.out.println(password);
 
+		String userName = "" + httpSession.getAttribute("userName");
+		if (userName != "" && !userName.equals("null")) {
+			System.out.println(userName);
+			System.out.println("用户已经登陆");
+			ResultModelMap<DUser> res = new ResultModelMap<DUser>();
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("userName", userName);
+			res.setMap(map);
+			return res;
+		}
 		DUser record = new DUser();
 		record.setUsrCode(code);
 		record.setUsrPassword(password);
@@ -49,6 +64,16 @@ public class User {
 		// 执行登陆的操作 TODO
 		httpSession.setAttribute("userName", model.getUsrName());
 		httpSession.setAttribute("userId", model.getUsrId().intValue());
+		return resultModel;
+	}
+
+	@RequestMapping("/logout")
+	@ResponseBody
+	public ResultModel<DUser> logout(HttpSession httpSession) {
+		httpSession.removeAttribute("userName");
+		httpSession.removeAttribute("userId");
+		ResultModel<DUser> resultModel = new ResultModel<DUser>();
+		resultModel.setMessage("注销成功");
 		return resultModel;
 	}
 

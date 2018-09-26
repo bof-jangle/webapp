@@ -17,7 +17,7 @@
 		<a href="index/react.html" target="bottomIframe"><span>react</span></a>
 		<a href="index/easyUI.html" target="bottomIframe"><span>easyUI</span></a>
 		<a href="index/demo.html" target="bottomIframe"><span>demo</span></a>
-		<span style="float: right;" id="login"> <a href="login.html"><span>login</span></a>
+		<span style="float: right;width:150px;" id="login"> <a href="login.html"><span>login</span></a>
 		</span>
 	</div>
 	<div class="content">
@@ -26,6 +26,35 @@
 	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
+		$.ajax({
+			url:"/user/login",
+			dataType:"json",
+			success:function(ret){
+				if(ret.code == "10001" && ret.map != null){
+					$("#login").text("您好："+ret.map.userName);
+					$("#login").append("<a href='javascript:logout();'>注销</a>");
+				}
+			},
+			error : function(request, textStatus, errorThrown) {
+				fxShowAjaxError(request, textStatus, errorThrown);
+			}
+		});
+		//注销
+		function logout(){
+			$.ajax({
+				url:"/user/logout",
+				dataType:"json",
+				success:function(ret){
+					if(ret.code =="10001"){
+						alert(ret.message);
+						location.href="index.html";
+					}
+				},
+				error : function(request, textStatus, errorThrown) {
+					fxShowAjaxError(request, textStatus, errorThrown);
+				}
+			});
+		}
 	</script>
 </body>
 </html>
