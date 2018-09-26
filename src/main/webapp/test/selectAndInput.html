@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>可选可输下拉框</title>
+</head>
+<body>
+	<div style="position: relative;">
+		<span style="margin-left: 100px; width: 18px; overflow: hidden;">
+			<select id="content-type-select"
+			style="width: 235px; margin-left: -86px; height: 31px;"
+			onchange="contentTypeSelectChange()">
+				<option value="application/x-www-form-urlencoded">application/x-www-form-urlencoded</option>
+				<option value="multipart/form-data">multipart/form-data</option>
+				<option value="application/json">application/json</option>
+		</select>
+		</span> <input type="text" id="content-type" name="contentType"
+			style="width: 215px; margin-left: -239px; height: 31px; color: #000;"
+			value="application/json">
+	</div>
+	<script>
+		function contentTypeSelectChange(){
+			var contentType = document.getElementById("content-type-select").value;
+			document.getElementById("content-type").value = contentType;
+		}
+	</script>
+</body>
+</html>
