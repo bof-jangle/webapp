@@ -124,6 +124,13 @@
     from d_user
     where usr_id = #{usrId,jdbcType=INTEGER}
   </select>
+  <select id="selectByCodeAndPassword" parameterType="xyz.jangle.model.DUser" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from d_user
+    where usr_code = #{usrCode,jdbcType=VARCHAR}
+    AND usr_password = #{usrPassword,jdbcType=VARCHAR}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

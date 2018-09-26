@@ -6,6 +6,7 @@ package xyz.jangle.utils;
  */
 public enum CodeMessageEnum {
 	
+	loginFailed("10004","登陆异常，用户名或密码错误"),
 	exception("10003","操作异常"),
 	error("10002","操作失败"),
 	success("10001","操作成功");

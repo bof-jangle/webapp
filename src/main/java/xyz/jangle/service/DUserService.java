@@ -22,5 +22,11 @@ public interface DUserService {
 	 * @return
 	 */
 	ResultModelList<DUser> nestedTransactionTest();
+	/**
+	 * 根据code和password查询用户
+	 * @param record
+	 * @return
+	 */
+	ResultModel<DUser> selectByCodeAndPassword(DUser record);
 
 }

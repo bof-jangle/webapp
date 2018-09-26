@@ -9,6 +9,10 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+	<!-- session有效时间15分钟 -->
+	<session-config>
+		<session-timeout>15</session-timeout>
+	</session-config>
 	<error-page>
    		<error-code>404</error-code>
    		<location>/errorPage/error404.jsp</location>
