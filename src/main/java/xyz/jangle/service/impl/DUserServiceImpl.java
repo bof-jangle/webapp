@@ -25,6 +25,11 @@ public class DUserServiceImpl implements DUserService {
 	private UserService userService;
 
 	@Override
+	public ResultModel<DUser> selectByCodeAndPassword(DUser record) {
+		return new ResultModel<DUser>(dUserMapper.selectByCodeAndPassword(record));
+	}
+
+	@Override
 	public ResultModel<DUser> save(DUser dUser) {
 		dUserMapper.save(dUser);
 		// TODO 这里做一个事务的测试
@@ -48,7 +53,7 @@ public class DUserServiceImpl implements DUserService {
 		dUser.setUsrPassword("0919");
 		ResultModelList<User> resultModelList = userService.save();
 		dUserMapper.save(dUser);
-		return new ResultModelList<DUser>(resultModelList.getCode(),resultModelList.getMessage());
+		return new ResultModelList<DUser>(resultModelList.getCode(), resultModelList.getMessage());
 	}
 
 }

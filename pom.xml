@@ -154,8 +154,8 @@
 		<finalName>webapp</finalName>
 
 		<sourceDirectory>src/main/java</sourceDirectory>
-		<!-- 如果不添加此节点 mybatis的mapper.xml文件都会被漏掉。 -->
 	<resources>
+		<!-- 如果不添加此节点 mybatis的mapper.xml文件都会被漏掉。 -->
 		<resource>
 			<directory>src/main/java</directory>
 			<includes>
@@ -164,6 +164,7 @@
 			</includes>
 			<filtering>false</filtering>
 		</resource>
+		<!-- 如果不添加此节点 spring , mybatis ,log4j 的配置文件都会被漏掉（在使用单纯的maven编译及打包部署时）。 -->
 		<resource>
 			<directory>src/main/resources</directory>
 			<includes>

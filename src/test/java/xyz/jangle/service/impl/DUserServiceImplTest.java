@@ -38,4 +38,13 @@ public class DUserServiceImplTest extends JUnitRunSupport {
 		assertEquals(CodeMessageEnum.exception.getCode(), resultModelList.getCode());
 	}
 
+	@Test
+	public void testSelectByCodeAndPassword() {
+		DUser record = new DUser();
+		record.setUsrCode("jangle");
+		record.setUsrPassword("1");
+		DUser user = dUserService.selectByCodeAndPassword(record).getModel();
+		assertEquals(1, user.getUsrId().intValue());
+	}
+
 }

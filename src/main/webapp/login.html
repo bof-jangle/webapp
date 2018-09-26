@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>login</title>
+</head>
+<body>
+	登陆界面待开发。。。
+	<input type="text" id="userName" />
+	<input type="password" id="userPassword" />
+	<button onclick="login()" >login</button>
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script>
+		function login() {
+
+			$.ajax({
+				url : "/user/login",
+				dataType : "json",
+				data : {"code":$("#userName").val(),"password":$("#userPassword").val()},
+				success : function(res) {
+					console.log(res);
+					if(res.code != "10001"){
+						alert(res.message);
+					}else {
+						alert("登陆成功");
+						location.href="index.html";
+					}
+				},
+				error : function(request, textStatus, errorThrown) {
+					fxShowAjaxError(request, textStatus, errorThrown);
+				}
+			});
+		}
+	</script>
+</body>
+</html>
