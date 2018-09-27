@@ -46,7 +46,7 @@
     <!-- 登陆的拦截器 -->
 	<filter>
 		<filter-name>loginFilter</filter-name>
-		<filter-class>xyz.jangle.utils.LoginFilter</filter-class>
+		<filter-class>xyz.jangle.filter.LoginFilter</filter-class>
 		<init-param>
 			<!-- 结尾过滤 -->
 			<param-name>endWith</param-name>

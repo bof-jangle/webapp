@@ -1,4 +1,4 @@
-package xyz.jangle.utils;
+package xyz.jangle.filter;
 
 import java.io.IOException;
 
