@@ -61,7 +61,7 @@ public class User {
 		if (model == null) {
 			return new ResultModel<DUser>(CodeMessageEnum.loginFailed);
 		}
-		// 执行登陆的操作 TODO
+		//TODO 执行登陆的操作  ，如缓存用户信息
 		httpSession.setAttribute("userName", model.getUsrName());
 		httpSession.setAttribute("userId", model.getUsrId().intValue());
 		return resultModel;

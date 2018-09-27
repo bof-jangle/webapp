@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import xyz.jangle.dao.DUserMapper;
 import xyz.jangle.model.DUser;
@@ -32,7 +31,6 @@ public class DUserServiceImpl implements DUserService {
 	@Override
 	public ResultModel<DUser> save(DUser dUser) {
 		dUserMapper.save(dUser);
-		// TODO 这里做一个事务的测试
 //		int i = 1/0;
 		return new ResultModel<DUser>(CodeMessageEnum.success);
 	}
