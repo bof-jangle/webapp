@@ -56,7 +56,8 @@
     -->  
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">  
         <property name="basePackage" value="xyz.jangle.dao"></property>  
-        <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>  
+        <!-- 此处sqlSessionFactory的警告提示说，当配置多数据源的时候才需要进行该配置，故去除。 -->
+<!--         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>   -->
     </bean>  
   
     <!-- 
