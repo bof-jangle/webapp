@@ -43,7 +43,30 @@
        <filter-name>setCharacterEncoding</filter-name>
        <url-pattern>/*</url-pattern>
 	</filter-mapping>
-    
+    <!-- 登陆的拦截器 -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>xyz.jangle.utils.LoginFilter</filter-class>
+		<init-param>
+			<!-- 结尾过滤 -->
+			<param-name>endWith</param-name>
+			<param-value>login.html,.js,.css,.jpg</param-value>
+		</init-param>
+		<init-param>
+			<!-- 包含过滤 -->
+			<param-name>contains</param-name>
+			<param-value>cjmm</param-value>
+		</init-param>
+		<init-param>
+			<!-- 不包含过滤 -->
+			<param-name>notContains</param-name>
+			<param-value>.</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
     
     
     <!-- springmvc配置 -->
