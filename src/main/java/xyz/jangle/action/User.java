@@ -1,8 +1,5 @@
 package xyz.jangle.action;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +11,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
 import xyz.jangle.service.DUserService;
-import xyz.jangle.utils.CodeMessageEnum;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
-import xyz.jangle.utils.ResultModelMap;
 
 @Controller
 @RequestMapping("/**/user")
@@ -34,45 +29,18 @@ public class User {
 		return res;
 	}
 
+	@RequestMapping("/loginStatus")
+	@ResponseBody
+	public ResultModel<DUser> loginStatus() {
+		return dUserService.currentLoggedIn();
+	}
+
 	@RequestMapping("/login")
 	@ResponseBody
 	public ResultModel<DUser> login(@RequestParam(required = false) String code,
-			@RequestParam(required = false) String ip,
-			@RequestParam(required = false) String city,
+			@RequestParam(required = false) String ip, @RequestParam(required = false) String city,
 			@RequestParam(required = false) String password, HttpSession httpSession) {
-		System.out.println("userName:" + httpSession.getAttribute("userName"));
-		System.out.println("userId:" + httpSession.getAttribute("userId"));
-		System.out.println(code);
-		System.out.println(password);
-		System.out.println(ip);
-		System.out.println(city);
-
-		String userName = "" + httpSession.getAttribute("userName");
-		if (userName != "" && !userName.equals("null")) {
-			System.out.println(userName);
-			System.out.println("用户已经登陆");
-			ResultModelMap<DUser> res = new ResultModelMap<DUser>();
-			Map<String, Object> map = new HashMap<String, Object>();
-			map.put("userName", userName);
-			res.setMap(map);
-			return res;
-		}
-		DUser record = new DUser();
-		record.setUsrCode(code);
-		record.setUsrPassword(password);
-		ResultModel<DUser> resultModel = dUserService.selectByCodeAndPassword(record);
-		DUser model = resultModel.getModel();
-		if (model == null) {
-			return new ResultModel<DUser>(CodeMessageEnum.loginFailed);
-		}
-		//TODO 执行登陆的操作  ，如缓存用户信息
-		if(model.getUsrId()==2) {
-			httpSession.setAttribute("userName", ip);
-		}else {
-			httpSession.setAttribute("userName", model.getUsrName());
-		}
-		httpSession.setAttribute("userId", model.getUsrId().intValue());
-		return resultModel;
+		return dUserService.login(code, password, httpSession);
 	}
 
 	@RequestMapping("/logout")
