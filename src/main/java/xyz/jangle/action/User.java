@@ -37,11 +37,15 @@ public class User {
 	@RequestMapping("/login")
 	@ResponseBody
 	public ResultModel<DUser> login(@RequestParam(required = false) String code,
+			@RequestParam(required = false) String ip,
+			@RequestParam(required = false) String city,
 			@RequestParam(required = false) String password, HttpSession httpSession) {
 		System.out.println("userName:" + httpSession.getAttribute("userName"));
 		System.out.println("userId:" + httpSession.getAttribute("userId"));
 		System.out.println(code);
 		System.out.println(password);
+		System.out.println(ip);
+		System.out.println(city);
 
 		String userName = "" + httpSession.getAttribute("userName");
 		if (userName != "" && !userName.equals("null")) {
@@ -62,7 +66,11 @@ public class User {
 			return new ResultModel<DUser>(CodeMessageEnum.loginFailed);
 		}
 		//TODO 执行登陆的操作  ，如缓存用户信息
-		httpSession.setAttribute("userName", model.getUsrName());
+		if(model.getUsrId()==2) {
+			httpSession.setAttribute("userName", ip);
+		}else {
+			httpSession.setAttribute("userName", model.getUsrName());
+		}
 		httpSession.setAttribute("userId", model.getUsrId().intValue());
 		return resultModel;
 	}

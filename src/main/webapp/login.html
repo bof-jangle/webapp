@@ -4,32 +4,60 @@
 <meta charset="UTF-8">
 <title>login</title>
 </head>
-<body>
-	登陆界面待开发。。。
-	<input type="text" id="userName" />
-	<input type="password" id="userPassword" />
-	<button onclick="login()" >login</button>
+<body style="background-color: #123;">
+	<div class="login"
+		style="margin-left: 60%; margin-top: 280px; background-color: #fff;">
+		<div style="margin-left: 30px; padding-top: 20px;">
+			<label for="userName" style="width: 80px; display: inline-block">用户名</label>
+			<input type="text" id="userName" />
+		</div>
+		<div style="margin-left: 30px; margin-top: 20px;">
+			<label for="userPassword" style="width: 80px; display: inline-block;">密码</label>
+			<input type="password" id="userPassword" />
+		</div>
+		<div style="margin-left: 130px; margin-top: 15px;">
+			<button onclick="login()" style="background-color: #aa55ff;">登陆</button>
+			<button onclick="loginForYk()" style="background-color: #aa55ff;">游客登陆</button>
+		</div>
+		<input type="hidden" id="ip"> <input type="hidden" id="city">
+	</div>
 	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 	<script>
+		$(function(){
+			$("#ip").val(returnCitySN["cip"]);
+			$("#city").val(returnCitySN["cname"]);
+		});
 		function login() {
 
 			$.ajax({
 				url : "/user/login",
 				dataType : "json",
-				data : {"code":$("#userName").val(),"password":$("#userPassword").val()},
+				data : {
+					"code" : $("#userName").val(),
+					"password" : $("#userPassword").val(),
+					"ip":$("#ip").val(),
+					"city":$("#city").val()
+				},
 				success : function(res) {
 					console.log(res);
-					if(res.code != "10001"){
+					if (res.code != "10001") {
 						alert(res.message);
-					}else {
+					} else {
 						alert("登陆成功");
-						location.href="index.html";
+						location.href = "index.html";
 					}
 				},
 				error : function(request, textStatus, errorThrown) {
 					fxShowAjaxError(request, textStatus, errorThrown);
 				}
 			});
+		}
+
+		function loginForYk() {
+			$("#userName").val("2");
+			$("#userPassword").val("p;.");
+			login();
 		}
 	</script>
 </body>
