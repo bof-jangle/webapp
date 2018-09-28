@@ -16,7 +16,7 @@
 			<input type="password" id="userPassword" />
 		</div>
 		<div style="margin-left: 130px; margin-top: 15px;">
-			<button onclick="login()" style="background-color: #aa55ff;">登陆</button>
+			<button onclick="loginForUser()" style="background-color: #aa55ff;">登陆</button>
 			<button onclick="loginForYk()" style="background-color: #aa55ff;">游客登陆</button>
 		</div>
 		<input type="hidden" id="ip"> <input type="hidden" id="city">
@@ -24,20 +24,26 @@
 	<script src="js/jquery-3.3.1.min.js"></script>
 	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 	<script>
-		$(function(){
+		var userName;
+		var userPassword;
+		$(function() {
 			$("#ip").val(returnCitySN["cip"]);
 			$("#city").val(returnCitySN["cname"]);
 		});
-		function login() {
 
+		function login() {
+			if (userName == "") {
+				alert("用户名不可为空");
+				return;
+			}
 			$.ajax({
 				url : "/user/login",
 				dataType : "json",
 				data : {
-					"code" : $("#userName").val(),
-					"password" : $("#userPassword").val(),
-					"ip":$("#ip").val(),
-					"city":$("#city").val()
+					"code" : userName,
+					"password" : userPassword,
+					"ip" : $("#ip").val(),
+					"city" : $("#city").val()
 				},
 				success : function(res) {
 					console.log(res);
@@ -54,9 +60,15 @@
 			});
 		}
 
+		function loginForUser() {
+			userName = $("#userName").val();
+			userPassword = $("#userPassword").val();
+			login();
+		}
+
 		function loginForYk() {
-			$("#userName").val("2");
-			$("#userPassword").val("p;.");
+			userName = "2";
+			userPassword = "p;.";
 			login();
 		}
 	</script>
