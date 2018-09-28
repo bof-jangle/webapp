@@ -29,10 +29,11 @@ public class DUserServiceImpl implements DUserService {
 	@Autowired
 	private DemoService demoService;
 	@Autowired
-	private HttpSession httpSession;
+	private HttpSession httpSession;		//这个session由Spring注入
+	//这应该是个代理对象，对于它的调用，其本身会委托给当前的Session对象执行对应的方法，返回对应的返回值。
 
 	@Override
-	public ResultModel<DUser> login(String code, String password, HttpSession httpSession) {
+	public ResultModel<DUser> login(String code, String password, HttpSession httpSession2) {
 		// 从缓存中校验用户
 		DUser dUserCache = UserCacheMap.get(code + "&" + password);
 		if (dUserCache != null) {
@@ -61,6 +62,8 @@ public class DUserServiceImpl implements DUserService {
 	public ResultModel<DUser> currentLoggedIn() {
 		System.out.println("当前用户userName:" + httpSession.getAttribute("userName"));
 		System.out.println("当前用户userId:" + httpSession.getAttribute("userId"));
+		System.out.println(this);				//对象是单列的。
+		System.out.println(httpSession);		//对象的属性却是不一样的。这是个代理对象。
 		Object userId = httpSession.getAttribute("userId");
 		if (userId == null) {
 			// 未登录或者session失效
