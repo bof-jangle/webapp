@@ -1,19 +1,19 @@
 package xyz.jangle.service;
 
-import xyz.jangle.model.User;
+import xyz.jangle.model.DemoModel;
 import xyz.jangle.utils.ResultModelList;
 
-public interface UserService {
+public interface DemoService {
 	/**
 	 * 获取所有用户信息
 	 * 
 	 * @return
 	 */
-	public ResultModelList<User> getAllUser();
+	public ResultModelList<DemoModel> getAllUser();
 	/**
 	 * test for nestedTransactionTest
 	 * @return
 	 */
-	public ResultModelList<User> save();
+	public ResultModelList<DemoModel> save();
 
 }

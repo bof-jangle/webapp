@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 import xyz.jangle.dao.DUserMapper;
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
-import xyz.jangle.model.User;
+import xyz.jangle.model.DemoModel;
 import xyz.jangle.service.DUserService;
-import xyz.jangle.service.UserService;
+import xyz.jangle.service.DemoService;
 import xyz.jangle.utils.CodeMessageEnum;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
@@ -27,7 +27,7 @@ public class DUserServiceImpl implements DUserService {
 	@Autowired
 	private DUserMapper dUserMapper;
 	@Autowired
-	private UserService userService;
+	private DemoService demoService;
 	@Autowired
 	private HttpSession httpSession;
 
@@ -52,7 +52,7 @@ public class DUserServiceImpl implements DUserService {
 		model.setUsrPassword(""); // 将密码置空
 		// 数据库校验通过后，将信息进行缓存
 		UserCacheMap.put("" + model.getUsrId(), model); // 登陆成功后，缓存用户信息
-		UserCacheMap.put(model.getUsrCode() + "&" + model.getUsrPassword(), model); // 登陆成功后，缓存用户信息
+		UserCacheMap.put(model.getUsrCode() + "&" + password, model); // 登陆成功后，缓存用户信息
 		loginSuccess(httpSession, model);
 		return new ResultModel<DUser>(model);
 	}
@@ -98,7 +98,7 @@ public class DUserServiceImpl implements DUserService {
 		dUser.setUsrName("0919");
 		dUser.setUsrCode("0919");
 		dUser.setUsrPassword("0919");
-		ResultModelList<User> resultModelList = userService.save();
+		ResultModelList<DemoModel> resultModelList = demoService.save();
 		dUserMapper.save(dUser);
 		return new ResultModelList<DUser>(resultModelList.getCode(), resultModelList.getMessage());
 	}

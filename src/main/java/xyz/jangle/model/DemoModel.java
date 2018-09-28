@@ -1,6 +1,6 @@
 package xyz.jangle.model;
 
-public class User {
+public class DemoModel {
 	
 	private int userId;
 	
