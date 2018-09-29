@@ -15,7 +15,7 @@
             	2、Spring.xml配置文件中配置 sqlSessionFactory的属性mapperLocations 指向映射文件则可省略此配置（该属性支持通配符*）这样可以不用一一配置mapper映射文件 
         -->  
         <!-- <mappers>  
-            <mapper resource="xyz/jangle/mapper/UserMapper.xml" />  
+            <mapper resource="xyz/jangle/mapper/DemoMapper.xml" />
         </mappers> -->
       
     </configuration>    

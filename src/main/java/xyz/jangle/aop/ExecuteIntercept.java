@@ -53,7 +53,7 @@ public class ExecuteIntercept {
 	@Around("myPointcut()")
 	public Object aroundExecute(ProceedingJoinPoint p) {
 		Object res = null;
-		//TODO 这里要增加一个已经登陆的验证 （待登陆功能做好之后。）
+		//XXX 此处还可以添加方法调用的权限功能 或者考虑在Filter中做
 		
 		//事务的开始
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();

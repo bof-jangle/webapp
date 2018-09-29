@@ -1,5 +1,7 @@
 package xyz.jangle.service;
 
+import javax.servlet.http.HttpSession;
+
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
 import xyz.jangle.utils.ResultModel;
@@ -28,5 +30,18 @@ public interface DUserService {
 	 * @return
 	 */
 	ResultModel<DUser> selectByCodeAndPassword(DUser record);
+	/**
+	 * 获取当前登陆者信息
+	 * @return
+	 */
+	ResultModel<DUser> currentLoggedIn();
+	/**
+	 * 执行登录
+	 * @param code
+	 * @param password
+	 * @param httpSession
+	 * @return
+	 */
+	ResultModel<DUser> login(String code, String password, HttpSession httpSession);
 
 }

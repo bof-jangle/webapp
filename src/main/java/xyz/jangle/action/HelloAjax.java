@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import xyz.jangle.model.User;
-import xyz.jangle.service.UserService;
+import xyz.jangle.model.DemoModel;
+import xyz.jangle.service.DemoService;
 import xyz.jangle.utils.ResultModelList;
 
 /**
@@ -20,7 +20,7 @@ import xyz.jangle.utils.ResultModelList;
 public class HelloAjax {
 
 	@Autowired
-	private UserService userService;
+	private DemoService demoService;
 
 	@RequestMapping("/helloAjax")
 	public ModelAndView hello() {
@@ -30,8 +30,8 @@ public class HelloAjax {
 
 	@RequestMapping("/helloData")
 	@ResponseBody
-	public ResultModelList<User> helloData() {
-		ResultModelList<User> res = userService.getAllUser();
+	public ResultModelList<DemoModel> helloData() {
+		ResultModelList<DemoModel> res = demoService.getAllUser();
 		return res;
 	}
 

@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.annotation.Rollback;
 
 import xyz.jangle.model.DUser;
 import xyz.jangle.service.DUserService;
