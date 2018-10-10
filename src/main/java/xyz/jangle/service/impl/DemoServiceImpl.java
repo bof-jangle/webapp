@@ -2,7 +2,6 @@ package xyz.jangle.service.impl;
 
 import java.util.List;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +11,7 @@ import xyz.jangle.service.DemoService;
 import xyz.jangle.utils.ResultModelList;
 
 @Service
-public class DemoServiceImpl implements DemoService {
-
-	private static Logger logger = Logger.getLogger(DemoServiceImpl.class);
+public class DemoServiceImpl extends BaseService implements DemoService {
 
 	@Autowired
 	DemoMapper demoMapper;

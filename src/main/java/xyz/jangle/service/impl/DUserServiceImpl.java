@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,9 +19,7 @@ import xyz.jangle.utils.ResultModelList;
 import xyz.jangle.utils.UserCacheMap;
 
 @Service
-public class DUserServiceImpl implements DUserService {
-
-	private static Logger logger = Logger.getLogger(DUserServiceImpl.class);
+public class DUserServiceImpl extends BaseService implements DUserService {
 
 	@Autowired
 	private DUserMapper dUserMapper;
