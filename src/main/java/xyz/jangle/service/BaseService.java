@@ -1,4 +1,4 @@
-package xyz.jangle.service.impl;
+package xyz.jangle.service;
 
 import org.apache.log4j.Logger;
 

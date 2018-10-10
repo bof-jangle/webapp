@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import xyz.jangle.dao.DemoMapper;
 import xyz.jangle.model.DemoModel;
+import xyz.jangle.service.BaseService;
 import xyz.jangle.service.DemoService;
 import xyz.jangle.utils.ResultModelList;
 

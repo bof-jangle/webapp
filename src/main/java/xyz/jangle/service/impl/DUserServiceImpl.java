@@ -11,6 +11,7 @@ import xyz.jangle.dao.DUserMapper;
 import xyz.jangle.model.DUser;
 import xyz.jangle.model.DUserExample;
 import xyz.jangle.model.DemoModel;
+import xyz.jangle.service.BaseService;
 import xyz.jangle.service.DUserService;
 import xyz.jangle.service.DemoService;
 import xyz.jangle.utils.CodeMessageEnum;
