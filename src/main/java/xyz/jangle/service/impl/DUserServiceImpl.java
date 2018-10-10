@@ -26,7 +26,7 @@ public class DUserServiceImpl extends BaseService implements DUserService {
 	private DUserMapper dUserMapper;
 	@Autowired
 	private DemoService demoService;
-	@Autowired
+	@Autowired(required=false)
 	private HttpSession httpSession;		//这个session由Spring注入
 	//这应该是个代理对象，对于它的调用，其本身会委托给当前的Session对象执行对应的方法，返回对应的返回值。
 
