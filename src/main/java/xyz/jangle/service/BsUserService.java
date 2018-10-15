@@ -2,39 +2,39 @@ package xyz.jangle.service;
 
 import javax.servlet.http.HttpSession;
 
-import xyz.jangle.model.DUser;
-import xyz.jangle.model.DUserExample;
+import xyz.jangle.model.BsUser;
+import xyz.jangle.model.BsUserExample;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
-public interface DUserService {
+public interface BsUserService {
 	/**
 	 * 保存
 	 * @return
 	 */
-	ResultModel<DUser> save(DUser dUser);
+	ResultModel<BsUser> save(BsUser bsUser);
 	/**
 	 * 查询用户信息
 	 * @param example
 	 * @return
 	 */
-	ResultModelList<DUser> selectByExample(DUserExample example);
+	ResultModelList<BsUser> selectByExample(BsUserExample example);
 	/**
 	 * 嵌套事务的测试
 	 * @return
 	 */
-	ResultModelList<DUser> nestedTransactionTest();
+	ResultModelList<BsUser> nestedTransactionTest();
 	/**
 	 * 根据code和password查询用户
 	 * @param record
 	 * @return
 	 */
-	ResultModel<DUser> selectByCodeAndPassword(DUser record);
+	ResultModel<BsUser> selectByCodeAndPassword(BsUser record);
 	/**
 	 * 获取当前登陆者信息
 	 * @return
 	 */
-	ResultModel<DUser> currentLoggedIn();
+	ResultModel<BsUser> currentLoggedIn();
 	/**
 	 * 执行登录
 	 * @param code
@@ -42,6 +42,6 @@ public interface DUserService {
 	 * @param httpSession
 	 * @return
 	 */
-	ResultModel<DUser> login(String code, String password, HttpSession httpSession);
+	ResultModel<BsUser> login(String code, String password, HttpSession httpSession);
 
 }

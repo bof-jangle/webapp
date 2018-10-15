@@ -24,7 +24,7 @@ public class DemoServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testSave() {
 		ResultModelList<DemoModel> resultModelList = demoService.save();
-		assertEquals(CodeMessageEnum.exception.getCode(), resultModelList.getCode());
+		assertEquals(CodeMessageEnum.success.getCode(), resultModelList.getCode());
 	}
 	
 	@Test

@@ -5,30 +5,30 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import xyz.jangle.model.DUser;
+import xyz.jangle.model.BsUser;
 import xyz.jangle.test.utils.JUnitRunSupport;
 
-public class DUserMapperTest extends JUnitRunSupport {
+public class BsUserMapperTest extends JUnitRunSupport {
 
 	@Autowired
-	private DUserMapper dUserMapper;
+	private BsUserMapper BsUserMapper;
 
 	@Test
 	public void testInsert() {
-		DUser record = new DUser();
+		BsUser record = new BsUser();
 		record.setUsrName("3");
 		record.setUsrPassword("3");
 		record.setUsrCode("3");
-		int insert = dUserMapper.insert(record);
+		int insert = BsUserMapper.insert(record);
 		assertEquals(1, insert);
 	}
 
 	@Test
 	public void testSelectByCodeAndPassword() {
-		DUser record = new DUser();
+		BsUser record = new BsUser();
 		record.setUsrCode("jangle");
 		record.setUsrPassword("1");
-		DUser user = dUserMapper.selectByCodeAndPassword(record);
+		BsUser user = BsUserMapper.selectByCodeAndPassword(record);
 		assertEquals(1, user.getUsrId().intValue());
 	}
 

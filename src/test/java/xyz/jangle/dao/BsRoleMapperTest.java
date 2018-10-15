@@ -5,19 +5,19 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import xyz.jangle.model.DRole;
+import xyz.jangle.model.BsRole;
 import xyz.jangle.test.utils.JUnitRunSupport;
 
-public class DRoleMapperTest extends JUnitRunSupport {
+public class BsRoleMapperTest extends JUnitRunSupport {
 	
 	@Autowired
-	private DRoleMapper dRoleMapper;
+	private BsRoleMapper bsRoleMapper;
 
 	@Test
 	public void testInsert() {
-		DRole record =new DRole();
+		BsRole record =new BsRole();
 		record.setRolName("2");
-		int insert = dRoleMapper.insert(record );
+		int insert = bsRoleMapper.insert(record );
 		System.out.println(insert);
 		assertEquals(insert, 1);
 	}

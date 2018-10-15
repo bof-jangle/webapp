@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import xyz.jangle.model.DUser;
-import xyz.jangle.model.DUserExample;
-import xyz.jangle.service.DUserService;
+import xyz.jangle.model.BsUser;
+import xyz.jangle.model.BsUserExample;
+import xyz.jangle.service.BsUserService;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -19,36 +19,36 @@ import xyz.jangle.utils.ResultModelList;
 public class User {
 
 	@Autowired
-	private DUserService dUserService;
+	private BsUserService bsUserService;
 
 	@RequestMapping("/selectUsers")
 	@ResponseBody
-	public ResultModelList<DUser> selectByExample() {
-		DUserExample dUserExample = new DUserExample();
-		ResultModelList<DUser> res = dUserService.selectByExample(dUserExample);
+	public ResultModelList<BsUser> selectByExample() {
+		BsUserExample bsUserExample = new BsUserExample();
+		ResultModelList<BsUser> res = bsUserService.selectByExample(bsUserExample);
 		return res;
 	}
 
 	@RequestMapping("/loginStatus")
 	@ResponseBody
-	public ResultModel<DUser> loginStatus() {
-		return dUserService.currentLoggedIn();
+	public ResultModel<BsUser> loginStatus() {
+		return bsUserService.currentLoggedIn();
 	}
 
 	@RequestMapping("/login")
 	@ResponseBody
-	public ResultModel<DUser> login(@RequestParam(required = false) String code,
+	public ResultModel<BsUser> login(@RequestParam(required = false) String code,
 			@RequestParam(required = false) String ip, @RequestParam(required = false) String city,
 			@RequestParam(required = false) String password, HttpSession httpSession) {
-		return dUserService.login(code, password, httpSession);
+		return bsUserService.login(code, password, httpSession);
 	}
 
 	@RequestMapping("/logout")
 	@ResponseBody
-	public ResultModel<DUser> logout(HttpSession httpSession) {
+	public ResultModel<BsUser> logout(HttpSession httpSession) {
 		httpSession.removeAttribute("userName");
 		httpSession.removeAttribute("userId");
-		ResultModel<DUser> resultModel = new ResultModel<DUser>();
+		ResultModel<BsUser> resultModel = new ResultModel<BsUser>();
 		resultModel.setMessage("注销成功");
 		return resultModel;
 	}

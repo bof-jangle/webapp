@@ -6,43 +6,43 @@ import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import xyz.jangle.model.DUser;
-import xyz.jangle.service.DUserService;
+import xyz.jangle.model.BsUser;
+import xyz.jangle.service.BsUserService;
 import xyz.jangle.test.utils.JUnitRunSupport;
 import xyz.jangle.utils.CodeMessageEnum;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
-public class DUserServiceImplTest extends JUnitRunSupport {
+public class BsUserServiceImplTest extends JUnitRunSupport {
 
 	@Autowired
-	private DUserService dUserService;
+	private BsUserService BsUserService;
 
 	@Test
 	@Ignore
 	public void testSave() {
 
-		DUser dUser = new DUser();
-		dUser.setUsrName("5");
-		dUser.setUsrCode("5");
-		dUser.setUsrPassword("5");
-		ResultModel<DUser> resultModel = dUserService.save(dUser);
+		BsUser BsUser = new BsUser();
+		BsUser.setUsrName("5");
+		BsUser.setUsrCode("5");
+		BsUser.setUsrPassword("5");
+		ResultModel<BsUser> resultModel = BsUserService.save(BsUser);
 		System.out.println(resultModel.getCode());
 		assertEquals(CodeMessageEnum.success.getCode(), resultModel.getCode());
 	}
 
 	@Test
 	public void testNestedTransactionTest() {
-		ResultModelList<DUser> resultModelList = dUserService.nestedTransactionTest();
-		assertEquals(CodeMessageEnum.exception.getCode(), resultModelList.getCode());
+		ResultModelList<BsUser> resultModelList = BsUserService.nestedTransactionTest();
+		assertEquals(CodeMessageEnum.success.getCode(), resultModelList.getCode());
 	}
 
 	@Test
 	public void testSelectByCodeAndPassword() {
-		DUser record = new DUser();
+		BsUser record = new BsUser();
 		record.setUsrCode("jangle");
 		record.setUsrPassword("1");
-		DUser user = dUserService.selectByCodeAndPassword(record).getModel();
+		BsUser user = BsUserService.selectByCodeAndPassword(record).getModel();
 		assertEquals(1, user.getUsrId().intValue());
 	}
 
