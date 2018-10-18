@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import xyz.jangle.demoname.model.DemoModel;
-import xyz.jangle.demoname.service.A;
 import xyz.jangle.demoname.service.DemoService;
 
 @Controller
@@ -18,8 +17,6 @@ public class Hello {
 	// 养成一种习惯，将项目的控制层对象，对应的视图，视图所用的js文件，三个名称进行统一。用Ctrl+R查找时可以很方便地找到他们
 	@Autowired
 	private DemoService demoService;
-	@Autowired
-	private A a;
 
 	@RequestMapping("/hello")
 	public ModelAndView hello(
@@ -35,7 +32,6 @@ public class Hello {
 	
 	@RequestMapping("/testAb")
 	public ModelAndView testAB() {
-		a.testA();
 		return new ModelAndView("hello");
 	}
 
