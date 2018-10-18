@@ -3,12 +3,12 @@
 <!-- namespace：必须与对应的接口全类名一致 id:必须与对应接口的某个对应的方法名一致 -->
 <mapper namespace="xyz.jangle.demoname.dao.DemoMapper">
 	<!-- for test -->
-	<insert id="save" parameterType="DemoModel">
+	<insert id="save" parameterType="xyz.jangle.demoname.model.DemoModel">
 		insert into c_tenant(name) values(#{userName})
 	</insert>
 
 	<!-- 暂不可用 -->
-	<update id="update" parameterType="DemoModel">
+	<update id="update" parameterType="xyz.jangle.demoname.model.DemoModel">
 		update table_name set name=#{userName},age=#{userAge} where id=#{id}
 	</update>
 
@@ -18,11 +18,11 @@
 	</delete>
 
 	<!-- mybsits_config中配置的alias类别名,也可直接配置resultType为类路径 -->
-	<select id="findById" parameterType="int" resultType="DemoModel">
+	<select id="findById" parameterType="int" resultType="xyz.jangle.demoname.model.DemoModel">
 		select id userId,name userName from c_tenant where id=#{id}
 	</select>
 
-	<select id="getAll" resultType="DemoModel">
+	<select id="getAll" resultType="xyz.jangle.demoname.model.DemoModel">
 		select id userId,name userName from c_tenant
 	</select>
 

@@ -7,7 +7,7 @@
 	<typeAliases>
 		<!-- <typeAlias alias="User" type="xyz.jangle.demoname.model.User" /> -->
 		<!-- 扫描包下的所有实体类并映射其类名为别名，如此就不需要一一配置别名了 -->
-		<package name="xyz.jangle.demoname.model" />
+<!-- 		<package name="xyz.jangle.demoname.model" /> --><!-- 由于使用mybatis生成插件，使用了类的全路径，不再需要别名功能 -->
 	</typeAliases>
 	<!-- 实体接口映射资源 -->
 	<!-- 说明：如果xxMapper.xml配置文件放在和xxMapper.java统一目录下，mappers也可以省略，因为org.mybatis.spring.mapper.MapperFactoryBean默认会去查找与xxMapper.java相同目录和名称的xxMapper.xml 
