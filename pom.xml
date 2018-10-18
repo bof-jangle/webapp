@@ -9,8 +9,8 @@
 	<name>webapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring.version>4.3.16.RELEASE</spring.version><!-- 声明spring版本号 -->
-		<jackson.version>2.8.9</jackson.version><!-- 声明jackson版本号 -->
+		<spring.version>4.3.18.RELEASE</spring.version><!-- 声明spring版本号 -->
+		<jackson.version>2.8.11</jackson.version><!-- 声明jackson版本号 -->
 	</properties>
 	<dependencies>
 		<dependency>
