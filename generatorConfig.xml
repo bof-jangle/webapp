@@ -7,11 +7,11 @@
     	<property name="useInformationSchema" value="true"></property>
     </jdbcConnection>
     <!-- model配置 -->
-    <javaModelGenerator targetPackage="xyz.jangle.model" targetProject="webapp" />
+    <javaModelGenerator targetPackage="xyz.jangle.demoname.model" targetProject="webapp" />
     <!-- 映射文件配置 -->
-    <sqlMapGenerator targetPackage="xyz.jangle.mapper" targetProject="webapp" />
+    <sqlMapGenerator targetPackage="xyz.jangle.demoname.mapper" targetProject="webapp" />
     <!-- DAO配置 -->
-    <javaClientGenerator targetPackage="xyz.jangle.dao" targetProject="webapp" type="XMLMAPPER" />
+    <javaClientGenerator targetPackage="xyz.jangle.demoname.dao" targetProject="webapp" type="XMLMAPPER" />
     <table schema="用户表" tableName="bs_user">
     	<!-- 这里可以配置表字段，不配置则为全部 -->
 <!--       <columnOverride column="???" property="???" /> -->

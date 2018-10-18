@@ -3,7 +3,7 @@ package xyz.jangle.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import xyz.jangle.model.BsUser;
+import xyz.jangle.demoname.model.BsUser;
 
 /** 
  * 用于缓存登陆的用户信息
