@@ -4,7 +4,7 @@
 <mapper namespace="xyz.jangle.demoname.dao.DemoMapper">
 	<!-- for test -->
 	<insert id="save" parameterType="xyz.jangle.demoname.model.DemoModel">
-		insert into c_tenant(name) values(#{userName})
+		insert into bs_user(usr_name) values(#{userName})
 	</insert>
 
 	<!-- 暂不可用 -->
@@ -23,7 +23,7 @@
 	</select>
 
 	<select id="getAll" resultType="xyz.jangle.demoname.model.DemoModel">
-		select id userId,name userName from c_tenant
+		select usr_id userId,usr_name userName from bs_user
 	</select>
 
 </mapper>

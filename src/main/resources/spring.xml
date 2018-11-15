@@ -36,9 +36,9 @@
 		<property name="driverClassName"
 			value="com.mysql.jdbc.Driver" />
 		<property name="url"
-			value="jdbc:mysql://mysql.jangle.xyz:3306/demo" />
-		<property name="username" value="hpy" />
-		<property name="password" value="mysql1234!.hpy" />
+			value="jdbc:mysql://jangle.xyz:3306/demo" />
+		<property name="username" value="jangle" />
+		<property name="password" value="1" />
 	</bean>
 
 	<!-- 2. mybatis的SqlSession的工厂: SqlSessionFactoryBean dataSource:引用数据源 MyBatis定义数据源,同意加载配置 -->
