@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>welcome to jangle home</title>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="css/backSystem.css" />
 <style>
 .header span {
@@ -11,20 +12,58 @@
 </style>
 </head>
 <body>
-	<div class="header">
-		<a href="index/welcome.html" target="bottomIframe"><span>首页</span></a>
-		<a href="index/bootstrap.html" target="bottomIframe"><span>bootstrap</span></a>
-		<a href="index/react.html" target="bottomIframe"><span>react</span></a>
-		<a href="index/easyUI.html" target="bottomIframe"><span>easyUI</span></a>
-		<a href="index/demo.html" target="bottomIframe"><span>demo</span></a>
+<!-- 	<div class="header"> -->
+<!-- 		<a href="index/welcome.html" target="bottomIframe"><span>首页</span></a> -->
+<!-- 		<a href="index/bootstrap.html" target="bottomIframe"><span>bootstrap</span></a> -->
+<!-- 		<a href="index/react.html" target="bottomIframe"><span>react</span></a> -->
+<!-- 		<a href="index/easyUI.html" target="bottomIframe"><span>easyUI</span></a> -->
+<!-- 		<a href="index/demo.html" target="bottomIframe"><span>demo</span></a> -->
+<!-- 		<span style="float: right;width:250px;" id="login"> <a href="login.html"><span>login</span></a> -->
+<!-- 		</span> -->
+<!-- 	</div> -->
+	<div class="index-header" >
+		<span >
+			<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PA4LCAoLCgUJC3xNTRJfU1E" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/></a>
+			欢迎来到我的主页....
+		</span>
 		<span style="float: right;width:250px;" id="login"> <a href="login.html"><span>login</span></a>
 		</span>
 	</div>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+		<div class="navbar-header">
+			<a class="navbar-brand" href="index/welcome.html" target="bottomIframe"><span>首页</span></a>
+		</div>
+		<div>
+			<ul class="nav navbar-nav">
+				<li><a href="index/bootstrap.html" target="bottomIframe"><span>bootstrap</span></a></li>
+				<li><a href="index/react.html" target="bottomIframe"><span>react</span></a></li>
+				<li><a href="index/easyUI.html" target="bottomIframe"><span>easyUI</span></a></li>
+				<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Demo
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="index/demo/user.html" target="bottomIframe">用户管理</a></li>
+						<li><a href="index/demo/role.html" target="bottomIframe">角色管理</a></li>
+						<li class="divider"></li>
+						<li><a href="test/selectAndInput.html" target="bottomIframe">可选可输下拉框</a></li>
+						<li class="divider"></li>
+						<li><a href="test/inputList.html" target="bottomIframe">可选可输input</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+		</div>
+	</nav>
 	<div class="content">
 		<iframe id="bottomIframe" src="index/welcome.html" name="bottomIframe"
 			width="100%" height="1500px;" style="border: 0px;"></iframe>
 	</div>
-	<script src="js/jquery-3.3.1.min.js"></script>
+<!-- 	<script src="js/jquery-3.3.1.min.js"></script> -->
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 	<script type="text/javascript">
 		$.ajax({

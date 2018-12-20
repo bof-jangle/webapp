@@ -1,6 +1,7 @@
 .btn:focus{outline:none;}
 /*主界面*/
 .header{line-height:60px;padding:0 3%;background:rgb(220,100,90);color:#fff}
+.index-header{line-height:60px;height:60px;background:rgb(220,100,90);}
 .banner{color:#252525;font-size:12px;position:absolute;bottom:20px;left:50%;margin-left:-100px;}
 #cybercafeName{font-size:24px;cursor:pointer;}
 .userBox{position:relative;color:#fff;cursor:pointer;z-index:999;}

@@ -45,7 +45,6 @@
 			pageNum = params.data.offset / pageSize + 1;
 			index = params.data.offset + 1;
 			$.ajax({
-				type : 'get',
 // 				url : "../../data/bootstrap-table-data.json",
 				url : "/user/selectUsers",	//	这里的请求需要提供分页查询的功能。
 				//data:{} ,//这里添加分页参数与查询条件。
