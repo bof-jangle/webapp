@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import xyz.jangle.demoname.model.DemoModel;
 import xyz.jangle.demoname.service.DemoService;
 import xyz.jangle.test.utils.JUnitRunSupport;
-import xyz.jangle.utils.CodeMessageEnum;
+import xyz.jangle.utils.CME;
 import xyz.jangle.utils.ResultModelList;
 
 /** 
@@ -24,13 +24,13 @@ public class DemoServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testSave() {
 		ResultModelList<DemoModel> resultModelList = demoService.save();
-		assertEquals(CodeMessageEnum.success.getCode(), resultModelList.getCode());
+		assertEquals(CME.success.getCode(), resultModelList.getCode());
 	}
 	
 	@Test
 	public void testGetAll() {
 		ResultModelList<DemoModel> allUser = demoService.getAllUser();
-		assertEquals(CodeMessageEnum.success.getCode(), allUser.getCode());
+		assertEquals(CME.success.getCode(), allUser.getCode());
 	}
 
 }

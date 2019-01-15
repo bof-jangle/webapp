@@ -12,7 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.test.utils.JUnitRunSupport;
-import xyz.jangle.utils.CodeMessageEnum;
+import xyz.jangle.utils.CME;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -34,7 +34,7 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 
 	@After
 	public void tearDown() throws Exception {
-		assertEquals(CodeMessageEnum.success.getCode(), result.getCode());
+		assertEquals(CME.success.getCode(), result.getCode());
 		result = null;
 	}
 
@@ -42,7 +42,7 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 	public void testInsert() {
 		BsUser bsUser = new BsUser();
 		result = BsUserService.insert(bsUser);
-		assertEquals(CodeMessageEnum.success.getCode(), result.getCode());
+		assertEquals(CME.success.getCode(), result.getCode());
 		assertNotNull(result.getModel().getUsrId());
 		
 	}
@@ -65,7 +65,7 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testNestedTransactionTest() {
 		ResultModelList<BsUser> resultModelList = BsUserService.nestedTransactionTest();
-		assertEquals(CodeMessageEnum.success.getCode(), resultModelList.getCode());
+		assertEquals(CME.success.getCode(), resultModelList.getCode());
 	}
 
 	@Test

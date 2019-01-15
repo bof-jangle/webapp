@@ -1,10 +1,11 @@
 package xyz.jangle.utils;
 
 /**
+ * CME = CodeMessageEnum
  * @author jangle E-mail: jangle@jangle.xyz
  * @version 2018年9月18日 下午2:28:28 类说明
  */
-public enum CodeMessageEnum {
+public enum CME {
 	
 	unlogin("10005","未登录或回话已过期"),
 	loginFailed("10004","登陆异常，用户名或密码错误"),
@@ -16,7 +17,7 @@ public enum CodeMessageEnum {
 
 	private String message;
 
-	private CodeMessageEnum(String code, String message) {
+	private CME(String code, String message) {
 		this.code = code;
 		this.message = message;
 	}

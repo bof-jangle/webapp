@@ -14,7 +14,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
-import xyz.jangle.utils.CodeMessageEnum;
+import xyz.jangle.utils.CME;
 import xyz.jangle.utils.ResultModelMap;
 
 @Aspect
@@ -67,7 +67,7 @@ public class ExecuteIntercept {
 		} catch (Throwable e) {
 			e.printStackTrace();
 			txManager.rollback(status);//回滚事务
-			ResultModelMap<Object> resm = new ResultModelMap<Object>(CodeMessageEnum.exception);
+			ResultModelMap<Object> resm = new ResultModelMap<Object>(CME.exception);
 			resm.setMessage(e.getMessage());
 			return resm;
 		}

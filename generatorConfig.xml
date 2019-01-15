@@ -11,11 +11,11 @@
     <jdbcConnection connectionURL="jdbc:mysql://jangle.xyz:3306/demo?characterEncoding=UTF8" driverClass="com.mysql.jdbc.Driver" password="1" userId="jangle" >
     	<property name="useInformationSchema" value="true"></property>
     </jdbcConnection>
-    <!-- model配置 -->
+    <!-- 1、model配置 -->
     <javaModelGenerator targetPackage="xyz.jangle.demoname.model" targetProject="webapp" />
-    <!-- 映射文件配置 -->
+    <!-- 2、映射文件配置 -->
     <sqlMapGenerator targetPackage="xyz.jangle.demoname.mapper" targetProject="webapp" />
-    <!-- DAO配置 -->
+    <!-- 3、DAO配置 -->
     <javaClientGenerator targetPackage="xyz.jangle.demoname.dao" targetProject="webapp" type="XMLMAPPER" />
     <table schema="DEMO表" tableName="bs_demo">
     	<!-- 这里可以配置表字段，不配置则为全部 -->

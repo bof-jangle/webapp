@@ -14,7 +14,7 @@ import xyz.jangle.demoname.model.DemoModel;
 import xyz.jangle.demoname.service.BaseService;
 import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.demoname.service.DemoService;
-import xyz.jangle.utils.CodeMessageEnum;
+import xyz.jangle.utils.CME;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 import xyz.jangle.utils.UserCacheMap;
@@ -47,7 +47,7 @@ public class BsUserServiceImpl extends BaseService implements BsUserService {
 		BsUser model = bsUserMapper.selectByCodeAndPassword(record);
 		// 数据库校验未通过，则提示错误
 		if (model == null) {
-			return new ResultModel<BsUser>(CodeMessageEnum.loginFailed);
+			return new ResultModel<BsUser>(CME.loginFailed);
 		}
 		model.setUsrPassword(""); // 将密码置空
 		// 数据库校验通过后，将信息进行缓存
@@ -66,7 +66,7 @@ public class BsUserServiceImpl extends BaseService implements BsUserService {
 		Object userId = httpSession.getAttribute("userId");
 		if (userId == null) {
 			// 未登录或者session失效
-			return new ResultModel<>(CodeMessageEnum.unlogin);
+			return new ResultModel<>(CME.unlogin);
 		}
 		logger.debug("userId:" + Integer.valueOf("" + userId));
 //		BsUser BsUser = BsUserMapper.selectByPrimaryKey(Integer.valueOf(""+userId));
@@ -83,7 +83,7 @@ public class BsUserServiceImpl extends BaseService implements BsUserService {
 	public ResultModel<BsUser> save(BsUser bsUser) {
 		bsUserMapper.save(bsUser);
 //		int i = 1/0;
-		return new ResultModel<BsUser>(CodeMessageEnum.success);
+		return new ResultModel<BsUser>(CME.success);
 	}
 
 	@Override

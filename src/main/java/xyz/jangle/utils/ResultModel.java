@@ -11,15 +11,15 @@ public class ResultModel<T> {
 	/** model */
 	private T model;
 	/** 返回信息编码 */
-	private String code = CodeMessageEnum.success.getCode();
+	private String code = CME.success.getCode();
 	/** 返回信息 */
-	private String message;
+	private String message = CME.success.getMessage();
 
 	public ResultModel() {
 
 	}
 
-	public ResultModel(CodeMessageEnum cmEnum) {
+	public ResultModel(CME cmEnum) {
 		this.code = cmEnum.getCode();
 		this.message = cmEnum.getMessage();
 	}
@@ -57,7 +57,7 @@ public class ResultModel<T> {
 	 * 
 	 * @param cmEnum
 	 */
-	public void setCodeMessage(CodeMessageEnum cmEnum) {
+	public void setCodeMessage(CME cmEnum) {
 		this.code = cmEnum.getCode();
 		this.message = cmEnum.getMessage();
 	}

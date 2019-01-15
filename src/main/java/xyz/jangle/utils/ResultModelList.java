@@ -25,7 +25,7 @@ public class ResultModelList<T> extends ResultModel<T> {
 		this.setMessage(msg);
 	}
 
-	public ResultModelList(CodeMessageEnum cmEnum) {
+	public ResultModelList(CME cmEnum) {
 		this();
 		this.setCodeMessage(cmEnum);
 	}
