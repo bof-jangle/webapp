@@ -26,10 +26,10 @@ public class BsUserServiceImpl extends BaseService implements BsUserService {
 	private BsUserMapper bsUserMapper;
 	@Autowired
 	private DemoService demoService;
-	@Autowired(required=false)
-	private HttpSession httpSession;		//这个session由Spring注入，
-	//required=false，当在单元测试时，该session可为null，使其启动不报错。
-	//这应该是个代理对象，对于它的调用，其本身会委托给当前的Session对象执行对应的方法，返回对应的返回值。
+	@Autowired(required = false)
+	private HttpSession httpSession; // 这个session由Spring注入，
+	// required=false，当在单元测试时，该session可为null，使其启动不报错。
+	// 这应该是个代理对象，对于它的调用，其本身会委托给当前的Session对象执行对应的方法，返回对应的返回值。
 
 	@Override
 	public ResultModel<BsUser> login(String code, String password, HttpSession httpSession2) {
@@ -61,8 +61,8 @@ public class BsUserServiceImpl extends BaseService implements BsUserService {
 	public ResultModel<BsUser> currentLoggedIn() {
 		System.out.println("当前用户userName:" + httpSession.getAttribute("userName"));
 		System.out.println("当前用户userId:" + httpSession.getAttribute("userId"));
-		System.out.println(this);				//对象是单列的。
-		System.out.println(httpSession);		//对象的属性却是不一样的。这是个代理对象。
+		System.out.println(this); // 对象是单列的。
+		System.out.println(httpSession); // 对象的属性却是不一样的。这是个代理对象。
 		Object userId = httpSession.getAttribute("userId");
 		if (userId == null) {
 			// 未登录或者session失效
@@ -107,12 +107,37 @@ public class BsUserServiceImpl extends BaseService implements BsUserService {
 
 	/**
 	 * 登陆成功执行内容
+	 * 
 	 * @param httpSession
 	 * @param model
 	 */
 	private void loginSuccess(HttpSession httpSession, BsUser model) {
 		httpSession.setAttribute("userName", model.getUsrName());
 		httpSession.setAttribute("userId", model.getUsrId().intValue());
+	}
+
+	@Override
+	public ResultModel<BsUser> insert(BsUser bsUser) {
+		bsUserMapper.insert(bsUser);
+		return new ResultModel<BsUser>(bsUser);
+	}
+
+	@Override
+	public ResultModel<BsUser> deleteByPrimaryKey(BsUser bsUser) {
+		bsUserMapper.deleteByPrimaryKey(bsUser.getUsrId());
+		return new ResultModel<BsUser>(bsUser);
+	}
+
+	@Override
+	public ResultModel<BsUser> updateByPrimaryKey(BsUser bsUser) {
+		bsUserMapper.updateByPrimaryKey(bsUser);
+		return new ResultModel<BsUser>(bsUser);
+	}
+
+	@Override
+	public ResultModel<BsUser> selectByPrimaryKey(BsUser bsUser) {
+		BsUser byPrimaryKey = bsUserMapper.selectByPrimaryKey(bsUser.getUsrId());
+		return new ResultModel<BsUser>(byPrimaryKey);
 	}
 
 }

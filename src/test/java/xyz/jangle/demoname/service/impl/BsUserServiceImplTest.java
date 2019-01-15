@@ -1,8 +1,11 @@
 package xyz.jangle.demoname.service.impl;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
-import org.junit.Ignore;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,18 +20,46 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 
 	@Autowired
 	private BsUserService BsUserService;
+	// 结果保存
+	private ResultModel<BsUser> result = null;
+	
+	@Before
+	public void setUp() throws Exception {
+		BsUser bsUser = new BsUser();
+		bsUser.setUsrName("testName");
+		bsUser.setUsrCode("testCode");
+		bsUser.setUsrPassword("testPassword");
+		result = BsUserService.insert(bsUser);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		assertEquals(CodeMessageEnum.success.getCode(), result.getCode());
+		result = null;
+	}
 
 	@Test
-	@Ignore
-	public void testSave() {
+	public void testInsert() {
+		BsUser bsUser = new BsUser();
+		result = BsUserService.insert(bsUser);
+		assertEquals(CodeMessageEnum.success.getCode(), result.getCode());
+		assertNotNull(result.getModel().getUsrId());
+		
+	}
 
-		BsUser BsUser = new BsUser();
-		BsUser.setUsrName("5");
-		BsUser.setUsrCode("5");
-		BsUser.setUsrPassword("5");
-		ResultModel<BsUser> resultModel = BsUserService.save(BsUser);
-		System.out.println(resultModel.getCode());
-		assertEquals(CodeMessageEnum.success.getCode(), resultModel.getCode());
+	@Test
+	public void testDeleteByPrimaryKey() {
+		result = BsUserService.deleteByPrimaryKey(result.getModel());
+	}
+
+	@Test
+	public void testUpdateByPrimaryKey() {
+		result = BsUserService.updateByPrimaryKey(result.getModel());
+	}
+
+	@Test
+	public void testSelectByPrimaryKey() {
+		result = BsUserService.selectByPrimaryKey(result.getModel());
 	}
 
 	@Test
@@ -39,11 +70,8 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 
 	@Test
 	public void testSelectByCodeAndPassword() {
-		BsUser record = new BsUser();
-		record.setUsrCode("jangle");
-		record.setUsrPassword("1");
-		BsUser user = BsUserService.selectByCodeAndPassword(record).getModel();
-		assertEquals(1, user.getUsrId().intValue());
+		result = BsUserService.selectByCodeAndPassword(result.getModel());
+		assertTrue(result.getModel().getUsrId() > 0);
 	}
 
 }

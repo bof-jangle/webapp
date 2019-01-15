@@ -23,8 +23,12 @@ public class User {
 
 	@RequestMapping("/selectUsers")
 	@ResponseBody
-	public ResultModelList<BsUser> selectByExample() {
+	public ResultModelList<BsUser> selectByExample(@RequestParam(value = "usrName", required = false) String usrName,
+			@RequestParam(value = "pageNum", required = false) Integer pageNum,
+			@RequestParam(value = "pageSize", required = false) Integer pageSize
+			) {
 		BsUserExample bsUserExample = new BsUserExample();
+//		bsUserExample.createCriteria().andUsrNameLike(usrName);
 		ResultModelList<BsUser> res = bsUserService.selectByExample(bsUserExample);
 		return res;
 	}

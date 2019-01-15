@@ -22,6 +22,7 @@ public class BsUserMapperTest extends JUnitRunSupport {
 		record.setUsrCode("3");
 		int insert = BsUserMapper.insert(record);
 		assertEquals(1, insert);
+		System.out.println("usrId:"+record.getUsrId());
 	}
 
 	@Test

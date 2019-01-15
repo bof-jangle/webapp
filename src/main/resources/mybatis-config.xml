@@ -2,6 +2,10 @@
     <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"   
     "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+	<settings>
+<!-- 		<setting name="logImpl" value="STDOUT_LOGGING"/> -->
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
 
 	<!-- 实体类,简称 -设置别名 -->
 	<typeAliases>

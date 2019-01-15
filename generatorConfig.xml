@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
-  <context id="context1">
+  <context id="context1" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+	<property name="javaFileEncoding" value="UTF-8"/>
+	<commentGenerator type = "xyz.jangle.utils.JangleCommentGenerator">
+	        <property name="suppressDate" value="true"/>
+	        <property name="suppressAllComments" value="true" />
+	</commentGenerator>
   	<!-- jdbc连接 -->
-    <jdbcConnection connectionURL="jdbc:mysql://123.207.169.16:3306/demo" driverClass="com.mysql.jdbc.Driver" password="mysql1234!.hpy" userId="hpy" >
+    <jdbcConnection connectionURL="jdbc:mysql://jangle.xyz:3306/demo?characterEncoding=UTF8" driverClass="com.mysql.jdbc.Driver" password="1" userId="jangle" >
     	<property name="useInformationSchema" value="true"></property>
     </jdbcConnection>
     <!-- model配置 -->
@@ -12,7 +17,7 @@
     <sqlMapGenerator targetPackage="xyz.jangle.demoname.mapper" targetProject="webapp" />
     <!-- DAO配置 -->
     <javaClientGenerator targetPackage="xyz.jangle.demoname.dao" targetProject="webapp" type="XMLMAPPER" />
-    <table schema="用户表" tableName="bs_user">
+    <table schema="DEMO表" tableName="bs_demo">
     	<!-- 这里可以配置表字段，不配置则为全部 -->
 <!--       <columnOverride column="???" property="???" /> -->
     </table>

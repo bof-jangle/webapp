@@ -43,5 +43,28 @@ public interface BsUserService {
 	 * @return
 	 */
 	ResultModel<BsUser> login(String code, String password, HttpSession httpSession);
-
+	/**
+	 * 新增记录
+	 * @param bsUser
+	 * @return
+	 */
+	ResultModel<BsUser> insert(BsUser bsUser);
+	/**
+	 * 删除记录
+	 * @param bsUser
+	 * @return
+	 */
+	ResultModel<BsUser> deleteByPrimaryKey(BsUser bsUser);
+	/**
+	 * 更新记录
+	 * @param bsUser
+	 * @return
+	 */
+	ResultModel<BsUser> updateByPrimaryKey(BsUser bsUser);
+	/**
+	 * 查询记录
+	 * @param bsUser
+	 * @return
+	 */
+	ResultModel<BsUser> selectByPrimaryKey(BsUser bsUser);
 }
