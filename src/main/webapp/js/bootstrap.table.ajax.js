@@ -12,14 +12,14 @@ function ajaxRequest(params) {
 			+ '&pageSize=' + pageSize;
 	$.ajax({
 		// url : "../../data/bootstrap-table-data.json",
-		url : "/user/selectUsers", // 这里的请求需要提供分页查询的功能。
+		url : url, // 这里的请求需要提供分页查询的功能。
 		data : dataStr,// 这里添加分页参数与查询条件。
 		dataType : 'json',
 		error : function(request, textStatus, errorThrown) {
-			fxShowAjaxError(request, textStatus, errorThrown);
+			jangleShowAjaxError(request, textStatus, errorThrown);
 		},
 		success : function(data) {
-			console.log(data);
+//			console.log(data);
 			if (data.code != "10001") {
 				alert(data.message);
 				return;
@@ -28,7 +28,7 @@ function ajaxRequest(params) {
 			if (data) {
 				applies = data ? data : [];
 			}
-			console.log(applies);
+//			console.log(applies);
 			count = data.length;
 			params.success({
 				total : count,
@@ -41,10 +41,10 @@ function ajaxRequest(params) {
 // 查询
 function search() {
 	$('#tablewrap').bootstrapTable('selectPage', 1);
-	var param = {
-		silent : true
-	};
-	$('#tablewrap').bootstrapTable('refresh', param);
+//	var param = {
+//		silent : true
+//	};
+//	$('#tablewrap').bootstrapTable('refresh', param);
 };
 // 自增序号
 function numberAsc() {
@@ -52,8 +52,20 @@ function numberAsc() {
 }
 // 名称格式化
 function nameFormat(name) {
+	if(!name){
+		return name;
+	}
 	if (name.length > 20)
 		return name.substring(0, 20) + "...";
 	else
 		return name;
 }
+//查看按钮格式化
+function operateFormat(value, row) {
+	return '<button class="btn btn-xs btn-info" onclick="openDetail('
+			+ JSON.stringify(row).replace(/\"/g, "'")
+			+ ')">查看</button>'
+			+ '<button class="btn btn-xs btn-info" style="margin-left:5px;" onclick="editDetail('
+			+ JSON.stringify(row).replace(/\"/g, "'")
+			+ ')">编辑</button>';
+};
