@@ -32,7 +32,7 @@ function ajaxRequest(params) {
 //			console.log(applies);
 			count = data.count;
 			if(!count){
-				count = list.size;
+				count = list.length;
 			}
 			params.success({
 				total : count,
