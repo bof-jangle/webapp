@@ -46,6 +46,12 @@ public class BsDemoAction {
 		return bsDemoService.selectAll();
 	}
 
+	@RequestMapping("/selectPage.action")
+	@ResponseBody
+	ResultModelList<BsDemo> selectPage(BsDemo record) {
+		return bsDemoService.selectPage(record);
+	}
+
 	@RequestMapping("/updateByPrimaryKey.action")
 	@ResponseBody
 	ResultModel<BsDemo> updateByPrimaryKey(BsDemo record) {

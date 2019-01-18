@@ -11,7 +11,6 @@ import xyz.jangle.demoname.dao.BsUserMapper;
 import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.model.BsUserExample;
 import xyz.jangle.demoname.model.DemoModel;
-import xyz.jangle.demoname.service.BaseService;
 import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.demoname.service.DemoService;
 import xyz.jangle.utils.CME;
@@ -20,7 +19,7 @@ import xyz.jangle.utils.ResultModelList;
 import xyz.jangle.utils.UserCacheMap;
 
 @Service
-public class BsUserServiceImpl extends BaseService implements BsUserService {
+public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService {
 
 	@Autowired
 	private BsUserMapper bsUserMapper;

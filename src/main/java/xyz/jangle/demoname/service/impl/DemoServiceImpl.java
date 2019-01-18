@@ -7,12 +7,11 @@ import org.springframework.stereotype.Service;
 
 import xyz.jangle.demoname.dao.DemoMapper;
 import xyz.jangle.demoname.model.DemoModel;
-import xyz.jangle.demoname.service.BaseService;
 import xyz.jangle.demoname.service.DemoService;
 import xyz.jangle.utils.ResultModelList;
 
 @Service
-public class DemoServiceImpl extends BaseService implements DemoService {
+public class DemoServiceImpl extends BaseServiceImpl implements DemoService {
 
 	@Autowired
 	DemoMapper demoMapper;

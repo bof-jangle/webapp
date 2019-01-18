@@ -7,8 +7,9 @@ var index = 1; // 序号
 function ajaxRequest(params) {
 	pageSize = params.data.limit;
 	pageNum = params.data.offset / pageSize + 1;
+	pageStart = params.data.offset;
 	index = params.data.offset + 1;
-	var dataStr = $('#searchForm').serialize() + '&pageNum=' + pageNum
+	var dataStr = $('#searchForm').serialize() + '&pageStart=' + pageStart + '&pageNum=' + pageNum
 			+ '&pageSize=' + pageSize;
 	$.ajax({
 		// url : "../../data/bootstrap-table-data.json",
@@ -19,17 +20,20 @@ function ajaxRequest(params) {
 			jangleShowAjaxError(request, textStatus, errorThrown);
 		},
 		success : function(data) {
-//			console.log(data);
+			console.log(data);
 			if (data.code != "10001") {
 				alert(data.message);
 				return;
 			}
-			data = data.list;
+			list = data.list;
 			if (data) {
-				applies = data ? data : [];
+				applies = list ? list : [];
 			}
 //			console.log(applies);
-			count = data.length;
+			count = data.count;
+			if(!count){
+				count = list.size;
+			}
 			params.success({
 				total : count,
 				rows : applies

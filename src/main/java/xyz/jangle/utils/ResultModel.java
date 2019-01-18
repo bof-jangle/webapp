@@ -14,6 +14,8 @@ public class ResultModel<T> {
 	private String code = CME.success.getCode();
 	/** 返回信息 */
 	private String message = CME.success.getMessage();
+	/** 总数统计 */
+	private Long count;
 
 	public ResultModel() {
 
@@ -50,6 +52,14 @@ public class ResultModel<T> {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Long getCount() {
+		return count;
+	}
+
+	public void setCount(Long count) {
+		this.count = count;
 	}
 
 	/**
