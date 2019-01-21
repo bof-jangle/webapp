@@ -34,7 +34,12 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 
 	@Override
 	public ResultModel<BsDemo> insert(BsDemo record) {
-		int i = bsDemoMapper.insert(record);
+		int i = 0;
+		if (record.getId() > 0) {
+			i = bsDemoMapper.updateByPrimaryKey(record);
+		} else {
+			i = bsDemoMapper.insert(record);
+		}
 		if (i > 0) {
 			return new ResultModel<BsDemo>(record);
 		}
