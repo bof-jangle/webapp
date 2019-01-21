@@ -18,7 +18,8 @@
 		<div style="padding: 0px 1% 15px; float: right;">
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
-			<!-- 		<button class="btn btn-info btn-sm" onclick="deleteForm()" id="deleteButton">删除</button> -->
+			<button class="btn btn-info btn-sm" onclick="deleteForm()"
+				style="display: none;" id="deleteButton">删除</button>
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
 	</div>
@@ -27,15 +28,16 @@
 			style="margin-top: 20px;">
 			<div class="form-group" style="padding-left: 15%;">
 				<label for="dmDesc">描述：</label> <input type="text"
-					class="form-control" style="width: 45%;"
-					id="dmDesc" name="dmDesc" placeholder="请输入描述">
+					class="form-control" style="width: 45%;" id="dmDesc" name="dmDesc"
+					placeholder="请输入描述">
 			</div>
 			<!-- 		<div class="form-group"> -->
 			<!-- 			<label for="testPassword">密&nbsp;&nbsp;&nbsp;码：</label> <input -->
 			<!-- 				type="text" class="form-control" id="testPassword" -->
 			<!-- 				name="testPassword" placeholder="请输入密码"> -->
 			<!-- 		</div> -->
-			<input type="hidden" name="id" id="id" ><!-- 主键ID隐藏域 -->
+			<input type="hidden" name="id" id="id">
+			<!-- 主键ID隐藏域 -->
 		</form>
 	</div>
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
@@ -70,6 +72,7 @@
 		});
 	</script>
 	<script>
+		// 提交表单
 		function submitForm() {
 			$("#jangleEditForm").data("bootstrapValidator").validate(); //提交验证写法1
 			// 			$("#jangleEditForm").bootstrapValidator("validate");		//提交验证写法2
@@ -93,23 +96,49 @@
 			});
 		}
 
-		if(ps["id"])
-		$.ajax({
-			url:"/bsDemoAction/selectByPrimaryKey.action",
-			dataType:"json",
-			cache:false,
-			data : {"id":ps["id"]},
-			error : function(request, textStatus, errorThrown) {
-				jangleShowAjaxError(request, textStatus, errorThrown);
-			},
-			success : function(data) {
-				if(data != null && data.code == "10001" && data.model != null){
-					for(var item in data.model){
-						$("#"+item).val(data.model[item]);
+		// 删除记录
+		function deleteForm() {
+			if (confirm("确定删除此记录吗？")) {
+				$.ajax({
+					url : "/bsDemoAction/deleteByPrimaryKey.action",
+					dataType : "json",
+					data : {
+						"id" : $("#id").val()
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						success(data);
 					}
-				}
+				});
 			}
-		});
+		}
+
+		// dom加载完成之后
+		$(function() {
+			if (ps["id"])
+				$.ajax({
+					url : "/bsDemoAction/selectByPrimaryKey.action",
+					dataType : "json",
+					cache : false,
+					data : {
+						"id" : ps["id"]
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						if (data != null && data.code == "10001"
+								&& data.model != null) {
+							for ( var item in data.model) {
+								$("#" + item).val(data.model[item]);
+							}
+							$("#deleteButton").show(); // 显示删除按钮
+						}
+					}
+				});
+		})
 	</script>
 </body>
 </html>
