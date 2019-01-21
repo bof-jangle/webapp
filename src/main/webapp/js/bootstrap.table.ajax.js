@@ -3,7 +3,11 @@ var pageNum = 1; // 页码
 var pageSize = 10; // 页宽
 var count; // 数据量
 var index = 1; // 序号
-// 数据获取
+/**
+ * 数据获取
+ * @param params
+ * @returns
+ */
 function ajaxRequest(params) {
 	pageSize = params.data.limit;
 	pageNum = params.data.offset / pageSize + 1;
@@ -42,7 +46,10 @@ function ajaxRequest(params) {
 		}
 	});
 }
-// 查询
+/**
+ * 查询
+ * @returns
+ */ 
 function search() {
 	$('#tablewrap').bootstrapTable('selectPage', 1);
 //	var param = {
@@ -54,7 +61,11 @@ function search() {
 function numberAsc() {
 	return index++; // index在ajaxRequest函数中被再次初始化
 }
-// 名称格式化
+/**
+ * 名称格式化
+ * @param name
+ * @returns
+ */
 function nameFormat(name) {
 	if(!name){
 		return name;
@@ -64,7 +75,12 @@ function nameFormat(name) {
 	else
 		return name;
 }
-//查看按钮格式化
+/**
+ * 查看按钮格式化
+ * @param value
+ * @param row
+ * @returns
+ */
 function operateFormat(value, row) {
 	return '<button class="btn btn-xs btn-info" onclick="openDetail('
 			+ JSON.stringify(row).replace(/\"/g, "'")
