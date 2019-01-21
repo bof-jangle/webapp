@@ -9,6 +9,7 @@ import xyz.jangle.demoname.dao.BsDemoMapper;
 import xyz.jangle.demoname.model.BsDemo;
 import xyz.jangle.demoname.service.BsDemoService;
 import xyz.jangle.utils.CME;
+import xyz.jangle.utils.Jutils;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -35,7 +36,7 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 	@Override
 	public ResultModel<BsDemo> insert(BsDemo record) {
 		int i = 0;
-		if (record.getId() > 0) {
+		if (Jutils.isGreatThan0(record.getId())) {
 			i = bsDemoMapper.updateByPrimaryKey(record);
 		} else {
 			i = bsDemoMapper.insert(record);

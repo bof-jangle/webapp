@@ -54,6 +54,10 @@ public class ResultModel<T> {
 		this.message = message;
 	}
 
+	public void appendMessage(String message) {
+		this.message += message;
+	}
+
 	public Long getCount() {
 		return count;
 	}

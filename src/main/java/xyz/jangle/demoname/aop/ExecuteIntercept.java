@@ -68,7 +68,7 @@ public class ExecuteIntercept {
 			e.printStackTrace();
 			txManager.rollback(status);//回滚事务
 			ResultModelMap<Object> resm = new ResultModelMap<Object>(CME.exception);
-			resm.setMessage(e.getMessage());
+			resm.appendMessage(e.getMessage());
 			return resm;
 		}
 		txManager.commit(status);//提交事务
