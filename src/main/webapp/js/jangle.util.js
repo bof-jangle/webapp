@@ -50,3 +50,14 @@ function success(data) {
 	back();
 }
 
+/**
+ * 关闭表单页面
+ * @returns
+ */
+function back() {
+	if (ps["back"]) {
+		window.location.href = ps["back"];
+	} else {
+		window.location.href = document.referrer;
+	}
+}

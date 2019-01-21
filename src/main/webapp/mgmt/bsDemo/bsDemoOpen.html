@@ -2,14 +2,58 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>DEMO查看页面</title>
+<!-- 引入bootstrap样式 -->
+<link
+	href="https://cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css"
+	rel="stylesheet">
+<link
+	href="https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="/css/backSystem.css" />
 </head>
 <body>
-
-<script src="/js/jquery-3.3.1.min.js" ></script>
-<script>
-//TODO
-</script>
+	<div id="bodyTopDiv" style="margin-top: 20px;">
+		DEMO
+		<div style="padding: 0px 1% 15px; float: right;">
+			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
+		</div>
+	</div>
+	<div style="margin-top: 20px;">
+		<form id="jangleEditForm" name="jangleEditForm"
+			style="margin-top: 20px;">
+			<div class="form-group" style="padding-left: 15%;">
+				<label for="dmDesc">描述：</label> <input type="text"
+					class="form-control" style="width: 45%;" readonly id="dmDesc"
+					name="dmDesc">
+			</div>
+			<input type="hidden" name="id" id="id">
+			<!-- 主键ID隐藏域 -->
+		</form>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="/js/jangle.util.js"></script>
+	<script>
+		if (ps["id"])
+			$.ajax({
+				url : "/bsDemoAction/selectByPrimaryKey.action",
+				dataType : "json",
+				cache : false,
+				data : {
+					"id" : ps["id"]
+				},
+				error : function(request, textStatus, errorThrown) {
+					jangleShowAjaxError(request, textStatus, errorThrown);
+				},
+				success : function(data) {
+					if (data != null && data.code == "10001"
+							&& data.model != null) {
+						for ( var item in data.model) {
+							$("#" + item).val(data.model[item]);
+						}
+					}
+				}
+			});
+	</script>
 </body>
 </html>

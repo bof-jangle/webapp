@@ -93,14 +93,6 @@
 			});
 		}
 
-		//关闭
-		function back() {
-			if (ps["back"]) {
-				window.location.href = ps["back"];
-			} else {
-				window.location.href = document.referrer;
-			}
-		};
 		if(ps["id"])
 		$.ajax({
 			url:"/bsDemoAction/selectByPrimaryKey.action",
