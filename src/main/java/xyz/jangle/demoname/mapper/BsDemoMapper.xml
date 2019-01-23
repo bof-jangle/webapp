@@ -15,7 +15,7 @@
 	<sql id="page_where">
 		<where>
 			<if test="dmDesc != null and dmDesc != ''">
-				dm_desc like #{dmDesc}
+				dm_desc like CONCAT('%',#{dmDesc},'%')
 			</if>
 		</where>
 	</sql>
