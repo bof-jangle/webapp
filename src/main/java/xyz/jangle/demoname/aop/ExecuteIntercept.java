@@ -1,5 +1,6 @@
 package xyz.jangle.demoname.aop;
 
+import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 //import org.aspectj.lang.annotation.After;
 //import org.aspectj.lang.annotation.AfterReturning;
@@ -22,6 +23,8 @@ import xyz.jangle.utils.ResultModelMap;
 public class ExecuteIntercept {
 	@Autowired
 	private DataSourceTransactionManager txManager;		//事务对象，在spring.xml中定义。
+
+	private Logger logger = Logger.getLogger(getClass());
 	
 	// && 并 ! 非 。 即排除void返回值的方法。
 	@Pointcut("execution (public * xyz.jangle.demoname.service.*.*(..)) && !execution (public void xyz.jangle.demoname.service.*.*(..))")
@@ -65,7 +68,7 @@ public class ExecuteIntercept {
 			System.out.println("around after");
 //			System.out.println(res);
 		} catch (Throwable e) {
-			e.printStackTrace();
+			logger.error(e.toString());
 			txManager.rollback(status);//回滚事务
 			ResultModelMap<Object> resm = new ResultModelMap<Object>(CME.exception);
 			resm.appendMessage(e.getMessage());
