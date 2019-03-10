@@ -9,6 +9,21 @@
     <link href="https://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.css" rel="stylesheet">
 </head>
 <body>
+	<nav class="navbar navbar-default" role="navigation">
+		<div class="container-fluid">
+<!-- 	    <div class="navbar-header"> -->
+<!-- 	        <a class="navbar-brand" href="#">查询</a> -->
+<!-- 	    </div> -->
+	    <div>
+	        <form class="navbar-form navbar-left" role="search" id="searchForm">
+	            <div class="form-group">
+	                <input type="text" class="form-control" name="usrName" placeholder="输入名称">
+	            </div>
+	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
+	        </form>
+	    </div>
+		</div>
+	</nav>
 	<div style="width: 100%; padding-top: 8px;" align="left">
 			<table id="tablewrap" data-toggle="table" data-locale="zh-CN"
 					data-ajax="ajaxRequest" data-side-pagination="server"
@@ -34,57 +49,9 @@
     <script src="https://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js"></script>
     <!-- 引入中文语言包 -->
     <script src="https://cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"></script>
+	<script src="../../js/bootstrap.table.ajax.js" ></script>
 	<script type="text/javascript">
-		var pageNum = 1; //页码
-		var pageSize = 10; //页宽
-		var count; //数据量
-		var index = 1; //序号
-		//数据获取
-		function ajaxRequest(params) {
-			pageSize = params.data.limit;
-			pageNum = params.data.offset / pageSize + 1;
-			index = params.data.offset + 1;
-			$.ajax({
-				type : 'get',
-// 				url : "../../data/bootstrap-table-data.json",
-				url : "/user/selectUsers",	//	这里的请求需要提供分页查询的功能。
-				//data:{} ,//这里添加分页参数与查询条件。
-				dataType : 'json',
-				error : function(request, textStatus, errorThrown) {
-					fxShowAjaxError(request, textStatus, errorThrown);
-				},
-				success : function(data) {
-					console.log(data);
-					if(data.code!="10001"){
-						alert(data.message);
-						return;
-					}
-					data = data.list;
-					if (data) {
-						applies = data ? data : [];
-					}
-					console.log(applies);
-					count = data.length;
-					params.success({
-						total : count,
-						rows : applies
-					});
-					params.complete();
-				}
-			});
-		}
-
-		//自增序号
-		function numberAsc() {
-			return index++; //index在ajaxRequest函数中被再次初始化
-		}
-		//名称格式化
-		function nameFormat(name) {
-			if (name.length > 20)
-				return name.substring(0, 20) + "...";
-			else
-				return name;
-		}
+		var url = "/user/selectUsers";
 	</script>
 </body>
 </html>

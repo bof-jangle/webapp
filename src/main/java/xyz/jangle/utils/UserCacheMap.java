@@ -3,7 +3,7 @@ package xyz.jangle.utils;
 import java.util.HashMap;
 import java.util.Map;
 
-import xyz.jangle.model.DUser;
+import xyz.jangle.demoname.model.BsUser;
 
 /** 
  * 用于缓存登陆的用户信息
@@ -13,17 +13,17 @@ import xyz.jangle.model.DUser;
 */
 public class UserCacheMap {
 	
-	private static Map<String, DUser> map = new HashMap<String, DUser>();
+	private static Map<String, BsUser> map = new HashMap<String, BsUser>();
 	
-	public static DUser get(String idOrPassword) {
+	public static BsUser get(String idOrPassword) {
 		return map.get(idOrPassword);
 	}
 	
-	public static DUser put(String key, DUser value) {
+	public static BsUser put(String key, BsUser value) {
 		return map.put(key, value);
 	}
 	
-	public static DUser remove(String key) {
+	public static BsUser remove(String key) {
 		return map.remove(key);
 	}
 

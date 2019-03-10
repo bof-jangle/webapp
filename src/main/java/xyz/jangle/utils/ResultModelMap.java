@@ -19,7 +19,7 @@ public class ResultModelMap<T> extends ResultModelList<T> {
 		this.map = map;
 	}
 	
-	public ResultModelMap(CodeMessageEnum cmEnum){
+	public ResultModelMap(CME cmEnum){
 		this();
 		this.setCodeMessage(cmEnum);
 	}

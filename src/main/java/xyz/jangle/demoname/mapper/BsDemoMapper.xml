@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.BsDemoMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.BsDemo">
+		<id column="id" jdbcType="BIGINT" property="id" />
+		<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+		<result column="create_time" jdbcType="TIMESTAMP"
+			property="createTime" />
+		<result column="update_time" jdbcType="TIMESTAMP"
+			property="updateTime" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+	</resultMap>
+	<sql id="page_where">
+		<where>
+			<if test="dmDesc != null and dmDesc != ''">
+				dm_desc like CONCAT('%',#{dmDesc},'%')
+			</if>
+		</where>
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		bs_demo
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.BsDemo">
+		insert into bs_demo (id, uuid, create_time,
+		update_time,
+		status, dm_desc
+		)
+		values (#{id,jdbcType=BIGINT},
+		#{uuid,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP},
+		#{updateTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+		#{dmDesc,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="xyz.jangle.demoname.model.BsDemo">
+		update bs_demo
+		set uuid = #{uuid,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		update_time =
+		#{updateTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		dm_desc = #{dmDesc,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select id, uuid, create_time, update_time, status, dm_desc
+		from bs_demo
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select id, uuid, create_time,
+		update_time, status, dm_desc
+		from bs_demo
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.BsDemo">
+		select id, uuid, create_time, update_time, status, dm_desc
+		from bs_demo
+		<include refid="page_where" />
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.BsDemo">
+		select count(*)
+		from bs_demo
+		<include refid="page_where" />
+	</select>
+</mapper>

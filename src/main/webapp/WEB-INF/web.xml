@@ -47,11 +47,11 @@
     <!-- 登陆的拦截器 -->
 	<filter>
 		<filter-name>loginFilter</filter-name>
-		<filter-class>xyz.jangle.filter.LoginFilter</filter-class>
+		<filter-class>xyz.jangle.demoname.filter.LoginFilter</filter-class>
 		<init-param>
 			<!-- 结尾过滤 -->
 			<param-name>endWith</param-name>
-			<param-value>login.html,.js,.css,.jpg</param-value>
+			<param-value>login.html,.js,.css,.jpg,.png</param-value>
 		</init-param>
 		<init-param>
 			<!-- 包含过滤 -->

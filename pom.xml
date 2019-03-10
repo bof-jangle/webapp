@@ -9,7 +9,8 @@
 	<name>webapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
-		<spring.version>4.1.2.RELEASE</spring.version><!-- 声明spring版本号 -->
+		<spring.version>4.3.18.RELEASE</spring.version><!-- 声明spring版本号 -->
+		<jackson.version>2.8.11</jackson.version><!-- 声明jackson版本号 -->
 	</properties>
 	<dependencies>
 		<dependency>
@@ -121,17 +122,17 @@
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
 		<artifactId>jackson-core</artifactId>
-		<version>2.8.5</version>
+		<version>${jackson.version}</version>
 	</dependency>
 	<dependency>
 		<groupId>com.fasterxml.jackson.core</groupId>
 		<artifactId>jackson-databind</artifactId>
-		<version>2.8.5</version>
+		<version>${jackson.version}</version>
 	</dependency>
 	<dependency>
     	<groupId>com.fasterxml.jackson.core</groupId>
     	<artifactId>jackson-annotations</artifactId>
-    	<version>2.8.5</version>
+    	<version>${jackson.version}</version>
 	</dependency>
 		<!-- AspectJ 实现Spring AOP所需的三个依赖 -->
 		<dependency>
@@ -148,6 +149,12 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
 			<version>2.1</version>
+		</dependency>
+		<!-- mybatis代码生成工具的jar包 -->
+		<dependency>
+		     <groupId>org.mybatis.generator</groupId>
+		     <artifactId>mybatis-generator-core</artifactId>
+		     <version>1.3.2</version>
 		</dependency>
 	</dependencies>
 	<build>
