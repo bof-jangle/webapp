@@ -158,8 +158,8 @@
 		</dependency>
 	</dependencies>
 	<build>
+	<!-- finalName 用于对产生的war（jar）进行命名。 -->
 		<finalName>webapp</finalName>
-
 		<sourceDirectory>src/main/java</sourceDirectory>
 	<resources>
 		<!-- 如果不添加此节点 mybatis的mapper.xml文件都会被漏掉。 -->
