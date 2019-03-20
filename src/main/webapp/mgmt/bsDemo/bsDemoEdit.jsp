@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>DEMO_编辑页面</title>
 <jsp:include page="/css/includeCSS.jsp">
-	<jsp:param value="validator-out" name="csses"/>
+	<jsp:param value="validator-out,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
@@ -21,20 +21,13 @@
 		</div>
 	</div>
 	<div style="margin-top: 20px;">
-		<form id="jangleEditForm" name="jangleEditForm"
+		<form id="jangleEditForm" name="jangleEditForm" class="formJ"
 			style="margin-top: 20px;">
 			<div class="form-group" style="padding-left: 15%;">
-				<label for="dmDesc">描述：</label> <input type="text"
-					class="form-control" style="width: 45%;" id="dmDesc" name="dmDesc"
-					placeholder="请输入描述">
+				<label for="dmDesc">描述：</label>
+				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入描述">
 			</div>
-			<!-- 		<div class="form-group"> -->
-			<!-- 			<label for="testPassword">密&nbsp;&nbsp;&nbsp;码：</label> <input -->
-			<!-- 				type="text" class="form-control" id="testPassword" -->
-			<!-- 				name="testPassword" placeholder="请输入密码"> -->
-			<!-- 		</div> -->
-			<input type="hidden" name="id" id="id">
-			<!-- 主键ID隐藏域 -->
+			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">

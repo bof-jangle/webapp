@@ -24,6 +24,9 @@
 			}else if("table".equals(cssArr[i])){
 				commentArr = new String[]{"bootstrap-table的样式"};
 				innerLink = new String[]{"bootstrap/bootstrap-table/1.8.1/bootstrap-table.min.css"};
+			}else if("formJ".equals(cssArr[i])){
+				commentArr = new String[]{"Jangle的form表单样式"};
+				innerLink = new String[]{"/css/formJ.css"};
 			}else if("validator-out".equals(cssArr[i])){
 				commentArr = new String[]{"bootstrap-Validator的样式"};
 				outerLink = new String[]{"https://cdn.bootcss.com/bootstrap-validator/0.5.3/css/bootstrapValidator.min.css"};
