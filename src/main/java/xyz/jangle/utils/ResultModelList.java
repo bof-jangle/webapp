@@ -35,9 +35,6 @@ public class ResultModelList<T> extends ResultModel<T> {
 	}
 
 	public List<T> getList() {
-		if (list == null) {
-			return new ArrayList<T>();
-		}
 		return list;
 	}
 
