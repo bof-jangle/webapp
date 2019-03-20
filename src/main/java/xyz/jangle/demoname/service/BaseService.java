@@ -1,5 +1,7 @@
 package xyz.jangle.demoname.service;
 
+import java.util.Map;
+
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -40,6 +42,13 @@ public interface BaseService<T> {
 	 * @return
 	 */
 	ResultModelList<T> selectAll();
+	
+	/**
+	 * 根据参数查询列表
+	 * @param param
+	 * @return
+	 */
+	ResultModelList<T> selectByParam(Map<String, Object> param);
 
 	/**
 	 * 根据主键更新记录

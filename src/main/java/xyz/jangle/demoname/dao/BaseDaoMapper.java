@@ -1,9 +1,11 @@
 package xyz.jangle.demoname.dao;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * DAO层基础接口
+ * 
  * @author jangle E-mail: jangle@jangle.xyz
  * @version 2019年1月18日 下午3:01:02 类说明
  */
@@ -38,6 +40,13 @@ public interface BaseDaoMapper<T> {
 	 * @return
 	 */
 	List<T> selectAll();
+
+	/**
+	 * 根据参数查询
+	 * 
+	 * @return
+	 */
+	List<T> selectByParam(Map<String, Object> param);
 
 	/**
 	 * 根据主键更新记录

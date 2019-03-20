@@ -1,5 +1,8 @@
 package xyz.jangle.utils;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * @author jangle E-mail: jangle@jangle.xyz
  * @version 2019年1月21日 下午5:52:48 类说明
@@ -43,6 +46,14 @@ public class Jutils {
 	 */
 	public static boolean isEmpty(String arg) {
 		return !Jutils.isNotEmpty(arg);
+	}
+	
+	/**
+	 * 获取HashMap<String,Object>的对象
+	 * @return
+	 */
+	public static Map<String, Object> getHashMapSO(){
+		return new HashMap<String, Object>();
 	}
 
 }

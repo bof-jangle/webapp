@@ -1,6 +1,7 @@
 package xyz.jangle.demoname.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
 /**
+ * 基础Demo的业务层实现
  * @author jangle E-mail: jangle@jangle.xyz
  * @version 2019年1月15日 下午5:12:19 类说明
  */
@@ -57,6 +59,12 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 	public ResultModelList<BsDemo> selectAll() {
 		List<BsDemo> list = bsDemoMapper.selectAll();
 		return new ResultModelList<BsDemo>(list);
+	}
+
+	@Override
+	public ResultModelList<BsDemo> selectByParam(Map<String, Object> param) {
+		List<BsDemo> list = bsDemoMapper.selectByParam(param);
+		return new ResultModelList<>(list);
 	}
 
 	@Override
