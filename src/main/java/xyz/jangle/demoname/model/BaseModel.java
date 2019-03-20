@@ -8,15 +8,15 @@ public abstract class BaseModel {
 	/**
 	 * 页码
 	 */
-	private Integer pageNum;
+	private Integer pageNum = 0;
 	/**
 	 * 页宽
 	 */
-	private Integer pageSize;
+	private Integer pageSize = 10;
 	/**
 	 * 起始索引 用于Mysql的分页 limit pageStart, pageSize
 	 */
-	private Long pageStart;
+	private Long pageStart = 1L;
 
 	public Integer getPageNum() {
 		return pageNum;
