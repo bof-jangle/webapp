@@ -9,6 +9,14 @@
 		<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 		<result column="status" jdbcType="INTEGER" property="status" />
 		<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+		<result column="dm_desc2" jdbcType="VARCHAR" property="dmDesc2" />
+		<result column="dm_desc3" jdbcType="VARCHAR" property="dmDesc3" />
+		<result column="dm_desc4" jdbcType="VARCHAR" property="dmDesc4" />
+		<result column="dm_desc5" jdbcType="VARCHAR" property="dmDesc5" />
+		<result column="dm_desc6" jdbcType="VARCHAR" property="dmDesc6" />
+		<result column="dm_desc7" jdbcType="VARCHAR" property="dmDesc7" />
+		<result column="dm_desc8" jdbcType="VARCHAR" property="dmDesc8" />
+		<result column="dm_desc9" jdbcType="VARCHAR" property="dmDesc9" />
 	</resultMap>
 	<sql id="all_column">
 		id, 
@@ -16,7 +24,15 @@
 		create_time, 
 		update_time, 
 		status, 
-		dm_desc
+		dm_desc,
+		dm_desc2,
+		dm_desc3,
+		dm_desc4,
+		dm_desc5,
+		dm_desc6,
+		dm_desc7,
+		dm_desc8,
+		dm_desc9
 	</sql>
 	<sql id="page_where">
 		<where>
@@ -34,13 +50,30 @@
 		parameterType="xyz.jangle.demoname.model.BsDemo" useGeneratedKeys="true" keyProperty="id">
 		insert into bs_demo ( uuid, create_time,
 		update_time,
-		status, dm_desc
+		status,
+		dm_desc,
+		dm_desc2,
+		dm_desc3,
+		dm_desc4,
+		dm_desc5,
+		dm_desc6,
+		dm_desc7,
+		dm_desc8,
+		dm_desc9
 		)
 		values (
 		#{uuid,jdbcType=VARCHAR},
 		now(),
 		now(), #{status,jdbcType=INTEGER},
-		#{dmDesc,jdbcType=VARCHAR}
+		#{dmDesc,jdbcType=VARCHAR},
+		#{dmDesc2,jdbcType=VARCHAR},
+		#{dmDesc3,jdbcType=VARCHAR},
+		#{dmDesc4,jdbcType=VARCHAR},
+		#{dmDesc5,jdbcType=VARCHAR},
+		#{dmDesc6,jdbcType=VARCHAR},
+		#{dmDesc7,jdbcType=VARCHAR},
+		#{dmDesc8,jdbcType=VARCHAR},
+		#{dmDesc9,jdbcType=VARCHAR}
 		)
 	</insert>
 	<update id="updateByPrimaryKey"
@@ -50,7 +83,15 @@
 		create_time = #{createTime,jdbcType=TIMESTAMP},
 		update_time = #{updateTime,jdbcType=TIMESTAMP},
 		status = #{status,jdbcType=INTEGER},
-		dm_desc = #{dmDesc,jdbcType=VARCHAR}
+		dm_desc = #{dmDesc,jdbcType=VARCHAR},
+		dm_desc2 = #{dmDesc2,jdbcType=VARCHAR},
+		dm_desc3 = #{dmDesc3,jdbcType=VARCHAR},
+		dm_desc4 = #{dmDesc4,jdbcType=VARCHAR},
+		dm_desc5 = #{dmDesc5,jdbcType=VARCHAR},
+		dm_desc6 = #{dmDesc6,jdbcType=VARCHAR},
+		dm_desc7 = #{dmDesc7,jdbcType=VARCHAR},
+		dm_desc8 = #{dmDesc8,jdbcType=VARCHAR},
+		dm_desc9 = #{dmDesc9,jdbcType=VARCHAR}
 		where id = #{id,jdbcType=BIGINT}
 	</update>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long"

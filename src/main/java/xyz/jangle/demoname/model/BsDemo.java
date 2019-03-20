@@ -56,6 +56,14 @@ public class BsDemo extends BaseModel {
 	 * @mbg.generated
 	 */
 	private String dmDesc;
+	private String dmDesc2;
+	private String dmDesc3;
+	private String dmDesc4;
+	private String dmDesc5;
+	private String dmDesc6;
+	private String dmDesc7;
+	private String dmDesc8;
+	private String dmDesc9;
 
 	public Long getId() {
 		return id;
@@ -151,6 +159,70 @@ public class BsDemo extends BaseModel {
 
 	public void setExtends6(Long extends6) {
 		this.extends6 = extends6;
+	}
+
+	public String getDmDesc2() {
+		return dmDesc2;
+	}
+
+	public void setDmDesc2(String dmDesc2) {
+		this.dmDesc2 = dmDesc2;
+	}
+
+	public String getDmDesc3() {
+		return dmDesc3;
+	}
+
+	public void setDmDesc3(String dmDesc3) {
+		this.dmDesc3 = dmDesc3;
+	}
+
+	public String getDmDesc4() {
+		return dmDesc4;
+	}
+
+	public void setDmDesc4(String dmDesc4) {
+		this.dmDesc4 = dmDesc4;
+	}
+
+	public String getDmDesc5() {
+		return dmDesc5;
+	}
+
+	public void setDmDesc5(String dmDesc5) {
+		this.dmDesc5 = dmDesc5;
+	}
+
+	public String getDmDesc6() {
+		return dmDesc6;
+	}
+
+	public void setDmDesc6(String dmDesc6) {
+		this.dmDesc6 = dmDesc6;
+	}
+
+	public String getDmDesc7() {
+		return dmDesc7;
+	}
+
+	public void setDmDesc7(String dmDesc7) {
+		this.dmDesc7 = dmDesc7;
+	}
+
+	public String getDmDesc8() {
+		return dmDesc8;
+	}
+
+	public void setDmDesc8(String dmDesc8) {
+		this.dmDesc8 = dmDesc8;
+	}
+
+	public String getDmDesc9() {
+		return dmDesc9;
+	}
+
+	public void setDmDesc9(String dmDesc9) {
+		this.dmDesc9 = dmDesc9;
 	}
 	
 	

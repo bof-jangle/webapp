@@ -22,8 +22,8 @@
 	            </div>
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
-				<button type="button" class="btn btn-default"
-					onclick="addFormInfo()">新增</button>
+	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">复选功能</button>
+				<button type="button" class="btn btn-default" onclick="addFormInfo()">新增</button>
 				</div>
 	        </form>
 	    </div>
@@ -32,15 +32,16 @@
 	<div style="width: 100%; padding-top: 8px;" align="left">
 			<table id="tablewrap" data-toggle="table" data-locale="zh-CN"
 					data-ajax="ajaxRequest" data-side-pagination="server"
-					data-striped="true" data-single-select="true"
+					data-striped="true" data-single-select="false"
 					data-click-to-select="false" data-pagination="true"
 					data-pagination-first-text="首页" data-pagination-pre-text="上一页"
 					data-pagination-next-text="下一页" data-pagination-last-text="末页"
 					class="fline-show-when-ready">
 					<thead style="text-align: center;">
 						<tr>
+							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="dmDesc" data-width="300" data-formatter="nameFormat">描述</th>
+							<th data-field="dmDesc" data-formatter="nameFormat">描述</th>
 							<th data-field="id" data-width="100">id</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
@@ -67,6 +68,16 @@
 		//编辑详情
 		function editDetail(data){
 			window.location.href = "bsDemoEdit.jsp?id=" + data.id + addressPostfix;
+		}
+		// 复选框的相关功能（当启用复选框时可用）
+		function doCheckBoxes(){
+			var rows = $("#tablewrap").bootstrapTable("getAllSelections");
+			if(rows != 0) {
+// 				var param = "" + JSON.stringify(rows);
+				alert("选中了"+rows.length+"条记录");
+			}  else {
+				alert("请选择");
+			}
 		}
 	</script>
 </body>

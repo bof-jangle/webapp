@@ -26,7 +26,8 @@ function jangleShowAjaxError(request, textStatus, errorThrown) {
 			|| request.status == 403 || request.status == 404) {
 		document.body.innerHTML = request.responseText;
 	} else {
-		alert(request.responseText);
+		alert("操作异常，请提供确认后的信息给系统管理员");
+		document.body.innerHTML = request.responseText;
 	}
 }
 

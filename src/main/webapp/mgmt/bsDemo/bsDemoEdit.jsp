@@ -21,11 +21,38 @@
 		</div>
 	</div>
 	<div style="margin-top: 20px;">
-		<form id="jangleEditForm" name="jangleEditForm" class="formJ"
-			style="margin-top: 20px;">
-			<div class="form-group" style="padding-left: 15%;">
+		<form id="jangleEditForm" name="jangleEditForm" class="formJ" >
+			<div class="form-group" >
 				<label for="dmDesc">描述：</label>
 				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入描述">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc2">描述2：</label>
+				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入描述2">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc3">描述3：</label>
+				<input type="text" class="form-control" id="dmDesc3" name="dmDesc3" placeholder="请输入描述3">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc4">描述4：</label>
+				<input type="text" class="form-control" id="dmDesc4" name="dmDesc4" placeholder="请输入描述4">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc5">描述5：</label>
+				<input type="text" class="form-control" id="dmDesc5" name="dmDesc5" placeholder="请输入描述5">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc6">描述6：</label>
+				<input type="text" class="form-control" id="dmDesc6" name="dmDesc6" placeholder="请输入描述6">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc7">描述7：</label>
+				<input type="text" class="form-control" id="dmDesc7" name="dmDesc7" placeholder="请输入描述7">
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc8">描述8：</label>
+				<input type="text" class="form-control" id="dmDesc8" name="dmDesc8" placeholder="请输入描述8">
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 		</form>
@@ -33,28 +60,7 @@
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
-	<script type="text/javascript">
-		//校验的渲染
-		$(function() {
-			$("#jangleEditForm").bootstrapValidator({
-				message : 'This value is not valid',
-				feedbackIcons : {
-					valid : 'glyphicon glyphicon-ok',
-					invalid : 'glyphicon glyphicon-remove',
-					validating : 'glyphicon glyphicon-refresh'
-				},
-				fields : {
-					dmDesc : {
-						validators : {
-							notEmpty : {
-								message : "请输入描述"
-							}
-						}
-					}
-				}
-			});
-		});
-	</script>
+	<script type="text/javascript" src="js/bsDemoEdit.js"></script>
 	<script type="text/javascript">
 		// 提交表单
 		function submitForm() {
@@ -70,6 +76,7 @@
 				url : "/bsDemoAction/insert.action",
 				dataType : "json",
 				type : "POST",
+				cache:false,
 				data : $("#jangleEditForm").serialize(),
 				error : function(request, textStatus, errorThrown) {
 					jangleShowAjaxError(request, textStatus, errorThrown);
@@ -79,7 +86,6 @@
 				}
 			});
 		}
-
 		// 删除记录
 		function deleteForm() {
 			if (confirm("确定删除此记录吗？")) {

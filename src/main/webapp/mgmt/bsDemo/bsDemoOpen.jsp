@@ -17,11 +17,38 @@
 		</div>
 	</div>
 	<div style="margin-top: 20px;">
-		<form id="jangleEditForm" name="jangleEditForm"
-			style="margin-top: 20px;">
-			<div class="form-group" style="padding-left: 15%;">
+		<form id="jangleEditForm" name="jangleEditForm"	class="formJ">
+			<div class="form-group" >
 				<label for="dmDesc">描述：</label>
-				<input type="text"	class="form-control" readonly id="dmDesc" name="dmDesc">
+				<input type="text"	class="form-control" id="dmDesc" name="dmDesc" readonly>
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc2">描述2：</label>
+				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" readonly >
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc3">描述3：</label>
+				<input type="text" class="form-control" id="dmDesc3" name="dmDesc3" readonly >
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc4">描述4：</label>
+				<input type="text" class="form-control" id="dmDesc4" name="dmDesc4" readonly >
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc5">描述5：</label>
+				<input type="text" class="form-control" id="dmDesc5" name="dmDesc5" readonly >
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc6">描述6：</label>
+				<input type="text" class="form-control" id="dmDesc6" name="dmDesc6" readonly >
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc7">描述7：</label>
+				<input type="text" class="form-control" id="dmDesc7" name="dmDesc7" readonly >
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc8">描述8：</label>
+				<input type="text" class="form-control" id="dmDesc8" name="dmDesc8" readonly >
 			</div>
 			<input type="hidden" name="id" id="id">
 			<!-- 主键ID隐藏域 -->
