@@ -1,4 +1,4 @@
-package xyz.jangle.demoname.action;
+package xyz.jangle.demoname.ctrl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -16,43 +16,43 @@ import xyz.jangle.utils.ResultModelList;
  * @version 2019年1月15日 下午5:23:31 类说明
  */
 @Controller
-@RequestMapping("/bsDemoAction")
-public class BsDemoAction {
+@RequestMapping("/bsDemoCtrl")
+public class BsDemoCtrl {
 
 	@Autowired
 	private BsDemoService bsDemoService;
 
-	@RequestMapping("/deleteByPrimaryKey.action")
+	@RequestMapping("/deleteByPrimaryKey.ctrl")
 	@ResponseBody
 	ResultModel<BsDemo> deleteByPrimaryKey(BsDemo record) {
 		return bsDemoService.deleteByPrimaryKey(record);
 	}
 
-	@RequestMapping("/insert.action")
+	@RequestMapping("/insert.ctrl")
 	@ResponseBody
 	ResultModel<BsDemo> insert(BsDemo record) {
 		return bsDemoService.insert(record);
 	}
 
-	@RequestMapping("/selectByPrimaryKey.action")
+	@RequestMapping("/selectByPrimaryKey.ctrl")
 	@ResponseBody
 	ResultModel<BsDemo> selectByPrimaryKey(BsDemo record) {
 		return bsDemoService.selectByPrimaryKey(record);
 	}
 
-	@RequestMapping("/selectAll.action")
+	@RequestMapping("/selectAll.ctrl")
 	@ResponseBody
 	ResultModelList<BsDemo> selectAll() {
 		return bsDemoService.selectAll();
 	}
 
-	@RequestMapping("/selectPage.action")
+	@RequestMapping("/selectPage.ctrl")
 	@ResponseBody
 	ResultModelList<BsDemo> selectPage(BsDemo record) {
 		return bsDemoService.selectPage(record);
 	}
 
-	@RequestMapping("/updateByPrimaryKey.action")
+	@RequestMapping("/updateByPrimaryKey.ctrl")
 	@ResponseBody
 	ResultModel<BsDemo> updateByPrimaryKey(BsDemo record) {
 		return bsDemoService.updateByPrimaryKey(record);

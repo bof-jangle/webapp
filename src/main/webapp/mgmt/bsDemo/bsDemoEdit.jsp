@@ -73,7 +73,7 @@
 				return;
 			}
 			$.ajax({
-				url : "/bsDemoAction/insert.action",
+				url : "/bsDemoCtrl/insert.ctrl",
 				dataType : "json",
 				type : "POST",
 				cache:false,
@@ -90,7 +90,7 @@
 		function deleteForm() {
 			if (confirm("确定删除此记录吗？")) {
 				$.ajax({
-					url : "/bsDemoAction/deleteByPrimaryKey.action",
+					url : "/bsDemoCtrl/deleteByPrimaryKey.ctrl",
 					dataType : "json",
 					data : {
 						"id" : $("#id").val()
@@ -109,7 +109,7 @@
 		$(function() {
 			if (ps["id"])
 				$.ajax({
-					url : "/bsDemoAction/selectByPrimaryKey.action",
+					url : "/bsDemoCtrl/selectByPrimaryKey.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {

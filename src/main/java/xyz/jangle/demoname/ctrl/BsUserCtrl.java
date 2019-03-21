@@ -1,4 +1,4 @@
-package xyz.jangle.demoname.action;
+package xyz.jangle.demoname.ctrl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,8 +12,8 @@ import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.utils.ResultModel;
 
 @Controller
-@RequestMapping("/bsUserAction")
-public class BsUserAction {
+@RequestMapping("/bsUserCtrl")
+public class BsUserCtrl {
 	// 养成一种习惯，将项目的控制层对象，对应的视图，视图所用的js文件，三个名称进行统一。用Ctrl+R查找时可以很方便地找到他们
 	@Autowired
 	private BsUserService bsUserService;

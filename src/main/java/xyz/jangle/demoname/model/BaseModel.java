@@ -17,6 +17,11 @@ public abstract class BaseModel {
 	 * 起始索引 用于Mysql的分页 limit pageStart, pageSize
 	 */
 	private Long pageStart = 1L;
+	
+	/**
+	 * 字段排序
+	 */
+	private String orderByJ;
 
 	public Integer getPageNum() {
 		return pageNum;
@@ -41,6 +46,16 @@ public abstract class BaseModel {
 	public void setPageStart(Long pageStart) {
 		this.pageStart = pageStart;
 	}
+
+	public String getOrderByJ() {
+		return orderByJ;
+	}
+
+	public void setOrderByJ(String orderByJ) {
+		this.orderByJ = orderByJ;
+	}
+	
+	
 	
 	
 	

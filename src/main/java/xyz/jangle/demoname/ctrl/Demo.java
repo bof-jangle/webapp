@@ -1,4 +1,4 @@
-package xyz.jangle.demoname.action;
+package xyz.jangle.demoname.ctrl;
 
 import java.util.List;
 
@@ -12,13 +12,13 @@ import xyz.jangle.demoname.model.DemoModel;
 import xyz.jangle.demoname.service.DemoService;
 
 @Controller
-@RequestMapping("/mvc")
-public class Hello {
+@RequestMapping("/demo")
+public class Demo {
 	// 养成一种习惯，将项目的控制层对象，对应的视图，视图所用的js文件，三个名称进行统一。用Ctrl+R查找时可以很方便地找到他们
 	@Autowired
 	private DemoService demoService;
 
-	@RequestMapping("/hello")
+	@RequestMapping("/demo")
 	public ModelAndView hello(
 			@RequestParam(value = "id", required = false) Integer id) {
 		System.out.println("全都一起上吧，我根本没在怕，啦蜡辣拉拉");
@@ -30,7 +30,7 @@ public class Hello {
 		return mav;
 	}
 	
-	@RequestMapping("/testAb")
+	@RequestMapping("/demo2")
 	public ModelAndView testAB() {
 		return new ModelAndView("hello");
 	}

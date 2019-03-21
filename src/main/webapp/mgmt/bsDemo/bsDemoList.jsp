@@ -56,7 +56,7 @@
 		var pathname = window.location.pathname;
 		var listPageName = pathname.substring(pathname.lastIndexOf("/")+1);
 		var addressPostfix = "&r="+Math.random()+"&back="+listPageName;
-		var url = "/bsDemoAction/selectPage.action";	//获取数据的url地址，需要实现分页功能。
+		var url = "/bsDemoCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
 		//新增按钮 打开新增数据的页面
 		function addFormInfo() {
 			window.location.href = "bsDemoEdit.jsp"

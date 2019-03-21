@@ -9,7 +9,7 @@
 
 	<!-- scan the package and the sub package -->
 	<context:component-scan
-		base-package="xyz.jangle.demoname.action" />
+		base-package="xyz.jangle.demoname.ctrl" />
 
 	<!-- don't handle the static resource -->
 	<mvc:default-servlet-handler />

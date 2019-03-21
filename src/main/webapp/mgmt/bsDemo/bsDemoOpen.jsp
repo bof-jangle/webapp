@@ -60,7 +60,7 @@
 	<script>
 		if (ps["id"])
 			$.ajax({
-				url : "/bsDemoAction/selectByPrimaryKey.action",
+				url : "/bsDemoCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {

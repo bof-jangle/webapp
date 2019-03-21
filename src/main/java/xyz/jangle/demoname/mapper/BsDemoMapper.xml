@@ -118,6 +118,7 @@
 		<include refid="all_column" />
 		from bs_demo
 		<include refid="page_where" />
+		order by id DESC
 		limit #{pageStart,jdbcType=BIGINT},
 		#{pageSize,jdbcType=INTEGER}
 	</select>

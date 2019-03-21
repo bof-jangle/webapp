@@ -1,4 +1,4 @@
-package xyz.jangle.demoname.action;
+package xyz.jangle.demoname.ctrl;
 
 import javax.servlet.http.HttpSession;
 
