@@ -73,6 +73,7 @@
 				return;
 			}
 			$.ajax({
+				type:"POST",
 				url : "/bsDemoCtrl/insert.ctrl",
 				dataType : "json",
 				type : "POST",
@@ -90,6 +91,7 @@
 		function deleteForm() {
 			if (confirm("确定删除此记录吗？")) {
 				$.ajax({
+					type:"POST",
 					url : "/bsDemoCtrl/deleteByPrimaryKey.ctrl",
 					dataType : "json",
 					data : {
