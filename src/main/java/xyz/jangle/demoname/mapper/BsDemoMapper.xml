@@ -92,7 +92,15 @@
 		dm_desc7 = #{dmDesc7,jdbcType=VARCHAR},
 		dm_desc8 = #{dmDesc8,jdbcType=VARCHAR},
 		dm_desc9 = #{dmDesc9,jdbcType=VARCHAR}
+		<if test="id != null and id gt 0">
 		where id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="(id == null or id lt 1 ) and uuid != null and uuid != ''">
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		</if>
+		<if test="(id == null or id lt 1 ) and (uuid == null or uuid == '')">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
 	</update>
 	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
 		resultMap="BaseResultMap">

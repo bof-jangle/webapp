@@ -31,7 +31,7 @@ public class BsDemoCtrl {
 	@RequestMapping("/insert.ctrl")
 	@ResponseBody
 	ResultModel<BsDemo> insert(BsDemo record) {
-		return bsDemoService.insert(record);
+		return bsDemoService.insertOrUpdate(record);
 	}
 
 	@RequestMapping("/selectByPrimaryKey.ctrl")

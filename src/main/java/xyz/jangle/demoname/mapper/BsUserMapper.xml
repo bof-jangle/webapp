@@ -32,6 +32,17 @@
     <result column="extends1" jdbcType="VARCHAR" property="extends1" />
     <result column="extends2" jdbcType="VARCHAR" property="extends2" />
   </resultMap>
+  <sql id="all_column">
+    usr_id, usr_name, usr_code, usr_password, usr_status, create_time, update_time, extends1, 
+    extends2
+  </sql>
+	<sql id="page_where">
+		<where>
+			<if test="usrStatus != null and usrStatus != ''">
+				usrStatus = #{usrStatus}
+			</if>
+		</where>
+	</sql>
   <sql id="Example_Where_Clause">
     <!--
       WARNING - @mbg.generated
@@ -374,8 +385,37 @@
     where usr_id = #{usrId,jdbcType=INTEGER}
   </update>  
           
-        <insert id="save" parameterType="xyz.jangle.demoname.model.BsUser">
-            insert into bs_user(usr_name,usr_code,usr_password,usr_status,create_time,update_time)
-            values (#{usrName},#{usrCode},#{usrPassword},1,#{createTime},#{updateTime}) 
-        </insert>
+   <insert id="save" parameterType="xyz.jangle.demoname.model.BsUser">
+       insert into bs_user(usr_name,usr_code,usr_password,usr_status,create_time,update_time)
+       values (#{usrName},#{usrCode},#{usrPassword},1,#{createTime},#{updateTime}) 
+   </insert>
+   
+   <select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_user
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from bs_user
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.BsUser">
+		select 
+		<include refid="all_column" />
+		from bs_user
+		<include refid="page_where" />
+		order by usr_id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.BsUser">
+		select count(*)
+		from bs_user
+		<include refid="page_where" />
+	</select>
+   
     </mapper>

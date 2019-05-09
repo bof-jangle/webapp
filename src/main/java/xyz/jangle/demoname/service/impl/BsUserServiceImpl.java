@@ -1,6 +1,7 @@
 package xyz.jangle.demoname.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import xyz.jangle.demoname.model.DemoModel;
 import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.demoname.service.DemoService;
 import xyz.jangle.utils.CME;
+import xyz.jangle.utils.Jutils;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 import xyz.jangle.utils.UserCacheMap;
@@ -116,9 +118,17 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 	}
 
 	@Override
-	public ResultModel<BsUser> insert(BsUser bsUser) {
-		bsUserMapper.insert(bsUser);
-		return new ResultModel<BsUser>(bsUser);
+	public ResultModel<BsUser> insertOrUpdate(BsUser record) {
+		int i = 0;
+		if (Jutils.isGreatThan0(record.getId())) {
+			i = bsUserMapper.updateByPrimaryKey(record);
+		} else {
+			i = bsUserMapper.insert(record);
+		}
+		if (i > 0) {
+			return new ResultModel<BsUser>(record);
+		}
+		return new ResultModel<BsUser>(CME.error);
 	}
 
 	@Override
@@ -137,6 +147,25 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 	public ResultModel<BsUser> selectByPrimaryKey(BsUser bsUser) {
 		BsUser byPrimaryKey = bsUserMapper.selectByPrimaryKey(bsUser.getUsrId());
 		return new ResultModel<BsUser>(byPrimaryKey);
+	}
+
+	@Override
+	public ResultModelList<BsUser> selectByParam(Map<String, Object> param) {
+		List<BsUser> list = bsUserMapper.selectByParam(param);
+		return new ResultModelList<>(list);
+	}
+
+	@Override
+	public ResultModelList<BsUser> selectPage(BsUser record) {
+		ResultModelList<BsUser> resultModelList = new ResultModelList<BsUser>(bsUserMapper.selectPage(record));
+		resultModelList.setCount(bsUserMapper.selectPageCount(record));
+		return resultModelList;
+	}
+
+	@Override
+	public ResultModelList<BsUser> selectAll() {
+		List<BsUser> list = bsUserMapper.selectAll();
+		return new ResultModelList<BsUser>(list);
 	}
 
 }

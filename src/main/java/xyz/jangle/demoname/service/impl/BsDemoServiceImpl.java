@@ -2,6 +2,7 @@ package xyz.jangle.demoname.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +21,26 @@ import xyz.jangle.utils.ResultModelList;
  * @version 2019年1月15日 下午5:12:19 类说明
  */
 @Service
-public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService {
+public class BsDemoServiceImpl extends BaseServiceImpl<BsDemo> implements BsDemoService {
 
 	@Autowired
 	private BsDemoMapper bsDemoMapper;
+	
+	
+	@Override
+	public ResultModel<BsDemo> insertOrUpdate(BsDemo record) {
+		int i = 0;
+		if (Jutils.isGreatThan0(record.getId()) || Jutils.isNotEmpty(record.getUuid())) {
+			i = bsDemoMapper.updateByPrimaryKey(record);
+		} else {
+			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
+			i = bsDemoMapper.insert(record);
+		}
+		if (i > 0) {
+			return new ResultModel<BsDemo>(record);
+		}
+		return new ResultModel<BsDemo>(CME.error);
+	}
 
 	@Override
 	public ResultModel<BsDemo> deleteByPrimaryKey(BsDemo record) {
@@ -34,39 +51,7 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 		logger.error(CME.error.getMessage());
 		return new ResultModel<BsDemo>(CME.error);
 	}
-
-	@Override
-	public ResultModel<BsDemo> insert(BsDemo record) {
-		int i = 0;
-		if (Jutils.isGreatThan0(record.getId())) {
-			i = bsDemoMapper.updateByPrimaryKey(record);
-		} else {
-			i = bsDemoMapper.insert(record);
-		}
-		if (i > 0) {
-			return new ResultModel<BsDemo>(record);
-		}
-		return new ResultModel<BsDemo>(CME.error);
-	}
-
-	@Override
-	public ResultModel<BsDemo> selectByPrimaryKey(BsDemo record) {
-		record = bsDemoMapper.selectByPrimaryKey(record.getId());
-		return new ResultModel<BsDemo>(record);
-	}
-
-	@Override
-	public ResultModelList<BsDemo> selectAll() {
-		List<BsDemo> list = bsDemoMapper.selectAll();
-		return new ResultModelList<BsDemo>(list);
-	}
-
-	@Override
-	public ResultModelList<BsDemo> selectByParam(Map<String, Object> param) {
-		List<BsDemo> list = bsDemoMapper.selectByParam(param);
-		return new ResultModelList<>(list);
-	}
-
+	
 	@Override
 	public ResultModel<BsDemo> updateByPrimaryKey(BsDemo record) {
 		int i = bsDemoMapper.updateByPrimaryKey(record);
@@ -75,6 +60,26 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 		}
 		return new ResultModel<BsDemo>(CME.error);
 	}
+	
+	@Override
+	public ResultModel<BsDemo> selectByPrimaryKey(BsDemo record) {
+		return new ResultModel<BsDemo>(bsDemoMapper.selectByPrimaryKey(record.getId()));
+	}
+	
+	@Override
+	public ResultModelList<BsDemo> selectByParam(Map<String, Object> param) {
+		List<BsDemo> list = bsDemoMapper.selectByParam(param);
+		return new ResultModelList<>(list);
+	}
+
+
+	@Override
+	public ResultModelList<BsDemo> selectAll() {
+		List<BsDemo> list = bsDemoMapper.selectAll();
+		return new ResultModelList<BsDemo>(list);
+	}
+
+	
 
 	@Override
 	public ResultModelList<BsDemo> selectPage(BsDemo record) {
@@ -82,5 +87,11 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 		resultModelList.setCount(bsDemoMapper.selectPageCount(record));
 		return resultModelList;
 	}
+
+	@Override
+	public ResultModel<BsDemo> selectByPrimaryKeyForAnnotation(BsDemo record) {
+		return new ResultModel<BsDemo>(bsDemoMapper.selectByPrimaryKeyForAnnotation(record.getId()));
+	}
+
 
 }

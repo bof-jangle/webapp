@@ -35,7 +35,7 @@ public class BsUserCtrl {
 	@RequestMapping("/insert")
 	@ResponseBody
 	public ResultModel<BsUser> insert(BsUser bsUser) {
-		return bsUserService.insert(bsUser);
+		return bsUserService.insertOrUpdate(bsUser);
 	}
 
 	/**

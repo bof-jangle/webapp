@@ -34,7 +34,7 @@ public class BsDemoServiceImplTest extends JUnitRunSupport {
 	public void setUp() throws Exception {
 		BsDemo record = new BsDemo();
 		record.setDmDesc(testString);
-		ResultModel<BsDemo> resultModel = bsDemoService.insert(record );
+		ResultModel<BsDemo> resultModel = bsDemoService.insertOrUpdate(record );
 		testBsDemo = resultModel.getModel();
 	}
 
@@ -44,17 +44,19 @@ public class BsDemoServiceImplTest extends JUnitRunSupport {
 	
 	@Test
 	public void testInsert() {
-		testBsDemo.setId(1L);
-		assertTrue(bsDemoService.insert(testBsDemo).getCode().equals(CME.error.getCode()));
+		testBsDemo.setId(0L);	//根据UUID更新
+		assertEquals(CME.success.getCode(), bsDemoService.insertOrUpdate(testBsDemo).getCode());
+		testBsDemo.setId(1L);	//无对应的主键记录报错
+		assertEquals(CME.error.getCode(), bsDemoService.insertOrUpdate(testBsDemo).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsDemoService.selectByPrimaryKey(testBsDemo).getModel());
-		assertTrue(bsDemoService.deleteByPrimaryKey(testBsDemo).getCode().equals(CME.success.getCode()));
+		assertEquals(CME.success.getCode(), bsDemoService.deleteByPrimaryKey(testBsDemo).getCode());
 		assertNull(bsDemoService.selectByPrimaryKey(testBsDemo).getModel());
 		testBsDemo.setId(1L);
-		assertTrue(bsDemoService.deleteByPrimaryKey(testBsDemo).getCode().equals(CME.error.getCode()));
+		assertEquals(CME.error.getCode(), bsDemoService.deleteByPrimaryKey(testBsDemo).getCode());
 	}
 
 	@Test
@@ -68,22 +70,33 @@ public class BsDemoServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsDemoService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertTrue(bsDemoService.selectByParam(param).getCode().equals(CME.success.getCode()));
+		assertEquals(CME.success.getCode(), bsDemoService.selectByParam(param).getCode());
 	}
 
 	@Test
 	public void testUpdateByPrimaryKey() {
-		assertTrue(bsDemoService.selectByPrimaryKey(testBsDemo).getModel().getDmDesc().equals(testString));
+		assertEquals(testString, bsDemoService.selectByPrimaryKey(testBsDemo).getModel().getDmDesc());
 		testBsDemo.setDmDesc("updateDesc");
 		bsDemoService.updateByPrimaryKey(testBsDemo);
 		assertFalse(bsDemoService.selectByPrimaryKey(testBsDemo).getModel().getDmDesc().equals(testString));
 		testBsDemo.setId(0L);
+		testBsDemo.setUuid("");
 		bsDemoService.updateByPrimaryKey(testBsDemo).getCode().equals(CME.error.getCode());
 	}
 
 	@Test
 	public void testSelectPage() {
 		assertFalse(bsDemoService.selectPage(new BsDemo()).getList().isEmpty());
+	}
+	
+	@Test
+	public void testSelectByPrimaryKeyForAnnotation(){
+		assertNotNull(bsDemoService.selectByPrimaryKeyForAnnotation(testBsDemo));
+	}
+	
+	@Test
+	public void testSelectByPrimaryKey() {
+		bsDemoService.selectByPrimaryKey(testBsDemo);
 	}
 
 }

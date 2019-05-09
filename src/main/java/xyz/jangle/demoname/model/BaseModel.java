@@ -1,10 +1,12 @@
 package xyz.jangle.demoname.model;
-/** 
-* @author jangle E-mail: jangle@jangle.xyz
-* @version 2019年1月18日 下午12:35:11 
-* 类说明 
-*/
+
+/**
+ * @author jangle E-mail: jangle@jangle.xyz
+ * @version 2019年1月18日 下午12:35:11 类说明
+ */
 public abstract class BaseModel {
+
+	private Long id;
 	/**
 	 * 页码
 	 */
@@ -17,7 +19,7 @@ public abstract class BaseModel {
 	 * 起始索引 用于Mysql的分页 limit pageStart, pageSize
 	 */
 	private Long pageStart = 1L;
-	
+
 	/**
 	 * 字段排序
 	 */
@@ -54,9 +56,13 @@ public abstract class BaseModel {
 	public void setOrderByJ(String orderByJ) {
 		this.orderByJ = orderByJ;
 	}
-	
-	
-	
-	
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 }
