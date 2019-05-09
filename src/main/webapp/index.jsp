@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="icon" href="../images/douyin.png" type="image/x-icon" /><!-- 小图标 -->
 <title>阿景请求挑战</title>
 </head>
 <body onload='onloadMethod()'>
@@ -19,7 +20,7 @@
 	<p>加分项1：以全能辅助为目标，悉知所有英雄技能及特点。了解最佳搭档、最佳克制英雄</p>
 	<p>加分项2：次选英雄为大肉上单。</p>
 </div>
-<h3>有意者将个人信息（参考“<a href="https://tieba.baidu.com/p/6115501649">看我个人信息</a>”）的内容发送到我的邮箱jangle@jangle.xyz</h3>
+<h3>有意者将个人信息（参考“<a href="https://tieba.baidu.com/p/6115501649">看我个人信息</a>”的内容）发送到我的邮箱jangle@jangle.xyz</h3>
 <h2><a href="https://bbs.nga.cn/read.php?pid=337039243">我的团队信息</a></h2>
 <img alt="抖音二维码" src="../images/douyin.png">
 </body>
