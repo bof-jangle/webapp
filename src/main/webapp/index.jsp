@@ -10,7 +10,7 @@
 <body onload='onloadMethod()'>
 <!-- <h2>Hello World!!!!!!index.jsp</h2> -->
 
-<h2>不服跟我来场5V5。给我留言：jangle@jangle.xyz(邮箱) <a href="javascript:void(0);" onclick="toDouyu();">看我直播</a>（斗鱼）
+<h2>不服跟我来场5V5。给我留言：jangle@jangle.xyz(邮箱) <a href="javascript:void(0);" onclick="toDouyu(1);">看我直播</a>（斗鱼）
 <span style="margin-left:30px;"><a href="https://tieba.baidu.com/p/6115501649">看我个人信息</a></span></h2>
 <div>
 	<h3>招募：王者辅助1名（队内辅助家管严）</h3>
@@ -25,12 +25,39 @@
 <h2><a href="https://bbs.nga.cn/read.php?pid=337039243">我的团队信息</a></h2>
 <img alt="抖音二维码" src="../images/douyin.png">
 </body>
+<jsp:include page="/js/includeJS.jsp">
+		<jsp:param value="validator-out,utilJ" name="jses"/>
+</jsp:include>
 <script>
-function toDouyu(){
-	window.location.href="http://douyu.com/jangle"; 
+function toDouyu(look){
+	if(look == '1'){
+		window.location.href="http://douyu.com/jangle";
+		return;
+	}
+	$.ajax({
+		url : "/bsDemoCtrl/selectByPrimaryKey.ctrl",
+		dataType : "json",
+		cache : false,
+		data : {
+			"id" : 249
+		},
+		error : function(request, textStatus, errorThrown) {
+			jangleShowAjaxError(request, textStatus, errorThrown);
+		},
+		success : function(data) {
+			if (data != null && data.code == "10001"
+					&& data.model != null) {
+				if(data.model["dmDesc"] !=null && data.model["dmDesc"].trim() != "0"){
+					if(data.model["dmDesc2"] !=null && data.model["dmDesc2"].trim() != "0"){
+						window.location.href=data.model["dmDesc"]; 	//如果dmDesc2不为0，则为开播
+					}
+				}
+			}
+		}
+	});
 }
 function onloadMethod(){
-// 	setTimeout("toDouyu()",10000);
+	setTimeout("toDouyu()",3000);
 }
 </script>
 </html>

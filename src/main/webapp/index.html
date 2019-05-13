@@ -40,7 +40,7 @@
 <!-- 				<li><a href="index/bootstrap.html" target="bottomIframe"><span>bootstrap</span></a></li> -->
 <!-- 				<li><a href="index/react.html" target="bottomIframe"><span>react</span></a></li> -->
 <!-- 				<li><a href="index/easyUI.html" target="bottomIframe"><span>easyUI</span></a></li> -->
-				<li class="dropdown">
+				<li class="dropdown" id="jangle_menu_xtgl" style="display:none;">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						系统管理
 						<b class="caret"></b>
@@ -81,6 +81,9 @@
 						$("#login").text("您好："+returnCitySN["cname"]+"的"+ret.model.usrName);
 					}else{
 						$("#login").text("您好："+ret.model.usrName);
+						if(ret.model.usrId == 1){
+							$("#jangle_menu_xtgl").show();
+						}
 					}
 					$("#login").append("<a href='javascript:logout();'>注销</a>");
 				}
