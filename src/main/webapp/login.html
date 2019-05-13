@@ -70,9 +70,7 @@
 					}
 				},
 				error : function(request, textStatus, errorThrown) {
-					console.log(request);
-					console.log(textStatus);
-					console.log(errorThrown);
+					jangleShowAjaxError(request, textStatus, errorThrown);
 				}
 			});
 		}

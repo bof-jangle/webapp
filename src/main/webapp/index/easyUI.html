@@ -18,11 +18,8 @@
 		$.ajax({
 			url:"utils/getEasyUIList",
 			dataType:"json",
-			error:function(jqXHR,textStatus,errorThrown){
-				console.log("获取easyUI目录失败");
-				console.log(jqXHR);
-				console.log(textStatus);
-				console.log(errorThrown);
+			error : function(request, textStatus, errorThrown) {
+				jangleShowAjaxError(request, textStatus, errorThrown);
 			},
 			success:function(data){
 				for(var i=0;i<data.length;i++){

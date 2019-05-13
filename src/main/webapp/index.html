@@ -70,6 +70,7 @@
 <!-- 	<script src="js/jquery-3.3.1.min.js"></script> -->
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+    <script src="/js/jangle.util.js"></script>
 	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 	<script type="text/javascript">
 		$.ajax({
@@ -89,7 +90,7 @@
 				}
 			},
 			error : function(request, textStatus, errorThrown) {
-				fxShowAjaxError(request, textStatus, errorThrown);
+				jangleShowAjaxError(request, textStatus, errorThrown);
 			}
 		});
 		//注销
@@ -104,9 +105,7 @@
 					}
 				},
 				error : function(request, textStatus, errorThrown) {
-					console.log(request);
-					console.log(textStatus);
-					console.log(errorThrown);
+					jangleShowAjaxError(request, textStatus, errorThrown);
 				}
 			});
 		}
