@@ -1,5 +1,5 @@
 /*!
- * demo专用js
+ * 角色管理 专用JS
  * 
  */
 
@@ -12,31 +12,31 @@ $("#jangleEditForm").bootstrapValidator({
 		validating : 'glyphicon glyphicon-refresh'
 	},
 	fields : {
+		rolName : {
+			validators : {
+				notEmpty : {
+					message : "请输入角色名称"
+				}
+			}
+		},
+		rolCode : {
+			validators : {
+				notEmpty : {
+					message : "请输入角色编码"
+				}
+			}
+		},
 		dmDesc : {
 			validators : {
 				notEmpty : {
-					message : "请输入描述"
+					message : "请输入拓展字段1"
 				}
 			}
 		},
 		dmDesc2 : {
 			validators : {
 				notEmpty : {
-					message : "请输入描述2"
-				}
-			}
-		},
-		dmDesc3 : {
-			validators : {
-				notEmpty : {
-					message : "描述3也是必填项"
-				}
-			}
-		},
-		dmDesc6 : {
-			validators : {
-				notEmpty : {
-					message : "描述6也是必填项"
+					message : "请输入拓展字段2"
 				}
 			}
 		}

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>DEMO管理</title>
+<title>角色管理_列表页面</title>
     <jsp:include page="/css/includeCSS.jsp">
     	<jsp:param value="table-out" name="csses"/>
     </jsp:include>
@@ -18,8 +18,8 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span style="padding-right:20px;">DEMO管理</span>
-	                <input type="text" class="form-control" name="dmDesc" placeholder="描述">
+	            	<span class="jangle-listjsp-remarks-span" >角色管理 </span>
+	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
 	            <input type="hidden" name="status" value="1">
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
@@ -43,7 +43,7 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="dmDesc" data-formatter="nameFormat">描述</th>
+							<th data-field="createTime" >创建时间</th>
 							<th data-field="id" data-width="100">id</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
@@ -58,18 +58,18 @@
 		var pathname = window.location.pathname;
 		var listPageName = pathname.substring(pathname.lastIndexOf("/")+1);
 		var addressPostfix = "&r="+Math.random()+"&back="+listPageName;
-		var url = "/bsDemoCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
+		var url = "/bsRoleCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
 		// 新增按钮 打开新增数据的页面
 		function addFormInfo() {
-			window.location.href = "bsDemoEdit.jsp"
+			window.location.href = "bsRoleEdit.jsp"
 		}
 		// 查看详情
 		function openDetail(data) {
-			window.location.href = "bsDemoOpen.jsp?id=" + data.id + addressPostfix;
+			window.location.href = "bsRoleOpen.jsp?id=" + data.id + addressPostfix;
 		}
 		// 编辑详情
 		function editDetail(data){
-			window.location.href = "bsDemoEdit.jsp?id=" + data.id + addressPostfix;
+			window.location.href = "bsRoleEdit.jsp?id=" + data.id + addressPostfix;
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
@@ -89,7 +89,7 @@
 			if (confirm("确定删除勾选的"+rows.length+"条记录吗？")) {
 				$.ajax({
 					type:"POST",
-					url : "/bsDemoCtrl/batchDeleteByPrimaryKey.ctrl",
+					url : "/bsRoleCtrl/batchDeleteByPrimaryKey.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {

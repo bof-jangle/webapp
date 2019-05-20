@@ -15,6 +15,14 @@
 #rightIframe{width:84.5%;display:inline-block;vertical-align:top;}
 .treeLeft ul li{line-height:50px;color:#fff;text-align:center;font-size:16px;cursor:pointer;position:relative;}
 
+/* 列表界面 */
+.jangle-listjsp-remarks-span{margin-right:20px;border-right:2px solid #BAA}
 
+/* 表单编辑界面 */
+.jangle-editjsp-bodytopdiv{margin-top: 20px;}
+.jangle-editjsp-bodytopdiv .rightbuttonsdiv{padding: 0px 1% 15px; float: right;}
+.jangle-editjsp-formdiv {margin-top: 20px;}
+
+/* 表单查看界面 */
 
 
