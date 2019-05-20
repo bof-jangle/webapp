@@ -66,5 +66,11 @@ public interface BaseService<T> {
 	 * @return
 	 */
 	ResultModelList<T> selectAll();
+	/**
+	 * 批量删除记录
+	 * @param record
+	 * @return
+	 */
+	ResultModel<T> batchDeleteByPrimaryKey(T record);
 
 }

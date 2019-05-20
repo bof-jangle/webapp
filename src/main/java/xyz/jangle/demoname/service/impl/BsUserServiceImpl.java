@@ -168,4 +168,10 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 		return new ResultModelList<BsUser>(list);
 	}
 
+	@Override
+	public ResultModel<BsUser> batchDeleteByPrimaryKey(BsUser record) {
+		// TODO Auto-generated method stub 
+		return null;
+	}
+
 }

@@ -14,11 +14,5 @@ public interface BsDemoService extends BaseService<BsDemo> {
 	 * @return
 	 */
 	ResultModel<BsDemo> selectByPrimaryKeyForAnnotation(BsDemo record);
-	/**
-	 * 批量删除记录
-	 * @param record
-	 * @return
-	 */
-	ResultModel<BsDemo> batchDeleteByPrimaryKey(BsDemo record);
 
 }

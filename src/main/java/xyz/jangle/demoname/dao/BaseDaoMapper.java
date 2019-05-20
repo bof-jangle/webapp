@@ -3,6 +3,8 @@ package xyz.jangle.demoname.dao;
 import java.util.List;
 import java.util.Map;
 
+import xyz.jangle.demoname.model.BsDemo;
+
 /**
  * DAO层基础接口
  * 
@@ -71,5 +73,11 @@ public interface BaseDaoMapper<T> {
 	 * @return
 	 */
 	Long selectPageCount(T record);
+	/**
+	 * 批量删除
+	 * @param record
+	 * @return
+	 */
+	int batchDeleteByPrimaryKey(BsDemo record); 
 
 }
