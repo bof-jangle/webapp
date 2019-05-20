@@ -78,6 +78,6 @@ public interface BaseDaoMapper<T> {
 	 * @param record
 	 * @return
 	 */
-	int batchDeleteByPrimaryKey(BsDemo record); 
+	int batchDeleteByPrimaryKey(T record); 
 
 }
