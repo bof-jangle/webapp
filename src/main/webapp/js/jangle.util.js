@@ -50,6 +50,24 @@ function success(data) {
 	}
 	back();
 }
+/**
+ * ajax执行成功回调函数 刷新页面
+ * @param data
+ * @returns
+ */
+function successReload(data) {
+	if (data == null) {
+		alert("异常操作，请联系管理员");
+		return;
+	}
+	if (data.code == "10001") {
+		alert(data.message);
+	} else {
+		alert(data.message);
+		return;
+	}
+	window.location.reload();
+}
 
 /**
  * 关闭表单页面

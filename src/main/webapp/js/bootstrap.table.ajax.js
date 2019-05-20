@@ -20,6 +20,8 @@ function ajaxRequest(params) {
 		url : url, // 这里的请求需要提供分页查询的功能。
 		data : dataStr,// 这里添加分页参数与查询条件。
 		dataType : 'json',
+		type : "POST",
+		cache : false,
 		error : function(request, textStatus, errorThrown) {
 			jangleShowAjaxError(request, textStatus, errorThrown);
 		},

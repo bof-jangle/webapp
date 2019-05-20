@@ -54,7 +54,7 @@ public class BsDemoServiceImplTest extends JUnitRunSupport {
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsDemoService.selectByPrimaryKey(testBsDemo).getModel());
 		assertEquals(CME.success.getCode(), bsDemoService.deleteByPrimaryKey(testBsDemo).getCode());
-		assertNull(bsDemoService.selectByPrimaryKey(testBsDemo).getModel());
+		assertEquals("2", bsDemoService.selectByPrimaryKey(testBsDemo).getModel().getStatus().toString());
 		testBsDemo.setId(1L);
 		assertEquals(CME.error.getCode(), bsDemoService.deleteByPrimaryKey(testBsDemo).getCode());
 	}
@@ -97,6 +97,15 @@ public class BsDemoServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testSelectByPrimaryKey() {
 		bsDemoService.selectByPrimaryKey(testBsDemo);
+	}
+	
+	@Test
+	public void testBatchDeleteByPrimaryKey() {
+		BsDemo record = new BsDemo();
+		assertEquals(CME.unFindIdsToDelete.getCode(), bsDemoService.batchDeleteByPrimaryKey(record).getCode());
+		record.setIds(testBsDemo.getId().toString());
+		bsDemoService.batchDeleteByPrimaryKey(record);
+		assertEquals("2", bsDemoService.selectByPrimaryKey(testBsDemo).getModel().getStatus().toString());
 	}
 
 }

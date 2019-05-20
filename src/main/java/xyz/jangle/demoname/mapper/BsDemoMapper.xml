@@ -37,14 +37,26 @@
 	<sql id="page_where">
 		<where>
 			<if test="dmDesc != null and dmDesc != ''">
-				dm_desc like CONCAT('%',#{dmDesc},'%')
+				AND dm_desc like CONCAT('%',#{dmDesc},'%')
 			</if>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+			
 		</where>
 	</sql>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from
-		bs_demo
+		update bs_demo
+		set status = 2
 		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsDemo">
+		update bs_demo
+		set status = 2
+		where id in 
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
 	</delete>
 	<insert id="insert"
 		parameterType="xyz.jangle.demoname.model.BsDemo" useGeneratedKeys="true" keyProperty="id">

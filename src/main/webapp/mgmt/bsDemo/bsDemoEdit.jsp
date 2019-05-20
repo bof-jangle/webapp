@@ -55,6 +55,7 @@
 				<input type="text" class="form-control" id="dmDesc8" name="dmDesc8" placeholder="请输入描述8">
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
+			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">
@@ -76,7 +77,6 @@
 				type:"POST",
 				url : "/bsDemoCtrl/insert.ctrl",
 				dataType : "json",
-				type : "POST",
 				cache:false,
 				data : $("#jangleEditForm").serialize(),
 				error : function(request, textStatus, errorThrown) {
@@ -94,6 +94,7 @@
 					type:"POST",
 					url : "/bsDemoCtrl/deleteByPrimaryKey.ctrl",
 					dataType : "json",
+					cache : false,
 					data : {
 						"id" : $("#id").val()
 					},

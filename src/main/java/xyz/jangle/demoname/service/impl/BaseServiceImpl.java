@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 //import org.springframework.beans.factory.annotation.Autowired;
 
 //import xyz.jangle.demoname.dao.BsDemoMapper;
-import xyz.jangle.demoname.model.BaseModel;
+//import xyz.jangle.demoname.model.BaseModel;
 //import xyz.jangle.utils.CME;
 //import xyz.jangle.utils.ResultModel;
 
@@ -16,9 +16,10 @@ import xyz.jangle.demoname.model.BaseModel;
  * 服务层基类，用于定义一些通用属性。
  * 
  * @author jangle E-mail: jangle@jangle.xyz
- * @version 2019年1月18日 下午3:19:16 类说明
+ * @version 2019年1月18日 类说明
  */
-public abstract class BaseServiceImpl<T extends BaseModel> {
+//public abstract class BaseServiceImpl<T extends BaseModel> {
+public abstract class BaseServiceImpl {
 	
 //	@Autowired
 //	SqlSessionFactory sqlSessionFactory;

@@ -20,9 +20,10 @@
 	            <div class="form-group">
 	                <input type="text" class="form-control" name="dmDesc" placeholder="描述">
 	            </div>
+	            <input type="hidden" name="status" value="1">
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
-	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">复选功能</button>
+	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button>
 				<button type="button" class="btn btn-default" onclick="addFormInfo()">新增</button>
 				</div>
 	        </form>
@@ -57,26 +58,49 @@
 		var listPageName = pathname.substring(pathname.lastIndexOf("/")+1);
 		var addressPostfix = "&r="+Math.random()+"&back="+listPageName;
 		var url = "/bsDemoCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
-		//新增按钮 打开新增数据的页面
+		// 新增按钮 打开新增数据的页面
 		function addFormInfo() {
 			window.location.href = "bsDemoEdit.jsp"
 		}
-		//查看详情
+		// 查看详情
 		function openDetail(data) {
 			window.location.href = "bsDemoOpen.jsp?id=" + data.id + addressPostfix;
 		}
-		//编辑详情
+		// 编辑详情
 		function editDetail(data){
 			window.location.href = "bsDemoEdit.jsp?id=" + data.id + addressPostfix;
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
 			var rows = $("#tablewrap").bootstrapTable("getAllSelections");
-			if(rows != 0) {
-// 				var param = "" + JSON.stringify(rows);
-				alert("选中了"+rows.length+"条记录");
-			}  else {
+			var ids = "";
+			if(rows == null || rows.length == 0) {
 				alert("请选择");
+				return;
+			}
+			for(var i=0;i<rows.length;i++){
+				if(ids == ""){
+					ids = ""+rows[i].id;
+				}else{
+					ids += ","+rows[i].id;
+				}
+			}
+			if (confirm("确定删除勾选的"+rows.length+"条记录吗？")) {
+				$.ajax({
+					type:"POST",
+					url : "/bsDemoCtrl/batchDeleteByPrimaryKey.ctrl",
+					dataType : "json",
+					cache : false,
+					data : {
+						"ids" : ids
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						successReload(data);
+					}
+				});
 			}
 		}
 	</script>

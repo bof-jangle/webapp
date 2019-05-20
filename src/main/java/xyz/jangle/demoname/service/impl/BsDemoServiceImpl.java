@@ -11,6 +11,7 @@ import xyz.jangle.demoname.dao.BsDemoMapper;
 import xyz.jangle.demoname.model.BsDemo;
 import xyz.jangle.demoname.service.BsDemoService;
 import xyz.jangle.utils.CME;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.Jutils;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
@@ -18,10 +19,10 @@ import xyz.jangle.utils.ResultModelList;
 /**
  * 基础Demo的业务层实现
  * @author jangle E-mail: jangle@jangle.xyz
- * @version 2019年1月15日 下午5:12:19 类说明
+ * @version 2019年1月15日 类说明
  */
 @Service
-public class BsDemoServiceImpl extends BaseServiceImpl<BsDemo> implements BsDemoService {
+public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService {
 
 	@Autowired
 	private BsDemoMapper bsDemoMapper;
@@ -93,5 +94,14 @@ public class BsDemoServiceImpl extends BaseServiceImpl<BsDemo> implements BsDemo
 		return new ResultModel<BsDemo>(bsDemoMapper.selectByPrimaryKeyForAnnotation(record.getId()));
 	}
 
+	@Override
+	public ResultModel<BsDemo> batchDeleteByPrimaryKey(BsDemo record) {
+		if(Jutils.isEmpty(record.getIds())) {
+			return new ResultModel<BsDemo>(CME.unFindIdsToDelete);
+		}
+		record.setIdsArray(record.getIds().split(JConstant.ywdh));
+		bsDemoMapper.batchDeleteByPrimaryKey(record);
+		return new ResultModel<BsDemo>(CME.success);
+	}
 
 }

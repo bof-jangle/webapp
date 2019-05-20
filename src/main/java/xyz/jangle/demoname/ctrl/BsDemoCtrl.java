@@ -27,6 +27,12 @@ public class BsDemoCtrl {
 	ResultModel<BsDemo> deleteByPrimaryKey(BsDemo record) {
 		return bsDemoService.deleteByPrimaryKey(record);
 	}
+	
+	@RequestMapping("/batchDeleteByPrimaryKey.ctrl")
+	@ResponseBody
+	ResultModel<BsDemo> batchDeleteByPrimaryKey(BsDemo record) {
+		return bsDemoService.batchDeleteByPrimaryKey(record);
+	}
 
 	@RequestMapping("/insert.ctrl")
 	@ResponseBody
