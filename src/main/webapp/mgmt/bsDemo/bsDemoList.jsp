@@ -18,7 +18,7 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span style="padding-right:20px;">DEMO管理</span>
+	            	<span class="jangle-listjsp-remarks-span">DEMO管理 </span>
 	                <input type="text" class="form-control" name="dmDesc" placeholder="描述">
 	            </div>
 	            <input type="hidden" name="status" value="1">

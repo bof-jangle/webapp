@@ -32,6 +32,31 @@ function jangleShowAjaxError(request, textStatus, errorThrown) {
 }
 
 /**
+ * 对时间进行格式化
+ * @param value 日期
+ * @returns yyyy-MM-dd hh:mm:ss 格式时间 或者原来的值
+ */
+function datetimeFormatterJ(value){
+	if(value){
+		return getdateJ(new Date(value));
+	}
+	return value;
+}
+
+/**
+ * 对日期进行格式化 
+ * @param now 入参为日期格式  new Date();
+ * @returns yyyy-MM-dd hh:mm:ss 格式时间
+ */
+function getdateJ(now) {
+//	var now = new Date();
+    var y = now.getFullYear(),
+    m = now.getMonth() + 1,
+    d = now.getDate();
+    return y + "-" + (m < 10 ? "0" + m : m) + "-" + (d < 10 ? "0" + d : d) + " " + now.toTimeString().substr(0, 8);
+}
+
+/**
  * 表单页面ajax执行成功回调函数
  * 
  * @param data

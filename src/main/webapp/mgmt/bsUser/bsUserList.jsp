@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>角色管理_列表页面</title>
+<title>用户管理_列表页面</title>
     <jsp:include page="/css/includeCSS.jsp">
     	<jsp:param value="table-out" name="csses"/>
     </jsp:include>
@@ -18,10 +18,10 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span class="jangle-listjsp-remarks-span" >角色管理 </span>
+	            	<span class="jangle-listjsp-remarks-span" >用户管理 </span>
 	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
-	            <input type="hidden" name="status" value="1">
+	            <input type="hidden" name="usrStatus" value="">
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
 	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button>
@@ -43,8 +43,10 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="createTime" data-formatter="datetimeFormatterJ">创建时间</th>
-							<th data-field="id" data-width="100">id</th>
+							<th data-field="updateTime" data-formatter="datetimeFormatterJ">创建时间</th>
+							<th data-field="usrName" data-width="100">名称</th>
+							<th data-field="usrCode" data-width="100">帐号</th>
+							<th data-field="usrStatus" data-width="100" data-formatter="statusFormatterJ">状态</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
 					</thead>
@@ -58,18 +60,25 @@
 		var pathname = window.location.pathname;
 		var listPageName = pathname.substring(pathname.lastIndexOf("/")+1);
 		var addressPostfix = "&r="+Math.random()+"&back="+listPageName;
-		var url = "/bsRoleCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
+		var url = "/bsUserCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
 		// 新增按钮 打开新增数据的页面
 		function addFormInfo() {
-			window.location.href = "bsRoleEdit.jsp"
+			window.location.href = "bsUserEdit.jsp"
 		}
 		// 查看详情
 		function openDetail(data) {
-			window.location.href = "bsRoleOpen.jsp?id=" + data.id + addressPostfix;
+			window.location.href = "bsUserOpen.jsp?id=" + data.id + addressPostfix;
 		}
 		// 编辑详情
 		function editDetail(data){
-			window.location.href = "bsRoleEdit.jsp?id=" + data.id + addressPostfix;
+			window.location.href = "bsUserEdit.jsp?id=" + data.id + addressPostfix;
+		}
+		// 状态格式化
+		function statusFormatterJ(value){
+			if(value == 0){return '禁用'}
+			if(value == 1){return '启用'}
+			if(value == 2){return '删除'}
+			return value;
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
@@ -89,7 +98,7 @@
 			if (confirm("确定删除勾选的"+rows.length+"条记录吗？")) {
 				$.ajax({
 					type:"POST",
-					url : "/bsRoleCtrl/batchDeleteByPrimaryKey.ctrl",
+					url : "/bsUserCtrl/batchDeleteByPrimaryKey.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {

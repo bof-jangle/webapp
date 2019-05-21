@@ -77,6 +77,8 @@ function nameFormat(name) {
 	else
 		return name;
 }
+
+
 /**
  * 查看按钮格式化
  * @param value

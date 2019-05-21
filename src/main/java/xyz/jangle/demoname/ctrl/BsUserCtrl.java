@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import xyz.jangle.demoname.model.BsDemo;
 import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.utils.ResultModel;
+import xyz.jangle.utils.ResultModelList;
 
 @Controller
 @RequestMapping("/bsUserCtrl")
@@ -73,6 +75,12 @@ public class BsUserCtrl {
 	@ResponseBody
 	public ResultModel<BsUser> selectByPrimaryKey(BsUser bsUser) {
 		return bsUserService.selectByPrimaryKey(bsUser);
+	}
+	
+	@RequestMapping("/selectPage.ctrl")
+	@ResponseBody
+	ResultModelList<BsUser> selectPage(BsUser record) {
+		return bsUserService.selectPage(record);
 	}
 
 }

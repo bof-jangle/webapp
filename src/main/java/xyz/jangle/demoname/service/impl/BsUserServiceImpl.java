@@ -60,10 +60,10 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 
 	@Override
 	public ResultModel<BsUser> currentLoggedIn() {
-		System.out.println("当前用户userName:" + httpSession.getAttribute("userName"));
-		System.out.println("当前用户userId:" + httpSession.getAttribute("userId"));
-		System.out.println(this); // 对象是单列的。
-		System.out.println(httpSession); // 对象的属性却是不一样的。这是个代理对象。
+		logger.info("当前用户userName:" + httpSession.getAttribute("userName"));
+		logger.info("当前用户userId:" + httpSession.getAttribute("userId"));
+		logger.info(this); // 对象是单列的。
+		logger.info(httpSession); // 对象的属性却是不一样的。这是个代理对象。
 		Object userId = httpSession.getAttribute("userId");
 		if (userId == null) {
 			// 未登录或者session失效
@@ -120,8 +120,8 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 	@Override
 	public ResultModel<BsUser> insertOrUpdate(BsUser record) {
 		int i = 0;
-		if (Jutils.isGreatThan0(record.getId())) {
-			i = bsUserMapper.updateByPrimaryKey(record);
+		if (Jutils.isGreatThan0(record.getUsrId())) {
+			i = bsUserMapper.updateByPrimaryKeySelective(record);
 		} else {
 			i = bsUserMapper.insert(record);
 		}
