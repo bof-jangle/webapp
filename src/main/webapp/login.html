@@ -61,12 +61,16 @@
 					"city" : $("#city").val()
 				},
 				success : function(res) {
-					console.log(res);
+// 					console.log(res);
 					if (res.code != "10001") {
 						alert(res.message);
 					} else {
 // 						alert("登陆成功");
-						location.href = "index.html";
+						if(window.top == window.self){
+							location.href = "index.html";
+						}else{
+							parent.window.location.href="index.html";
+						}
 					}
 				},
 				error : function(request, textStatus, errorThrown) {
