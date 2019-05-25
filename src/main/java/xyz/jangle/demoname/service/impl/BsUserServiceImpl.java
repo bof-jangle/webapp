@@ -15,6 +15,7 @@ import xyz.jangle.demoname.model.DemoModel;
 import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.demoname.service.DemoService;
 import xyz.jangle.utils.CME;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.Jutils;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
@@ -51,6 +52,8 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 			return new ResultModel<BsUser>(CME.loginFailed);
 		}
 		model.setUsrPassword(""); // 将密码置空
+		model.setCity((String) httpSession.getAttribute(JConstant.city));
+		model.setIp((String) httpSession.getAttribute(JConstant.ip));
 		// 数据库校验通过后，将信息进行缓存
 		UserCacheMap.put("" + model.getUsrId(), model); // 登陆成功后，缓存用户信息
 		UserCacheMap.put(model.getUsrCode() + "&" + password, model); // 登陆成功后，缓存用户信息

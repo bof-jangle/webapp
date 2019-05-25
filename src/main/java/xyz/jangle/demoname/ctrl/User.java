@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.model.BsUserExample;
 import xyz.jangle.demoname.service.BsUserService;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -44,6 +45,8 @@ public class User {
 	public ResultModel<BsUser> login(@RequestParam(required = false) String code,
 			@RequestParam(required = false) String ip, @RequestParam(required = false) String city,
 			@RequestParam(required = false) String password, HttpSession httpSession) {
+		httpSession.setAttribute(JConstant.ip, ip);
+		httpSession.setAttribute(JConstant.city, city);
 		return bsUserService.login(code, password, httpSession);
 	}
 

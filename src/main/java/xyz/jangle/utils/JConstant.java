@@ -8,5 +8,9 @@ public class JConstant {
 	
 	// 英文逗号分隔符
 	public static final String ywdh = ",";
+	// 游客
+	public static final String youke = "游客";
+	public static final String ip = "id";
+	public static final String city = "city";
 
 }

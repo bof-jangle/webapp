@@ -41,7 +41,11 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 		} else {
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			BsUser currentUser = bsUserService.currentLoggedIn().getModel();
-			record.setZdLyr(currentUser.getUsrName());
+			if(JConstant.youke.equals(currentUser.getUsrName())) {
+				record.setZdLyr(currentUser.getCity()+currentUser.getUsrName()+currentUser.getIp());
+			}else {
+				record.setZdLyr(currentUser.getUsrName());
+			}
 			record.setZdLyrUuid("useruuid"+currentUser.getId());
 			i = zdLybMapper.insert(record);
 		}
