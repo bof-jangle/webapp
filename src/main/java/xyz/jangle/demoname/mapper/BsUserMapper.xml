@@ -157,6 +157,7 @@
     from bs_user
     where usr_code = #{usrCode,jdbcType=VARCHAR}
     AND usr_password = #{usrPassword,jdbcType=VARCHAR}
+    AND usr_status = 1
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
