@@ -72,6 +72,7 @@ public class ExecuteIntercept {
 			txManager.rollback(status);//回滚事务
 			ResultModelMap<Object> resm = new ResultModelMap<Object>(CME.exception);
 			resm.appendMessage(e.getMessage());
+			resm.setExceptionCause(e.getCause());
 			return resm;
 		}
 		txManager.commit(status);//提交事务

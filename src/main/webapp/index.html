@@ -57,6 +57,7 @@
 					</ul>
 				</li>
 				<li><a href="mgmt/zdLyb/zdLybList.jsp" target="bottomIframe"><span>战队留言板</span></a></li>
+				<li class="youke-power" style="display:none;" ><a href="mgmt/bsUser/bsUserApplyInfo.jsp" target="bottomIframe"><span>用户申请</span></a></li>
 			</ul>
 		</div>
 		</div>
@@ -82,6 +83,7 @@
 				if(ret.code == "10001"){
 					if(ret.model.usrId == 2){
 						$("#login").text("您好："+returnCitySN["cname"]+"的"+ret.model.usrName);
+						$(".youke-power").show();
 					}else{
 						$("#login").text("您好："+ret.model.usrName);
 						if(ret.model.usrId == 1){

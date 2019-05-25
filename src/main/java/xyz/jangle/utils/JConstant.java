@@ -12,5 +12,18 @@ public class JConstant {
 	public static final String youke = "游客";
 	public static final String ip = "id";
 	public static final String city = "city";
+	
+	// 草稿
+	public static final Integer status_0 = 0;
+	// 正常状态
+	public static final Integer status_1 = 1;
+	// 删除
+	public static final Integer status_2 = 2;
+	public static final Integer status_3 = 3;
+	// 结束 不通过
+	public static final Integer status_4 = 4;
+	public static final Integer status_5 = 5;
+	// 申请中
+	public static final Integer status_9 = 9;
 
 }

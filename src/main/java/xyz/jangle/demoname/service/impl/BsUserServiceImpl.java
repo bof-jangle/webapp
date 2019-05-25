@@ -177,4 +177,23 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 		return null;
 	}
 
+	@Override
+	public ResultModel<BsUser> passApply(BsUser bsUser) {
+		bsUser.setUsrStatus(JConstant.status_1);
+		if(bsUserMapper.updateStatusById(bsUser) == 1) {
+			return new ResultModel<BsUser>(CME.success);
+		}
+		return new ResultModel<>(CME.error);
+	}
+
+	@Override
+	public ResultModel<BsUser> noPassApply(BsUser bsUser) {
+		bsUser.setUsrStatus(JConstant.status_4);
+		if(bsUserMapper.updateStatusById(bsUser) == 1) {
+			return new ResultModel<BsUser>(CME.success);
+		}
+		return new ResultModel<>(CME.error);
+	}
+	
+
 }

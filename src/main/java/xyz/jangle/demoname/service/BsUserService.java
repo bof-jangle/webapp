@@ -43,5 +43,17 @@ public interface BsUserService extends BaseService<BsUser>{
 	 * @return
 	 */
 	ResultModel<BsUser> login(String code, String password, HttpSession httpSession);
+	/**
+	 * 审批通过
+	 * @param bsUser
+	 * @return
+	 */
+	ResultModel<BsUser> passApply(BsUser bsUser);
+	/**
+	 * 审批不通过
+	 * @param bsUser
+	 * @return
+	 */
+	ResultModel<BsUser> noPassApply(BsUser bsUser);
 	
 }

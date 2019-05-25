@@ -82,5 +82,11 @@ public interface BsUserMapper extends BaseDaoMapper<BsUser>{
 	 * @return
 	 */
 	int save(BsUser bsUser);
+	/**
+	 * 修改状态
+	 * @param bsUser
+	 * @return
+	 */
+	int updateStatusById(BsUser bsUser);
 
 }

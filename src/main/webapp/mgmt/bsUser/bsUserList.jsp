@@ -74,10 +74,12 @@
 			window.location.href = "bsUserEdit.jsp?id=" + data.id + addressPostfix;
 		}
 		// 状态格式化
-		function statusFormatterJ(value){
+		function statusFormatterJ(value,row){
 			if(value == 0){return '禁用'}
-			if(value == 1){return '启用'}
+			if(value == 9){return '申请中'}
+			if(value == 1){return '启用（通过）'}
 			if(value == 2){return '删除'}
+			if(value == 4){return '不通过'}
 			return value;
 		}
 		// 复选框的相关功能（当启用复选框时可用）

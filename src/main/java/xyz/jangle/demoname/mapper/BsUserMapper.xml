@@ -386,6 +386,13 @@
       extends2 = #{extends2,jdbcType=VARCHAR}
     where usr_id = #{usrId,jdbcType=INTEGER}
   </update>  
+  
+  <update id="updateStatusById" parameterType="xyz.jangle.demoname.model.BsUser">
+  	update bs_user
+  	set usr_status = #{usrStatus,jdbcType=INTEGER}
+  	,extends1 = CONCAT(extends1,'Q',usr_id)
+  	where usr_id = #{usrId,jdbcType=INTEGER}
+  </update>
           
    <insert id="save" parameterType="xyz.jangle.demoname.model.BsUser">
        insert into bs_user(usr_name,usr_code,usr_password,usr_status,create_time,update_time)

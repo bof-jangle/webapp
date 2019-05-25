@@ -15,6 +15,10 @@
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
+			<button class="btn btn-info btn-sm" onclick="noPass()"
+				style="display: none;" id="noPassButton">不同意</button>
+			<button class="btn btn-info btn-sm" onclick="pass()"
+				style="display: none;" id="passButton">同意</button>
 			<button class="btn btn-info btn-sm" onclick="deleteForm()"
 				style="display: none;" id="deleteButton">删除</button>
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
@@ -101,6 +105,44 @@
 				});
 			}
 		}
+		function pass() {
+			if (confirm("确定通过吗？")) {
+				$.ajax({
+					type:"POST",
+					url : "/bsUserCtrl/passApply.ctrl",
+					dataType : "json",
+					cache : false,
+					data : {
+						"id" : $("#usrId").val()
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						success(data);
+					}
+				});
+			}
+		}
+		function noPass() {
+			if (confirm("确定不通过吗？")) {
+				$.ajax({
+					type:"POST",
+					url : "/bsUserCtrl/noPassApply.ctrl",
+					dataType : "json",
+					cache : false,
+					data : {
+						"id" : $("#usrId").val()
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						success(data);
+					}
+				});
+			}
+		}
 
 		// dom加载完成之后
 		$(function() {
@@ -122,6 +164,8 @@
 								$("#" + item).val(data.model[item]);
 							}
 							$("#deleteButton").show(); // 显示删除按钮
+							$("#passButton").show(); 
+							$("#noPassButton").show();
 						}
 					}
 				});

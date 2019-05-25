@@ -16,6 +16,8 @@ public class ResultModel<T> {
 	private String message = CME.success.getMessage();
 	/** 总数统计 */
 	private Long count;
+	/** 异常类型 */
+	private Throwable exceptionCause;
 
 	public ResultModel() {
 
@@ -64,6 +66,14 @@ public class ResultModel<T> {
 
 	public void setCount(Long count) {
 		this.count = count;
+	}
+
+	public Throwable getExceptionCause() {
+		return exceptionCause;
+	}
+
+	public void setExceptionCause(Throwable exceptionCause) {
+		this.exceptionCause = exceptionCause;
 	}
 
 	/**

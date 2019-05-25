@@ -7,9 +7,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import xyz.jangle.demoname.model.BsDemo;
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
+
 import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.service.BsUserService;
+import xyz.jangle.utils.CME;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -39,7 +42,42 @@ public class BsUserCtrl {
 	public ResultModel<BsUser> insert(BsUser bsUser) {
 		return bsUserService.insertOrUpdate(bsUser);
 	}
-
+	
+	
+	/**
+	 * 申请用户
+	 * @param bsUser
+	 * @return
+	 */
+	@RequestMapping("/applyUser")
+	@ResponseBody
+	public ResultModel<BsUser> applyUser(BsUser bsUser) {
+		bsUser.setId(0L);
+		bsUser.setUsrStatus(JConstant.status_9);
+		ResultModel<BsUser> resultModel = bsUserService.insertOrUpdate(bsUser);
+		if(resultModel.getCode().equals(CME.exception.getCode())) {
+			if(resultModel.getExceptionCause().getClass().equals(MySQLIntegrityConstraintViolationException.class)) {
+				if(resultModel.getMessage().contains("idx_bs_user_extends1")) {
+					resultModel.setMessage("您已经有一个用户正在申请了");
+				}
+			}
+		}
+		return resultModel;
+	}
+	
+	//  审批通过
+	@RequestMapping("/passApply")
+	@ResponseBody
+	public ResultModel<BsUser> passApply(BsUser bsUser) {
+		return bsUserService.passApply(bsUser);
+	}
+	//  审批不通过
+	@RequestMapping("/noPassApply")
+	@ResponseBody
+	public ResultModel<BsUser> noPassApply(BsUser bsUser) {
+		return bsUserService.noPassApply(bsUser);
+	}
+	
 	/**
 	 * 删除记录
 	 * 
