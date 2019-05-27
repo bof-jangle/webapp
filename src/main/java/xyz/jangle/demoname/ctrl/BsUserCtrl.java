@@ -90,6 +90,21 @@ public class BsUserCtrl {
 		return bsUserService.deleteByPrimaryKey(bsUser);
 
 	}
+	
+	
+	/**
+	 * 批量删除
+	 * @param bsUser
+	 * @return
+	 */
+	@RequestMapping("/batchDeleteByPrimaryKey")
+	@ResponseBody
+	public ResultModel<BsUser> batchDeleteByPrimaryKey(BsUser bsUser) {
+		return bsUserService.batchDeleteByPrimaryKey(bsUser);
+		
+	}
+	
+	
 
 	/**
 	 * 更新记录

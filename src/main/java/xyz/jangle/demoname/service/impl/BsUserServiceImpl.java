@@ -173,8 +173,12 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 
 	@Override
 	public ResultModel<BsUser> batchDeleteByPrimaryKey(BsUser record) {
-		// TODO Auto-generated method stub 
-		return null;
+		if(Jutils.isEmpty(record.getIds())) {
+			return new ResultModel<BsUser>(CME.unFindIdsToDelete);
+		}
+		record.setIdsArray(record.getIds().split(JConstant.ywdh));
+		bsUserMapper.batchDeleteByPrimaryKey(record);
+		return new ResultModel<BsUser>(record);
 	}
 
 	@Override
