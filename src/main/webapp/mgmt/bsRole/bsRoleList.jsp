@@ -43,8 +43,10 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="createTime" data-formatter="datetimeFormatterJ">创建时间</th>
-							<th data-field="id" data-width="100">id</th>
+							<th data-field="rolName" >角色名称</th>
+							<th data-field="rolCode" >角色编码</th>
+							<th data-field="createTime" data-width="200" data-formatter="datetimeFormatterJ">创建时间</th>
+<!-- 							<th data-field="id" data-width="100">id</th> -->
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
 					</thead>
