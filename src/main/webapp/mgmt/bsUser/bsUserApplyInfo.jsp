@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-editjsp-bodytopdiv" >
-		用户管理-内容编辑
+		用户管理-用户申请
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
