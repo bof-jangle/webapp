@@ -2,52 +2,46 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="../images/douyin.png" type="image/x-icon" /><!-- 小图标 -->
-<title>login</title>
-	<link rel="stylesheet" type="text/css" href="easyui/themes/default/easyui.css">
-	<link rel="stylesheet" type="text/css" href="easyui/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="easyui/demo/demo.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>阿景的战队</title>
+<link rel="stylesheet" type="text/css" href="/css/backSystem.css" />
+<link rel="stylesheet" type="text/css" media="all" href="css/login2_style.css" />
 </head>
-<body style="background-color: #123;">
-<!-- 	<div class="login" -->
-<!-- 		style="margin-left: 60%; margin-top: 280px; background-color: #fff;"> -->
-<!-- 		<div style="margin-left: 30px; padding-top: 20px;"> -->
-<!-- 			<label for="userName" style="width: 80px; display: inline-block">用户名</label> -->
-<!-- 			<input type="text" id="userName" /> -->
-<!-- 		</div> -->
-<!-- 		<div style="margin-left: 30px; margin-top: 20px;"> -->
-<!-- 			<label for="userPassword" style="width: 80px; display: inline-block;">密码</label> -->
-<!-- 			<input type="password" id="userPassword" /> -->
-<!-- 		</div> -->
-		<div class="easyui-panel" style="width:400px;padding:50px 60px">
-			<div style="margin-bottom:20px">
-				<input class="easyui-textbox" id="userName" prompt="用户名" iconWidth="28" style="width:100%;height:34px;padding:10px;">
-			</div>
-			<div style="margin-bottom:20px">
-				<input class="easyui-passwordbox" id="userPassword" prompt="密码" iconWidth="28" style="width:100%;height:34px;padding:10px">
-			</div>
-			<div style="margin-left: 130px; margin-top: 15px;">
-				<button onclick="loginForUser()" style="background-color: #aa55ff;">登陆</button>
-				<button onclick="loginForYk()" style="background-color: #aa55ff;">游客登陆</button>
-			</div>
-		</div>
-<!-- 	</div> -->
-		<input type="hidden" id="ip"> <input type="hidden" id="city">
-<!-- 	<script src="js/jquery-3.3.1.min.js"></script> -->
-	<script type="text/javascript" src="easyui/jquery.min.js"></script>
-	<script type="text/javascript" src="easyui/jquery.easyui.min.js"></script>
-	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
-	<script>
+<body>
+	<div class="main">
+        <h1>阿景的战队管理系统</h1>
+        <form id="userLoginForm" >
+            <input type="text" id="userName" value="" placeholder="请输入用户名"
+                  required="" >
+            <input type="password" id="userPassword" value="" placeholder="请输入密码"
+                  required="" >
+            <input type="submit"  value="登录">
+            <input type="hidden" id="ip"> 
+            <input type="hidden" id="city">
+        </form>
+    </div>
+<script src="/js/jquery-3.3.1.min.js" ></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+<script>
 		var userName;
 		var userPassword;
 		$(function() {
 			$("#ip").val(returnCitySN["cip"]);
 			$("#city").val(returnCitySN["cname"]);
+			$("#userLoginForm").submit(function(){
+				// 重写form表单提交事件。
+				loginForUser();
+				return false;
+			});
 		});
 
 		function login() {
 			if (userName == "") {
-				alert("用户名不可为空");
+// 				alert("用户名不可为空");
+				return;
+			}
+			if (userPassword == "") {
+// 				alert("密码不可为空");
 				return;
 			}
 			$.ajax({
@@ -90,6 +84,18 @@
 			userPassword = "p;.";
 			login();
 		}
-	</script>
+		function jangleShowAjaxError(request, textStatus, errorThrown) {
+			if (textStatus == 'timeout') {
+				alert('请求超时');
+			} else if (request.status == 500 || request.status == 400
+					|| request.status == 403 || request.status == 404) {
+				alert(request.status);
+				document.body.innerHTML = request.responseText;
+			} else {
+				alert("操作异常，请提供确认后的信息给系统管理员");
+				document.body.innerHTML = request.responseText;
+			}
+		}
+</script>
 </body>
 </html>
