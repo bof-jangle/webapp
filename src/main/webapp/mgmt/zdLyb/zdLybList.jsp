@@ -18,7 +18,7 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span class="jangle-listjsp-remarks-span" >战队留言板 </span>
+	            	<span class="jangle-listjsp-remarks-span label label-info" >战队留言板 </span>
 	                <input type="text" class="form-control" name="zdContent" placeholder="留言查询">
 	            </div>
 	            <input type="hidden" name="status" value="1">

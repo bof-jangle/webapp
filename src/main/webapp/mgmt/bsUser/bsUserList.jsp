@@ -18,7 +18,7 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span class="jangle-listjsp-remarks-span" >用户管理 </span>
+	            	<span class="jangle-listjsp-remarks-span label label-info" >用户管理 </span>
 	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
 	            <input type="hidden" name="usrStatus" value="">
