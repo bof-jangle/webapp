@@ -39,7 +39,7 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 	
 	@Test
 	public void testInsert() {
-		testBsUser.setId(1L);
+		testBsUser.setId(4L);
 		assertTrue(bsUserService.insertOrUpdate(testBsUser).getCode().equals(CME.error.getCode()));
 	}
 
@@ -47,9 +47,9 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsUserService.selectByPrimaryKey(testBsUser).getModel());
 		assertTrue(bsUserService.deleteByPrimaryKey(testBsUser).getCode().equals(CME.success.getCode()));
-		assertNull(bsUserService.selectByPrimaryKey(testBsUser).getModel());
-		testBsUser.setId(1L);
-		assertTrue(bsUserService.deleteByPrimaryKey(testBsUser).getCode().equals(CME.error.getCode()));
+		assertEquals("2", bsUserService.selectByPrimaryKey(testBsUser).getModel().getUsrStatus()+"");
+//		testBsUser.setId(1L);
+//		assertTrue(bsUserService.deleteByPrimaryKey(testBsUser).getCode().equals(CME.error.getCode()));
 	}
 
 	@Test

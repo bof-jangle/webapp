@@ -9,7 +9,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.model.ZdLyb;
+import xyz.jangle.demoname.service.BsUserService;
 import xyz.jangle.demoname.service.ZdLybService;
 import xyz.jangle.test.utils.JUnitRunSupport;
 import xyz.jangle.utils.CME;
@@ -26,13 +28,16 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	
 	@Autowired
 	private ZdLybService zdLybService;
+	@Autowired
+	private BsUserService bsUserService;
 	
 	private ZdLyb testZdLyb = null;
 	
 	private final String testString = "jangleTest";
-
+	
 	@Before
 	public void setUp() throws Exception {
+		bsUserService.login(BsUser.youkeCode, BsUser.youkePassword, null);
 		ZdLyb record = new ZdLyb();
 		record.setDmDesc(testString);
 		ResultModel<ZdLyb> resultModel = zdLybService.insertOrUpdate(record );
@@ -99,7 +104,7 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	public void testBatchDeleteByPrimaryKey() {
 		ZdLyb record = new ZdLyb();
 		assertEquals(CME.unFindIdsToDelete.getCode(), zdLybService.batchDeleteByPrimaryKey(record).getCode());
-		record.setIds(testZdLyb.getId().toString());
+		record.setIds(testZdLyb.getId()+"");
 		zdLybService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", zdLybService.selectByPrimaryKey(testZdLyb).getModel().getStatus().toString());
 	}
