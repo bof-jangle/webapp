@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 // 表示整合JUnit4进行测试（需要 JUnit4.12及以上版本）
 @RunWith(SpringJUnit4ClassRunner.class)
 // 加载spring配置文件  超类是事务管理的相关功能，继承后默认Rollback(true)
-@ContextConfiguration(locations = { "classpath:spring.xml" })
+@ContextConfiguration(locations = { "classpath:spring-test.xml" })
 public abstract class JUnitRunSupport extends AbstractTransactionalJUnit4SpringContextTests{
 	// 此处是以编码方式手动获取Spring的Bean对象的设计。
 	/*
