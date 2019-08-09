@@ -93,3 +93,14 @@ function operateFormat(value, row) {
 			+ JSON.stringify(row).replace(/\"/g, "'")
 			+ ')">编辑</button>';
 };
+/**
+ * 查看按钮格式化
+ * @param value
+ * @param row
+ * @returns
+ */
+function operateFormatOpen(value, row) {
+	return '<button class="btn btn-xs btn-info" onclick="openDetail('
+	+ JSON.stringify(row).replace(/\"/g, "'")
+	+ ')">查看</button>';
+};

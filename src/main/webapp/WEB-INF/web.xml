@@ -56,7 +56,7 @@
 		<init-param>
 			<!-- 包含过滤 -->
 			<param-name>contains</param-name>
-			<param-value>cjmm</param-value>
+			<param-value>cjmm,Yan</param-value>
 		</init-param>
 		<init-param>
 			<!-- 不包含过滤 -->
