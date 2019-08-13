@@ -276,6 +276,9 @@ public class BsUser extends BaseModel {
 	}
 
 	public Long getId() {
+		if(usrId == null) {
+			return null;
+		}
 		return Long.valueOf(usrId);
 	}
 

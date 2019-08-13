@@ -173,7 +173,7 @@
   </delete>
   <delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsUser">
 		update bs_user
-		set usrStatus = 2
+		set usr_status = 2
 		where usr_id in 
 		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
                     #{listItem}
