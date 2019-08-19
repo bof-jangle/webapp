@@ -34,7 +34,7 @@ public abstract class BaseModel {
 	/**
 	 * 起始索引 用于Mysql的分页 limit pageStart, pageSize
 	 */
-	private Long pageStart = 1L;
+	private Long pageStart = 0L;
 
 	/**
 	 * 字段排序
