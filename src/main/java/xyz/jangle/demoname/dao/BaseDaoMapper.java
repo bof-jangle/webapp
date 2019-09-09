@@ -3,8 +3,6 @@ package xyz.jangle.demoname.dao;
 import java.util.List;
 import java.util.Map;
 
-import xyz.jangle.demoname.model.BsDemo;
-
 /**
  * DAO层基础接口
  * 
