@@ -1,10 +1,16 @@
 package xyz.jangle.demoname.ctrl;
 
 
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -77,13 +83,35 @@ public class BsAttachmentCtrl {
 //		return null;
 //	}
 	
-	@RequestMapping("/uploadFile.ctrl")
-	public void uploadExcel(@RequestParam("file") MultipartFile file, @RequestParam("id") String id) throws Exception {
-		if(file == null) {
+	@RequestMapping(value = "/uploadFile.ctrl", produces = "application/json;charset=UTF-8")
+	@ResponseBody
+	public void uploadExcel(@RequestParam("file") MultipartFile[] files) throws Exception {
+		if(files == null) {
 			System.out.println("未获取到附件");
 			return ;
 		}
-		System.out.println(file.getOriginalFilename());
+		for(int i=0;i<files.length;i++) {
+			System.out.println("获取到了附件："+files[i].getOriginalFilename());
+		}
+		System.out.println("files.length:"+files.length);
 	}
+	
+	// 批量上传文件
+    @RequestMapping(value = "/uploadBatch", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
+    public @ResponseBody Map<String, Object> uploadBatch(HttpServletRequest request,@RequestParam("file") MultipartFile [] files,BsAttachment record) {
+    	if(files == null) {
+    		System.out.println("未获取到附件");
+    	}
+    	for(int i=0;i<files.length;i++){
+		    if (!files[i].isEmpty()) { 
+		    	String originalname = files[i].getOriginalFilename();
+		    	System.out.println(originalname);
+		    }else {
+		    	System.out.println("files is empty");
+		    }
+		}
+    	
+        return new HashMap<String, Object>();
+    }
 
 }
