@@ -156,6 +156,18 @@
 		     <artifactId>mybatis-generator-core</artifactId>
 		     <version>1.3.2</version>
 		</dependency>
+		<!-- 附件上传所需要的核心jar包  -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <!-- commons-fileupload 1.3.1的依赖jar，主要进行IO操作 -->
+        <!-- <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.2</version>
+        </dependency> -->
 	</dependencies>
 	<build>
 	<!-- finalName 用于对产生的war（jar）进行命名。 -->

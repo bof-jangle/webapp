@@ -100,6 +100,7 @@ public class BsUserCtrl {
 	@RequestMapping("/batchDeleteByPrimaryKey")
 	@ResponseBody
 	public ResultModel<BsUser> batchDeleteByPrimaryKey(BsUser bsUser) {
+		System.out.println(bsUser);
 		return bsUserService.batchDeleteByPrimaryKey(bsUser);
 		
 	}

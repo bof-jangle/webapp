@@ -80,8 +80,6 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 		return new ResultModelList<BsDemo>(list);
 	}
 
-	
-
 	@Override
 	public ResultModelList<BsDemo> selectPage(BsDemo record) {
 		ResultModelList<BsDemo> resultModelList = new ResultModelList<BsDemo>(bsDemoMapper.selectPage(record));

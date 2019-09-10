@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.BsAttachmentMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.BsAttachment">
+		<id column="id" jdbcType="BIGINT" property="id" />
+			<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+			<result column="att_id" jdbcType="BIGINT" property="attId" />
+			<result column="status" jdbcType="INTEGER" property="status" />
+			<result column="att_create_uuid" jdbcType="VARCHAR" property="attCreateUuid" />
+			<result column="att_name" jdbcType="VARCHAR" property="attName" />
+			<result column="att_ext" jdbcType="VARCHAR" property="attExt" />
+			<result column="att_path" jdbcType="VARCHAR" property="attPath" />
+			<result column="att_abspath" jdbcType="VARCHAR" property="attAbspath" />
+			<result column="att_protocol" jdbcType="VARCHAR" property="attProtocol" />
+			<result column="att_context" jdbcType="VARCHAR" property="attContext" />
+			<result column="att_source_type" jdbcType="VARCHAR" property="attSourceType" />
+			<result column="att_source_id" jdbcType="BIGINT" property="attSourceId" />
+			<result column="att_source_uuid" jdbcType="CHAR" property="attSourceUuid" />
+			<result column="att_file_type" jdbcType="VARCHAR" property="attFileType" />
+			<result column="att_extends1" jdbcType="INTEGER" property="attExtends1" />
+			<result column="att_extends2" jdbcType="VARCHAR" property="attExtends2" />
+			<result column="att_extends3" jdbcType="DATE" property="attExtends3" />
+			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+	</resultMap>
+	<sql id="all_column">
+		<![CDATA[
+			id,
+			uuid,
+			att_id,
+			status,
+			att_create_uuid,
+			att_name,
+			att_ext,
+			att_path,
+			att_abspath,
+			att_protocol,
+			att_context,
+			att_source_type,
+			att_source_id,
+			att_source_uuid,
+			att_file_type,
+			att_extends1,
+			att_extends2,
+			att_extends3,
+			create_time,
+			update_time,
+			dm_desc
+		]]>
+	</sql>
+	<sql id="page_where">
+		<where>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		update bs_attachment
+		set status = 2
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsAttachment">
+		update bs_attachment
+		set status = 2
+		where id in 
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.BsAttachment" useGeneratedKeys="true" keyProperty="id">
+		insert into bs_attachment ( 
+			uuid,
+			att_id,
+			status,
+			att_create_uuid,
+			att_name,
+			att_ext,
+			att_path,
+			att_abspath,
+			att_protocol,
+			att_context,
+			att_source_type,
+			att_source_id,
+			att_source_uuid,
+			att_file_type,
+			att_extends1,
+			att_extends2,
+			att_extends3,
+			create_time,
+			update_time,
+			dm_desc
+		)
+		values (
+			#{uuid,jdbcType=VARCHAR},
+			#{attId,jdbcType=BIGINT},
+			#{status,jdbcType=INTEGER},
+			#{attCreateUuid,jdbcType=VARCHAR},
+			#{attName,jdbcType=VARCHAR},
+			#{attExt,jdbcType=VARCHAR},
+			#{attPath,jdbcType=VARCHAR},
+			#{attAbspath,jdbcType=VARCHAR},
+			#{attProtocol,jdbcType=VARCHAR},
+			#{attContext,jdbcType=VARCHAR},
+			#{attSourceType,jdbcType=VARCHAR},
+			#{attSourceId,jdbcType=BIGINT},
+			#{attSourceUuid,jdbcType=CHAR},
+			#{attFileType,jdbcType=VARCHAR},
+			#{attExtends1,jdbcType=INTEGER},
+			#{attExtends2,jdbcType=VARCHAR},
+			#{attExtends3,jdbcType=DATE},
+			now(),
+			now(),
+			#{dmDesc,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="xyz.jangle.demoname.model.BsAttachment">
+		<![CDATA[
+		update bs_attachment
+		set 
+				att_id = #{attId,jdbcType=BIGINT},
+				status = #{status,jdbcType=INTEGER},
+				att_create_uuid = #{attCreateUuid,jdbcType=VARCHAR},
+				att_name = #{attName,jdbcType=VARCHAR},
+				att_ext = #{attExt,jdbcType=VARCHAR},
+				att_path = #{attPath,jdbcType=VARCHAR},
+				att_abspath = #{attAbspath,jdbcType=VARCHAR},
+				att_protocol = #{attProtocol,jdbcType=VARCHAR},
+				att_context = #{attContext,jdbcType=VARCHAR},
+				att_source_type = #{attSourceType,jdbcType=VARCHAR},
+				att_source_id = #{attSourceId,jdbcType=BIGINT},
+				att_source_uuid = #{attSourceUuid,jdbcType=CHAR},
+				att_file_type = #{attFileType,jdbcType=VARCHAR},
+				att_extends1 = #{attExtends1,jdbcType=INTEGER},
+				att_extends2 = #{attExtends2,jdbcType=VARCHAR},
+				att_extends3 = #{attExtends3,jdbcType=DATE},
+				update_time = now(),
+				dm_desc = #{dmDesc,jdbcType=VARCHAR}
+		]]>
+		<if test="id != null and id gt 0">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="(id == null or id lt 1 ) and uuid != null and uuid != ''">
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		</if>
+		<if test="(id == null or id lt 1 ) and (uuid == null or uuid == '')">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_attachment
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_attachment
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from bs_attachment
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.BsAttachment">
+		select 
+		<include refid="all_column" />
+		from bs_attachment
+		<include refid="page_where" />
+		order by id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.BsAttachment">
+		select count(*)
+		from bs_attachment
+		<include refid="page_where" />
+	</select>
+</mapper>
