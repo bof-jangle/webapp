@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.model.ZdLyb;
-import xyz.jangle.demoname.service.BsUserService;
+import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.demoname.service.ZdLybService;
 import xyz.jangle.test.utils.JUnitRunSupport;
 import xyz.jangle.utils.CME;
@@ -29,7 +29,7 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	@Autowired
 	private ZdLybService zdLybService;
 	@Autowired
-	private BsUserService bsUserService;
+	private BsUser2Service bsUser2Service;
 	
 	private ZdLyb testZdLyb = null;
 	
@@ -37,7 +37,7 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	
 	@Before
 	public void setUp() throws Exception {
-		bsUserService.login(BsUser.youkeCode, BsUser.youkePassword, null);
+		bsUser2Service.login(BsUser.youkeCode, BsUser.youkePassword, null);
 		ZdLyb record = new ZdLyb();
 		record.setDmDesc(testString);
 		ResultModel<ZdLyb> resultModel = zdLybService.insertOrUpdate(record );

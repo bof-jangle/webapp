@@ -10,7 +10,7 @@ import xyz.jangle.demoname.model.BsTest;
  */
 public interface BsTestMapper extends BaseDaoMapper<BsTest> {
 	
-	@Select("select * from bs_test where id = #{id}")
+	@Select("select id,uuid,create_time as createTime,update_time as updateTime,status,dm_desc as dmDesc,dm_desc2 as dmDesc2 from bs_test where id = #{id}")
 	BsTest selectByPrimaryKeyForAnnotation(Long id);
 
 }

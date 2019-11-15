@@ -8,9 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import xyz.jangle.demoname.dao.ZdLybMapper;
-import xyz.jangle.demoname.model.BsUser;
+import xyz.jangle.demoname.model.BsUser2;
 import xyz.jangle.demoname.model.ZdLyb;
-import xyz.jangle.demoname.service.BsUserService;
+import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.demoname.service.ZdLybService;
 import xyz.jangle.utils.CME;
 import xyz.jangle.utils.JConstant;
@@ -30,7 +30,7 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 	private ZdLybMapper zdLybMapper;
 	
 	@Autowired
-	private BsUserService bsUserService;
+	private BsUser2Service bsUser2Service;
 	
 	
 	@Override
@@ -40,11 +40,11 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 			i = zdLybMapper.updateByPrimaryKey(record);
 		} else {
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
-			BsUser currentUser = bsUserService.currentLoggedIn().getModel();
-			if(JConstant.youke.equals(currentUser.getUsrName())) {
-				record.setZdLyr(currentUser.getCity()+currentUser.getUsrName()+currentUser.getIp());
+			BsUser2 currentUser = bsUser2Service.currentLoggedIn().getModel();
+			if(JConstant.youke.equals(currentUser.getJgName())) {
+				record.setZdLyr(currentUser.getCity()+currentUser.getJgName()+currentUser.getIp());
 			}else {
-				record.setZdLyr(currentUser.getUsrName());
+				record.setZdLyr(currentUser.getJgName());
 			}
 			record.setZdLyrUuid("useruuid"+currentUser.getId());
 			i = zdLybMapper.insert(record);

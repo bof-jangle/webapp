@@ -10,8 +10,11 @@ public class JConstant {
 	public static final String ywdh = ",";
 	// 游客
 	public static final String youke = "游客";
-	public static final String ip = "id";
+	public static final String ip = "ip";
 	public static final String city = "city";
+	public static final String id = "id";
+	public static final String code = "code";
+	public static final String name = "jgName";
 	
 	// 草稿
 	public static final Integer status_0 = 0;

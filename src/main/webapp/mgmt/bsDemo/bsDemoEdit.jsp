@@ -8,11 +8,14 @@
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
 </jsp:include>
+<link href="https://cdn.bootcss.com/bootstrap-fileinput/5.0.4/css/fileinput.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="bodyTopDiv" style="margin-top: 20px;">
 		DEMO
 		<div style="padding: 0px 1% 15px; float: right;">
+			<button class="btn btn-info btn-sm" onclick="testUpload()"
+				id="testUploadButton">上传测试</button>
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
 			<button class="btn btn-info btn-sm" onclick="deleteForm()"
@@ -54,6 +57,11 @@
 				<label for="dmDesc8">描述8：</label>
 				<input type="text" class="form-control" id="dmDesc8" name="dmDesc8" placeholder="请输入描述8">
 			</div>
+			<div class="form-group" >
+				<label for="JAttFile">文件</label>
+				<span id= "attachments"></span>
+				<input type="file" name="jAttFile" id="jAttFile"  multiple="multiple" data-show-caption="true">
+			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
 		</form>
@@ -61,8 +69,13 @@
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
+	<script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.4/js/fileinput.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.4/js/locales/zh.min.js"></script>
 	<script type="text/javascript" src="js/bsDemoEdit.js"></script>
 	<script type="text/javascript">
+		var fileInputParam = {}; //附件上传的拓展参数
+		var extArray = null; //扩展名
+		var fileInputId = "jAttFile";
 		// 提交表单
 		function submitForm() {
 			$("#jangleEditForm").data("bootstrapValidator").validate(); //提交验证写法1
@@ -83,7 +96,30 @@
 					jangleShowAjaxError(request, textStatus, errorThrown);
 				},
 				success : function(data) {
-					success(data);
+// 					success(data);		//执行成功后的判断，操作成功则返回列表页。
+					//存在附件时的判断start ************
+					if (data == null || data.code == null) {
+						hideMask();
+						alert("异常操作，请联系管理员");
+						return;
+					}
+					if (data != null && data.code == 10001) {
+						var file = $("#"+fileInputId).val();
+						if (file == null || file == "") {
+							hideMask();
+							success(data);
+							return;
+						}
+						//存在附件则上传附件
+						fileInputParam["attSourceId"] = data.model.id; //业务主键id
+						fileInputParam["attSourceType"] = "bs_demo"; //填业务表名称
+						uploadOaFileInput(fileInputId); //上传附件
+					} else {
+						hideMask();
+						alert(data.rm.msg);
+						return;
+					}
+					//存在附件时的判断end ************
 				}
 			});
 		}
@@ -107,30 +143,44 @@
 				});
 			}
 		}
+		// 附件上传测试
+		function testUpload(){
+			fileInputParam["attSourceId"] = 1; //业务主键id
+			fileInputParam["attSourceType"] = "bs_demo"; //填业务表名称
+			console.log(fileInputParam);
+			uploadOaFileInput("jAttFile"); //上传附件
+		}
 
 		// dom加载完成之后
 		$(function() {
-			if (ps["id"])
-				$.ajax({
-					url : "/bsDemoCtrl/selectByPrimaryKey.ctrl",
-					dataType : "json",
-					cache : false,
-					data : {
-						"id" : ps["id"]
-					},
-					error : function(request, textStatus, errorThrown) {
-						jangleShowAjaxError(request, textStatus, errorThrown);
-					},
-					success : function(data) {
-						if (data != null && data.code == "10001"
-								&& data.model != null) {
-							for ( var item in data.model) {
-								$("#" + item).val(data.model[item]);
-							}
-							$("#deleteButton").show(); // 显示删除按钮
+			// 初始化附件上传组件
+			initOaFileinput(fileInputId, "", fileInputParam, extArray);
+			
+			//TODO 这里添加其余逻辑
+			
+			if (!ps["id"]){
+				return;
+			}
+			$.ajax({
+				url : "/bsDemoCtrl/selectByPrimaryKey.ctrl",
+				dataType : "json",
+				cache : false,
+				data : {
+					"id" : ps["id"]
+				},
+				error : function(request, textStatus, errorThrown) {
+					jangleShowAjaxError(request, textStatus, errorThrown);
+				},
+				success : function(data) {
+					if (data != null && data.code == "10001"
+							&& data.model != null) {
+						for ( var item in data.model) {
+							$("#" + item).val(data.model[item]);
 						}
+						$("#deleteButton").show(); // 显示删除按钮
 					}
-				});
+				}
+			});
 		})
 	</script>
 </body>

@@ -14,6 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
+import xyz.jangle.utils.JConstant;
+
 /**
  * 
  * @author jangle E-mail: jangle@jangle.xyz
@@ -83,8 +85,8 @@ public class LoginFilter implements Filter {
 		}
 		// 以上规则都未通过，则该请求被拦截，需要登陆后才能请求
 		// 判断是否已经登陆
-		logger.debug("userName:" + session.getAttribute("userName"));
-		if (session.getAttribute("userName") != null) {
+		logger.debug("jgName:" + session.getAttribute(JConstant.name));
+		if (session.getAttribute(JConstant.name) != null) {
 			chain.doFilter(servletRequest, servletResponse);
 			return;
 		}
