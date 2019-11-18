@@ -46,7 +46,7 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 			}else {
 				record.setZdLyr(currentUser.getJgName());
 			}
-			record.setZdLyrUuid("useruuid"+currentUser.getId());
+			record.setZdLyrUuid("useruuid"+currentUser.getUuid());
 			i = zdLybMapper.insert(record);
 		}
 		if (i > 0) {

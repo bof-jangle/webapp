@@ -49,7 +49,7 @@ public class BsUser2ServiceImplTest extends JUnitRunSupport {
 	public void testInsert() {
 		testBsUser2.setId(0L);	//根据UUID更新
 		assertEquals(CME.success.getCode(), bsUser2Service.insertOrUpdate(testBsUser2).getCode());
-		testBsUser2.setId(1L);	//无对应的主键记录报错
+		testBsUser2.setId(3L);	//无对应的主键记录报错
 		assertEquals(CME.error.getCode(), bsUser2Service.insertOrUpdate(testBsUser2).getCode());
 	}
 
@@ -58,7 +58,7 @@ public class BsUser2ServiceImplTest extends JUnitRunSupport {
 		assertNotNull(bsUser2Service.selectByPrimaryKey(testBsUser2).getModel());
 		assertEquals(CME.success.getCode(), bsUser2Service.deleteByPrimaryKey(testBsUser2).getCode());
 		assertEquals("2", bsUser2Service.selectByPrimaryKey(testBsUser2).getModel().getStatus().toString());
-		testBsUser2.setId(1L);
+		testBsUser2.setId(3L);
 		assertEquals(CME.error.getCode(), bsUser2Service.deleteByPrimaryKey(testBsUser2).getCode());
 	}
 
