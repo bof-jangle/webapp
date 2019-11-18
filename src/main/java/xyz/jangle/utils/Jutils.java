@@ -2,6 +2,7 @@ package xyz.jangle.utils;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * @author jangle E-mail: jangle@jangle.xyz
@@ -54,6 +55,14 @@ public class Jutils {
 	 */
 	public static Map<String, Object> getHashMapSO(){
 		return new HashMap<String, Object>();
+	}
+	
+	/**
+	 * 获取新的UUID
+	 * @return
+	 */
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
 	}
 
 }

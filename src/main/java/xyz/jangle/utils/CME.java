@@ -8,6 +8,8 @@ package xyz.jangle.utils;
  */
 public enum CME {
 
+	zdUserApply_ip_repeat("20001","当前网络地址已存在申请用户且未审批"),
+	bsUser2_jgCode_repeat("10007","用户名已存在"),
 	unFindIdsToDelete("10006","待批量删除的ids结果集为空"),
 	unlogin("10005", "未登录或会话已过期"), loginFailed("10004", "登陆异常，用户名或密码错误"), exception("10003", "操作异常"),
 	error("10002", "操作失败"), success("10001", "操作成功");

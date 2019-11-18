@@ -200,6 +200,19 @@ function successReload(data) {
 	}
 	window.location.reload();
 }
+function successReload4Parent(data) {
+	if (data == null) {
+		alert("异常操作，请联系管理员");
+		return;
+	}
+	if (data.code == "10001") {
+		alert(data.message);
+		parent.window.location.reload();
+	} else {
+		alert(data.message);
+		return;
+	}
+}
 
 /**
  * 关闭表单页面

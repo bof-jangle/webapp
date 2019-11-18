@@ -43,6 +43,11 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 		if (Jutils.isGreatThan0(record.getId()) || Jutils.isNotEmpty(record.getUuid())) {
 			i = bsUser2Mapper.updateByPrimaryKey(record);
 		} else {
+			int countByJgCode = bsUser2Mapper.countByJgCode(record);
+			if(countByJgCode > 0) {
+				// 存在重复的code
+				return new ResultModel<BsUser2>(CME.bsUser2_jgCode_repeat); 
+			}
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			i = bsUser2Mapper.insert(record);
 		}

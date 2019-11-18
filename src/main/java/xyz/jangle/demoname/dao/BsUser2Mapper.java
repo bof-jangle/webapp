@@ -19,4 +19,12 @@ public interface BsUser2Mapper extends BaseDaoMapper<BsUser2> {
 
 	@Update("update bs_user2 set status = #{status},jg_apply_ip = CONCAT(jg_apply_ip,'Q',id) where id = #{id}")
 	int updateStatusById(BsUser2 bsUser2);
+	
+	/**
+	 * 查询是否有重复的code
+	 * @param bsUser2
+	 * @return
+	 */
+	@Select("select count(1) from bs_user2 where jg_code = #{jgCode} and status = 1")
+	int countByJgCode(BsUser2 bsUser2);
 }

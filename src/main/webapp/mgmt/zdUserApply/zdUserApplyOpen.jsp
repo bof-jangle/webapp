@@ -5,15 +5,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>用户表V2_查看页面</title>
+<title>用户申请_查看页面</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
 	<div id="bodyTopDiv" style="margin-top: 20px;">
-		用户表V2详情查看
+		用户申请详情查看
 		<div style="padding: 0px 1% 15px; float: right;">
+			<button class="btn btn-info btn-sm" onclick="pass()"
+				id="passButton">通过</button>
+			<button class="btn btn-info btn-sm" onclick="unPass()"
+				id="unPassButton">不通过</button>
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
 	</div>
@@ -28,24 +32,24 @@
 				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="jgName">用户中文名称：</label>
-				<input type="text" class="form-control" id="jgName" name="jgName" readonly />
+				<label for="zdUserName">昵称：</label>
+				<input type="text" class="form-control" id="zdUserName" name="zdUserName" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="jgCode">英文账号：</label>
-				<input type="text" class="form-control" id="jgCode" name="jgCode" readonly />
+				<label for="zdUserCode">用户名：</label>
+				<input type="text" class="form-control" id="zdUserCode" name="zdUserCode" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="jgPassword">密码：</label>
-				<input type="text" class="form-control" id="jgPassword" name="jgPassword" readonly />
+				<label for="zdUserPassword">密码：</label>
+				<input type="text" class="form-control" id="zdUserPassword" name="zdUserPassword" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="jgApplyIp">申请人IP：</label>
-				<input type="text" class="form-control" id="jgApplyIp" name="jgApplyIp" readonly />
+				<label for="zdUserApplyReason">申请理由：</label>
+				<input type="text" class="form-control" id="zdUserApplyReason" name="zdUserApplyReason" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="jgApplyReason">申请理由：</label>
-				<input type="text" class="form-control" id="jgApplyReason" name="jgApplyReason" readonly />
+				<label for="zdUserApplyIp">申请人IP地址：</label>
+				<input type="text" class="form-control" id="zdUserApplyIp" name="zdUserApplyIp" readonly />
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
@@ -55,14 +59,16 @@
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
-	<script>
+	<script type="text/javascript">
+	
+		
 		$(function(){
 			// TODO 额外的逻辑。
-			if (!ps["id"]){
+			if(!ps["id"]){
 				return;
 			}
 			$.ajax({
-				url : "/bsUser2Ctrl/selectByPrimaryKey.ctrl",
+				url : "/zdUserApplyCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {
@@ -80,7 +86,46 @@
 					}
 				}
 			});
-		})
+		});
+		
+		function pass() {
+			if (confirm("确定通过吗？")) {
+				$.ajax({
+					type:"POST",
+					url : "/zdUserApplyCtrl/pass.ctrl",
+					dataType : "json",
+					cache : false,
+					data : {
+						"id" : $("#id").val()
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						success(data);
+					}
+				});
+			}
+		}
+		function unPass() {
+			if (confirm("确定不通过吗？")) {
+				$.ajax({
+					type:"POST",
+					url : "/zdUserApplyCtrl/unPass.ctrl",
+					dataType : "json",
+					cache : false,
+					data : {
+						"id" : $("#id").val()
+					},
+					error : function(request, textStatus, errorThrown) {
+						jangleShowAjaxError(request, textStatus, errorThrown);
+					},
+					success : function(data) {
+						success(data);
+					}
+				});
+			}
+		}
 	</script>
 </body>
 </html>

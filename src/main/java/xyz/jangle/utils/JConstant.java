@@ -26,6 +26,8 @@ public class JConstant {
 	// 结束 不通过
 	public static final Integer status_4 = 4;
 	public static final Integer status_5 = 5;
+	// 通过
+	public static final Integer status_6 = 6;
 	// 申请中
 	public static final Integer status_9 = 9;
 
