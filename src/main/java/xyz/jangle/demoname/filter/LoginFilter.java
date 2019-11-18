@@ -25,6 +25,8 @@ public class LoginFilter implements Filter {
 
 	private static Logger logger = Logger.getLogger(LoginFilter.class);
 
+	private static String loginHtml = "/login.html";	//登录页面路径
+
 	String[] endWithAtt; // 以此字符串结尾的，不被拦截
 	String[] containsAtt; // 包含此字符串的，不被拦截
 	String[] notContainsAtt; // 不包含此字符串的，不被拦截
@@ -91,7 +93,7 @@ public class LoginFilter implements Filter {
 			return;
 		}
 		// 未登录则跳转到登陆页面
-		servletResponse.sendRedirect("/login.html");
+		servletResponse.sendRedirect(loginHtml);
 	}
 
 	@Override
