@@ -16,7 +16,8 @@
 .treeLeft ul li{line-height:50px;color:#fff;text-align:center;font-size:16px;cursor:pointer;position:relative;}
 
 /* 列表界面 */
-.jangle-listjsp-remarks-span{margin-right:20px;border-right:2px solid #BAA}
+.jangle-listjsp-remarks-span{margin-right:20px;border-right:2px solid #BAA;}
+#searchForm .jangle-listjsp-remarks-span{font-size:100%}
 
 /* 表单编辑界面 */
 .jangle-editjsp-bodytopdiv{margin-top: 20px;}
