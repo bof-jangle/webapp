@@ -39,15 +39,54 @@
 
 	<!-- 配置数据源, 整合其他框架, 事务等. -->
 	<!-- 1. 数据源 : DriverManagerDataSource -->
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName"
-			value="com.mysql.jdbc.Driver" />
-		<property name="url"
-			value="${dataSourceUrl}" />
-		<property name="username" value="${dataSourceUser}" />
-		<property name="password" value="${dataSourcePassword}" />
-	</bean>
+<!-- 	<bean id="dataSource" -->
+<!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" -->
+<!-- 			value="com.mysql.jdbc.Driver" /> -->
+<!-- 		<property name="url" -->
+<!-- 			value="${dataSourceUrl}" /> -->
+<!-- 		<property name="username" value="${dataSourceUser}" /> -->
+<!-- 		<property name="password" value="${dataSourcePassword}" /> -->
+<!-- 	</bean> -->
+	    <!-- 1. 数据源 :连接池 ,tomcat的jdbc pool,线上环境需要使用连接池来提升响应速度 -->
+    <bean id="dataSource" class="org.apache.tomcat.jdbc.pool.DataSource">
+      <property name="driverClassName" value="${dataDriver}" />
+      <property name="url" value="${dataSourceUrl}" />
+      <property name="username" value="${dataSourceUser}" />
+      <property name="password" value="${dataSourcePassword}" />
+      <!-- 空闲时是否检测 -->
+      <property name="testWhileIdle" value="true" />
+      <!-- 连接借出时，是否检测 -->
+      <property name="testOnBorrow" value="true" />
+      <!-- 连接还回时，是否检测 -->
+      <property name="testOnReturn" value="false" />
+      <!-- 检测使用的SQL语句  -->
+      <property name="validationQuery" value="SELECT 1" />
+      <!-- 检测间隔时间  -->
+      <property name="validationInterval" value="30000" />
+      <!-- 初始连接数量 -->
+      <property name="initialSize" value="5" />
+      <!-- 最小空闲连接数量 -->
+      <property name="minIdle" value="5" />
+      <!-- 最大空闲连接数量（若该值高于maxActive，会被重置为与maxActive相同）（在高并发的情况下，使两值相等能提高响应性能） -->
+      <property name="maxIdle" value="20" />
+      <!-- 最大活动的连接数量（包含空闲连接数量） -->
+      <property name="maxActive" value="20" />
+      <!-- 等待超时以毫秒为单位，在抛出异常之前，池等待连接被回收的最长时间（当没有可用连接时）。设置为-1表示无限等待。  -->  
+      <property name="maxWait" value="10000" />
+      <!-- 设置自动回收超时连接 -->
+      <property name="removeAbandoned" value="true" />
+      <!-- 自动回收超时时间(以秒数为单位) -->
+      <property name="removeAbandonedTimeout" value="60" />
+      <!-- 设置在自动回收超时连接的时候打印连接的超时错误  -->
+      <property name="logAbandoned" value="true" />
+      <!-- 空闲连接，最少存活时间的单位毫秒值 -->
+      <property name="minEvictableIdleTimeMillis" value="300000" />
+      <!-- 回收连接的时间间隔 -->
+      <property name="timeBetweenEvictionRunsMillis" value="300000" />
+      <!-- 是否启用JMX.(Java Management Extensions .Java管理扩展 )-->
+      <property name="jmxEnabled" value="true" />
+    </bean>
 
 	<!-- 2. mybatis的SqlSession的工厂: SqlSessionFactoryBean dataSource:引用数据源 MyBatis定义数据源,同意加载配置 -->
 	<bean id="sqlSessionFactory"

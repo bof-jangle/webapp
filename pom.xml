@@ -51,7 +51,17 @@
 		    <artifactId>mysql-connector-java</artifactId>
 		    <version>5.1.31</version>
 		</dependency>
-		
+		<!-- 连接池 ,tomcat的jdbc pool -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jdbc</artifactId>
+			<version>7.0.29</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-juli</artifactId>
+			<version>7.0.29</version>
+		</dependency>
 
 		<!-- 1.Spring核心依赖 -->
 		<dependency>
