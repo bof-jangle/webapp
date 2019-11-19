@@ -73,6 +73,13 @@ public interface BsTestService {
 	 * @return
 	 */
 	ResultModel<BsTest> batchDeleteByPrimaryKey(BsTest record);
+
+	/**
+	 * 	批删Actually
+	 * @param record
+	 * @return
+	 */
+	ResultModel<BsTest> batchDeleteByPrimaryKeyActually(BsTest record);
 	
 	/**
 	 * 	注解查（注解方式）

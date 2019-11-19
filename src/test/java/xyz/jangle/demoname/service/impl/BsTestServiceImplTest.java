@@ -99,9 +99,12 @@ public class BsTestServiceImplTest extends JUnitRunSupport {
 	public void testBatchDeleteByPrimaryKey() {
 		BsTest record = new BsTest();
 		assertEquals(CME.unFindIdsToDelete.getCode(), bsTestService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.unFindIdsToDelete.getCode(), bsTestService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsTest.getId().toString());
 		bsTestService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsTestService.selectByPrimaryKey(testBsTest).getModel().getStatus().toString());
+		bsTestService.batchDeleteByPrimaryKeyActually(record);
+		assertEquals(null, bsTestService.selectByPrimaryKey(testBsTest).getModel());
 	}
 	
 	@Test

@@ -36,32 +36,32 @@
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
 	<script>
-		
-		
-		// TODO 额外的逻辑。
+		$(function(){
+			// TODO 额外的逻辑。
 	
-		if (!ps["id"]){
-			return;
-		}
-		$.ajax({
-			url : "/bsTestCtrl/selectByPrimaryKey.ctrl",
-			dataType : "json",
-			cache : false,
-			data : {
-				"id" : ps["id"]
-			},
-			error : function(request, textStatus, errorThrown) {
-				jangleShowAjaxError(request, textStatus, errorThrown);
-			},
-			success : function(data) {
-				if (data != null && data.code == "10001"
-						&& data.model != null) {
-					for ( var item in data.model) {
-						$("#" + item).val(data.model[item]);
+			if (!ps["id"]){
+				return;
+			}
+			$.ajax({
+				url : "/bsTestCtrl/selectByPrimaryKey.ctrl",
+				dataType : "json",
+				cache : false,
+				data : {
+					"id" : ps["id"]
+				},
+				error : function(request, textStatus, errorThrown) {
+					jangleShowAjaxError(request, textStatus, errorThrown);
+				},
+				success : function(data) {
+					if (data != null && data.code == "10001"
+							&& data.model != null) {
+						for ( var item in data.model) {
+							$("#" + item).val(data.model[item]);
+						}
 					}
 				}
-			}
-		});
+			});
+		})
 	</script>
 </body>
 </html>

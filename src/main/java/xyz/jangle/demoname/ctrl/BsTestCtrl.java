@@ -72,4 +72,11 @@ public class BsTestCtrl {
 		return bsTestService.batchDeleteByPrimaryKey(record);
 	}
 
+	// 批删Actually
+	@RequestMapping("/batchDeleteByPrimaryKeyActually.ctrl")
+	@ResponseBody
+	ResultModel<BsTest> batchDeleteByPrimaryKeyActually(BsTest record) {
+		return bsTestService.batchDeleteByPrimaryKeyActually(record);
+	}
+
 }

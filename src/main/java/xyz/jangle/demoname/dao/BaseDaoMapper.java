@@ -71,11 +71,21 @@ public interface BaseDaoMapper<T> {
 	 * @return
 	 */
 	Long selectPageCount(T record);
+
 	/**
 	 * 批量删除
+	 * 
 	 * @param record
 	 * @return
 	 */
-	int batchDeleteByPrimaryKey(T record); 
+	int batchDeleteByPrimaryKey(T record);
+
+	/**
+	 * 批量删除（硬删）
+	 * 
+	 * @param record
+	 * @return
+	 */
+	int batchDeleteByPrimaryKeyActually(T record);
 
 }

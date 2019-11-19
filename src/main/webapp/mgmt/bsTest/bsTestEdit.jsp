@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-editjsp-bodytopdiv" >
-		测试表-内容编辑
+		<span class="label label-info">测试表-内容编辑</span>
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>

@@ -42,6 +42,14 @@
                     #{listItem}
         </foreach>
 	</delete>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.BsTest">
+		delete from bs_test
+		where status = 2
+		and id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
 	<insert id="insert"
 		parameterType="xyz.jangle.demoname.model.BsTest" useGeneratedKeys="true" keyProperty="id">
 		insert into bs_test ( 
