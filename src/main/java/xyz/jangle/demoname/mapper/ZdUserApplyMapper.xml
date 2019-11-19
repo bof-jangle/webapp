@@ -34,6 +34,7 @@
 	</sql>
 	<sql id="page_where">
 		<where>
+			status != 2
 			<if test="status != null and status != ''">
 				AND status = #{status}
 			</if>
