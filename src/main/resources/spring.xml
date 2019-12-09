@@ -38,7 +38,7 @@
 	</bean>
 
 	<!-- 配置数据源, 整合其他框架, 事务等. -->
-	<!-- 1. 数据源 : DriverManagerDataSource -->
+	<!-- 1. 数据源 : DriverManagerDataSource 没有连接池功能，每次使用将打开一个新的物理JDBC连接。-->
 <!-- 	<bean id="dataSource" -->
 <!-- 		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
 <!-- 		<property name="driverClassName" -->
