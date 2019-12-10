@@ -25,14 +25,15 @@
 	<!-- 开启注解 context:component-scan 已经涵盖了context:annotation-config的功能 -->
 	<!-- <context:annotation-config /> -->
 	<!-- 开启aspectj代理 -->
-	<aop:aspectj-autoproxy />
+	<aop:aspectj-autoproxy ></aop:aspectj-autoproxy>
 
 
 	<!-- 配置文件的引入，用于在properties文件中读取配置参数 -->
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations">
 		       <list>
-		              <value>classpath:dataSourceConfig.properties</value>
+		              <value>classpath:data-source-config.properties</value>
+		              <value>classpath:email-jangle.properties</value>
 		       </list>
 		</property>
 	</bean>
@@ -122,4 +123,7 @@
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize" value="10000000" /><!-- 单位b 最大附件10M -->
 	</bean>
+	
+	<!-- 定时任务 -->
+	<import resource="classpath:spring-task.xml"/>
 </beans>  

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.BsMailMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.BsMail">
+		<id column="id" jdbcType="BIGINT" property="id" />
+			<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="status" jdbcType="INTEGER" property="status" />
+			<result column="to_email" jdbcType="VARCHAR" property="toEmail" />
+			<result column="mail_subject" jdbcType="VARCHAR" property="mailSubject" />
+			<result column="mail_content" jdbcType="VARCHAR" property="mailContent" />
+			<result column="mail_type" jdbcType="INTEGER" property="mailType" />
+			<result column="mail_result" jdbcType="VARCHAR" property="mailResult" />
+			<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+			<result column="dm_desc2" jdbcType="VARCHAR" property="dmDesc2" />
+	</resultMap>
+	<sql id="all_column">
+		<![CDATA[
+			id,
+			uuid,
+			create_time,
+			update_time,
+			status,
+			to_email,
+			mail_subject,
+			mail_content,
+			mail_type,
+			mail_result,
+			dm_desc,
+			dm_desc2
+		]]>
+	</sql>
+	<sql id="page_where">
+		<where>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		update bs_mail
+		set status = 2
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsMail">
+		update bs_mail
+		set status = 2
+		where id in 
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.BsMail">
+		delete from bs_mail
+		where status = 2
+		and id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.BsMail" useGeneratedKeys="true" keyProperty="id">
+		insert into bs_mail ( 
+			uuid,
+			create_time,
+			update_time,
+			status,
+			to_email,
+			mail_subject,
+			mail_content,
+			mail_type,
+			mail_result,
+			dm_desc,
+			dm_desc2
+		)
+		values (
+			#{uuid,jdbcType=VARCHAR},
+			now(),
+			now(),
+			#{status,jdbcType=INTEGER},
+			#{toEmail,jdbcType=VARCHAR},
+			#{mailSubject,jdbcType=VARCHAR},
+			#{mailContent,jdbcType=VARCHAR},
+			#{mailType,jdbcType=INTEGER},
+			#{mailResult,jdbcType=VARCHAR},
+			#{dmDesc,jdbcType=VARCHAR},
+			#{dmDesc2,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="xyz.jangle.demoname.model.BsMail">
+		<![CDATA[
+		update bs_mail
+		set 
+				update_time = now(),
+				status = #{status,jdbcType=INTEGER},
+				to_email = #{toEmail,jdbcType=VARCHAR},
+				mail_subject = #{mailSubject,jdbcType=VARCHAR},
+				mail_content = #{mailContent,jdbcType=VARCHAR},
+				mail_type = #{mailType,jdbcType=INTEGER},
+				mail_result = #{mailResult,jdbcType=VARCHAR},
+				dm_desc = #{dmDesc,jdbcType=VARCHAR},
+				dm_desc2 = #{dmDesc2,jdbcType=VARCHAR}
+		]]>
+		<if test="id != null and id gt 0">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="(id == null or id lt 1 ) and uuid != null and uuid != ''">
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		</if>
+		<if test="(id == null or id lt 1 ) and (uuid == null or uuid == '')">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_mail
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_mail
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from bs_mail
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.BsMail">
+		select 
+		<include refid="all_column" />
+		from bs_mail
+		<include refid="page_where" />
+		order by id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.BsMail">
+		select count(*)
+		from bs_mail
+		<include refid="page_where" />
+	</select>
+</mapper>
