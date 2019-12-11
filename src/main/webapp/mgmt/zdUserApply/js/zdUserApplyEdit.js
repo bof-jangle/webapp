@@ -23,7 +23,10 @@ $("#jangleEditForm").bootstrapValidator({
 			validators : {
 				notEmpty : {
 					message : "请输入用户名"
-				}
+				},
+				emailAddress: {
+					message: "邮箱地址格式有误"
+                }
 			}
 		},
 		zdUserApplyReason : {

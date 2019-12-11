@@ -3,6 +3,8 @@ package xyz.jangle.demoname.service;
 import java.util.Map;
 
 import xyz.jangle.demoname.model.BsMail;
+import xyz.jangle.demoname.model.BsUser2;
+import xyz.jangle.demoname.model.ZdUserApply;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -86,5 +88,22 @@ public interface BsMailService {
 	 * @return
 	 */
 	ResultModel<BsMail> selectByPrimaryKeyForAnnotation(BsMail record);
+	
+	/**
+	 * 定时发送邮件
+	 */
+	void doSendEmail();
+	
+	/**
+	 * 用户申请消息（有用户申请账户时，提醒管理员审批）
+	 * @param bsUser2
+	 */
+	void userApplyMsg(ZdUserApply zdUserApply);
+
+	/**
+	 * 用户申请通过邮件提醒
+	 * @param bsUser2
+	 */
+	void userApplySuccess(BsUser2 bsUser2);
 
 }

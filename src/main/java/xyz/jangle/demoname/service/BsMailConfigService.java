@@ -5,6 +5,7 @@ import java.util.Map;
 import xyz.jangle.demoname.model.BsMailConfig;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
+import xyz.jangle.utils.ResultModelMap;
 
 /**
  * 邮件配置表 业务层
@@ -86,5 +87,11 @@ public interface BsMailConfigService {
 	 * @return
 	 */
 	ResultModel<BsMailConfig> selectByPrimaryKeyForAnnotation(BsMailConfig record);
+	
+	/**
+	 * 	获取邮件配置
+	 * @return
+	 */
+	ResultModelMap<BsMailConfig> getConfigMap();
 
 }

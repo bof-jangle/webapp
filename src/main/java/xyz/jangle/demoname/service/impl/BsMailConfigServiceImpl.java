@@ -15,6 +15,7 @@ import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.Jutils;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
+import xyz.jangle.utils.ResultModelMap;
 
 /**
  * 邮件配置表 业务层
@@ -26,7 +27,6 @@ public class BsMailConfigServiceImpl extends BaseServiceImpl implements BsMailCo
 
 	@Autowired
 	private BsMailConfigMapper bsMailConfigMapper;
-	
 	
 	@Override
 	public ResultModel<BsMailConfig> insertOrUpdate(BsMailConfig record) {
@@ -112,6 +112,16 @@ public class BsMailConfigServiceImpl extends BaseServiceImpl implements BsMailCo
 	@Override
 	public ResultModel<BsMailConfig> selectByPrimaryKeyForAnnotation(BsMailConfig record) {
 		return new ResultModel<BsMailConfig>(bsMailConfigMapper.selectByPrimaryKeyForAnnotation(record.getId()));
+	}
+
+	@Override
+	public ResultModelMap<BsMailConfig> getConfigMap() {
+		Map<String, Object> map = Jutils.getHashMapSO();
+		List<BsMailConfig> all = bsMailConfigMapper.selectAll();
+		for(BsMailConfig conf :all) {
+			map.put(conf.getMailProperty(), conf.getMailValue());
+		}
+		return new ResultModelMap<>(map);
 	}
 
 }

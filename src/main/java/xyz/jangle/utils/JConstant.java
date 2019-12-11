@@ -16,6 +16,8 @@ public class JConstant {
 	public static final String code = "code";
 	public static final String name = "jgName";
 	
+	// 状态常量
+	public static final String status = "status";
 	// 草稿
 	public static final Integer status_0 = 0;
 	// 正常状态

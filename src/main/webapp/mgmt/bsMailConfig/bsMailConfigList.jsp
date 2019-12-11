@@ -46,6 +46,8 @@
 							<th data-formatter="numberAsc" data-width="50">序列</th>
 							<th data-field="createTime" data-formatter="datetimeFormatterJ" >创建时间</th>
 							<th data-field="id" data-width="100">id</th>
+							<th data-field="mailProperty" data-width="100">属性</th>
+							<th data-field="mailValue" data-width="100">值</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
 					</thead>

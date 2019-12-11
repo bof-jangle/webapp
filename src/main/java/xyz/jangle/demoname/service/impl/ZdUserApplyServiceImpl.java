@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import xyz.jangle.demoname.dao.ZdUserApplyMapper;
 import xyz.jangle.demoname.model.BsUser2;
 import xyz.jangle.demoname.model.ZdUserApply;
+import xyz.jangle.demoname.service.BsMailService;
 import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.demoname.service.ZdUserApplyService;
 import xyz.jangle.utils.CME;
@@ -31,6 +32,8 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 	private ZdUserApplyMapper zdUserApplyMapper;
 	@Autowired
 	private BsUser2Service BsUser2Service;
+	@Autowired
+	private BsMailService bsMailService;
 
 	@Override
 	public ResultModel<ZdUserApply> insertOrUpdate(ZdUserApply record) {
@@ -45,6 +48,8 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 			}
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			i = zdUserApplyMapper.insert(record);
+			// 发送邮件提醒给管理员
+			bsMailService.userApplyMsg(record);
 		}
 		if (i > 0) {
 			return new ResultModel<ZdUserApply>(record);
@@ -128,6 +133,7 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 		}
 		// 2、更新申请状态为通过
 		zdUserApplyMapper.pass(record); // 返回值，更新失败的逻辑待补充
+		bsMailService.userApplySuccess(bsUser2);
 		return new ResultModel<ZdUserApply>(CME.success);
 	}
 

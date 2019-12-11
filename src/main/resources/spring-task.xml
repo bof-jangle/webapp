@@ -8,5 +8,8 @@ http://www.springframework.org/schema/task/spring-task-4.3.xsd
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-4.3.xsd">
 
-	
+	<!-- 定时发送邮件 -->
+	<task:scheduled-tasks>
+		<task:scheduled ref="bsMailServiceImpl" method="doSendEmail" cron="0/10 * * * * ?" />
+	</task:scheduled-tasks>
 </beans>

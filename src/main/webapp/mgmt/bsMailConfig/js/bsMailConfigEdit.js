@@ -25,20 +25,21 @@ $("#jangleEditForm").bootstrapValidator({
 					message : "请输入属性值"
 				}
 			}
-		},
-		dmDesc : {
-			validators : {
-				notEmpty : {
-					message : "请输入描述"
-				}
-			}
-		},
-		dmDesc2 : {
-			validators : {
-				notEmpty : {
-					message : "请输入描述2"
-				}
-			}
 		}
+//		,
+//		dmDesc : {
+//			validators : {
+//				notEmpty : {
+//					message : "请输入描述"
+//				}
+//			}
+//		},
+//		dmDesc2 : {
+//			validators : {
+//				notEmpty : {
+//					message : "请输入描述2"
+//				}
+//			}
+//		}
 	}
 });

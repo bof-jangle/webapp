@@ -1,6 +1,7 @@
 package xyz.jangle.utils;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -47,6 +48,10 @@ public class Jutils {
 	 */
 	public static boolean isEmpty(String arg) {
 		return !Jutils.isNotEmpty(arg);
+	}
+	
+	public static boolean isEmpty(List<?> list) {
+		return list == null || list.isEmpty();
 	}
 	
 	/**
