@@ -36,10 +36,6 @@
 				<input type="text" class="form-control" id="mailContent" name="mailContent" placeholder="请输入邮件内容" />
 			</div>
 			<div class="form-group" >
-				<label for="mailType">邮件类型：1、密码邮件 2、手动录入：</label>
-				<input type="text" class="form-control" id="mailType" name="mailType" placeholder="请输入邮件类型：1、密码邮件 2、手动录入" />
-			</div>
-			<div class="form-group" >
 				<label for="mailResult">发送结果（失败原因）：</label>
 				<input type="text" class="form-control" id="mailResult" name="mailResult" placeholder="请输入发送结果（失败原因）" />
 			</div>
@@ -54,6 +50,7 @@
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
+			<input type="hidden" name="mailType" id="mailType" value = "2">	<!-- 录入类型隐藏域 -->
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">
