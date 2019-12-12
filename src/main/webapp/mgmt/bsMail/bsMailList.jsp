@@ -22,7 +22,7 @@
 	            	<span class="jangle-listjsp-remarks-span label label-info" >邮件发送记录表 </span>
 	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
-	            <input type="hidden" name="status" value="1">
+<!-- 	            <input type="hidden" name="status" value="1"> -->
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
 	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button>
@@ -44,8 +44,11 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="createTime" data-formatter="datetimeFormatterJ" >创建时间</th>
-							<th data-field="id" data-width="100">id</th>
+							<th data-field="mailSubject" >标题</th>
+							<th data-field="createTime" data-formatter="datetimeFormatterJ" data-width="150" >创建时间</th>
+							<th data-field="mailType" data-width="100" data-formatter="mailTypeFormatterJ">发送类型</th>
+							<th data-field="toEmail" data-width="100">收件人</th>
+							<th data-field="mailResult" data-width="100">发送状态</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
 					</thead>
@@ -71,6 +74,18 @@
 		// 编辑详情
 		function editDetail(data){
 			window.location.href = "bsMailEdit.jsp?id=" + data.id + addressPostfix;
+		}
+		// 邮件类型格式化
+		function mailTypeFormatterJ(value){
+			if(value == 1){
+				return "密码邮件";
+			}else if(value == 2){
+				return "手动录入";
+			}else if(value == 3){
+				return "管理员提醒";
+			}else{
+				return value;
+			}
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
