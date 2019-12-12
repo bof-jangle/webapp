@@ -1,6 +1,5 @@
 package xyz.jangle.demoname.model;
 
-import java.util.Date;
 /**
  * 邮件发送记录表 Model
  * @author jangle E-mail: jangle@jangle.xyz
@@ -9,6 +8,12 @@ import java.util.Date;
 public class BsMail extends BaseModel {
 	
 	public static final String tableName = "bs_mail";
+	/** 密码邮件类型 */
+	public static final Integer typePassword = 1;
+	/** 手动录入类型 */
+	public static final Integer typeManual = 2;
+	/** 管理员提醒类型 */
+	public static final Integer typeManage = 3;
 
 	/**
 	 * 主键UUID

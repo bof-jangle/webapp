@@ -150,6 +150,7 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 		record.setMailSubject("有用户申请帐号，需要审批");
 		record.setMailContent("<a href=\"http://jangle.xyz\">阿景的战队</a></br>昵称："+zdUserApply.getZdUserName()+" </br>邮箱："+zdUserApply.getZdUserCode()+"</br>申请理由："+zdUserApply.getZdUserApplyReason());
 		record.setStatus(JConstant.status_1);
+		record.setMailType(BsMail.typeManage);
 		bsMailMapper.insert(record);
 	}
 
@@ -160,6 +161,7 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 		record.setMailSubject("您在阿景的战队申请的用户已通过审批");
 		record.setMailContent("您好："+bsUser2.getJgName()+"</br>您在<a href=\\\"http://jangle.xyz\\\">阿景的战队</a>申请的用户已通过审批 </br> 您帐号为："+bsUser2.getJgCode()+"</br> 您的密码为："+bsUser2.getJgPassword());
 		record.setStatus(JConstant.status_1);
+		record.setMailType(BsMail.typePassword);
 		bsMailMapper.insert(record);
 	}
 
