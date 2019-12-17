@@ -24,6 +24,12 @@ public class ZdUserApplyCtrl {
 	private ZdUserApplyService zdUserApplyService;
 
 	// 增
+	@RequestMapping("/applyUser.ctrl")
+	@ResponseBody
+	ResultModel<ZdUserApply> applyUser(ZdUserApply record) {
+		return zdUserApplyService.insertOrUpdate(record);
+	}
+	// 增
 	@RequestMapping("/insert.ctrl")
 	@ResponseBody
 	ResultModel<ZdUserApply> insert(ZdUserApply record) {

@@ -59,7 +59,7 @@
 			}
 			$.ajax({
 				type:"POST",
-				url : "/zdUserApplyCtrl/insert.ctrl",
+				url : "/zdUserApplyCtrl/applyUser.ctrl",
 				dataType : "json",
 				cache:false,
 				data : $("#jangleEditForm").serialize(),
