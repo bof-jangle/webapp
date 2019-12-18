@@ -47,6 +47,7 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 				return new ResultModel<ZdUserApply>(CME.zdUserApply_ip_repeat);
 			}
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
+			record.setStatus(JConstant.status_1);
 			i = zdUserApplyMapper.insert(record);
 			// 发送邮件提醒给管理员
 			bsMailService.userApplyMsg(record);
