@@ -134,8 +134,11 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 			return new ResultModel<>(CME.unlogin);
 		}
 		logger.debug("bsUser2.code:" +  code);
-		BsUser2 BsUser2 = UserCacheMap2.get(UserCacheMap2.codePrev + code); // 如果登陆过，则缓存中会有信息。
-		return new ResultModel<BsUser2>(BsUser2);
+		BsUser2 bsUser2 = UserCacheMap2.get(UserCacheMap2.codePrev + code); // 如果登陆过，则缓存中会有信息。
+		if(bsUser2 == null) {
+			return new ResultModel<>(CME.unlogin);
+		}
+		return new ResultModel<BsUser2>(bsUser2);
 	}
 
 	@Override
