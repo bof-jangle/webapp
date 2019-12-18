@@ -37,6 +37,9 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 
 	@Override
 	public ResultModel<ZdUserApply> insertOrUpdate(ZdUserApply record) {
+		if(Jutils.isEmpty(record.getZdUserApplyIp())) {
+			return new ResultModel<ZdUserApply>(CME.zdUserApply_ip_unsupport);
+		}
 		int i = 0;
 		if (Jutils.isGreatThan0(record.getId()) || Jutils.isNotEmpty(record.getUuid())) {
 			i = zdUserApplyMapper.updateByPrimaryKey(record);

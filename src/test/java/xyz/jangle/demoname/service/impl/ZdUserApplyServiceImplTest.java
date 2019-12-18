@@ -53,6 +53,8 @@ public class ZdUserApplyServiceImplTest extends JUnitRunSupport {
 		testZdUserApply.setId(0L);
 		testZdUserApply.setUuid(null);	//同一IP地址重复申请的情况
 		assertEquals(CME.zdUserApply_ip_repeat.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
+		testZdUserApply.setZdUserApplyIp(null);
+		assertEquals(CME.zdUserApply_ip_unsupport.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
 		
 	}
 
