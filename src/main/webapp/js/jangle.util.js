@@ -111,10 +111,11 @@ function deleteOaAttachment(attachmentId) {
  * @returns
  */
 function jangleShowAjaxError(request, textStatus, errorThrown) {
+	console.log(request);
 	if (textStatus == 'timeout') {
 		alert('请求超时');
 	} else if (request.status == 500 || request.status == 400
-			|| request.status == 403 || request.status == 404) {
+			|| request.status == 403 || request.status == 404 || request.status == 200) {
 		document.body.innerHTML = request.responseText;
 	} else {
 		alert("操作异常，请提供确认后的信息给系统管理员");
