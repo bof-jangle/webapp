@@ -166,7 +166,7 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 	}
 
 	@Override
-	public synchronized void  doSendEmail() {
+	public void doSendEmail() {
 		// 1、邮件配置初始化
 		if(sendFrom == null) {
 			ResultModelMap<BsMailConfig> resultModelMap = bsMailConfigService.getConfigMap();
