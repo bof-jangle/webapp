@@ -31,7 +31,7 @@
 			<a target="_blank" href="https://www.jqueryui.org.cn/" style="color:#FA0;text-decoration:underline">jQuery UI</a>
 			<a target="_blank" href="/index/easyUI.html" style="color:#FA1;text-decoration:underline">easyUI</a>
 		</span>
-		<span style="float: right;width:250px;" id="login"> <a href="login.html"><img alt="头像" src="images/userLogin.png" width="42" height="42"><span>欢迎登录</span></a>
+		<span style="float: right;width:250px;" id="login"><span id="visitCount"></span> <a href="login.html"><img alt="头像" src="images/userLogin.png" width="42" height="42"><span>欢迎登录</span></a>
 		</span>
 	</div>
 	<nav class="navbar navbar-default" role="navigation">
@@ -118,7 +118,9 @@
 			type:"POST",
 			dataType:"json",
 			data:{"dmDesc":returnCitySN["cip"],"dmDesc2":returnCitySN["cname"]},
-			success:function(ret){			
+			success:function(ret){
+				console.log(ret);
+				$("#visitCount").text("被访问"+ret.count+"次");
 			},error:function(){}
 		});
 		//注销

@@ -38,7 +38,10 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 			i = bsVisitMapper.insert(record);
 		}
 		if (i > 0) {
-			return new ResultModel<BsVisit>(record);
+			long count = bsVisitMapper.count();
+			ResultModel<BsVisit> resultModel = new ResultModel<BsVisit>(record);
+			resultModel.setCount(count);
+			return resultModel;
 		}
 		return new ResultModel<BsVisit>(CME.error);
 	}
