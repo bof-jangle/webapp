@@ -37,6 +37,7 @@
 					data-ajax="ajaxRequest" data-side-pagination="server"
 					data-striped="true" data-single-select="false"
 					data-click-to-select="false" data-pagination="true"
+					data-row-style="rowStyle"
 					data-pagination-first-text="首页" data-pagination-pre-text="上一页"
 					data-pagination-next-text="下一页" data-pagination-last-text="末页"
 					class="fline-show-when-ready">
@@ -84,6 +85,17 @@
 			if(value == 5){return '不通过'}
 			if(value == 6){return '通过'}
 			return value;
+		}
+		// 行样式格式化
+		function rowStyle(row,index){
+			console.log(row);
+			if(row.status == 0){return '禁用'}
+			if(row.status == 9){return {classes : 'info'};}
+			if(row.status == 1){return {classes : 'info'};}
+// 			if(row.status == 2){return '删除'}
+			if(row.status == 4){return {classes : 'danger'};}
+			if(row.status == 5){return {classes : 'danger'};}
+			if(row.status == 6){return {classes : 'success'};}
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
