@@ -29,6 +29,7 @@
 			<a target="_blank" href="https://v3.bootcss.com/css" style="color:#FB6;text-decoration:underline">CSS样式说明</a>
 			<a target="_blank" href="https://v3.bootcss.com/javascript" style="color:#FA0;text-decoration:underline">JS插件说明</a>
 			<a target="_blank" href="https://www.jqueryui.org.cn/" style="color:#FA0;text-decoration:underline">jQuery UI</a>
+			<a target="_blank" href="/index/easyUI.html" style="color:#FA1;text-decoration:underline">easyUI</a>
 		</span>
 		<span style="float: right;width:250px;" id="login"> <a href="login.html"><img alt="头像" src="images/userLogin.png" width="42" height="42"><span>欢迎登录</span></a>
 		</span>
@@ -111,6 +112,14 @@
 			error : function(request, textStatus, errorThrown) {
 				jangleShowAjaxError(request, textStatus, errorThrown);
 			}
+		});
+		$.ajax({
+			url:"/visitCtrl/insert",
+			type:"POST",
+			dataType:"json",
+			data:{"dmDesc":returnCitySN["cip"],"dmDesc2":returnCitySN["cname"]},
+			success:function(ret){			
+			},error:function(){}
 		});
 		//注销
 		function logout(){
