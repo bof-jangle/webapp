@@ -10,7 +10,7 @@
 	<url>http://maven.apache.org</url>
 	<properties>
 		<spring.version>5.2.2.RELEASE</spring.version><!-- 声明spring版本号 -->
-		<jackson.version>2.9.9</jackson.version><!-- 声明jackson版本号 old 2.8.11 -->
+		<jackson.version>2.10.1</jackson.version><!-- 声明jackson版本号 old 2.8.11 -->
 	</properties>
 	<dependencies>
 		<dependency>
