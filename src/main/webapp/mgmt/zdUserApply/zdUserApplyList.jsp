@@ -88,7 +88,6 @@
 		}
 		// 行样式格式化
 		function rowStyle(row,index){
-			console.log(row);
 			if(row.status == 0){return '禁用'}
 			if(row.status == 9){return {classes : 'info'};}
 			if(row.status == 1){return {classes : 'info'};}
@@ -96,6 +95,7 @@
 			if(row.status == 4){return {classes : 'danger'};}
 			if(row.status == 5){return {classes : 'danger'};}
 			if(row.status == 6){return {classes : 'success'};}
+			return {};
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){

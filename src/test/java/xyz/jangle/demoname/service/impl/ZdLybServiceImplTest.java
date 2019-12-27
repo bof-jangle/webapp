@@ -9,9 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import xyz.jangle.demoname.model.BsUser;
 import xyz.jangle.demoname.model.ZdLyb;
-import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.demoname.service.ZdLybService;
 import xyz.jangle.test.utils.JUnitRunSupport;
 import xyz.jangle.utils.CME;
@@ -28,16 +26,14 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	
 	@Autowired
 	private ZdLybService zdLybService;
-	@Autowired
-	private BsUser2Service bsUser2Service;
 	
 	private ZdLyb testZdLyb = null;
 	
 	private final String testString = "jangleTest";
-	
+
 	@Before
 	public void setUp() throws Exception {
-		bsUser2Service.login(BsUser.youkeCode, BsUser.youkePassword, null);
+		login();
 		ZdLyb record = new ZdLyb();
 		record.setDmDesc(testString);
 		ResultModel<ZdLyb> resultModel = zdLybService.insertOrUpdate(record );
@@ -50,6 +46,7 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	
 	@Test
 	public void testInsert() {
+		login();
 		testZdLyb.setId(0L);	//根据UUID更新
 		assertEquals(CME.success.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
 		testZdLyb.setId(1L);	//无对应的主键记录报错
@@ -104,9 +101,17 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	public void testBatchDeleteByPrimaryKey() {
 		ZdLyb record = new ZdLyb();
 		assertEquals(CME.unFindIdsToDelete.getCode(), zdLybService.batchDeleteByPrimaryKey(record).getCode());
-		record.setIds(testZdLyb.getId()+"");
+		assertEquals(CME.unFindIdsToDelete.getCode(), zdLybService.batchDeleteByPrimaryKeyActually(record).getCode());
+		record.setIds(testZdLyb.getId().toString());
 		zdLybService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", zdLybService.selectByPrimaryKey(testZdLyb).getModel().getStatus().toString());
+		zdLybService.batchDeleteByPrimaryKeyActually(record);
+		assertEquals(null, zdLybService.selectByPrimaryKey(testZdLyb).getModel());
+	}
+
+	@Test
+	public void testSelectByPrimaryKeyForAnnotation(){
+		assertNotNull(zdLybService.selectByPrimaryKeyForAnnotation(testZdLyb));
 	}
 
 }

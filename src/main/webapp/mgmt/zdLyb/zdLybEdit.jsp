@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
 <title>战队留言板_编辑页面_Jangle生成工具v1.1</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
@@ -11,13 +12,13 @@
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-editjsp-bodytopdiv" >
-		战队留言板-编辑
+		<span class="label label-info">战队留言板-内容编辑</span>
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">提交留言</button>
 			<button class="btn btn-info btn-sm" onclick="deleteForm()"
 				style="display: none;" id="deleteButton">删除</button>
-			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">返回</button>
+			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
 	</div>
 	<div class="jangle-editjsp-formdiv" >
@@ -92,27 +93,32 @@
 
 		// dom加载完成之后
 		$(function() {
-			if (ps["id"])
-				$.ajax({
-					url : "/zdLybCtrl/selectByPrimaryKey.ctrl",
-					dataType : "json",
-					cache : false,
-					data : {
-						"id" : ps["id"]
-					},
-					error : function(request, textStatus, errorThrown) {
-						jangleShowAjaxError(request, textStatus, errorThrown);
-					},
-					success : function(data) {
-						if (data != null && data.code == "10001"
-								&& data.model != null) {
-							for ( var item in data.model) {
-								$("#" + item).val(data.model[item]);
-							}
-							$("#deleteButton").show(); // 显示删除按钮
+
+			// TODO 额外的逻辑。
+
+			if (!ps["id"]){
+				return;
+			}
+			$.ajax({
+				url : "/zdLybCtrl/selectByPrimaryKey.ctrl",
+				dataType : "json",
+				cache : false,
+				data : {
+					"id" : ps["id"]
+				},
+				error : function(request, textStatus, errorThrown) {
+					jangleShowAjaxError(request, textStatus, errorThrown);
+				},
+				success : function(data) {
+					if (data != null && data.code == "10001"
+							&& data.model != null) {
+						for ( var item in data.model) {
+							$("#" + item).val(data.model[item]);
 						}
+						$("#deleteButton").show(); // 显示删除按钮
 					}
-				});
+				}
+			});
 		})
 	</script>
 </body>

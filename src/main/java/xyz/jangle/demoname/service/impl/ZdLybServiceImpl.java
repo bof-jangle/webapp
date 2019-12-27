@@ -111,4 +111,19 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 		return new ResultModel<ZdLyb>(CME.success);
 	}
 
+	@Override
+	public ResultModel<ZdLyb> batchDeleteByPrimaryKeyActually(ZdLyb record) {
+		if(Jutils.isEmpty(record.getIds())) {
+			return new ResultModel<ZdLyb>(CME.unFindIdsToDelete);
+		}
+		record.setIdsArray(record.getIds().split(JConstant.ywdh));
+		zdLybMapper.batchDeleteByPrimaryKeyActually(record);
+		return new ResultModel<ZdLyb>(CME.success);
+	}
+
+	@Override
+	public ResultModel<ZdLyb> selectByPrimaryKeyForAnnotation(ZdLyb record) {
+		return new ResultModel<ZdLyb>(zdLybMapper.selectByPrimaryKeyForAnnotation(record.getId()));
+	}
+
 }

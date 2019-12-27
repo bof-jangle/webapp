@@ -10,4 +10,7 @@ import xyz.jangle.demoname.model.ZdLyb;
  */
 public interface ZdLybMapper extends BaseDaoMapper<ZdLyb> {
 	
+	@Select("select id,uuid,create_time as createTime,update_time as updateTime,status,dm_desc as dmDesc,dm_desc2 as dmDesc2 from zd_lyb where id = #{id}")
+	ZdLyb selectByPrimaryKeyForAnnotation(Long id);
+
 }

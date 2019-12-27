@@ -10,6 +10,10 @@ public class BsUser2 extends BaseModel {
 
 	public static final String tableName = "bs_user2";
 
+	public static final String youkeCode = "2";
+
+	public static final String youkePassword = "p;.";
+
 	/**
 	 * 主键UUID
 	 */

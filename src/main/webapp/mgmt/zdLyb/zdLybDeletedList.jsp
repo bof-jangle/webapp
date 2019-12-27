@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>战队留言板_列表页面</title>
+<title>战队留言板_已删列表页面</title>
     <jsp:include page="/css/includeCSS.jsp">
     	<jsp:param value="table-out" name="csses"/>
     </jsp:include>
@@ -19,14 +19,14 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span class="jangle-listjsp-remarks-span label label-info" >战队留言板 </span>
-	                <input type="text" class="form-control" name="zdContent" placeholder="留言查询">
+	            	<span class="jangle-listjsp-remarks-span label label-info" >战队留言板-已删列表 </span>
+	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
-	            <input type="hidden" name="status" value="1">
+	            <input type="hidden" name="status" value="2">
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
-	            <button type="button" class="btn btn-default" style="display:none;" onclick="doCheckBoxes()">批量删除</button>
-				<button type="button" class="btn btn-default" onclick="addFormInfo()">添加留言</button>
+	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量真删除</button>
+				<button type="button" class="btn btn-default" onclick="addFormInfo()">新增</button>
 				</div>
 	        </form>
 	    </div>
@@ -37,19 +37,16 @@
 					data-ajax="ajaxRequest" data-side-pagination="server"
 					data-striped="true" data-single-select="false"
 					data-click-to-select="false" data-pagination="true"
-					data-row-style="rowStyle"
 					data-pagination-first-text="首页" data-pagination-pre-text="上一页"
 					data-pagination-next-text="下一页" data-pagination-last-text="末页"
 					class="fline-show-when-ready">
 					<thead style="text-align: center;">
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
-<!-- 							<th data-formatter="numberAsc" data-width="50">序列</th> -->
-							<th data-field="id" data-width="10">序列</th>
-							<th data-field="zdContent" >留言</th>
-							<th data-field="zdLyr" data-width="100">留言人</th>
-							<th data-field="createTime" data-formatter="datetimeFormatterJ" >留言时间</th>
-<!-- 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th> -->
+							<th data-formatter="numberAsc" data-width="50">序列</th>
+							<th data-field="createTime" data-formatter="datetimeFormatterJ" >创建时间</th>
+							<th data-field="id" data-width="100">id</th>
+							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
 					</thead>
 				</table>
@@ -75,11 +72,6 @@
 		function editDetail(data){
 			window.location.href = "zdLybEdit.jsp?id=" + data.id + addressPostfix;
 		}
-		// 行状态色彩格式化
-		function rowStyle(row,index){
-			// https://v3.bootcss.com/css/#tables-contextual-classes
-			return {};
-		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
 			var rows = $("#tablewrap").bootstrapTable("getAllSelections");
@@ -95,10 +87,10 @@
 					ids += ","+rows[i].id;
 				}
 			}
-			if (confirm("确定删除勾选的"+rows.length+"条记录吗？")) {
+			if (confirm("确定删除勾选的"+rows.length+"条记录吗？删除且不可恢复")) {
 				$.ajax({
 					type:"POST",
-					url : "/zdLybCtrl/batchDeleteByPrimaryKey.ctrl",
+					url : "/zdLybCtrl/batchDeleteByPrimaryKeyActually.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {

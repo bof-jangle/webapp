@@ -51,6 +51,14 @@
                     #{listItem}
         </foreach>
 	</delete>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.ZdLyb">
+		delete from zd_lyb
+		where status = 2
+		and id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
 	<insert id="insert"
 		parameterType="xyz.jangle.demoname.model.ZdLyb" useGeneratedKeys="true" keyProperty="id">
 		insert into zd_lyb ( 

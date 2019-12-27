@@ -38,9 +38,9 @@ public class LoginFilter implements Filter {
 		String endWithStr = filterConfig.getInitParameter("endWith");
 		String contains = filterConfig.getInitParameter("contains");
 		String notContains = filterConfig.getInitParameter("notContains");
-		logger.info(endWithStr);
-		logger.info(contains);
-		logger.info(notContains);
+//		logger.info(endWithStr);
+//		logger.info(contains);
+//		logger.info(notContains);
 		if (endWithStr != null) {
 			endWithAtt = endWithStr.split(",");
 		} else {

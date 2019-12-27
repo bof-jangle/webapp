@@ -23,46 +23,60 @@ public class ZdLybCtrl {
 	@Autowired
 	private ZdLybService zdLybService;
 
-	@RequestMapping("/deleteByPrimaryKey.ctrl")
-	@ResponseBody
-	ResultModel<ZdLyb> deleteByPrimaryKey(ZdLyb record) {
-		return zdLybService.deleteByPrimaryKey(record);
-	}
-	
-	@RequestMapping("/batchDeleteByPrimaryKey.ctrl")
-	@ResponseBody
-	ResultModel<ZdLyb> batchDeleteByPrimaryKey(ZdLyb record) {
-		return zdLybService.batchDeleteByPrimaryKey(record);
-	}
-
+	// 增
 	@RequestMapping("/insert.ctrl")
 	@ResponseBody
 	ResultModel<ZdLyb> insert(ZdLyb record) {
 		return zdLybService.insertOrUpdate(record);
 	}
 
+	// 删
+	@RequestMapping("/deleteByPrimaryKey.ctrl")
+	@ResponseBody
+	ResultModel<ZdLyb> deleteByPrimaryKey(ZdLyb record) {
+		return zdLybService.deleteByPrimaryKey(record);
+	}
+
+	// 改
+	@RequestMapping("/updateByPrimaryKey.ctrl")
+	@ResponseBody
+	ResultModel<ZdLyb> updateByPrimaryKey(ZdLyb record) {
+		return zdLybService.updateByPrimaryKey(record);
+	}
+
+	// 单查
 	@RequestMapping("/selectByPrimaryKey.ctrl")
 	@ResponseBody
 	ResultModel<ZdLyb> selectByPrimaryKey(ZdLyb record) {
 		return zdLybService.selectByPrimaryKey(record);
 	}
 
-	@RequestMapping("/selectAll.ctrl")
-	@ResponseBody
-	ResultModelList<ZdLyb> selectAll() {
-		return zdLybService.selectAll();
-	}
-
+	// 分查
 	@RequestMapping("/selectPage.ctrl")
 	@ResponseBody
 	ResultModelList<ZdLyb> selectPage(ZdLyb record) {
 		return zdLybService.selectPage(record);
 	}
 
-	@RequestMapping("/updateByPrimaryKey.ctrl")
+	// 全查
+	@RequestMapping("/selectAll.ctrl")
 	@ResponseBody
-	ResultModel<ZdLyb> updateByPrimaryKey(ZdLyb record) {
-		return zdLybService.updateByPrimaryKey(record);
+	ResultModelList<ZdLyb> selectAll() {
+		return zdLybService.selectAll();
+	}
+
+	// 批删
+	@RequestMapping("/batchDeleteByPrimaryKey.ctrl")
+	@ResponseBody
+	ResultModel<ZdLyb> batchDeleteByPrimaryKey(ZdLyb record) {
+		return zdLybService.batchDeleteByPrimaryKey(record);
+	}
+
+	// 批删Actually
+	@RequestMapping("/batchDeleteByPrimaryKeyActually.ctrl")
+	@ResponseBody
+	ResultModel<ZdLyb> batchDeleteByPrimaryKeyActually(ZdLyb record) {
+		return zdLybService.batchDeleteByPrimaryKeyActually(record);
 	}
 
 }

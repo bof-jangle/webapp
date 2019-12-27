@@ -1,9 +1,12 @@
 package xyz.jangle.demoname.aop;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 //import org.aspectj.lang.annotation.After;
-//import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 //import org.aspectj.lang.annotation.Before;
@@ -16,6 +19,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import xyz.jangle.utils.CME;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModelMap;
 
 @Aspect
@@ -23,6 +27,8 @@ import xyz.jangle.utils.ResultModelMap;
 public class ExecuteIntercept {
 	@Autowired
 	private DataSourceTransactionManager txManager;		//事务对象，在spring.xml中定义。
+	@Autowired(required = false)
+	private HttpSession httpSession;
 
 	private Logger logger = Logger.getLogger(getClass());
 	
@@ -32,19 +38,26 @@ public class ExecuteIntercept {
 	}
 
 //	@Before("myPointcut()")
-//	public void beforeExecute() {
+//	public void beforeExecute(JoinPoint joinPoint) {
 //		System.out.println("before execute to do something");
 //	}
-//	
+	
 //	@After("myPointcut()")
-//	public void afterExecute() {
+//	public void afterExecute(JoinPoint joinPoint) {
 //		System.out.println("after execute to do something");
 //	}
-//	
-//	@AfterReturning("myPointcut()")
-//	public void afterReturnExecute() {
-//		System.out.println("afterReturning execute to do something");
-//	}
+	
+	@AfterReturning("myPointcut()")
+	public void afterReturnExecute(JoinPoint joinPoint) {
+		System.out.println("afterReturning execute to do something");
+		if(httpSession != null) {
+			try {
+				System.out.println("code:" + httpSession.getAttribute(JConstant.code));
+				System.out.println("目标方法:"+joinPoint.getTarget().getClass()+"."+joinPoint.getSignature().getName());
+			} catch (Exception e) {
+			}
+		}
+	}
 
 	/*
 	 * 濡傛灉鐜粫閫氱煡涓嶈缃繑鍥炵粨鏋滅殑璇濓紝閭ｄ箞service鎵ц鐨勬柟娉曚篃浼氳鏇夸唬涓轰笉杩斿洖濡備綍鏁版嵁 娴嬭瘯鐨勭粨鏋�
@@ -57,7 +70,6 @@ public class ExecuteIntercept {
 	public Object aroundExecute(ProceedingJoinPoint p) {
 		Object res = null;
 		//XXX 此处还可以添加方法调用的权限功能 或者考虑在Filter中做
-		
 		//事务的开始
 		DefaultTransactionDefinition def = new DefaultTransactionDefinition();
 		def.setPropagationBehavior(TransactionDefinition.PROPAGATION_REQUIRED);

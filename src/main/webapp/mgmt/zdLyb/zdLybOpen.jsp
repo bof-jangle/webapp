@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
 <title>战队留言板_查看页面</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
@@ -47,7 +48,12 @@
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
 	<script>
-		if (ps["id"])
+		$(function(){
+			// TODO 额外的逻辑。
+
+			if (!ps["id"]){
+				return;
+			}
 			$.ajax({
 				url : "/zdLybCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
@@ -67,6 +73,7 @@
 					}
 				}
 			});
+		})
 	</script>
 </body>
 </html>

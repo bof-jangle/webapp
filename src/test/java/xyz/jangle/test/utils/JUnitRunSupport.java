@@ -1,9 +1,13 @@
 package xyz.jangle.test.utils;
 
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import xyz.jangle.demoname.model.BsUser2;
+import xyz.jangle.demoname.service.BsUser2Service;
 
 /**
  * @author huhj
@@ -33,5 +37,12 @@ public abstract class JUnitRunSupport extends AbstractTransactionalJUnit4SpringC
 	 * public static Object getBean(Class<?> bean){ // return
 	 * factory.getBean(bean); return null; }
 	 */
+
+	@Autowired
+	protected BsUser2Service bsUser2Service;
+
+	protected void login(){
+		bsUser2Service.login(BsUser2.youkeCode, BsUser2.youkePassword, null);
+	}
 
 }
