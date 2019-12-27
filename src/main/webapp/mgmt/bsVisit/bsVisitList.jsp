@@ -76,6 +76,7 @@
 		// 行状态色彩格式化
 		function rowStyle(row,index){
 			// https://v3.bootcss.com/css/#tables-contextual-classes
+			return {};
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
