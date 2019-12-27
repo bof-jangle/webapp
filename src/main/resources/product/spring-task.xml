@@ -10,7 +10,7 @@ xsi:schemaLocation="
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 定时发送邮件 -->
-<!-- 	<task:scheduled-tasks> -->
-<!-- 		<task:scheduled ref="bsMailServiceImpl" method="doSendEmail" cron="0/10 * * * * ?" /> -->
-<!-- 	</task:scheduled-tasks> -->
+	<task:scheduled-tasks>
+		<task:scheduled ref="bsMailServiceImpl" method="doSendEmail" cron="0/10 * * * * ?" />
+	</task:scheduled-tasks>
 </beans>
