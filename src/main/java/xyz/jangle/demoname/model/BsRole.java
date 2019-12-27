@@ -1,6 +1,5 @@
 package xyz.jangle.demoname.model;
 
-import java.util.Date;
 /**
  * 角色管理 Model
  * @author jangle E-mail: jangle@jangle.xyz
