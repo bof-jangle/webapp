@@ -185,6 +185,34 @@
             <version>1.4.5</version>
         </dependency>
 	</dependencies>
+	<!-- 在运行mvn 命令时，使用  -P{id} 指定环境  如：package -Pproduct  就是使用id为product的相关配置进行打包操作 -->
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<!-- 默认激活 -->
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<!-- 开发 -->
+				<package.environment>dev</package.environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>test</id>
+			<properties>
+				<!-- 测试 -->
+				<package.environment>test</package.environment>
+			</properties>
+		</profile>
+		<profile>
+			<id>product</id>
+			<properties>
+				<!-- 生产 -->
+				<package.environment>product</package.environment>
+			</properties>
+		</profile>
+	</profiles>
 	<build>
 	<!-- finalName 用于对产生的war（jar）进行命名。 -->
 		<finalName>webapp</finalName>
@@ -220,7 +248,6 @@
 				</configuration>
 			</plugin>
 			<!-- 待测试，打包时即package 时将war打到指定目录 -->
-			<!--
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-dependency-plugin</artifactId>
@@ -241,7 +268,8 @@
 									<type>${project.packaging}</type>
 								</artifactItem>
 							</artifactItems>
-			                <outputDirectory>/usr/tomcat/apache-tomcat-7.0.90/webapps</outputDirectory>
+<!-- 			                <outputDirectory>/usr/tomcat/apache-tomcat-7.0.90/webapps</outputDirectory> -->
+			                <outputDirectory>D://d/p</outputDirectory>
 			                <includes>
 			                    <include>*.war</include>
 			                </includes>
@@ -249,8 +277,35 @@
 			        </execution>
 			    </executions>
 			</plugin>
-			 -->
-
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>2.6</version>
+				<executions>
+					<execution>
+						<id>copy-resources</id>
+						<phase>compile</phase>
+						<goals>
+							<goal>copy-resources</goal>
+						</goals>
+						<configuration>
+							<!-- 覆盖原有文件 -->
+							<overwrite>true</overwrite>
+							<outputDirectory>${project.build.outputDirectory}</outputDirectory>
+							<!-- 也可以用下面这样的方式（指定相对url的方式指定outputDirectory） <outputDirectory>target/classes</outputDirectory> -->
+							<!-- 待处理的资源定义 -->
+							<resources>
+								<resource>
+									<!-- 指定resources插件处理哪个目录下的资源文件 -->
+									<directory>src/main/resources/${package.environment}</directory>
+									<filtering>false</filtering>
+								</resource>
+							</resources>
+						</configuration>
+						<inherited></inherited>
+					</execution>
+				</executions>
+			</plugin>
 			<!-- Embedded Apache Tomcat required for testing war -->
 
 			<plugin>
