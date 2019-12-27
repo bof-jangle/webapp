@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.BsFileBitMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.BsFileBit">
+		<id column="id" jdbcType="BIGINT" property="id" />
+			<result column="bit_content" jdbcType="LONGVARBINARY" property="bitContent" />
+	</resultMap>
+	<sql id="all_column">
+		<![CDATA[
+			id,
+			bit_content
+		]]>
+	</sql>
+	<sql id="page_where">
+	</sql>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.BsFileBit">
+		delete from bs_file_bit
+		where id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.BsFileBit" useGeneratedKeys="true" keyProperty="id">
+		insert into bs_file_bit ( 
+			bit_content
+		)
+		values (
+			#{bitContent,jdbcType=LONGVARBINARY}
+		)
+	</insert>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_file_bit
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_file_bit
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from bs_file_bit
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.BsFileBit">
+		select 
+		<include refid="all_column" />
+		from bs_file_bit
+		<include refid="page_where" />
+		order by id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.BsFileBit">
+		select count(*)
+		from bs_file_bit
+		<include refid="page_where" />
+	</select>
+</mapper>
