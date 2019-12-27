@@ -1,7 +1,6 @@
 package xyz.jangle.demoname.service;
 
 import xyz.jangle.demoname.model.BsAttachment;
-import xyz.jangle.utils.ResultModel;
 
 /**
  * 附件上传存放管理 业务层

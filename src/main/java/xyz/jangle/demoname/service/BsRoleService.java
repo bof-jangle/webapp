@@ -1,7 +1,6 @@
 package xyz.jangle.demoname.service;
 
 import xyz.jangle.demoname.model.BsRole;
-import xyz.jangle.utils.ResultModel;
 
 /**
  * 角色管理 业务层

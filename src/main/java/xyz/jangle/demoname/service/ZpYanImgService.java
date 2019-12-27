@@ -1,7 +1,6 @@
 package xyz.jangle.demoname.service;
 
 import xyz.jangle.demoname.model.ZpYanImg;
-import xyz.jangle.utils.ResultModel;
 
 /**
  * yan的作品 业务层

@@ -1,6 +1,5 @@
 package xyz.jangle.demoname.dao;
 
-import org.apache.ibatis.annotations.Select;
 
 import xyz.jangle.demoname.model.ZpYanImg;
 /**

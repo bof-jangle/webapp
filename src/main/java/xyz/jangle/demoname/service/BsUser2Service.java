@@ -2,7 +2,6 @@ package xyz.jangle.demoname.service;
 
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import xyz.jangle.demoname.model.BsUser2;
 import xyz.jangle.utils.ResultModel;
