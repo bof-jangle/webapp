@@ -9,6 +9,7 @@
 	<name>webapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
+		<!-- 此处定义的是pom文件的全局属性(常量) -->
 		<spring.version>5.2.2.RELEASE</spring.version><!-- 声明spring版本号 -->
 		<jackson.version>2.9.9</jackson.version><!-- 声明jackson版本号 old 2.8.11 -->
 	</properties>
@@ -187,6 +188,7 @@
 	</dependencies>
 	<!-- 在运行mvn 命令时，使用  -P{id} 指定环境  如：package -Pproduct  就是使用id为product的相关配置进行打包操作 -->
 	<profiles>
+		<!-- 定义了多种属性文件，在指定的id下，选择性使用指定属性文件下定义的属性(变量)等 -->
 		<profile>
 			<id>dev</id>
 			<activation>
