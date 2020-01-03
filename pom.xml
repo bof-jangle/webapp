@@ -217,7 +217,7 @@
 	</profiles>
 	<build>
 	<!-- finalName 用于对产生的war（jar）进行命名。 -->
-		<finalName>ROOT</finalName>
+		<finalName>wabapp</finalName>
 		<sourceDirectory>src/main/java</sourceDirectory>
 	<resources>
 		<!-- 如果不添加此节点 mybatis的mapper.xml文件都会被漏掉。 -->
@@ -268,13 +268,15 @@
 									<artifactId>${project.artifactId}</artifactId>
 									<version>${project.version}</version>
 									<type>${project.packaging}</type>
+									<destFileName>ROOT.war</destFileName>
 								</artifactItem>
 							</artifactItems>
-<!-- 			                <outputDirectory>/usr/tomcat/apache-tomcat-7.0.90/webapps</outputDirectory> -->
-			                <outputDirectory>D://d/p</outputDirectory>
+			                <outputDirectory>/opt/apache-tomcat-7.0.90/webapps</outputDirectory>
+<!-- 			                <outputDirectory>D://d/p</outputDirectory> -->
 			                <includes>
 			                    <include>*.war</include>
 			                </includes>
+			                <stripVersion>true</stripVersion>
 			            </configuration>
 			        </execution>
 			    </executions>
