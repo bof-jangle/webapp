@@ -268,7 +268,7 @@
 									<artifactId>${project.artifactId}</artifactId>
 									<version>${project.version}</version>
 									<type>${project.packaging}</type>
-									<destFileName>ROOT.war</destFileName>
+									<destFileName>ROOT.war</destFileName><!-- 重写目标文件名称 -->
 								</artifactItem>
 							</artifactItems>
 			                <outputDirectory>/opt/apache-tomcat-7.0.90/webapps</outputDirectory>
