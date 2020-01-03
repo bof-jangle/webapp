@@ -124,7 +124,7 @@
 
 	<!-- spring-mvc 附件功能需要配置的bean。  -->
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-		<property name="maxUploadSize" value="10000000" /><!-- 单位b 最大附件10M -->
+		<property name="maxUploadSize" value="50000000" /><!-- 单位b 最大附件50M -->
 	</bean>
 	
 	<!-- 定时任务 -->

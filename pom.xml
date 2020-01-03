@@ -249,7 +249,7 @@
 					<encoding>utf8</encoding>
 				</configuration>
 			</plugin>
-			<!-- 待测试，打包时即package 时将war打到指定目录 -->
+			<!-- 打包时即package 时将war打到指定目录 -->
 			<plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-dependency-plugin</artifactId>
