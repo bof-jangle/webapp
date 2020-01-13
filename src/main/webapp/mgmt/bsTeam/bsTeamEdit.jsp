@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>角色管理_编辑页面_Jangle生成工具v1.1</title>
+<title>队伍管理_编辑页面_Jangle生成工具v1.1</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-editjsp-bodytopdiv" >
-		<span class="label label-info">角色管理-内容编辑</span>
+		<span class="label label-info">队伍管理-内容编辑</span>
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
@@ -24,30 +24,67 @@
 	<div class="jangle-editjsp-formdiv" >
 		<form id="jangleEditForm" name="jangleEditForm" class="formJ" >
 			<div class="form-group" >
-				<label for="rolName">角色名称：</label>
-				<input type="text" class="form-control" id="rolName" name="rolName" placeholder="请输入角色名称" />
+				<label for="jgParentId">上级节点ID：</label>
+				<input type="text" class="form-control" id="jgParentId" name="jgParentId" placeholder="请输入上级节点ID" />
 			</div>
 			<div class="form-group" >
-				<label for="rolCode">角色编码：</label>
-				<input type="text" class="form-control" id="rolCode" name="rolCode" placeholder="请输入角色编码" />
+				<label for="jgParentName">上级节点名称：</label>
+				<input type="text" class="form-control" id="jgParentName" name="jgParentName" placeholder="请输入上级节点名称" />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc">拓展字段1：</label>
-				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入拓展字段1" />
+				<label for="jgName">队伍名称：</label>
+				<input type="text" class="form-control" id="jgName" name="jgName" placeholder="请输入队伍名称" />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc2">拓展字段2：</label>
-				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入拓展字段2" />
+				<label for="jgTeamType">队伍类型：</label>
+				<input type="text" class="form-control" id="jgTeamType" name="jgTeamType" placeholder="请输入队伍类型" />
+			</div>
+			<div class="form-group" >
+				<label for="jgOrder">排序：</label>
+				<input type="text" class="form-control" id="jgOrder" name="jgOrder" placeholder="请输入排序" />
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc">描述：</label>
+				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入描述" />
+			</div>
+			<div class="form-group" >
+				<label for="dmDesc2">描述2：</label>
+				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入描述2" />
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
 		</form>
 	</div>
+	<!-- ######################## -->
+	<div class="modal fade" tabindex="-1" role="dialog">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+					<h4 class="modal-title">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<p>One fine body&hellip;</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Save changes</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+	<!-- /.modal -->
+	<!-- ######################## -->
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
-	<script type="text/javascript" src="js/bsRoleEdit.js"></script>
+	<script type="text/javascript" src="js/bsTeamEdit.js"></script>
 	<script type="text/javascript">
 		// 提交表单
 		function submitForm() {
@@ -61,7 +98,7 @@
 			}
 			$.ajax({
 				type:"POST",
-				url : "/bsRoleCtrl/insert.ctrl",
+				url : "/bsTeamCtrl/insert.ctrl",
 				dataType : "json",
 				cache:false,
 				data : $("#jangleEditForm").serialize(),
@@ -78,7 +115,7 @@
 			if (confirm("确定删除此记录吗？")) {
 				$.ajax({
 					type:"POST",
-					url : "/bsRoleCtrl/deleteByPrimaryKey.ctrl",
+					url : "/bsTeamCtrl/deleteByPrimaryKey.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {
@@ -103,7 +140,7 @@
 				return;
 			}
 			$.ajax({
-				url : "/bsRoleCtrl/selectByPrimaryKey.ctrl",
+				url : "/bsTeamCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {

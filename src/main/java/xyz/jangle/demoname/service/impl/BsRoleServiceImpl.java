@@ -99,4 +99,19 @@ public class BsRoleServiceImpl extends BaseServiceImpl implements BsRoleService 
 		return new ResultModel<BsRole>(CME.success);
 	}
 
+	@Override
+	public ResultModel<BsRole> batchDeleteByPrimaryKeyActually(BsRole record) {
+		if(Jutils.isEmpty(record.getIds())) {
+			return new ResultModel<BsRole>(CME.unFindIdsToDelete);
+		}
+		record.setIdsArray(record.getIds().split(JConstant.ywdh));
+		bsRoleMapper.batchDeleteByPrimaryKeyActually(record);
+		return new ResultModel<BsRole>(CME.success);
+	}
+
+	@Override
+	public ResultModel<BsRole> selectByPrimaryKeyForAnnotation(BsRole record) {
+		return new ResultModel<BsRole>(bsRoleMapper.selectByPrimaryKeyForAnnotation(record.getId()));
+	}
+
 }

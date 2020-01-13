@@ -99,9 +99,17 @@ public class BsRoleServiceImplTest extends JUnitRunSupport {
 	public void testBatchDeleteByPrimaryKey() {
 		BsRole record = new BsRole();
 		assertEquals(CME.unFindIdsToDelete.getCode(), bsRoleService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.unFindIdsToDelete.getCode(), bsRoleService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsRole.getId().toString());
 		bsRoleService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsRoleService.selectByPrimaryKey(testBsRole).getModel().getStatus().toString());
+		bsRoleService.batchDeleteByPrimaryKeyActually(record);
+		assertEquals(null, bsRoleService.selectByPrimaryKey(testBsRole).getModel());
+	}
+
+	@Test
+	public void testSelectByPrimaryKeyForAnnotation(){
+		assertNotNull(bsRoleService.selectByPrimaryKeyForAnnotation(testBsRole));
 	}
 
 }

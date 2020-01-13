@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="xyz.jangle.demoname.dao.BsRoleMapper">
+<mapper namespace="xyz.jangle.demoname.dao.BsTeamMapper">
 	<resultMap id="BaseResultMap"
-		type="xyz.jangle.demoname.model.BsRole">
+		type="xyz.jangle.demoname.model.BsTeam">
 		<id column="id" jdbcType="BIGINT" property="id" />
 			<result column="uuid" jdbcType="VARCHAR" property="uuid" />
-			<result column="rol_name" jdbcType="VARCHAR" property="rolName" />
-			<result column="rol_code" jdbcType="VARCHAR" property="rolCode" />
-			<result column="status" jdbcType="INTEGER" property="status" />
 			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
 			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="status" jdbcType="INTEGER" property="status" />
+			<result column="jg_parent_id" jdbcType="BIGINT" property="jgParentId" />
+			<result column="jg_parent_name" jdbcType="VARCHAR" property="jgParentName" />
+			<result column="jg_name" jdbcType="VARCHAR" property="jgName" />
+			<result column="jg_team_type" jdbcType="VARCHAR" property="jgTeamType" />
+			<result column="jg_order" jdbcType="INTEGER" property="jgOrder" />
 			<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
 			<result column="dm_desc2" jdbcType="VARCHAR" property="dmDesc2" />
 	</resultMap>
@@ -17,11 +20,14 @@
 		<![CDATA[
 			id,
 			uuid,
-			rol_name,
-			rol_code,
-			status,
 			create_time,
 			update_time,
+			status,
+			jg_parent_id,
+			jg_parent_name,
+			jg_name,
+			jg_team_type,
+			jg_order,
 			dm_desc,
 			dm_desc2
 		]]>
@@ -34,20 +40,20 @@
 		</where>
 	</sql>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		update bs_role
+		update bs_team
 		set status = 2
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
-	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsRole">
-		update bs_role
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsTeam">
+		update bs_team
 		set status = 2
 		where id in 
 		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
                     #{listItem}
         </foreach>
 	</delete>
-	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.BsRole">
-		delete from bs_role
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.BsTeam">
+		delete from bs_team
 		where status = 2
 		and id in
 		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
@@ -55,37 +61,46 @@
         </foreach>
 	</delete>
 	<insert id="insert"
-		parameterType="xyz.jangle.demoname.model.BsRole" useGeneratedKeys="true" keyProperty="id">
-		insert into bs_role ( 
+		parameterType="xyz.jangle.demoname.model.BsTeam" useGeneratedKeys="true" keyProperty="id">
+		insert into bs_team ( 
 			uuid,
-			rol_name,
-			rol_code,
-			status,
 			create_time,
 			update_time,
+			status,
+			jg_parent_id,
+			jg_parent_name,
+			jg_name,
+			jg_team_type,
+			jg_order,
 			dm_desc,
 			dm_desc2
 		)
 		values (
 			#{uuid,jdbcType=VARCHAR},
-			#{rolName,jdbcType=VARCHAR},
-			#{rolCode,jdbcType=VARCHAR},
+			now(),
+			now(),
 			#{status,jdbcType=INTEGER},
-			now(),
-			now(),
+			#{jgParentId,jdbcType=BIGINT},
+			#{jgParentName,jdbcType=VARCHAR},
+			#{jgName,jdbcType=VARCHAR},
+			#{jgTeamType,jdbcType=VARCHAR},
+			#{jgOrder,jdbcType=INTEGER},
 			#{dmDesc,jdbcType=VARCHAR},
 			#{dmDesc2,jdbcType=VARCHAR}
 		)
 	</insert>
 	<update id="updateByPrimaryKey"
-		parameterType="xyz.jangle.demoname.model.BsRole">
+		parameterType="xyz.jangle.demoname.model.BsTeam">
 		<![CDATA[
-		update bs_role
+		update bs_team
 		set 
-				rol_name = #{rolName,jdbcType=VARCHAR},
-				rol_code = #{rolCode,jdbcType=VARCHAR},
-				status = #{status,jdbcType=INTEGER},
 				update_time = now(),
+				status = #{status,jdbcType=INTEGER},
+				jg_parent_id = #{jgParentId,jdbcType=BIGINT},
+				jg_parent_name = #{jgParentName,jdbcType=VARCHAR},
+				jg_name = #{jgName,jdbcType=VARCHAR},
+				jg_team_type = #{jgTeamType,jdbcType=VARCHAR},
+				jg_order = #{jgOrder,jdbcType=INTEGER},
 				dm_desc = #{dmDesc,jdbcType=VARCHAR},
 				dm_desc2 = #{dmDesc2,jdbcType=VARCHAR}
 		]]>
@@ -103,34 +118,34 @@
 		resultMap="BaseResultMap">
 		select 
 		<include refid="all_column" />
-		from bs_role
+		from bs_team
 		where id = #{id,jdbcType=BIGINT}
 	</select>
 	<select id="selectAll" resultMap="BaseResultMap">
 		select 
 		<include refid="all_column" />
-		from bs_role
+		from bs_team
 	</select>
 	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
 		select 
 		<include refid="all_column" />
-		from bs_role
+		from bs_team
 		<include refid="page_where" />
 	</select>
 	<select id="selectPage" resultMap="BaseResultMap"
-		parameterType="xyz.jangle.demoname.model.BsRole">
+		parameterType="xyz.jangle.demoname.model.BsTeam">
 		select 
 		<include refid="all_column" />
-		from bs_role
+		from bs_team
 		<include refid="page_where" />
 		order by id DESC
 		limit #{pageStart,jdbcType=BIGINT},
 		#{pageSize,jdbcType=INTEGER}
 	</select>
 	<select id="selectPageCount" resultType="java.lang.Long"
-		parameterType="xyz.jangle.demoname.model.BsRole">
+		parameterType="xyz.jangle.demoname.model.BsTeam">
 		select count(*)
-		from bs_role
+		from bs_team
 		<include refid="page_where" />
 	</select>
 </mapper>

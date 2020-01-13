@@ -2,23 +2,23 @@ package xyz.jangle.demoname.service;
 
 import java.util.Map;
 
-import xyz.jangle.demoname.model.BsRole;
+import xyz.jangle.demoname.model.BsTeam;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
 /**
- * 角色管理 业务层
+ * 队伍管理 业务层
  * @author jangle E-mail: jangle@jangle.xyz
  * @version Jangle生成工具v1.1
  */
-public interface BsRoleService {
+public interface BsTeamService {
 	/**
 	 * 	增
 	 *
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> insertOrUpdate(BsRole record);
+	ResultModel<BsTeam> insertOrUpdate(BsTeam record);
 
 	/**
 	 * 	删
@@ -26,7 +26,7 @@ public interface BsRoleService {
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> deleteByPrimaryKey(BsRole record);
+	ResultModel<BsTeam> deleteByPrimaryKey(BsTeam record);
 
 	/**
 	 *	改
@@ -34,7 +34,7 @@ public interface BsRoleService {
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> updateByPrimaryKey(BsRole record);
+	ResultModel<BsTeam> updateByPrimaryKey(BsTeam record);
 
 	/**
 	 * 	单查
@@ -42,7 +42,7 @@ public interface BsRoleService {
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> selectByPrimaryKey(BsRole record);
+	ResultModel<BsTeam> selectByPrimaryKey(BsTeam record);
 
 	/**
 	 * 	参查
@@ -50,7 +50,7 @@ public interface BsRoleService {
 	 * @param param
 	 * @return
 	 */
-	ResultModelList<BsRole> selectByParam(Map<String, Object> param);
+	ResultModelList<BsTeam> selectByParam(Map<String, Object> param);
 
 	/**
 	 * 	分查
@@ -58,33 +58,33 @@ public interface BsRoleService {
 	 * @param record
 	 * @return
 	 */
-	ResultModelList<BsRole> selectPage(BsRole record);
+	ResultModelList<BsTeam> selectPage(BsTeam record);
 
 	/**
 	 * 	全询
 	 *
 	 * @return
 	 */
-	ResultModelList<BsRole> selectAll();
+	ResultModelList<BsTeam> selectAll();
 
 	/**
 	 * 	批删
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> batchDeleteByPrimaryKey(BsRole record);
+	ResultModel<BsTeam> batchDeleteByPrimaryKey(BsTeam record);
 
 	/**
 	 * 	批删Actually
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> batchDeleteByPrimaryKeyActually(BsRole record);
+	ResultModel<BsTeam> batchDeleteByPrimaryKeyActually(BsTeam record);
 
 	/**
 	 * 	注解查（注解方式）
 	 * @return
 	 */
-	ResultModel<BsRole> selectByPrimaryKeyForAnnotation(BsRole record);
+	ResultModel<BsTeam> selectByPrimaryKeyForAnnotation(BsTeam record);
 
 }
