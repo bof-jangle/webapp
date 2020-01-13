@@ -18,6 +18,7 @@
 				id="submitButton">保存</button>
 			<button class="btn btn-info btn-sm" onclick="deleteForm()"
 				style="display: none;" id="deleteButton">删除</button>
+			<button class="btn btn-info btn-sm" onclick="showModal()" >test</button>
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
 	</div>
@@ -56,34 +57,10 @@
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
 		</form>
 	</div>
-	<!-- ######################## -->
-	<div class="modal fade" tabindex="-1" role="dialog">
-		<div class="modal-dialog" role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<p>One fine body&hellip;</p>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-			<!-- /.modal-content -->
-		</div>
-		<!-- /.modal-dialog -->
-	</div>
-	<!-- /.modal -->
-	<!-- ######################## -->
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
+	<jsp:include page="../../jPlugs/jTree.jsp" flush="true"></jsp:include>
 	<script type="text/javascript" src="js/bsTeamEdit.js"></script>
 	<script type="text/javascript">
 		// 提交表单
@@ -129,6 +106,11 @@
 					}
 				});
 			}
+		}
+		
+		function showModal(){
+			console.log("123");
+			$("#jTreeModalId").modal("show");
 		}
 
 		// dom加载完成之后
