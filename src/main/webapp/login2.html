@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<!-- head标签说明参考：https://www.w3school.com.cn/tags/tag_head.asp -->
+<head>
+<!-- meta标签说明参考：  https://www.w3school.com.cn/tags/tag_meta.asp -->
+<meta charset="UTF-8">
+<!-- title标签说明参考：  https://www.w3school.com.cn/tags/att_standard_title.asp -->
+<title>阿景的战队</title>
+</head>
+<body>
+	<div class="main">
+		<h1>阿景的战队管理系统</h1>
+		<form id="userLoginForm">
+			<input type="text" id="userName" value="" placeholder="请输入用户名">
+			<input type="password" id="userPassword" value="" placeholder="请输入密码">
+			<input type="submit" value="登录"> 
+			<input type="hidden" id="ip">	<!-- 隐藏域：IP地址 -->
+			<input type="hidden" id="city">	<!-- 隐藏域：城市信息 -->
+		</form>
+	</div>
+	<script src="/js/jquery-3.3.1.min.js"></script>
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>

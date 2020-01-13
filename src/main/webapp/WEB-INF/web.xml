@@ -51,7 +51,7 @@
 		<init-param>
 			<!-- 结尾过滤 -->
 			<param-name>endWith</param-name>
-			<param-value>login.html,.js,.css,.jpg,.png,index.jsp,welcome.html,selectByPrimaryKey.ctrl,applyUser.ctrl,bsUserApplyInfo.jsp</param-value>
+			<param-value>login.html,login2.html,login3.html,.js,.css,.jpg,.png,index.jsp,welcome.html,selectByPrimaryKey.ctrl,applyUser.ctrl,bsUserApplyInfo.jsp</param-value>
 		</init-param>
 		<init-param>
 			<!-- 包含过滤 -->
