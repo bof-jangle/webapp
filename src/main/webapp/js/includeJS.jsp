@@ -21,12 +21,15 @@
 			if("table-out".equals(jsArr[i])){
 				commentArr = new String[]{"bootstrap-table的js文件","bootstrap-table的中文语言包"};
 				outerScript = new String[]{"https://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js","https://cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"};
+			}else if("fileinput".equals(jsArr[i])){
+				commentArr = new String[]{"bootstrap-fileinput的js文件","bootstrap-fileinput的中文语言包","jangle的附件上传工具JS"};
+				outerScript = new String[]{"/fileUpload/js/fileinput.min.js","/fileUpload/js/zh.js","/fileUpload/js/jangle.fileinput.utils.js"};
 			}else if("fileinput-out".equals(jsArr[i])){
 				commentArr = new String[]{"bootstrap-fileinput的js文件","bootstrap-fileinput的中文语言包"};
 				outerScript = new String[]{"https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/js/fileinput.min.js","https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/js/fileinput_locale_zh.min.js"};
 			}else if("utilJ".equals(jsArr[i])){
-				commentArr = new String[]{"jangle的工具JS","jangle的附件上传工具JS"};
-				innerScript = new String[]{"/js/jangle.util.js","/js/fileinput-upload/jangle.upload.js"};
+				commentArr = new String[]{"jangle的工具JS"};
+				innerScript = new String[]{"/js/jangle.util.js"};
 			}else if("validator-out".equals(jsArr[i])){
 				commentArr = new String[]{"bootstrap-validator的js文件","bootstrap-validator的中文语言包"};
 				outerScript = new String[]{"https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js","https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"};

@@ -20,7 +20,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import xyz.jangle.demoname.model.BsAttachment;
+import xyz.jangle.demoname.model.BsFileBit;
 import xyz.jangle.demoname.service.BsAttachmentService;
+import xyz.jangle.demoname.service.BsFileBitService;
 import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
@@ -39,6 +41,8 @@ public class BsAttachmentCtrl {
 
 	@Autowired
 	private BsAttachmentService bsAttachmentService;
+	@Autowired
+	private BsFileBitService bsFileBitService;
 	@Autowired
 	private BsUser2Service bsUser2Service;
 
@@ -117,8 +121,14 @@ public class BsAttachmentCtrl {
 			if (!files[i].isEmpty()) {
 				String originalname = files[i].getOriginalFilename();
 				System.out.println(originalname);
+				record.setAttName(originalname);	//设置文件名
+				// TODO 添加扩展名和文件大小的逻辑
 				try {
-					writeToLocal(files[i]); // TODO 将文件写入，可改为写入数据库，或文件服务器。
+//					writeToLocal(files[i]); // TODO 将文件写入，可改为写入数据库，或文件服务器。
+					BsFileBit bsFileBit = new BsFileBit();
+					bsFileBit.setBitContent(files[i].getBytes());
+					ResultModel<BsFileBit> fileBitRes = bsFileBitService.insertOrUpdate(bsFileBit);
+					record.setAttId(fileBitRes.getModel().getId());
 				} catch (IOException e) {
 					logger.error("文件写入时异常", e);
 					// 做相应的异常信息返回
@@ -126,8 +136,8 @@ public class BsAttachmentCtrl {
 			} else {
 				logger.info("files is empty");
 			}
+			bsAttachmentService.insertOrUpdate(record);
 		}
-
 		return new HashMap<String, Object>();
 	}
 

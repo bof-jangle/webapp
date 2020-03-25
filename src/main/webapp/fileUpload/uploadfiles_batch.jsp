@@ -10,7 +10,7 @@
 
 <script type="text/javascript" src="js/fileinput.min.js"></script>  
 <script type="text/javascript" src="js/zh.js"></script> 
-<script type="text/javascript" src="js/fileinput_locale_zh.js"></script>   
+<!-- <script type="text/javascript" src="js/fileinput_locale_zh.js"></script>  --> <!--多余的语言包 -->
 <script src="js/bootstrap.min.js"></script>  
   
 </head>  
@@ -21,7 +21,7 @@
          <div class="panel panel-primary">  
            <div align="right" >  
 		     <!--添加手动关闭，根据决堤项目设计的，也可以不要-->
-             <button class="btn btn-default" id="colseid" type="button" tabindex="500" style="text-align: center;font-size: 15px;" >关闭</<button> 
+             <button class="btn btn-default" id="colseid" type="button" tabindex="500" style="text-align: center;font-size: 15px;" >关闭</button> 
            </div>  
          <div class="panel-body" style="padding-top: 0px;padding-top: 0px;padding-right: 0px;">  
            <div >  

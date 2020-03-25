@@ -21,6 +21,9 @@
 			if("table-out".equals(cssArr[i])){
 				commentArr = new String[]{"bootstrap-table的样式"};
 				outerLink = new String[]{"https://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.css"};
+			}else if("fileinput".equals(cssArr[i])){
+				commentArr = new String[]{"本地的bootstrap-fileinput的样式"};
+				outerLink = new String[]{"/fileUpload/css/fileinput.min.css"};
 			}else if("fileinput-out".equals(cssArr[i])){
 				commentArr = new String[]{"bootstrap-fileinput的样式"};
 				outerLink = new String[]{"https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/css/fileinput.min.css"};
