@@ -67,6 +67,7 @@ public class LoginFilter implements Filter {
 		HttpSession session = servletRequest.getSession();
 		String uri = servletRequest.getRequestURI();
 		logger.debug("uri:" + uri);
+		// 1、规则判断，是否拦截
 		for (String endWith : endWithAtt) {
 			if (uri.endsWith(endWith)) {
 				chain.doFilter(servletRequest, servletResponse);
@@ -86,7 +87,7 @@ public class LoginFilter implements Filter {
 			}
 		}
 		// 以上规则都未通过，则该请求被拦截，需要登陆后才能请求
-		// 判断是否已经登陆
+		// 2、判断是否已经登陆（2与1顺序可以互换。）
 		logger.debug("jgName:" + session.getAttribute(JConstant.name));
 		if (session.getAttribute(JConstant.name) != null) {
 			chain.doFilter(servletRequest, servletResponse);
