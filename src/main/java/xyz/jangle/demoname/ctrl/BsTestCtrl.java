@@ -43,7 +43,7 @@ public class BsTestCtrl {
 	ResultModel<BsTest> updateByPrimaryKey(BsTest record) {
 		return bsTestService.updateByPrimaryKey(record);
 	}
-	
+
 	// 单查
 	@RequestMapping("/selectByPrimaryKey.ctrl")
 	@ResponseBody
@@ -64,7 +64,7 @@ public class BsTestCtrl {
 	ResultModelList<BsTest> selectAll() {
 		return bsTestService.selectAll();
 	}
-		
+
 	// 批删
 	@RequestMapping("/batchDeleteByPrimaryKey.ctrl")
 	@ResponseBody

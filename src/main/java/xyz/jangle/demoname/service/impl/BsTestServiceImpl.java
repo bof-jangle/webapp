@@ -108,7 +108,7 @@ public class BsTestServiceImpl extends BaseServiceImpl implements BsTestService 
 		bsTestMapper.batchDeleteByPrimaryKeyActually(record);
 		return new ResultModel<BsTest>(CME.success);
 	}
-	
+
 	@Override
 	public ResultModel<BsTest> selectByPrimaryKeyForAnnotation(BsTest record) {
 		return new ResultModel<BsTest>(bsTestMapper.selectByPrimaryKeyForAnnotation(record.getId()));

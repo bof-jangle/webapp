@@ -37,6 +37,7 @@
 					data-ajax="ajaxRequest" data-side-pagination="server"
 					data-striped="true" data-single-select="false"
 					data-click-to-select="false" data-pagination="true"
+					data-row-style="rowStyle"
 					data-pagination-first-text="首页" data-pagination-pre-text="上一页"
 					data-pagination-next-text="下一页" data-pagination-last-text="末页"
 					class="fline-show-when-ready">
@@ -71,6 +72,11 @@
 		// 编辑详情
 		function editDetail(data){
 			window.location.href = "bsTestEdit.jsp?id=" + data.id + addressPostfix;
+		}
+		// 行状态色彩格式化
+		function rowStyle(row,index){
+			// https://v3.bootcss.com/css/#tables-contextual-classes
+			return {};
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){

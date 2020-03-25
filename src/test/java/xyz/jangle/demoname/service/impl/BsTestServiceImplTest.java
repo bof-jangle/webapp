@@ -106,7 +106,7 @@ public class BsTestServiceImplTest extends JUnitRunSupport {
 		bsTestService.batchDeleteByPrimaryKeyActually(record);
 		assertEquals(null, bsTestService.selectByPrimaryKey(testBsTest).getModel());
 	}
-	
+
 	@Test
 	public void testSelectByPrimaryKeyForAnnotation(){
 		assertNotNull(bsTestService.selectByPrimaryKeyForAnnotation(testBsTest));

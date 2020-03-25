@@ -38,7 +38,7 @@
 	<script>
 		$(function(){
 			// TODO 额外的逻辑。
-	
+
 			if (!ps["id"]){
 				return;
 			}
