@@ -173,7 +173,7 @@ public class BsAttachmentCtrl {
 	 * @param file
 	 * @throws IOException
 	 */
-//    @SuppressWarnings("unused")
+    @SuppressWarnings("unused")
 	private void writeToLocal(MultipartFile file) throws IOException {
 		File f = new File("D:/d/j/" + file.getOriginalFilename());
 		OutputStream out = new FileOutputStream(f);
