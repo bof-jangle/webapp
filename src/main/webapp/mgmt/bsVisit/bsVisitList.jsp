@@ -22,7 +22,7 @@
 	            	<span class="jangle-listjsp-remarks-span label label-info" >访问记录表 </span>
 	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
-	            <input type="hidden" name="status" value="1">
+	            <input type="hidden" name="status" value="2">
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
 	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button>
@@ -45,7 +45,8 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="id" >id</th>
+							<th data-field="dmDesc" >ip</th>
+							<th data-field="dmDesc2" >addr</th>
 							<th data-field="createTime" data-formatter="datetimeFormatterJ" data-width="150">创建时间</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
@@ -60,7 +61,7 @@
 		var pathname = window.location.pathname;
 		var listPageName = pathname.substring(pathname.lastIndexOf("/")+1);
 		var addressPostfix = "&r="+Math.random()+"&back="+listPageName;
-		var url = "/bsVisitCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
+		var url = "/visitCtrl/selectPage.ctrl";	//获取数据的url地址，需要实现分页功能。
 		// 新增按钮 打开新增数据的页面
 		function addFormInfo() {
 			window.location.href = "bsVisitEdit.jsp"
