@@ -76,13 +76,22 @@
 	</tbody>
 </table>
 
-
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="/js/jquery-3.3.1.min.js" ></script>
 <script>
 console.log("################################################");
 console.log("###可以给我介绍个小姐姐吗？我会全栈开发哦##########");
 console.log("################################################");
-
+$.ajax({
+	url:"/visitCtrl/insert",
+	type:"POST",
+	dataType:"json",
+	data:{"dmDesc":returnCitySN["cip"],"dmDesc2":returnCitySN["cname"],"status":"2"},
+	success:function(ret){
+		console.log(ret);
+		$("#visitCount").text("被访问"+ret.count+"次");
+	},error:function(){}
+});
 </script>
 </body>
 </html>
