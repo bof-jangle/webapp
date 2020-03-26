@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>你是小姐姐吗？</title>
+<title>找一个工作与生活融洽的团队</title>
 <link rel="stylesheet" type="text/css" href="/css/backSystem.css" />
 <style type="text/css">
 .jangle-left-20{margin-left:20px;}
@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<h3>胡宏景 | 男 | 28岁 |2012年参加工作(2013年毕业于 丽水学院-工学院-计算器科学与技术) | 联系方式：jangle@jangle.xyz(这是邮箱)</h3>
+<h3>博风 | 男 | 2012年参加工作(2013年毕业) | 联系方式：jangle@jangle.xyz(这是邮箱)</h3>
 
 <h4>个人简介</h4>
 <p class="jangle-left-20">从hello world!开始，10年编程经验。能独立做J2EE的<a href="http://jangle.xyz" target="_blank">业务系统</a>项目，有较多的业务设计经验。</p>
@@ -71,25 +71,28 @@
 		</tr>
 		<tr>
 			<td >2018/06 - 2019/今</td>
-			<td><a href="resume/now.html">某不知名软件公司</a></td>
+			<td><a href="#">简历真实，可信。谢谢</a></td>
 		</tr>
 	</tbody>
 </table>
 
 <script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script src="/js/jquery-3.3.1.min.js" ></script>
+<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
 <script>
 console.log("################################################");
 console.log("###可以给我介绍个小姐姐吗？我会全栈开发哦##########");
 console.log("################################################");
+console.log("我喜欢友善，乐观，开朗的同事");
+console.log("我希望同事可以像游戏队友，协同，互助，鼓励，相互学习。");
+console.log("我希望同事可以像游戏队友一样，乐于沟通，喜欢探讨，总结经验，提出解决方案，针对措施，改进措施。");
+console.log("我的同事可以自信，傲慢，不可一世，只要他真实得Carry全队，为团队撑起一片天，那他果真值得尊敬。");
 $.ajax({
 	url:"/visitCtrl/insert",
 	type:"POST",
 	dataType:"json",
 	data:{"dmDesc":returnCitySN["cip"],"dmDesc2":returnCitySN["cname"],"status":"2"},
 	success:function(ret){
-		console.log(ret);
-		$("#visitCount").text("被访问"+ret.count+"次");
 	},error:function(){}
 });
 </script>
