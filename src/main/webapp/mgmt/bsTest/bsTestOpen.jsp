@@ -11,8 +11,8 @@
 </jsp:include>
 </head>
 <body>
-	<div id="bodyTopDiv" style="margin-top: 20px;">
-		测试表详情查看
+	<div id="bodyTopDiv" class="jangle-openjsp-bodytopdiv" style="margin-top: 20px;">
+		<span class="label label-info">测试表详情查看</span>
 		<div style="padding: 0px 1% 15px; float: right;">
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>

@@ -19,10 +19,10 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span class="jangle-listjsp-remarks-span label label-info" >访问记录表 </span>
+	            	<span class="jangle-listjsp-remarks-span label label-info" >访问列表 </span>
 	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
-	            <input type="hidden" name="status" value="2">
+<!-- 	            <input type="hidden" name="status" value="2"> -->
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
 				</div>

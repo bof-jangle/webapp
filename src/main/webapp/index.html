@@ -59,12 +59,23 @@
 						<li><a href="mgmt/bsDemo/bsDemoList.jsp" target="bottomIframe">DEMO管理</a></li>
 						<li><a href="mgmt/bsTest/bsTestList.jsp" target="bottomIframe">DEMO管理v2</a></li>
 						<li><a href="mgmt/bsMail/bsMailList.jsp" target="bottomIframe">邮件列表</a></li>
+						<li><a href="mgmt/bsVisit/bsVisitList.jsp" target="bottomIframe">h访客列表</a></li>
 						<li><a href="mgmt/bsMailConfig/bsMailConfigList.jsp" target="bottomIframe">邮件配置</a></li>
 						<li><a href="fileUpload/uploadfiles_batch_webapps.jsp" target="bottomIframe">应用部署</a></li>
 <!-- 						<li class="divider"></li> -->
 <!-- 						<li><a href="test/selectAndInput.html" target="bottomIframe">可选可输下拉框</a></li> -->
 <!-- 						<li class="divider"></li> -->
 <!-- 						<li><a href="test/inputList.html" target="bottomIframe">可选可输input</a></li> -->
+					</ul>
+				</li>
+				<li class="dropdown" id="other_menu_yygl" style="display:none;">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						应用管理
+						<b class="caret"></b>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="mgmt/bsTest/bsTestList.jsp" target="bottomIframe">DEMO管理v2</a></li>
+						<li><a href="mgmt/bsVisit/bsVisitListAll.jsp" target="bottomIframe">访客列表</a></li>
 					</ul>
 				</li>
 				<li><a href="mgmt/zdLyb/zdLybList.jsp" target="bottomIframe"><span>战队留言板</span></a></li>
@@ -106,6 +117,9 @@
 						$("#login").text("您好："+ret.model.jgName);
 						if(ret.model.id == 1){
 							$("#jangle_menu_xtgl").show();
+							$("#other_menu_yygl").show();
+						}else{
+							$("#other_menu_yygl").show();
 						}
 					}
 					$("#login").append("<a href='javascript:logout();'><img alt='注销' src='images/userLogout.png' width='42' height='42'></a>");
