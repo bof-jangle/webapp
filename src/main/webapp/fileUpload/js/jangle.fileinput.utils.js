@@ -115,3 +115,40 @@ function deleteAttachmentJ(attachmentId) {
 		}
 	});
 };
+
+ /**
+  * 加载附件
+  * @param attachmentId
+  * @param sourceType
+  * @param targetDomId
+  * @returns
+  */
+function loadAttachmentJ(attachmentId,sourceType,targetDomId){
+	$.ajax({
+		url:"../../bsAttachmentCtrl/selectPage.ctrl",
+		dataType:"json",
+		cache:false,
+		data:{
+			"attSourceId":attachmentId,
+			"attSourceType":sourceType
+		},
+		error : function(request, textStatus, errorThrown) {
+			jangleShowAjaxError(request, textStatus, errorThrown);
+		},
+		success:function(data){
+			if(data == null || data.code != "10001"){
+				return;
+			}
+			var target = "attListJ";
+			if(targetDomId){
+				target = targetDomId;
+			}
+			var str = "";
+			var list = data.list;
+			for(var i in list){
+				str += '<div><a href="../../bsAttachmentCtrl/downLoadById.ctrl?id='+list[i].id+'">'+list[i].attName+'</a></div>';
+			}
+			$("#"+target).html(str);
+		}
+	});
+}

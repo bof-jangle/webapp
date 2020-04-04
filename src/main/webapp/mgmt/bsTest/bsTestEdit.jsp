@@ -31,14 +31,10 @@
 				<label for="dmDesc2">描述2：</label>
 				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入描述2" />
 			</div>
-			<div>
-				<div class="panel panel-primary">
-					<div class="panel-body" style="padding-top: 0px;padding-top: 0px;padding-right: 0px;">
-						<div>
-							<input id="input-id" name="file" multiple type="file" data-show-caption="true">
-						</div>
-					</div>
-				</div>
+			<div class="form-group">
+				<label for="input-id">附件：</label>
+				<div id="attListJ" style="display:inline-block" ></div>
+				<input class="form-control" id="input-id" name="file" multiple type="file" data-show-caption="true">
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
@@ -147,6 +143,8 @@
 					}
 				}
 			});
+			// 加载附件
+			loadAttachmentJ(ps["id"],"bs_test");
 		})
 	</script>
 </body>

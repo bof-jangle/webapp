@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -165,6 +166,12 @@ public class BsAttachmentCtrl {
 			}
 		}
 		return new HashMap<String, Object>();
+	}
+
+	@RequestMapping("/downLoadById.ctrl")
+	@ResponseBody
+	void downLoadById(BsAttachment record,HttpServletResponse response) {
+		bsAttachmentService.downLoadById(record,response);
 	}
 
 	/**

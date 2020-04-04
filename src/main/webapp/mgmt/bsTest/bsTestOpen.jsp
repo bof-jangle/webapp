@@ -27,6 +27,10 @@
 				<label for="dmDesc2">描述2：</label>
 				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" readonly />
 			</div>
+			<div class="form-group">
+				<label for="input-id">附件：</label>
+				<div id="attListJ" style="display:inline-block" ></div>
+			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" >	<!-- 状态隐藏域 -->
@@ -61,6 +65,8 @@
 					}
 				}
 			});
+			// 加载附件
+			loadAttachmentJ(ps["id"],"bs_test");
 		})
 	</script>
 </body>

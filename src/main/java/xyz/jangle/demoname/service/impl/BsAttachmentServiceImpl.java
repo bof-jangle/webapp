@@ -1,9 +1,12 @@
 package xyz.jangle.demoname.service.impl;
 
+import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -133,6 +136,31 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 			}
 		}
 		return new ResultModelMap<BsAttachment>(map);
+	}
+
+	@Override
+	public ResultModelMap<BsAttachment> downLoadById(BsAttachment record, HttpServletResponse response) {
+		BsAttachment attachment = bsAttachmentMapper.selectByPrimaryKey(record.getId());
+		BsFileBit fileBit = new BsFileBit();
+		fileBit.setId(attachment.getAttId());
+		ResultModel<BsFileBit> resFile = bsFileBitService.selectByPrimaryKey(fileBit);
+		if(resFile.getModel() == null) {
+			logger.error("下载时未找到文件实体");
+			return null;
+		}
+		byte[] bitContent = resFile.getModel().getBitContent();
+		response.setCharacterEncoding(JConstant.UTF8);
+		response.setContentType(JConstant.multipart_form_data);
+		response.setHeader("Content-Disposition", "attachment;fileName=" + attachment.getAttName());
+		try {
+			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
+			bufferedOutputStream.write(bitContent);
+			bufferedOutputStream.flush();
+			bufferedOutputStream.close();
+		} catch (IOException e) {
+			logger.error("文件下载时异常", e);
+		}
+		return null;
 	}
 
 }

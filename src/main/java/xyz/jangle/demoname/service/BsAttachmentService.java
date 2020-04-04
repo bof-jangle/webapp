@@ -1,5 +1,7 @@
 package xyz.jangle.demoname.service;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import xyz.jangle.demoname.model.BsAttachment;
@@ -19,5 +21,12 @@ public interface BsAttachmentService extends BaseService<BsAttachment> {
 	 * @return
 	 */
 	ResultModelMap<BsAttachment> uploadBatch(MultipartFile[] files, BsAttachment record);
+
+	/**
+	 * 	下载附件
+	 * @param record
+	 * @return
+	 */
+	ResultModelMap<BsAttachment> downLoadById(BsAttachment record, HttpServletResponse response);
 
 }

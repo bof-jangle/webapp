@@ -1,6 +1,7 @@
 @charset "UTF-8";
 .formJ{margin-top: 20px;}
 .formJ input{width: 45%;display:inline;}
+.formJ .file-input-new{width: 45%;margin-left:205px;}
 .formJ .form-group{padding-left: 15%;}
 .formJ .form-group label{width:200px;text-align:right;}
 .formJ .form-group small{display:inline;}
