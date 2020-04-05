@@ -52,11 +52,11 @@
 	</sql>
 	<sql id="page_where">
 		<where>
-			<if test="status != null and status != ''">
-				AND status = #{status}
-			</if>
 			<if test="attSourceType != null and attSourceType != '' and attSourceId != null and attSourceId != ''">
 				AND att_source_type = #{attSourceType} AND att_source_id = #{attSourceId}
+			</if>
+			<if test="status != null and status != ''">
+				AND status = #{status}
 			</if>
 		</where>
 	</sql>
