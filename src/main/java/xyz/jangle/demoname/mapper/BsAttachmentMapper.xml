@@ -13,7 +13,7 @@
 			<result column="att_path" jdbcType="VARCHAR" property="attPath" />
 			<result column="att_abspath" jdbcType="VARCHAR" property="attAbspath" />
 			<result column="att_protocol" jdbcType="VARCHAR" property="attProtocol" />
-			<result column="att_context" jdbcType="LONGBLOB" property="attContext" />
+			<result column="att_context" jdbcType="VARCHAR" property="attContext" />
 			<result column="att_source_type" jdbcType="VARCHAR" property="attSourceType" />
 			<result column="att_source_id" jdbcType="BIGINT" property="attSourceId" />
 			<result column="att_source_uuid" jdbcType="CHAR" property="attSourceUuid" />
@@ -115,7 +115,7 @@
 			#{attPath,jdbcType=VARCHAR},
 			#{attAbspath,jdbcType=VARCHAR},
 			#{attProtocol,jdbcType=VARCHAR},
-			#{attContext,jdbcType=LONGBLOB},
+			#{attContext,jdbcType=VARCHAR},
 			#{attSourceType,jdbcType=VARCHAR},
 			#{attSourceId,jdbcType=BIGINT},
 			#{attSourceUuid,jdbcType=CHAR},
@@ -141,7 +141,7 @@
 				att_path = #{attPath,jdbcType=VARCHAR},
 				att_abspath = #{attAbspath,jdbcType=VARCHAR},
 				att_protocol = #{attProtocol,jdbcType=VARCHAR},
-				att_context = #{attContext,jdbcType=LONGBLOB},
+				att_context = #{attContext,jdbcType=VARCHAR},
 				att_source_type = #{attSourceType,jdbcType=VARCHAR},
 				att_source_id = #{attSourceId,jdbcType=BIGINT},
 				att_source_uuid = #{attSourceUuid,jdbcType=CHAR},
