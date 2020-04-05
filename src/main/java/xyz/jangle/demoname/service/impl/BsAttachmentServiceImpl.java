@@ -110,6 +110,21 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 	}
 
 	@Override
+	public ResultModel<BsAttachment> batchDeleteByPrimaryKeyActually(BsAttachment record) {
+		if(Jutils.isEmpty(record.getIds())) {
+			return new ResultModel<BsAttachment>(CME.unFindIdsToDelete);
+		}
+		record.setIdsArray(record.getIds().split(JConstant.ywdh));
+		bsAttachmentMapper.batchDeleteByPrimaryKeyActually(record);
+		return new ResultModel<BsAttachment>(CME.success);
+	}
+
+	@Override
+	public ResultModel<BsAttachment> selectByPrimaryKeyForAnnotation(BsAttachment record) {
+		return new ResultModel<BsAttachment>(bsAttachmentMapper.selectByPrimaryKeyForAnnotation(record.getId()));
+	}
+	
+	@Override
 	public ResultModelMap<BsAttachment> uploadBatch(MultipartFile[] files, BsAttachment record) {
 		Map<String, Object> map = Jutils.getHashMapSO();
 		if (files == null) {

@@ -1,5 +1,6 @@
 package xyz.jangle.demoname.dao;
 
+import org.apache.ibatis.annotations.Select;
 
 import xyz.jangle.demoname.model.BsAttachment;
 /**
@@ -9,4 +10,7 @@ import xyz.jangle.demoname.model.BsAttachment;
  */
 public interface BsAttachmentMapper extends BaseDaoMapper<BsAttachment> {
 	
+	@Select("select id,uuid,create_time as createTime,update_time as updateTime,status,dm_desc as dmDesc,dm_desc2 as dmDesc2 from bs_attachment where id = #{id}")
+	BsAttachment selectByPrimaryKeyForAnnotation(Long id);
+
 }

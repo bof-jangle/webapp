@@ -87,7 +87,7 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 
 	@Test
 	public void testSelectPage() {
-		assertEquals(false, bsAttachmentService.selectPage(new BsAttachment()).getList().isEmpty());
+		assertFalse(bsAttachmentService.selectPage(new BsAttachment()).getList().isEmpty());
 	}
 	
 	@Test
@@ -99,9 +99,17 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 	public void testBatchDeleteByPrimaryKey() {
 		BsAttachment record = new BsAttachment();
 		assertEquals(CME.unFindIdsToDelete.getCode(), bsAttachmentService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.unFindIdsToDelete.getCode(), bsAttachmentService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsAttachment.getId().toString());
 		bsAttachmentService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getStatus().toString());
+		bsAttachmentService.batchDeleteByPrimaryKeyActually(record);
+		assertEquals(null, bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel());
+	}
+
+	@Test
+	public void testSelectByPrimaryKeyForAnnotation(){
+		assertNotNull(bsAttachmentService.selectByPrimaryKeyForAnnotation(testBsAttachment));
 	}
 
 }

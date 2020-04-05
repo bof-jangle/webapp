@@ -27,10 +27,8 @@ import xyz.jangle.demoname.service.BsFileBitService;
 import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
-
 /**
  * 附件上传存放管理 控制层
- * 
  * @author jangle E-mail: jangle@jangle.xyz
  * @version Jangle生成工具v1.1
  */
@@ -38,66 +36,71 @@ import xyz.jangle.utils.ResultModelList;
 @RequestMapping("/bsAttachmentCtrl")
 public class BsAttachmentCtrl {
 
-	protected Logger logger = Logger.getLogger(getClass());
-
 	@Autowired
 	private BsAttachmentService bsAttachmentService;
 	@Autowired
 	private BsFileBitService bsFileBitService;
 	@Autowired
 	private BsUser2Service bsUser2Service;
+	
+	protected Logger logger = Logger.getLogger(getClass());
 
+	// 增
+	@RequestMapping("/insert.ctrl")
+	@ResponseBody
+	ResultModel<BsAttachment> insert(BsAttachment record) {
+		return bsAttachmentService.insertOrUpdate(record);
+	}
+
+	// 删
 	@RequestMapping("/deleteByPrimaryKey.ctrl")
 	@ResponseBody
 	ResultModel<BsAttachment> deleteByPrimaryKey(BsAttachment record) {
 		return bsAttachmentService.deleteByPrimaryKey(record);
 	}
 
-	@RequestMapping("/batchDeleteByPrimaryKey.ctrl")
-	@ResponseBody
-	ResultModel<BsAttachment> batchDeleteByPrimaryKey(BsAttachment record) {
-		return bsAttachmentService.batchDeleteByPrimaryKey(record);
-	}
-
-	@RequestMapping("/insert.ctrl")
-	@ResponseBody
-	ResultModel<BsAttachment> insert(BsAttachment record) {
-		System.out.println(record);
-		System.out.println(record.getJAttFile());
-		return bsAttachmentService.insertOrUpdate(record);
-	}
-
-	@RequestMapping("/selectByPrimaryKey.ctrl")
-	@ResponseBody
-	ResultModel<BsAttachment> selectByPrimaryKey(BsAttachment record) {
-		return bsAttachmentService.selectByPrimaryKey(record);
-	}
-
-	@RequestMapping("/selectAll.ctrl")
-	@ResponseBody
-	ResultModelList<BsAttachment> selectAll() {
-		return bsAttachmentService.selectAll();
-	}
-
-	@RequestMapping("/selectPage.ctrl")
-	@ResponseBody
-	ResultModelList<BsAttachment> selectPage(BsAttachment record) {
-		return bsAttachmentService.selectPage(record);
-	}
-
+	// 改
 	@RequestMapping("/updateByPrimaryKey.ctrl")
 	@ResponseBody
 	ResultModel<BsAttachment> updateByPrimaryKey(BsAttachment record) {
 		return bsAttachmentService.updateByPrimaryKey(record);
 	}
 
-//	@RequestMapping("/uploadFile.ctrl")
-//	@ResponseBody
-//	ResultModel<BsAttachment> uploadFile(BsAttachment record,@RequestParam String filename) {
-//		System.out.println(filename);
-//		return null;
-//	}
+	// 单查
+	@RequestMapping("/selectByPrimaryKey.ctrl")
+	@ResponseBody
+	ResultModel<BsAttachment> selectByPrimaryKey(BsAttachment record) {
+		return bsAttachmentService.selectByPrimaryKey(record);
+	}
 
+	// 分查
+	@RequestMapping("/selectPage.ctrl")
+	@ResponseBody
+	ResultModelList<BsAttachment> selectPage(BsAttachment record) {
+		return bsAttachmentService.selectPage(record);
+	}
+
+	// 全查
+	@RequestMapping("/selectAll.ctrl")
+	@ResponseBody
+	ResultModelList<BsAttachment> selectAll() {
+		return bsAttachmentService.selectAll();
+	}
+
+	// 批删
+	@RequestMapping("/batchDeleteByPrimaryKey.ctrl")
+	@ResponseBody
+	ResultModel<BsAttachment> batchDeleteByPrimaryKey(BsAttachment record) {
+		return bsAttachmentService.batchDeleteByPrimaryKey(record);
+	}
+
+	// 批删Actually
+	@RequestMapping("/batchDeleteByPrimaryKeyActually.ctrl")
+	@ResponseBody
+	ResultModel<BsAttachment> batchDeleteByPrimaryKeyActually(BsAttachment record) {
+		return bsAttachmentService.batchDeleteByPrimaryKeyActually(record);
+	}
+	
 	@RequestMapping(value = "/uploadFile.ctrl", produces = "application/json;charset=UTF-8")
 	@ResponseBody
 	public void uploadExcel(@RequestParam("file") MultipartFile[] files) throws Exception {
@@ -167,7 +170,7 @@ public class BsAttachmentCtrl {
 		}
 		return new HashMap<String, Object>();
 	}
-
+	
 	@RequestMapping("/downLoadById.ctrl")
 	@ResponseBody
 	void downLoadById(BsAttachment record,HttpServletResponse response) {

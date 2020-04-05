@@ -11,8 +11,8 @@
 </jsp:include>
 </head>
 <body>
-	<div id="bodyTopDiv" style="margin-top: 20px;">
-		附件上传存放管理详情查看
+	<div id="bodyTopDiv" class="jangle-openjsp-bodytopdiv" style="margin-top: 20px;">
+		<span class="label label-info">附件上传存放管理详情查看</span>
 		<div style="padding: 0px 1% 15px; float: right;">
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
@@ -92,7 +92,12 @@
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
 	<script>
-		if (ps["id"])
+		$(function(){
+			// TODO 额外的逻辑。
+
+			if (!ps["id"]){
+				return;
+			}
 			$.ajax({
 				url : "/bsAttachmentCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
@@ -112,6 +117,7 @@
 					}
 				}
 			});
+		})
 	</script>
 </body>
 </html>

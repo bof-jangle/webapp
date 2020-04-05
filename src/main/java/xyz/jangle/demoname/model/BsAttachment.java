@@ -1,7 +1,5 @@
 package xyz.jangle.demoname.model;
 
-import java.io.File;
-
 /**
  * 附件上传存放管理 Model
  * @author jangle E-mail: jangle@jangle.xyz
@@ -91,10 +89,6 @@ public class BsAttachment extends BaseModel {
 	 * 描述
 	 */
 	private String dmDesc;
-	
-	private File[] JAttFile;
-	
-	private String JAttFileFileName;
 	
 	public String getUuid(){
 		return uuid;
@@ -216,20 +210,6 @@ public class BsAttachment extends BaseModel {
 	public void setDmDesc(String dmDesc){
 		this.dmDesc = dmDesc;
 	}
-	public File[] getJAttFile() {
-		return JAttFile;
-	}
-	public void setJAttFile(File[] jAttFile) {
-		JAttFile = jAttFile;
-	}
-	public String getJAttFileFileName() {
-		return JAttFileFileName;
-	}
-	public void setJAttFileFileName(String jAttFileFileName) {
-		JAttFileFileName = jAttFileFileName;
-	}
-	
-	
 	
 	
 }
