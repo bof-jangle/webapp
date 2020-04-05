@@ -69,7 +69,8 @@ function loadAttachmentJ(attachmentId,sourceType,targetDomId){
 		cache:false,
 		data:{
 			"attSourceId":attachmentId,
-			"attSourceType":sourceType
+			"attSourceType":sourceType,
+			"status":"1"
 		},
 		error : function(request, textStatus, errorThrown) {
 			jangleShowAjaxError(request, textStatus, errorThrown);
@@ -85,7 +86,7 @@ function loadAttachmentJ(attachmentId,sourceType,targetDomId){
 			var str = "";
 			var list = data.list;
 			for(var i in list){
-				str += '<div><a href="../../bsAttachmentCtrl/downLoadById.ctrl?id='+list[i].id+'">'+list[i].attName+'</a></div>';
+				str += '<div><a href="../../bsAttachmentCtrl/downLoadById.ctrl?id='+list[i].id+'">'+list[i].attName+'</a> <button class="btn btn-info btn-att-remove" onclick="deleteAttachmentJ('+list[i].id+',this)">删 除</button></div>';
 			}
 			$("#"+target).html(str);
 		}

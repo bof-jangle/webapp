@@ -25,6 +25,7 @@ import xyz.jangle.demoname.model.BsFileBit;
 import xyz.jangle.demoname.service.BsAttachmentService;
 import xyz.jangle.demoname.service.BsFileBitService;
 import xyz.jangle.demoname.service.BsUser2Service;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 /**
@@ -140,6 +141,7 @@ public class BsAttachmentCtrl {
 			} else {
 				logger.info("files is empty");
 			}
+			record.setStatus(JConstant.status_1);
 			bsAttachmentService.insertOrUpdate(record);
 		}
 		return new HashMap<String, Object>();

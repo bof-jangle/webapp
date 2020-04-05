@@ -98,7 +98,7 @@ function fileUploadJ(fileInputId) {
  *            附件的主键ID
  * @returns
  */
-function deleteAttachmentJ(attachmentId) {
+function deleteAttachmentJ(attachmentId,thix) {
 	$.ajax({
 		url : "../../bsAttachmentCtrl/deleteByPrimaryKey.ctrl",
 		dataType : "json",
@@ -106,12 +106,12 @@ function deleteAttachmentJ(attachmentId) {
 			"id" : attachmentId
 		},
 		error : function(request, textStatus, errorThrown) {
-			alert("删除附件时出错");
 			jangleShowAjaxError(request, textStatus, errorThrown);
 		},
 		success : function(data) {
+			$(thix).parent().remove();	//JQuery兼容性好
+//			thix.parentNode.remove();	//IE下不支持
 			alert("删除成功");
-			location.reload();
 		}
 	});
 };
