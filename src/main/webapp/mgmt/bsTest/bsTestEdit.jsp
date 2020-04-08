@@ -144,7 +144,7 @@
 				}
 			});
 			// 加载附件
-			loadAttachmentJ(ps["id"],"bs_test");
+			loadAttachmentJ(ps["id"],"bs_test",true);
 		})
 	</script>
 </body>

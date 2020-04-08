@@ -57,12 +57,13 @@ function showMask(){
 
 /**
  * 加载附件
- * @param attachmentId
- * @param sourceType
- * @param targetDomId
+ * @param attachmentId	业务主键
+ * @param sourceType	业务表
+ * @param canRemove	能否被移除
+ * @param targetDomId 输出目标的DomId
  * @returns
  */
-function loadAttachmentJ(attachmentId,sourceType,targetDomId){
+function loadAttachmentJ(attachmentId,sourceType,canRemove,targetDomId){
 	$.ajax({
 		url:"../../bsAttachmentCtrl/selectPage.ctrl",
 		dataType:"json",
@@ -86,7 +87,11 @@ function loadAttachmentJ(attachmentId,sourceType,targetDomId){
 			var str = "";
 			var list = data.list;
 			for(var i in list){
-				str += '<div><a href="../../bsAttachmentCtrl/downLoadById.ctrl?id='+list[i].id+'">'+list[i].attName+'</a> <button class="btn btn-info btn-att-remove" onclick="deleteAttachmentJ('+list[i].id+',this)">删 除</button></div>';
+				if(canRemove){
+					str += '<div><a href="../../bsAttachmentCtrl/downLoadById.ctrl?id='+list[i].id+'">'+list[i].attName+'</a> <button class="btn btn-info btn-att-remove" onclick="deleteAttachmentJ('+list[i].id+',this)">删 除</button></div>';
+				}else{
+					str += '<div><a href="../../bsAttachmentCtrl/downLoadById.ctrl?id='+list[i].id+'">'+list[i].attName+'</a> </div>';
+				}
 			}
 			$("#"+target).html(str);
 		}
