@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.JgAssetsMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.JgAssets">
+		<id column="id" jdbcType="BIGINT" property="id" />
+			<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="status" jdbcType="INTEGER" property="status" />
+			<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+			<result column="dm_desc2" jdbcType="VARCHAR" property="dmDesc2" />
+			<result column="jg_assets_name" jdbcType="VARCHAR" property="jgAssetsName" />
+			<result column="jg_assets_position" jdbcType="VARCHAR" property="jgAssetsPosition" />
+			<result column="jg_assets_cost" jdbcType="DECIMAL" property="jgAssetsCost" />
+			<result column="jg_assets_source" jdbcType="VARCHAR" property="jgAssetsSource" />
+			<result column="jg_assets_get_time" jdbcType="TIMESTAMP" property="jgAssetsGetTime" />
+			<result column="create_uuid" jdbcType="VARCHAR" property="createUuid" />
+	</resultMap>
+	<sql id="all_column">
+		<![CDATA[
+			id,
+			uuid,
+			create_time,
+			update_time,
+			status,
+			dm_desc,
+			dm_desc2,
+			jg_assets_name,
+			jg_assets_position,
+			jg_assets_cost,
+			jg_assets_source,
+			jg_assets_get_time,
+			create_uuid
+		]]>
+	</sql>
+	<sql id="page_where">
+		<where>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		update jg_assets
+		set status = 2
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.JgAssets">
+		update jg_assets
+		set status = 2
+		where id in 
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.JgAssets">
+		delete from jg_assets
+		where status = 2
+		and id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.JgAssets" useGeneratedKeys="true" keyProperty="id">
+		insert into jg_assets ( 
+			uuid,
+			create_time,
+			update_time,
+			status,
+			dm_desc,
+			dm_desc2,
+			jg_assets_name,
+			jg_assets_position,
+			jg_assets_cost,
+			jg_assets_source,
+			jg_assets_get_time,
+			create_uuid
+		)
+		values (
+			#{uuid,jdbcType=VARCHAR},
+			now(),
+			now(),
+			#{status,jdbcType=INTEGER},
+			#{dmDesc,jdbcType=VARCHAR},
+			#{dmDesc2,jdbcType=VARCHAR},
+			#{jgAssetsName,jdbcType=VARCHAR},
+			#{jgAssetsPosition,jdbcType=VARCHAR},
+			#{jgAssetsCost,jdbcType=DECIMAL},
+			#{jgAssetsSource,jdbcType=VARCHAR},
+			#{jgAssetsGetTime,jdbcType=TIMESTAMP},
+			#{createUuid,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="xyz.jangle.demoname.model.JgAssets">
+		<![CDATA[
+		update jg_assets
+		set 
+				update_time = now(),
+				status = #{status,jdbcType=INTEGER},
+				dm_desc = #{dmDesc,jdbcType=VARCHAR},
+				dm_desc2 = #{dmDesc2,jdbcType=VARCHAR},
+				jg_assets_name = #{jgAssetsName,jdbcType=VARCHAR},
+				jg_assets_position = #{jgAssetsPosition,jdbcType=VARCHAR},
+				jg_assets_cost = #{jgAssetsCost,jdbcType=DECIMAL},
+				jg_assets_source = #{jgAssetsSource,jdbcType=VARCHAR},
+				jg_assets_get_time = #{jgAssetsGetTime,jdbcType=TIMESTAMP}
+		]]>
+		<if test="id != null and id gt 0">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="(id == null or id lt 1 ) and uuid != null and uuid != ''">
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		</if>
+		<if test="(id == null or id lt 1 ) and (uuid == null or uuid == '')">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from jg_assets
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from jg_assets
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from jg_assets
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.JgAssets">
+		select 
+		<include refid="all_column" />
+		from jg_assets
+		<include refid="page_where" />
+		order by id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.JgAssets">
+		select count(*)
+		from jg_assets
+		<include refid="page_where" />
+	</select>
+</mapper>
