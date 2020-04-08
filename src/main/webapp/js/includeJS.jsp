@@ -30,6 +30,9 @@
 			}else if("utilJ".equals(jsArr[i])){
 				commentArr = new String[]{"jangle的工具JS"};
 				innerScript = new String[]{"/js/jangle.util.js"};
+			}else if("datetime".equals(jsArr[i])){
+				commentArr = new String[]{"bootstrap-datetimepicker","bootstrap-datetimepicker的中文语言包"};
+				innerScript = new String[]{"/jPlugs/datatimepicker/bootstrap-datetimepicker.js","/jPlugs/datatimepicker/bootstrap-datetimepicker.zh-CN.js"};
 			}else if("validator-out".equals(jsArr[i])){
 				commentArr = new String[]{"bootstrap-validator的js文件","bootstrap-validator的中文语言包"};
 				outerScript = new String[]{"https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/bootstrapValidator.min.js","https://cdn.bootcss.com/bootstrap-validator/0.5.3/js/language/zh_CN.min.js"};
@@ -41,7 +44,7 @@
 					if(j < commentArr.length){
 						out.println("<!-- "+commentArr[j]+" -->");
 					}
-					out.println("<script type=\"text/javascript\" src=\""+contextPath+innerScript[j]+"?v=202004042030"+"\" charset=\"UTF-8\" ></script>");
+					out.println("<script type=\"text/javascript\" src=\""+contextPath+innerScript[j]+"?v=202004082030"+"\" charset=\"UTF-8\" ></script>");
 				}
 			}
 			if(outerScript.length > 0){

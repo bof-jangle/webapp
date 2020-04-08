@@ -180,3 +180,18 @@ function back() {
 		window.location.href = document.referrer;
 	}
 }
+
+$(function(){
+	// tongyi de riqi geshi hua
+	$('.j-form_date').datetimepicker({
+		format: "yyyy-mm-dd 00:00:00",
+		language : 'zh-CN',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0
+	});
+})

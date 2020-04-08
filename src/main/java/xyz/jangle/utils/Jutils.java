@@ -1,5 +1,6 @@
 package xyz.jangle.utils;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +9,9 @@ import java.util.Map;
 import java.util.UUID;
 
 import javax.swing.text.DateFormatter;
+
+import xyz.jangle.demoname.model.BsUser2;
+import xyz.jangle.demoname.service.BsUser2Service;
 
 /**
  * @author jangle E-mail: jangle@jangle.xyz
@@ -101,6 +105,30 @@ public class Jutils {
 		}
 		return threadLocal.get().getFormat().format(date);
 	}
+	
+	/**
+	 * Date time parser
+	 * @param source
+	 * @return
+	 */
+	public static Date datetimeParser(String source) {
+        return dateParser(source, "yyyy-MM-dd HH:mm:ss");
+	}
+	/**
+	 * Date parse
+	 * @param source
+	 * @return
+	 */
+	public static Date dateParser(String source,String type) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat(type);
+		dateFormat.setLenient(false);
+		try {
+			return dateFormat.parse(source);
+		} catch (ParseException e) {
+//			e.printStackTrace();
+		}
+		return null;
+	}
 
 	/**
 	 * 日期格式转换
@@ -110,6 +138,20 @@ public class Jutils {
 	 */
 	public static String datetimeFormatter(Date date) {
 		return datetimeFormatter(date, "yyyy-MM-dd HH:mm:ss");
+	}
+	
+	/**
+	 *   获取当前用户的UUID
+	 * @param bsUser2Service
+	 * @return
+	 */
+	public static String getUserUuid(BsUser2Service bsUser2Service) {
+		ResultModel<BsUser2> currentLoggedIn = bsUser2Service.currentLoggedIn();
+		if(currentLoggedIn == null || currentLoggedIn.getCode().equals(CME.unlogin.getCode())) {
+			return null;
+		} else {
+			return currentLoggedIn.getModel().getUuid();
+		}
 	}
 
 }

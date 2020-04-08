@@ -31,5 +31,15 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 	</bean>
 
+    <!--配置注解处理器适配器-->
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
+    <!--配置自定义日期转换器，并且在mvc:annotation-driven 标签中加上conversion-service属性-->
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="xyz.jangle.utils.DatetimeConverter"></bean>
+            </list>
+        </property>
+    </bean>
 
 </beans>
