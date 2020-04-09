@@ -45,6 +45,7 @@ function ajaxRequest(params) {
 				rows : applies
 			});
 			params.complete();
+			ajaxRequestExtends(data);
 		}
 	});
 }
@@ -104,3 +105,11 @@ function operateFormatOpen(value, row) {
 	+ JSON.stringify(row).replace(/\"/g, "'")
 	+ ')">查看</button>';
 };
+
+/**
+ * 拓展回调
+ * @returns
+ */
+function ajaxRequestExtends(data){
+	
+}

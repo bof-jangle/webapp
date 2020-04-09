@@ -39,13 +39,6 @@ $("#jangleEditForm").bootstrapValidator({
 					message : "请输入来源"
 				}
 			}
-		},
-		jgAssetsGetTime : {
-			validators : {
-				notEmpty : {
-					message : "请输入获取时间"
-				}
-			}
 		}
 	}
 });

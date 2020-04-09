@@ -42,6 +42,9 @@
 			<if test="createUuid != null and createUuid != ''">
 				AND create_uuid = #{createUuid}
 			</if>
+			<if test="jgAssetsName != null and jgAssetsName != ''">
+				AND jg_assets_name like CONCAT('%',#{jgAssetsName},'%')
+			</if>
 		</where>
 	</sql>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -152,6 +155,12 @@
 	<select id="selectPageCount" resultType="java.lang.Long"
 		parameterType="xyz.jangle.demoname.model.JgAssets">
 		select count(*)
+		from jg_assets
+		<include refid="page_where" />
+	</select>
+	<select id="countCost" resultType="java.lang.Float"
+		parameterType="xyz.jangle.demoname.model.JgAssets">
+		select SUM(jg_assets_cost)
 		from jg_assets
 		<include refid="page_where" />
 	</select>

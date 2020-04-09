@@ -39,6 +39,10 @@
 				<label for="jgAssetsGetTime">获取时间：</label>
 				<input type="text" class="form-control" id="jgAssetsGetTime" name="jgAssetsGetTime" readonly />
 			</div>
+			<div class="form-group" >
+				<label for="dmDesc">备注：</label>
+				<input type="text" class="form-control" id="dmDesc" name="dmDesc" readonly />
+			</div>
 			<div class="form-group">
 				<label for="input-id">附件：</label>
 				<div id="attListJ" style="display:inline-block" ></div>

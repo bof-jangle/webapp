@@ -12,5 +12,7 @@ public interface JgAssetsMapper extends BaseDaoMapper<JgAssets> {
 	
 	@Select("select id,uuid,create_time as createTime,update_time as updateTime,status,dm_desc as dmDesc,dm_desc2 as dmDesc2 from jg_assets where id = #{id}")
 	JgAssets selectByPrimaryKeyForAnnotation(Long id);
+	
+	Float countCost(JgAssets record);
 
 }

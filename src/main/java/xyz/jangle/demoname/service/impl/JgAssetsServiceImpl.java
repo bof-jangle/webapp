@@ -16,6 +16,7 @@ import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.Jutils;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
+import xyz.jangle.utils.ResultModelMap;
 
 /**
  * 资产管理 业务层
@@ -89,9 +90,13 @@ public class JgAssetsServiceImpl extends BaseServiceImpl implements JgAssetsServ
 	@Override
 	public ResultModelList<JgAssets> selectPage(JgAssets record) {
 		record.setCreateUuid(Jutils.getUserUuid(bsUser2Service));
-		ResultModelList<JgAssets> resultModelList = new ResultModelList<JgAssets>(jgAssetsMapper.selectPage(record));
-		resultModelList.setCount(jgAssetsMapper.selectPageCount(record));
-		return resultModelList;
+		ResultModelMap<JgAssets> resultModelMap = new ResultModelMap<JgAssets>();
+		Map<String, Object> map = Jutils.getHashMapSO();
+		map.put("cost", jgAssetsMapper.countCost(record));
+		resultModelMap.setMap(map);
+		resultModelMap.setList(jgAssetsMapper.selectPage(record));
+		resultModelMap.setCount(jgAssetsMapper.selectPageCount(record));
+		return resultModelMap;
 	}
 
 	@Override

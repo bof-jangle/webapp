@@ -46,6 +46,10 @@
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                 </div>
 			</div>
+			<div class="form-group" >
+				<label for="dmDesc">备注：</label>
+				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入备注" />
+			</div>
 			<div class="form-group">
 				<label for="input-id">附件：</label>
 				<div id="attListJ" style="display:inline-block" ></div>
