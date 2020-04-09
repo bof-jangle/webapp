@@ -20,14 +20,6 @@
 	<div style="margin-top: 20px;">
 		<form id="jangleEditForm" name="jangleEditForm"	class="formJ">
 			<div class="form-group" >
-				<label for="dmDesc">描述：</label>
-				<input type="text" class="form-control" id="dmDesc" name="dmDesc" readonly />
-			</div>
-			<div class="form-group" >
-				<label for="dmDesc2">描述2：</label>
-				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" readonly />
-			</div>
-			<div class="form-group" >
 				<label for="jgAssetsName">资产名称：</label>
 				<input type="text" class="form-control" id="jgAssetsName" name="jgAssetsName" readonly />
 			</div>
@@ -46,10 +38,6 @@
 			<div class="form-group" >
 				<label for="jgAssetsGetTime">获取时间：</label>
 				<input type="text" class="form-control" id="jgAssetsGetTime" name="jgAssetsGetTime" readonly />
-			</div>
-			<div class="form-group" >
-				<label for="createUuid">创建人UUID：</label>
-				<input type="text" class="form-control" id="createUuid" name="createUuid" readonly />
 			</div>
 			<div class="form-group">
 				<label for="input-id">附件：</label>
@@ -84,7 +72,11 @@
 					if (data != null && data.code == "10001"
 							&& data.model != null) {
 						for ( var item in data.model) {
-							$("#" + item).val(data.model[item]);
+							if(item.lastIndexOf("Time") != -1){
+								$("#" + item).val(datetimeFormatterJ(data.model[item]));
+							}else{
+								$("#" + item).val(data.model[item]);
+							}
 						}
 					}
 				}
