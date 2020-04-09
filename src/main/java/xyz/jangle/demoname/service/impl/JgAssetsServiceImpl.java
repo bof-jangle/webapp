@@ -88,6 +88,7 @@ public class JgAssetsServiceImpl extends BaseServiceImpl implements JgAssetsServ
 
 	@Override
 	public ResultModelList<JgAssets> selectPage(JgAssets record) {
+		record.setCreateUuid(Jutils.getUserUuid(bsUser2Service));
 		ResultModelList<JgAssets> resultModelList = new ResultModelList<JgAssets>(jgAssetsMapper.selectPage(record));
 		resultModelList.setCount(jgAssetsMapper.selectPageCount(record));
 		return resultModelList;
