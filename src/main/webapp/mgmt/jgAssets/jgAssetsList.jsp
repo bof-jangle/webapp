@@ -45,8 +45,10 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="id" >id</th>
-							<th data-field="createTime" data-formatter="datetimeFormatterJ" data-width="150">创建时间</th>
+<!-- 							<th data-field="id" >id</th> -->
+							<th data-field="jgAssetsName" >资产名称</th>
+							<th data-field="jgAssetsCost" >价值</th>
+							<th data-field="jgAssetsGetTime" data-formatter="datetimeFormatterJ" data-width="150">获得时间</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
 					</thead>
