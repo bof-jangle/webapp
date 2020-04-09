@@ -15,6 +15,7 @@ public class JConstant {
 	public static final String id = "id";
 	public static final String code = "code";
 	public static final String name = "jgName";
+
 	// 编码
 	public static final String UTF8 = "UTF-8";
 	public static final String multipart_form_data = "multipart/form-data";
