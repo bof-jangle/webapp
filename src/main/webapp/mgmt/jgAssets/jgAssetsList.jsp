@@ -56,9 +56,8 @@
 				</table>
 	</div>
     <jsp:include page="/js/includeJS.jsp">
-    	<jsp:param value="table-out,utilJ" name="jses"/>
+    	<jsp:param value="table-out,listJ" name="jses"/>
     </jsp:include>
-	<script type="text/javascript" src="/js/bootstrap.table.ajax.js" ></script>
 	<script type="text/javascript">
 		var pathname = window.location.pathname;
 		var listPageName = pathname.substring(pathname.lastIndexOf("/")+1);
