@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import xyz.jangle.demoname.dao.BsVisitMapper;
 import xyz.jangle.demoname.model.BsVisit;
+import xyz.jangle.demoname.service.BsMailService;
 import xyz.jangle.demoname.service.BsVisitService;
 import xyz.jangle.utils.CME;
 import xyz.jangle.utils.JConstant;
@@ -26,7 +27,8 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 
 	@Autowired
 	private BsVisitMapper bsVisitMapper;
-	
+	@Autowired
+	private BsMailService bsMailService;
 	
 	@Override
 	public ResultModel<BsVisit> insertOrUpdate(BsVisit record) {
@@ -36,6 +38,9 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 		} else {
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			i = bsVisitMapper.insert(record);
+		}
+		if(record.getStatus()!= null && record.getStatus() ==2) {
+			bsMailService.hAccessMsg(record);
 		}
 		if (i > 0) {
 			long count = bsVisitMapper.count();

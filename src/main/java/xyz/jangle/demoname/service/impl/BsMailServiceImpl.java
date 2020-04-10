@@ -26,6 +26,7 @@ import xyz.jangle.demoname.dao.BsMailMapper;
 import xyz.jangle.demoname.model.BsMail;
 import xyz.jangle.demoname.model.BsMailConfig;
 import xyz.jangle.demoname.model.BsUser2;
+import xyz.jangle.demoname.model.BsVisit;
 import xyz.jangle.demoname.model.ZdUserApply;
 import xyz.jangle.demoname.service.BsMailConfigService;
 import xyz.jangle.demoname.service.BsMailService;
@@ -162,6 +163,17 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 		record.setMailContent("您好："+bsUser2.getJgName()+"</br>您在<a href=\\\"http://jangle.xyz\\\">阿景的战队</a>申请的用户已通过审批 </br> 您帐号为："+bsUser2.getJgCode()+"</br> 您的密码为："+bsUser2.getJgPassword());
 		record.setStatus(JConstant.status_1);
 		record.setMailType(BsMail.typePassword);
+		bsMailMapper.insert(record);
+	}
+
+	@Override
+	public void hAccessMsg(BsVisit bsVisit) {
+		BsMail record = new BsMail();
+		record.setToEmail("jangle@jangle.xyz");
+		record.setMailSubject("some look you!");
+		record.setMailContent(""+bsVisit.getDmDesc()+","+bsVisit.getDmDesc2());
+		record.setStatus(JConstant.status_1);
+		record.setMailType(BsMail.typeAccess);
 		bsMailMapper.insert(record);
 	}
 
