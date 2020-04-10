@@ -69,6 +69,7 @@
 		var fileInputParam = {};	//附件所需的参数
 		// 提交表单
 		function submitForm() {
+			$("#jangleEditForm").data("bootstrapValidator").resetForm(); //重置表单原先的校验
 			$("#jangleEditForm").data("bootstrapValidator").validate(); //提交验证写法1
 			// 			$("#jangleEditForm").bootstrapValidator("validate");		//提交验证写法2
 			var valid = $("#jangleEditForm").data("bootstrapValidator")

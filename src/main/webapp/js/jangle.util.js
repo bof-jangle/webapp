@@ -99,6 +99,19 @@ function loadAttachmentJ(attachmentId,sourceType,canRemove,targetDomId){
 }
 
 /**
+ * 对日期进行格式化
+ * @param value 日期
+ * @returns yyyy-MM-dd 格式时间 或者原来的值
+ */
+function dateFormatterJ(value){
+	var datetime = datetimeFormatterJ(value);
+	if(datetime && datetime.length > 10){
+		return datetime.substring(0,10);
+	}
+	return datetime;
+}
+
+/**
  * 对时间进行格式化
  * @param value 日期
  * @returns yyyy-MM-dd hh:mm:ss 格式时间 或者原来的值
