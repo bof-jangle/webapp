@@ -62,12 +62,12 @@
 	</sql>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
 		update bs_attachment
-		set status = 2
+		set att_source_type = CONCAT(att_source_type,'__deleted')
 		where id = #{id,jdbcType=BIGINT}
 	</delete>
 	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsAttachment">
 		update bs_attachment
-		set status = 2
+		set att_source_type = CONCAT(att_source_type,'__deleted')
 		where id in 
 		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
                     #{listItem}

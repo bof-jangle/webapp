@@ -141,6 +141,8 @@ public class BsAttachmentCtrl {
 			} else {
 				logger.info("files is empty");
 			}
+			record.setId(null);
+			record.setUuid(null);
 			record.setStatus(JConstant.status_1);
 			bsAttachmentService.insertOrUpdate(record);
 		}
