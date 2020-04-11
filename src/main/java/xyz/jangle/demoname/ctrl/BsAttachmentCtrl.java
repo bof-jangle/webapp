@@ -181,6 +181,15 @@ public class BsAttachmentCtrl {
 		bsAttachmentService.downLoadById(record,response);
 	}
 
+	@RequestMapping("/downLoadByYan.ctrl")
+	@ResponseBody
+	void downLoadByYan(BsAttachment record,HttpServletResponse response) {
+		if(record == null || record.getId() > 7000) {
+			return;
+		}
+		bsAttachmentService.downLoadById(record,response);
+	}
+
 	/**
 	 * 将文件写入本地磁盘
 	 * 
