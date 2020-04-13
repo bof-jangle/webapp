@@ -1,5 +1,7 @@
 package xyz.jangle.demoname.ctrl;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Controller;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import xyz.jangle.demoname.model.BsVisit;
 import xyz.jangle.demoname.service.BsVisitService;
+import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
 
@@ -22,11 +25,14 @@ public class BsVisitCtrl {
 
 	@Autowired
 	private BsVisitService bsVisitService;
+	
 
 	// 增
 	@RequestMapping("/insert")
 	@ResponseBody
-	ResultModel<BsVisit> insert(BsVisit record) {
+	ResultModel<BsVisit> insert(BsVisit record,HttpSession httpSession) {
+		httpSession.setAttribute(JConstant.ip, record.getDmDesc());
+		httpSession.setAttribute(JConstant.city, record.getDmDesc2());
 		return bsVisitService.insertOrUpdate(record);
 	}
 

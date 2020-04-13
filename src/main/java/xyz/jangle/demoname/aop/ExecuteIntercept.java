@@ -18,6 +18,8 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import xyz.jangle.demoname.model.BsExcuteHistory;
+import xyz.jangle.demoname.service.BsExcuteHistoryService;
 import xyz.jangle.utils.CME;
 import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModelMap;
@@ -29,6 +31,8 @@ public class ExecuteIntercept {
 	private DataSourceTransactionManager txManager;		//事务对象，在spring.xml中定义。
 	@Autowired(required = false)
 	private HttpSession httpSession;
+	@Autowired
+	private BsExcuteHistoryService bsExcuteHistoryService;
 
 	private Logger logger = Logger.getLogger(getClass());
 	
@@ -52,8 +56,15 @@ public class ExecuteIntercept {
 		System.out.println("afterReturning execute to do something");
 		if(httpSession != null) {
 			try {
-				System.out.println("code:" + httpSession.getAttribute(JConstant.code));
-				System.out.println("目标方法:"+joinPoint.getTarget().getClass()+"."+joinPoint.getSignature().getName());
+				logger.info("code:" + httpSession.getAttribute(JConstant.code)+" IP:" + httpSession.getAttribute(JConstant.ip)
+				+" city:" + httpSession.getAttribute(JConstant.city));
+				logger.info("目标方法:"+joinPoint.getTarget().getClass()+"."+joinPoint.getSignature().getName());
+				BsExcuteHistory record = new BsExcuteHistory();
+				record.setDmDesc((String) httpSession.getAttribute(JConstant.ip));
+				record.setDmDesc2((String) httpSession.getAttribute(JConstant.city));
+				record.setExcuterCode((String) httpSession.getAttribute(JConstant.code));
+				record.setExcuteMethod(joinPoint.getTarget().getClass()+"."+joinPoint.getSignature().getName());
+				bsExcuteHistoryService.insertOrUpdate(record );
 			} catch (Exception e) {
 			}
 		}
