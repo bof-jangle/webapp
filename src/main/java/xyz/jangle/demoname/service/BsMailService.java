@@ -4,6 +4,7 @@ import java.util.Map;
 
 import xyz.jangle.demoname.model.BsMail;
 import xyz.jangle.demoname.model.BsUser2;
+import xyz.jangle.demoname.model.BsVisit;
 import xyz.jangle.demoname.model.ZdUserApply;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
@@ -105,5 +106,11 @@ public interface BsMailService {
 	 * @param bsUser2
 	 */
 	void userApplySuccess(BsUser2 bsUser2);
+	
+	/**
+	 * 访问记录提醒
+	 * @param bsVisit 
+	 */
+	void hAccessMsg(BsVisit bsVisit);
 
 }
