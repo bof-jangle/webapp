@@ -44,5 +44,9 @@ public abstract class JUnitRunSupport extends AbstractTransactionalJUnit4SpringC
 	protected void login(){
 		bsUser2Service.login(BsUser2.youkeCode, BsUser2.youkePassword, null);
 	}
+	
+	protected void loginByTest() {
+		bsUser2Service.login(BsUser2.testCode, BsUser2.testPassword, null);
+	}
 
 }
