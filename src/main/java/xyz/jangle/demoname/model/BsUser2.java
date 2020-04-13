@@ -11,8 +11,10 @@ public class BsUser2 extends BaseModel {
 	public static final String tableName = "bs_user2";
 
 	public static final String youkeCode = "2";
+	public static final String testCode = "274676957@qq.com";
 
 	public static final String youkePassword = "p;.";
+	public static final String testPassword = "9e92db82a75b476b950c20489cae466c";
 
 	/**
 	 * 主键UUID

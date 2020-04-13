@@ -51,6 +51,10 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 		assertEquals(CME.success.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
 		testZdLyb.setId(1L);	//无对应的主键记录报错
 		assertEquals(CME.error.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
+		loginByTest();
+		testZdLyb.setId(0L);
+		testZdLyb.setUuid(null);
+		assertEquals(CME.success.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
 	}
 
 	@Test
