@@ -35,6 +35,7 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 	public void setUp() throws Exception {
 		BsAttachment record = new BsAttachment();
 		record.setDmDesc(testString);
+		record.setAttSourceType(BsAttachment.tableName);
 		ResultModel<BsAttachment> resultModel = bsAttachmentService.insertOrUpdate(record );
 		testBsAttachment = resultModel.getModel();
 	}
@@ -55,7 +56,7 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel());
 		assertEquals(CME.success.getCode(), bsAttachmentService.deleteByPrimaryKey(testBsAttachment).getCode());
-		assertEquals("2", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getStatus().toString());
+		assertEquals(BsAttachment.tableName+"__deleted", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getAttSourceType().toString());
 		testBsAttachment.setId(1L);
 		assertEquals(CME.error.getCode(), bsAttachmentService.deleteByPrimaryKey(testBsAttachment).getCode());
 	}
@@ -102,7 +103,7 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 		assertEquals(CME.unFindIdsToDelete.getCode(), bsAttachmentService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsAttachment.getId().toString());
 		bsAttachmentService.batchDeleteByPrimaryKey(record);
-		assertEquals("2", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getStatus().toString());
+		assertEquals(BsAttachment.tableName+"__deleted", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getAttSourceType().toString());
 		bsAttachmentService.batchDeleteByPrimaryKeyActually(record);
 		assertEquals(null, bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel());
 	}
