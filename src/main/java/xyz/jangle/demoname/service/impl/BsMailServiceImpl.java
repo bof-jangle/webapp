@@ -170,7 +170,7 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 	public void hAccessMsg(BsVisit bsVisit) {
 		BsMail record = new BsMail();
 		record.setToEmail("jangle@jangle.xyz");
-		record.setMailSubject("some look you!");
+		record.setMailSubject("someone look you!");
 		record.setMailContent(""+bsVisit.getDmDesc()+","+bsVisit.getDmDesc2());
 		record.setStatus(JConstant.status_1);
 		record.setMailType(BsMail.typeAccess);
