@@ -25,8 +25,8 @@
 	            <input type="hidden" name="status" value="1">
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
-	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button>
-				<button type="button" class="btn btn-default" onclick="addFormInfo()">新增</button>
+<!-- 	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button> -->
+<!-- 				<button type="button" class="btn btn-default" onclick="addFormInfo()">新增</button> -->
 				</div>
 	        </form>
 	    </div>
