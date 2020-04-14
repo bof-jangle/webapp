@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
 <title>执行记录表_编辑页面_Jangle生成工具v1.1</title>
 <jsp:include page="/css/includeCSS.jsp">
-	<jsp:param value="validator-out,fileinput,formJ" name="csses"/>
+	<jsp:param value="validator-out,fileinput,datetime,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
@@ -39,28 +39,20 @@
 				<label for="excuterCode">执行人账户：</label>
 				<input type="text" class="form-control" id="excuterCode" name="excuterCode" placeholder="请输入执行人账户" />
 			</div>
-			<div>
-				<div class="panel panel-primary">
-					<div class="panel-body" style="padding-top: 0px;padding-top: 0px;padding-right: 0px;">
-						<div>
-							<input id="input-id" name="file" multiple type="file" data-show-caption="true">
-						</div>
-					</div>
-				</div>
-			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">
-		<jsp:param value="validator-out,fileinput,utilJ" name="jses"/>
+		<jsp:param value="validator-out,fileinput,datetime,utilJ" name="jses"/>
 	</jsp:include>
 	<script type="text/javascript" src="js/bsExcuteHistoryEdit.js"></script>
 	<script type="text/javascript">
 		var fileInputParam = {};	//附件所需的参数
 		// 提交表单
 		function submitForm() {
+			$("#jangleEditForm").data("bootstrapValidator").resetForm(); //重置表单原先的校验
 			$("#jangleEditForm").data("bootstrapValidator").validate(); //提交验证写法1
 			// 			$("#jangleEditForm").bootstrapValidator("validate");		//提交验证写法2
 			var valid = $("#jangleEditForm").data("bootstrapValidator")
@@ -155,6 +147,8 @@
 					}
 				}
 			});
+			// 加载附件
+			loadAttachmentJ(ps["id"],"bs_test",true);
 		})
 	</script>
 </body>

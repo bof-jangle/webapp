@@ -35,6 +35,10 @@
 				<label for="excuterCode">执行人账户：</label>
 				<input type="text" class="form-control" id="excuterCode" name="excuterCode" readonly />
 			</div>
+			<div class="form-group">
+				<label for="input-id">附件：</label>
+				<div id="attListJ" style="display:inline-block" ></div>
+			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" >	<!-- 状态隐藏域 -->
@@ -64,11 +68,17 @@
 					if (data != null && data.code == "10001"
 							&& data.model != null) {
 						for ( var item in data.model) {
-							$("#" + item).val(data.model[item]);
+							if(item.lastIndexOf("Time") != -1){
+								$("#" + item).val(datetimeFormatterJ(data.model[item]));
+							}else{
+								$("#" + item).val(data.model[item]);
+							}
 						}
 					}
 				}
 			});
+			// 加载附件
+			loadAttachmentJ(ps["id"],"bs_test");
 		})
 	</script>
 </body>
