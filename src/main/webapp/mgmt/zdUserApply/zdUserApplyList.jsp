@@ -47,7 +47,7 @@
 							<th data-formatter="numberAsc" data-width="50">序列</th>
 							<th data-field="status" data-width="100"  data-formatter="statusFormatterJ">状态</th>
 							<th data-field="zdUserName" data-width="100">昵称</th>
-							<th data-field="zdUserApplyReason" >申请理由</th>
+							<th data-field="zdUserApplyReason" data-formatter="reasonFormatterJ">申请理由</th>
 							<th data-field="createTime" data-width="200" data-formatter="datetimeFormatterJ" >申请时间</th>
 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th>
 						</tr>
@@ -74,6 +74,13 @@
 		// 编辑详情
 		function editDetail(data){
 			window.location.href = "zdUserApplyEdit.jsp?id=" + data.id + addressPostfix;
+		}
+		// 原因格式化 去除HTML标签
+		function reasonFormatterJ(value){
+			var reg = /<[^<>]+>/g;//1、全局匹配g,2、<>标签中不能包含标签实现过滤HTML标签
+			value = value.replace(reg, '');//替换HTML标签
+			value = value.replace(/&nbsp;/ig, '');//替换HTML空格
+			return value;
 		}
 		// 状态格式化
 		function statusFormatterJ(value,row){
