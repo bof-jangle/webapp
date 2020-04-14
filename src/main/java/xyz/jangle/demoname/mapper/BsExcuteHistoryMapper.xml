@@ -31,6 +31,9 @@
 			<if test="status != null and status != ''">
 				AND status = #{status}
 			</if>
+			<if test="excuteMethod != null and excuteMethod != ''">
+				AND excute_method like CONCAT('%',#{excuteMethod},'%')
+			</if>
 		</where>
 	</sql>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
