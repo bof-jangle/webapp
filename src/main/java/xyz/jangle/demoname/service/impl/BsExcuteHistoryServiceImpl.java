@@ -2,7 +2,9 @@ package xyz.jangle.demoname.service.impl;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +28,7 @@ public class BsExcuteHistoryServiceImpl extends BaseServiceImpl implements BsExc
 
 	@Autowired
 	private BsExcuteHistoryMapper bsExcuteHistoryMapper;
-	
+	private Queue<BsExcuteHistory> concurrentLinkedQueue = new ConcurrentLinkedQueue<BsExcuteHistory>();
 	
 	@Override
 	public void insertOrUpdate(BsExcuteHistory record) {
@@ -109,5 +111,21 @@ public class BsExcuteHistoryServiceImpl extends BaseServiceImpl implements BsExc
 	public ResultModel<BsExcuteHistory> selectByPrimaryKeyForAnnotation(BsExcuteHistory record) {
 		return new ResultModel<BsExcuteHistory>(bsExcuteHistoryMapper.selectByPrimaryKeyForAnnotation(record.getId()));
 	}
+
+	@Override
+	public void queueAdd(BsExcuteHistory bsExcuteHistory) {
+		concurrentLinkedQueue.add(bsExcuteHistory);
+	}
+
+	@Override
+	public void doSaveExcute() {
+		logger.info("开始保存执行记录");
+		while(!concurrentLinkedQueue.isEmpty()) {
+			this.insertOrUpdate(concurrentLinkedQueue.poll());
+		}
+		logger.info("完成保存执行记录");
+	}
+	
+	
 
 }

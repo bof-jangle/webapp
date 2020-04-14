@@ -86,5 +86,16 @@ public interface BsExcuteHistoryService {
 	 * @return
 	 */
 	ResultModel<BsExcuteHistory> selectByPrimaryKeyForAnnotation(BsExcuteHistory record);
+	
+	/**
+	 *  将执行记录保存至队列
+	 * @param bsExcuteHistory
+	 */
+	void queueAdd(BsExcuteHistory bsExcuteHistory);
+	
+	/**
+	 *  定时保存执行记录
+	 */
+	void doSaveExcute();
 
 }

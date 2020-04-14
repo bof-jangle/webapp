@@ -13,4 +13,9 @@ xsi:schemaLocation="
 	<task:scheduled-tasks>
 		<task:scheduled ref="bsMailServiceImpl" method="doSendEmail" cron="0/10 * * * * ?" />
 	</task:scheduled-tasks>
+	
+	<!-- 定时保存执行记录 -->
+	<task:scheduled-tasks>
+		<task:scheduled ref="bsExcuteHistoryServiceImpl" method="doSaveExcute" cron="0/30 * * * * ?" />
+	</task:scheduled-tasks>
 </beans>
