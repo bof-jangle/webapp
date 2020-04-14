@@ -79,6 +79,12 @@
 			// https://v3.bootcss.com/css/#tables-contextual-classes
 			return {};
 		}
+		function operateFormat(value, row) {
+			return '<button class="btn btn-xs btn-info" onclick="openDetail('
+					+ JSON.stringify(row).replace(/\"/g, "'")
+					+ ')">查看</button>'
+					;
+		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
 			var rows = $("#tablewrap").bootstrapTable("getAllSelections");
