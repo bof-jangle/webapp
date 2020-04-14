@@ -20,6 +20,8 @@
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
 	            	<span class="jangle-listjsp-remarks-span label label-info" >执行记录表 </span>
+	                <input type="text" class="form-control" name="dmDesc" placeholder="IP">
+	                <input type="text" class="form-control" name="dmDesc2" placeholder="城市">
 	                <input type="text" class="form-control" name="excuteMethod" placeholder="方法">
 	            </div>
 	            <input type="hidden" name="status" value="1">
@@ -45,6 +47,7 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
+							<th data-field="dmDesc" >IP</th>
 							<th data-field="dmDesc2" >城市</th>
 							<th data-field="excuteMethod" >方法</th>
 							<th data-field="createTime" data-formatter="datetimeFormatterJ" data-width="150">创建时间</th>

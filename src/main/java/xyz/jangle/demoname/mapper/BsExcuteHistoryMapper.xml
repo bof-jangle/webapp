@@ -28,6 +28,12 @@
 	</sql>
 	<sql id="page_where">
 		<where>
+			<if test="dmDesc != null and dmDesc != ''">
+				AND dm_desc like CONCAT('%',#{dmDesc},'%')
+			</if>
+			<if test="dmDesc2 != null and dmDesc2 != ''">
+				AND dm_desc2 like CONCAT('%',#{dmDesc2},'%')
+			</if>
 			<if test="status != null and status != ''">
 				AND status = #{status}
 			</if>
