@@ -34,6 +34,7 @@ public class BsExcuteHistoryServiceImpl extends BaseServiceImpl implements BsExc
 			bsExcuteHistoryMapper.updateByPrimaryKey(record);
 		} else {
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
+			record.setStatus(JConstant.status_1);
 			bsExcuteHistoryMapper.insert(record);
 		}
 	}
