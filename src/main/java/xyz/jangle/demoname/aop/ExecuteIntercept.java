@@ -64,6 +64,7 @@ public class ExecuteIntercept {
 				record.setDmDesc2((String) httpSession.getAttribute(JConstant.city));
 				record.setExcuterCode((String) httpSession.getAttribute(JConstant.code));
 				record.setExcuteMethod(joinPoint.getTarget().getClass()+"."+joinPoint.getSignature().getName());
+				record.setStatus(JConstant.status_1);
 				bsExcuteHistoryService.insertOrUpdate(record );
 			} catch (Exception e) {
 			}
