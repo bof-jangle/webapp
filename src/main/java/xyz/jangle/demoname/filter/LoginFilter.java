@@ -25,7 +25,7 @@ public class LoginFilter implements Filter {
 
 	private static Logger logger = Logger.getLogger(LoginFilter.class);
 
-	private static String loginHtml = "/login.html";	//登录页面路径
+	private static String loginHtml = "/login.html"; // 登录页面路径
 
 	String[] endWithAtt; // 以此字符串结尾的，不被拦截
 	String[] containsAtt; // 包含此字符串的，不被拦截
@@ -76,6 +76,8 @@ public class LoginFilter implements Filter {
 		}
 		for (String c : containsAtt) {
 			if (uri.contains(c)) {
+				// 此处添加访问记录
+//				JResumeAccessQueue.add(session, uri);
 				chain.doFilter(servletRequest, servletResponse);
 				return;
 			}
