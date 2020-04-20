@@ -20,7 +20,7 @@ xsi:schemaLocation="
 <!-- 	</task:scheduled-tasks> -->
 
 <!-- 	定时保存resume 访问记录 -->
-	<task:scheduled-tasks>
-		<task:scheduled ref="resumeAccessRecordServiceImpl" method="doInsertRecordByQueue" cron="0/10 * * * * ?" />
-	</task:scheduled-tasks>
+<!-- 	<task:scheduled-tasks> -->
+<!-- 		<task:scheduled ref="resumeAccessRecordServiceImpl" method="doInsertRecordByQueue" cron="0/10 * * * * ?" /> -->
+<!-- 	</task:scheduled-tasks> -->
 </beans>
