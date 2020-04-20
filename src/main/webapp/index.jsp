@@ -35,6 +35,6 @@
  
 </body>
 <script type="text/javascript">
-	window.open("http://jangle.xyz/resume.html");
+	//window.open("http://jangle.xyz/resume.html");
 </script>
 </html>
