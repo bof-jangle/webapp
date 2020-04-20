@@ -59,6 +59,13 @@ public interface JgAssetsService {
 	 * @return
 	 */
 	ResultModelList<JgAssets> selectPage(JgAssets record);
+	
+	/**
+	 * 查询Book相关的资产
+	 * @param record
+	 * @return
+	 */
+	ResultModelList<JgAssets> selectPageForQuery(JgAssets record);
 
 	/**
 	 * 	全询

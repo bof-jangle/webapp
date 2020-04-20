@@ -98,6 +98,19 @@ public class JgAssetsServiceImpl extends BaseServiceImpl implements JgAssetsServ
 		resultModelMap.setCount(jgAssetsMapper.selectPageCount(record));
 		return resultModelMap;
 	}
+	
+	
+
+	@Override
+	public ResultModelList<JgAssets> selectPageForQuery(JgAssets record) {
+		ResultModelMap<JgAssets> resultModelMap = new ResultModelMap<JgAssets>();
+		Map<String, Object> map = Jutils.getHashMapSO();
+		map.put("cost", jgAssetsMapper.countCost(record));
+		resultModelMap.setMap(map);
+		resultModelMap.setList(jgAssetsMapper.selectPage(record));
+		resultModelMap.setCount(jgAssetsMapper.selectPageCount(record));
+		return resultModelMap;
+	}
 
 	@Override
 	public ResultModel<JgAssets> batchDeleteByPrimaryKey(JgAssets record) {

@@ -57,6 +57,13 @@ public class JgAssetsCtrl {
 	ResultModelList<JgAssets> selectPage(JgAssets record) {
 		return jgAssetsService.selectPage(record);
 	}
+	
+	// 条件查
+	@RequestMapping("/selectPageForQuery.ctrl")
+	@ResponseBody
+	ResultModelList<JgAssets> selectPageForQuery(JgAssets record) {
+		return jgAssetsService.selectPageForQuery(record);
+	}
 
 	// 全查
 	@RequestMapping("/selectAll.ctrl")
