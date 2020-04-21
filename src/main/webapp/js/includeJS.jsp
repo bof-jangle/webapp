@@ -47,7 +47,7 @@
 					if(j < commentArr.length){
 						out.println("<!-- "+commentArr[j]+" -->");
 					}
-					out.println("<script type=\"text/javascript\" src=\""+contextPath+innerScript[j]+"?v=202004092030"+"\" charset=\"UTF-8\" ></script>");
+					out.println("<script type=\"text/javascript\" src=\""+contextPath+innerScript[j]+"?v=202004211053"+"\" charset=\"UTF-8\" ></script>");
 				}
 			}
 			if(outerScript.length > 0){
