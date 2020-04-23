@@ -178,9 +178,11 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		String fileName = attachment.getAttName();
 		try {
 			fileName = java.net.URLEncoder.encode(attachment.getAttName(),"UTF-8");
+//			fileName = new String(attachment.getAttName().getBytes("gb2312"), "ISO8859-1");
 		} catch (UnsupportedEncodingException e1) {
 			logger.error("附件文件名转换时异常",e1);
 		}
+		logger.error(fileName);
 		response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
 		try {
 			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
