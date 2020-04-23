@@ -20,13 +20,8 @@
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
 	            	<span class="jangle-listjsp-remarks-span label label-info" >外来访客统计 </span>
-	                <input type="text" class="form-control" name="" placeholder="查询待开发">
 	            </div>
-	            <input type="hidden" name="status" value="1">
-	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
-	            <button type="button" class="btn btn-default" onclick="doCheckBoxes()">批量删除</button>
-				<button type="button" class="btn btn-default" onclick="addFormInfo()">新增</button>
 				</div>
 	        </form>
 	    </div>
