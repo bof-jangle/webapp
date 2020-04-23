@@ -1,10 +1,13 @@
 package xyz.jangle.demoname.service.impl;
 
 import java.security.GeneralSecurityException;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
+import java.util.Queue;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 import javax.mail.Authenticator;
 import javax.mail.Message;
@@ -23,6 +26,7 @@ import org.springframework.stereotype.Service;
 import com.sun.mail.util.MailSSLSocketFactory;
 
 import xyz.jangle.demoname.dao.BsMailMapper;
+import xyz.jangle.demoname.model.BsAttachment;
 import xyz.jangle.demoname.model.BsMail;
 import xyz.jangle.demoname.model.BsMailConfig;
 import xyz.jangle.demoname.model.BsUser2;
@@ -50,6 +54,9 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 	private String password = null;// = bundle.getString("password");		//授权码
 	private String host = null;// = bundle.getString("email.host");		//主机
 	private static final String succMsg = "发送成功";
+	// 邮件队列 XXX 由于应用服务器内存并不大，且并发量也不多，故暂不启用队列缓存功能
+	@SuppressWarnings("unused")
+	private Queue<BsMail> mailQueue = new ConcurrentLinkedQueue<BsMail>();
 
 	@Autowired
 	private BsMailMapper bsMailMapper;
@@ -72,6 +79,30 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 		}
 		return new ResultModel<BsMail>(CME.error);
 	}
+	
+	@Override
+	public void insertOrUpdate(BsVisit bsVisit) {
+		BsMail record = new BsMail();
+		record.setToEmail("jangle@jangle.xyz");
+		record.setMailSubject("someone look you!");
+		record.setMailContent(""+bsVisit.getDmDesc()+","+bsVisit.getDmDesc2());
+		record.setStatus(JConstant.status_1);
+		record.setMailType(BsMail.typeAccess);
+		bsMailMapper.insert(record);
+	}
+
+	@Override
+	public void insertOrUpdate(BsAttachment model) {
+		BsMail record = new BsMail();
+		record.setToEmail("jangle@jangle.xyz");
+		record.setMailSubject("someone download file!");
+		record.setMailContent(""+model.getDmDesc()+","+model.getAttExtends2()+".文件名："+model.getAttName()+" 。下载时间："+new Date());
+		record.setStatus(JConstant.status_1);
+		record.setMailType(BsMail.typeDownload);
+		bsMailMapper.insert(record);
+	}
+
+
 
 	@Override
 	public ResultModel<BsMail> deleteByPrimaryKey(BsMail record) {
@@ -163,17 +194,6 @@ public class BsMailServiceImpl extends BaseServiceImpl implements BsMailService 
 		record.setMailContent("您好："+bsUser2.getJgName()+"</br>您在<a href=\\\"http://jangle.xyz\\\">阿景的战队</a>申请的用户已通过审批 </br> 您帐号为："+bsUser2.getJgCode()+"</br> 您的密码为："+bsUser2.getJgPassword());
 		record.setStatus(JConstant.status_1);
 		record.setMailType(BsMail.typePassword);
-		bsMailMapper.insert(record);
-	}
-
-	@Override
-	public void hAccessMsg(BsVisit bsVisit) {
-		BsMail record = new BsMail();
-		record.setToEmail("jangle@jangle.xyz");
-		record.setMailSubject("someone look you!");
-		record.setMailContent(""+bsVisit.getDmDesc()+","+bsVisit.getDmDesc2());
-		record.setStatus(JConstant.status_1);
-		record.setMailType(BsMail.typeAccess);
 		bsMailMapper.insert(record);
 	}
 

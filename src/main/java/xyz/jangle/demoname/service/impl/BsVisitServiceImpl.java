@@ -40,7 +40,7 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 			i = bsVisitMapper.insert(record);
 		}
 		if(record.getStatus()!= null && record.getStatus() ==2) {
-			bsMailService.hAccessMsg(record);
+			bsMailService.insertOrUpdate(record);
 		}
 		if (i > 0) {
 			long count = bsVisitMapper.count();

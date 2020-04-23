@@ -2,11 +2,13 @@ package xyz.jangle.demoname.service.impl;
 
 import java.io.BufferedOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import xyz.jangle.demoname.model.BsAttachment;
 import xyz.jangle.demoname.model.BsFileBit;
 import xyz.jangle.demoname.service.BsAttachmentService;
 import xyz.jangle.demoname.service.BsFileBitService;
+import xyz.jangle.demoname.service.BsMailService;
 import xyz.jangle.utils.CME;
 import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.Jutils;
@@ -36,6 +39,12 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 	private BsAttachmentMapper bsAttachmentMapper;
 	@Autowired
 	private BsFileBitService bsFileBitService;
+	@Autowired
+	private BsMailService bsMailService;
+	@Autowired
+	private HttpSession httpSession;
+	
+	
 	
 	
 	@Override
@@ -166,7 +175,13 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		byte[] bitContent = resFile.getModel().getBitContent();
 		response.setCharacterEncoding(JConstant.UTF8);
 		response.setContentType(JConstant.multipart_form_data);
-		response.setHeader("Content-Disposition", "attachment;fileName=" + attachment.getAttName());
+		String fileName = attachment.getAttName();
+		try {
+			fileName = java.net.URLEncoder.encode(attachment.getAttName(),"UTF-8");
+		} catch (UnsupportedEncodingException e1) {
+			logger.error("附件文件名转换时异常",e1);
+		}
+		response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
 		try {
 			BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(response.getOutputStream());
 			bufferedOutputStream.write(bitContent);
@@ -175,6 +190,9 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		} catch (IOException e) {
 			logger.error("文件下载时异常", e);
 		}
+		attachment.setDmDesc((String) httpSession.getAttribute(JConstant.ip));
+		attachment.setAttExtends2((String) httpSession.getAttribute(JConstant.city));
+		bsMailService.insertOrUpdate(attachment);
 		return null;
 	}
 

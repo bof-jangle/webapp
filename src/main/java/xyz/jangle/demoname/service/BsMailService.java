@@ -2,6 +2,7 @@ package xyz.jangle.demoname.service;
 
 import java.util.Map;
 
+import xyz.jangle.demoname.model.BsAttachment;
 import xyz.jangle.demoname.model.BsMail;
 import xyz.jangle.demoname.model.BsUser2;
 import xyz.jangle.demoname.model.BsVisit;
@@ -111,6 +112,12 @@ public interface BsMailService {
 	 * 访问记录提醒
 	 * @param bsVisit 
 	 */
-	void hAccessMsg(BsVisit bsVisit);
+	void insertOrUpdate(BsVisit bsVisit);
+
+	/**
+	 * 	添加附件下载提醒
+	 * @param model
+	 */
+	void insertOrUpdate(BsAttachment model);
 
 }

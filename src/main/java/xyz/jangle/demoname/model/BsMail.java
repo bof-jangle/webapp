@@ -16,6 +16,8 @@ public class BsMail extends BaseModel {
 	public static final Integer typeManage = 3;
 	/** 访问录入类型 */
 	public static final Integer typeAccess = 4;
+	/** 下载录入类型 */
+	public static final Integer typeDownload = 5;
 
 	/**
 	 * 主键UUID
