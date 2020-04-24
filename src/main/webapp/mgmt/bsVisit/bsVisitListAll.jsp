@@ -43,7 +43,7 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="dmDesc" >ip</th>
+							<th data-field="dmDesc" data-formatter="ipFormatterJ" >ip</th>
 							<th data-field="dmDesc2" >addr</th>
 							<th data-field="createTime" data-formatter="datetimeFormatterJ" data-width="150">创建时间</th>
 <!-- 							<th data-field="id" data-width="100" data-formatter="operateFormat">操作</th> -->
@@ -64,6 +64,20 @@
 		function rowStyle(row,index){
 			// https://v3.bootcss.com/css/#tables-contextual-classes
 			return {};
+		}
+		// IP格式化
+		function ipFormatterJ(value){
+			if(!value){
+				return value;
+			}
+			var first = value.indexOf(".");
+			var last = value.lastIndexOf(".");
+			if(first == last){
+				return value;
+			}
+			var firstNum = value.substring(0,first+1);
+			var lastNum = value.substring(last);
+			return firstNum + "*.*" + lastNum;
 		}
 	</script>
 </body>

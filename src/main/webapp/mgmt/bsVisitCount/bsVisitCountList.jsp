@@ -40,7 +40,7 @@
 						<tr>
 							<th data-checkbox="true" data-width="10"></th>
 							<th data-formatter="numberAsc" data-width="50">序列</th>
-							<th data-field="dmDesc" >IP</th>
+							<th data-field="dmDesc" data-formatter="ipFormatterJ">IP</th>
 							<th data-field="dmDesc2" >城市</th>
 							<th data-field="visitCount" >访问次数</th>
 						</tr>
@@ -71,6 +71,20 @@
 		function rowStyle(row,index){
 			// https://v3.bootcss.com/css/#tables-contextual-classes
 			return {};
+		}
+		// IP格式化
+		function ipFormatterJ(value){
+			if(!value){
+				return value;
+			}
+			var first = value.indexOf(".");
+			var last = value.lastIndexOf(".");
+			if(first == last){
+				return value;
+			}
+			var firstNum = value.substring(0,first+1);
+			var lastNum = value.substring(last);
+			return firstNum + "*.*" + lastNum;
 		}
 		// 复选框的相关功能（当启用复选框时可用）
 		function doCheckBoxes(){
