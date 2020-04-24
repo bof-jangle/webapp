@@ -38,7 +38,7 @@
 				AND status = #{status}
 			</if>
 			<if test="mailSubject != null and mailSubject != ''">
-				AND mailSubject = CONCAT('%',#{mailSubject},'%')
+				AND mailSubject like CONCAT('%',#{mailSubject},'%')
 			</if>
 		</where>
 	</sql>
