@@ -37,6 +37,9 @@
 			<if test="status != null and status != ''">
 				AND status = #{status}
 			</if>
+			<if test="mailSubject != null and mailSubject != ''">
+				AND mailSubject = CONCAT('%',#{mailSubject},'%')
+			</if>
 		</where>
 	</sql>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">

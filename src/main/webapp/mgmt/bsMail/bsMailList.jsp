@@ -20,7 +20,7 @@
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
 	            	<span class="jangle-listjsp-remarks-span label label-info" >邮件发送记录表 </span>
-	                <input type="text" class="form-control" name="" placeholder="查询待开发">
+	                <input type="text" class="form-control" name="mailSubject" placeholder="标题">
 	            </div>
 <!-- 	            <input type="hidden" name="status" value="1"> -->
 	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
