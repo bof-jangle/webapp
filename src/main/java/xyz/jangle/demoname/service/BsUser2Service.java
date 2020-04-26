@@ -91,7 +91,7 @@ public interface BsUser2Service {
 	 * 执行登录
 	 * @param code
 	 * @param password
-	 * @param timeStamp
+	 * @param timeStamp	加密字符串
 	 * @return
 	 */
 	ResultModel<BsUser2> login(String code, String password, String timeStamp);

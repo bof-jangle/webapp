@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import xyz.jangle.demoname.model.BsUser2;
 import xyz.jangle.demoname.model.BsVisit;
+import xyz.jangle.demoname.service.BsUser2Service;
 import xyz.jangle.demoname.service.BsVisitService;
 import xyz.jangle.utils.JConstant;
 import xyz.jangle.utils.ResultModel;
@@ -25,12 +27,18 @@ public class BsVisitCtrl {
 
 	@Autowired
 	private BsVisitService bsVisitService;
+	@Autowired
+	private BsUser2Service bsUser2Service;
 	
 
 	// 增
 	@RequestMapping("/insert")
 	@ResponseBody
 	ResultModel<BsVisit> insert(BsVisit record,HttpSession httpSession) {
+		if(httpSession.getAttribute(JConstant.code) == null) {
+			//未登录 则进行游客登陆
+			bsUser2Service.login(BsUser2.youkeCode, BsUser2.youkePassword, "");
+		}
 		httpSession.setAttribute(JConstant.ip, record.getDmDesc());
 		httpSession.setAttribute(JConstant.city, record.getDmDesc2());
 		return bsVisitService.insertOrUpdate(record);
