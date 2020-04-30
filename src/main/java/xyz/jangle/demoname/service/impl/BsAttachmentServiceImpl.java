@@ -177,8 +177,8 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		response.setContentType(JConstant.multipart_form_data);
 		String fileName = attachment.getAttName();
 		try {
-			fileName = java.net.URLEncoder.encode(attachment.getAttName(),"UTF-8");
-//			fileName = new String(attachment.getAttName().getBytes("gb2312"), "ISO8859-1");
+//			fileName = java.net.URLEncoder.encode(attachment.getAttName(),"UTF-8");
+			fileName = new String(attachment.getAttName().getBytes("UTF-8"), "ISO8859-1");
 		} catch (UnsupportedEncodingException e1) {
 			logger.error("附件文件名转换时异常",e1);
 		}
