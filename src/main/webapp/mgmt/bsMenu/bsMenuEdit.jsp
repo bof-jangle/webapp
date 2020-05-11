@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>角色管理_编辑页面_Jangle生成工具v1.1</title>
+<title>菜单表_编辑页面_Jangle生成工具v1.1</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,fileinput,datetime,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-editjsp-bodytopdiv" >
-		<span class="label label-info">角色管理-内容编辑</span>
+		<span class="label label-info">菜单表-内容编辑</span>
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
@@ -24,35 +24,34 @@
 	<div class="jangle-editjsp-formdiv" >
 		<form id="jangleEditForm" name="jangleEditForm" class="formJ" >
 			<div class="form-group" >
-				<label for="rolName">角色名称：</label>
-				<input type="text" class="form-control" id="rolName" name="rolName" placeholder="请输入角色名称" />
+				<label for="menuName">菜单名称：</label>
+				<input type="text" class="form-control" id="menuName" name="menuName" placeholder="请输入菜单名称" />
 			</div>
 			<div class="form-group" >
-				<label for="rolCode">角色编码：</label>
-				<input type="text" class="form-control" id="rolCode" name="rolCode" placeholder="请输入角色编码" />
+				<label for="menuParentName">上级菜单名称：</label>
+				<select  class="form-control" id="menuParentName" name="menuParentName" onchange="menuParentNameChangeFunction()">
+					<option value="" data-parent-id ="1" ></option>
+					<option value="顶级菜单" data-parent-id ="0" >顶级菜单</option>
+				</select>
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc">拓展字段1：</label>
-				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入拓展字段1" />
+				<label for="menuUrl">菜单链接：</label>
+				<input type="text" class="form-control" id="menuUrl" name="menuUrl" placeholder="请输入菜单链接" />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc2">拓展字段2：</label>
-				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入拓展字段2" />
-			</div>
-			<div class="form-group">
-				<label for="input-id">附件：</label>
-				<div id="attListJ" style="display:inline-block" ></div>
-				<input class="form-control" id="input-id" name="file" multiple type="file" data-show-caption="true">
+				<label for="dmDesc">描述：</label>
+				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入描述" />
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
+			<input type="hidden" id="menuParentId" name="menuParentId"  /> <!-- 上级菜单ID -->
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,fileinput,datetime,utilJ" name="jses"/>
 	</jsp:include>
-	<script type="text/javascript" src="js/bsRoleEdit.js"></script>
+	<script type="text/javascript" src="js/bsMenuEdit.js"></script>
 	<script type="text/javascript">
 		var fileInputParam = {};	//附件所需的参数
 		// 提交表单
@@ -68,7 +67,7 @@
 			}
 			$.ajax({
 				type:"POST",
-				url : "/bsRoleCtrl/insert.ctrl",
+				url : "/bsMenuCtrl/insert.ctrl",
 				dataType : "json",
 				cache:false,
 				data : $("#jangleEditForm").serialize(),
@@ -92,7 +91,7 @@
 						}
 						//存在附件则上传附件
 						fileInputParam["attSourceId"] = data.model.id; //业务主键id
-						fileInputParam["attSourceType"] = "bs_role"; //填业务表名称
+						fileInputParam["attSourceType"] = "bs_menu"; //填业务表名称
 						fileUploadJ("input-id");
 						return;
 					} else {
@@ -107,7 +106,7 @@
 			if (confirm("确定删除此记录吗？")) {
 				$.ajax({
 					type:"POST",
-					url : "/bsRoleCtrl/deleteByPrimaryKey.ctrl",
+					url : "/bsMenuCtrl/deleteByPrimaryKey.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {
@@ -122,18 +121,46 @@
 				});
 			}
 		}
+		// 上级菜单选择事件
+		function menuParentNameChangeFunction(){
+			var parentId = $("#menuParentName option:selected").data("parent-id");
+			console.log(parentId);
+			$("#menuParentId").val(parentId);
+		}
+		
+		// 加载所有顶级菜单
+		function selectAllRootMenu(){
+			$.ajax({
+				url:"/bsMenuCtrl/selectAllRootMenu.ctrl",
+				dataType:"json",
+				cache:false,
+				success:function(data){
+					console.log(data);
+					var list = data.list;
+					for(var i in list){
+						var option = '<option value="'+list[i].menuName+'" data-parent-id ="'+list[i].id+'" >'+list[i].menuName+'</option>';
+						
+						$("#menuParentName").append(option);
+					}
+				},
+				error:function(){
+					
+				}
+				
+			});
+		}
 
 		// dom加载完成之后
 		$(function() {
-			initFileInput("input-id",null,fileInputParam);		//初始化附件
 
 			// TODO 额外的逻辑。
+			selectAllRootMenu();
 
 			if (!ps["id"]){
 				return;
 			}
 			$.ajax({
-				url : "/bsRoleCtrl/selectByPrimaryKey.ctrl",
+				url : "/bsMenuCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {
@@ -152,8 +179,6 @@
 					}
 				}
 			});
-			// 加载附件
-			loadAttachmentJ(ps["id"],"bs_test",true);
 		})
 	</script>
 </body>

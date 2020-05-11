@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>角色管理_编辑页面_Jangle生成工具v1.1</title>
+<title>基础框架的基础Demo_编辑页面_Jangle生成工具v1.1</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,fileinput,datetime,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-editjsp-bodytopdiv" >
-		<span class="label label-info">角色管理-内容编辑</span>
+		<span class="label label-info">基础框架的基础Demo-内容编辑</span>
 		<div class="rightbuttonsdiv" >
 			<button class="btn btn-info btn-sm" onclick="submitForm()"
 				id="submitButton">保存</button>
@@ -24,20 +24,20 @@
 	<div class="jangle-editjsp-formdiv" >
 		<form id="jangleEditForm" name="jangleEditForm" class="formJ" >
 			<div class="form-group" >
-				<label for="rolName">角色名称：</label>
-				<input type="text" class="form-control" id="rolName" name="rolName" placeholder="请输入角色名称" />
+				<label for="dmDesc">描述：</label>
+				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入描述" />
 			</div>
 			<div class="form-group" >
-				<label for="rolCode">角色编码：</label>
-				<input type="text" class="form-control" id="rolCode" name="rolCode" placeholder="请输入角色编码" />
+				<label for="dmDesc2">描述2：</label>
+				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入描述2" />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc">拓展字段1：</label>
-				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入拓展字段1" />
+				<label for="menuId">菜单ID：</label>
+				<input type="text" class="form-control" id="menuId" name="menuId" placeholder="请输入菜单ID" />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc2">拓展字段2：</label>
-				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入拓展字段2" />
+				<label for="roleId">角色ID：</label>
+				<input type="text" class="form-control" id="roleId" name="roleId" placeholder="请输入角色ID" />
 			</div>
 			<div class="form-group">
 				<label for="input-id">附件：</label>
@@ -52,7 +52,7 @@
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,fileinput,datetime,utilJ" name="jses"/>
 	</jsp:include>
-	<script type="text/javascript" src="js/bsRoleEdit.js"></script>
+	<script type="text/javascript" src="js/bsMenuRoleREdit.js"></script>
 	<script type="text/javascript">
 		var fileInputParam = {};	//附件所需的参数
 		// 提交表单
@@ -68,7 +68,7 @@
 			}
 			$.ajax({
 				type:"POST",
-				url : "/bsRoleCtrl/insert.ctrl",
+				url : "/bsMenuRoleRCtrl/insert.ctrl",
 				dataType : "json",
 				cache:false,
 				data : $("#jangleEditForm").serialize(),
@@ -92,7 +92,7 @@
 						}
 						//存在附件则上传附件
 						fileInputParam["attSourceId"] = data.model.id; //业务主键id
-						fileInputParam["attSourceType"] = "bs_role"; //填业务表名称
+						fileInputParam["attSourceType"] = "bs_menu_role_r"; //填业务表名称
 						fileUploadJ("input-id");
 						return;
 					} else {
@@ -107,7 +107,7 @@
 			if (confirm("确定删除此记录吗？")) {
 				$.ajax({
 					type:"POST",
-					url : "/bsRoleCtrl/deleteByPrimaryKey.ctrl",
+					url : "/bsMenuRoleRCtrl/deleteByPrimaryKey.ctrl",
 					dataType : "json",
 					cache : false,
 					data : {
@@ -133,7 +133,7 @@
 				return;
 			}
 			$.ajax({
-				url : "/bsRoleCtrl/selectByPrimaryKey.ctrl",
+				url : "/bsMenuRoleRCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {

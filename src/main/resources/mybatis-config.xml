@@ -5,6 +5,7 @@
 	<settings>
 <!-- 		<setting name="logImpl" value="STDOUT_LOGGING"/> -->
 		<setting name="logImpl" value="LOG4J"/>
+		<setting name="mapUnderscoreToCamelCase" value="true"/> <!-- 注解查询时，使用驼峰映射 -->
 	</settings>
 
 	<!-- 实体类,简称 -设置别名 -->

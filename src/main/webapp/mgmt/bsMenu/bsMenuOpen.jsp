@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>角色管理_查看页面</title>
+<title>菜单表_查看页面</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-openjsp-bodytopdiv" style="margin-top: 20px;">
-		<span class="label label-info">角色管理详情查看</span>
+		<span class="label label-info">菜单表详情查看</span>
 		<div style="padding: 0px 1% 15px; float: right;">
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
@@ -20,20 +20,28 @@
 	<div style="margin-top: 20px;">
 		<form id="jangleEditForm" name="jangleEditForm"	class="formJ">
 			<div class="form-group" >
-				<label for="rolName">角色名称：</label>
-				<input type="text" class="form-control" id="rolName" name="rolName" readonly />
-			</div>
-			<div class="form-group" >
-				<label for="rolCode">角色编码：</label>
-				<input type="text" class="form-control" id="rolCode" name="rolCode" readonly />
-			</div>
-			<div class="form-group" >
-				<label for="dmDesc">拓展字段1：</label>
+				<label for="dmDesc">描述：</label>
 				<input type="text" class="form-control" id="dmDesc" name="dmDesc" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc2">拓展字段2：</label>
+				<label for="dmDesc2">描述2：</label>
 				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" readonly />
+			</div>
+			<div class="form-group" >
+				<label for="menuName">菜单名称：</label>
+				<input type="text" class="form-control" id="menuName" name="menuName" readonly />
+			</div>
+			<div class="form-group" >
+				<label for="menuParentId">上级菜单ID：</label>
+				<input type="text" class="form-control" id="menuParentId" name="menuParentId" readonly />
+			</div>
+			<div class="form-group" >
+				<label for="menuParentName">上级菜单名称：</label>
+				<input type="text" class="form-control" id="menuParentName" name="menuParentName" readonly />
+			</div>
+			<div class="form-group" >
+				<label for="menuUrl">菜单链接：</label>
+				<input type="text" class="form-control" id="menuUrl" name="menuUrl" readonly />
 			</div>
 			<div class="form-group">
 				<label for="input-id">附件：</label>
@@ -55,7 +63,7 @@
 				return;
 			}
 			$.ajax({
-				url : "/bsRoleCtrl/selectByPrimaryKey.ctrl",
+				url : "/bsMenuCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {

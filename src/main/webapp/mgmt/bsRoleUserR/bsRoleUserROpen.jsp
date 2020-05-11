@@ -5,14 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
-<title>角色管理_查看页面</title>
+<title>_查看页面</title>
 <jsp:include page="/css/includeCSS.jsp">
 	<jsp:param value="validator-out,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
 	<div id="bodyTopDiv" class="jangle-openjsp-bodytopdiv" style="margin-top: 20px;">
-		<span class="label label-info">角色管理详情查看</span>
+		<span class="label label-info">详情查看</span>
 		<div style="padding: 0px 1% 15px; float: right;">
 			<button class="btn btn-info btn-sm" onclick="back()" id="backButton">关闭</button>
 		</div>
@@ -20,19 +20,19 @@
 	<div style="margin-top: 20px;">
 		<form id="jangleEditForm" name="jangleEditForm"	class="formJ">
 			<div class="form-group" >
-				<label for="rolName">角色名称：</label>
-				<input type="text" class="form-control" id="rolName" name="rolName" readonly />
+				<label for="bsUserUuid">用户UUID：</label>
+				<input type="text" class="form-control" id="bsUserUuid" name="bsUserUuid" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="rolCode">角色编码：</label>
-				<input type="text" class="form-control" id="rolCode" name="rolCode" readonly />
+				<label for="bsRoleId">角色ID：</label>
+				<input type="text" class="form-control" id="bsRoleId" name="bsRoleId" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc">拓展字段1：</label>
+				<label for="dmDesc">dm_desc：</label>
 				<input type="text" class="form-control" id="dmDesc" name="dmDesc" readonly />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc2">拓展字段2：</label>
+				<label for="dmDesc2">dm_desc2：</label>
 				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" readonly />
 			</div>
 			<div class="form-group">
@@ -55,7 +55,7 @@
 				return;
 			}
 			$.ajax({
-				url : "/bsRoleCtrl/selectByPrimaryKey.ctrl",
+				url : "/bsRoleUserRCtrl/selectByPrimaryKey.ctrl",
 				dataType : "json",
 				cache : false,
 				data : {
