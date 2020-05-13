@@ -138,6 +138,8 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 		if(bsUser2 == null) {
 			return new ResultModel<>(CME.unlogin);
 		}
+		bsUser2.setCity(""+httpSession.getAttribute(JConstant.city));
+		bsUser2.setIp(""+httpSession.getAttribute(JConstant.ip));
 		return new ResultModel<BsUser2>(bsUser2);
 	}
 
