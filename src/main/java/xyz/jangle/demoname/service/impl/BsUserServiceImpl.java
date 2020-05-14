@@ -49,7 +49,7 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 		BsUser model = bsUserMapper.selectByCodeAndPassword(record);
 		// 数据库校验未通过，则提示错误
 		if (model == null) {
-			return new ResultModel<BsUser>(CME.loginFailed);
+			return new ResultModel<BsUser>(CME.LOGIN_FAILED);
 		}
 		model.setUsrPassword(""); // 将密码置空
 		model.setCity((String) httpSession.getAttribute(JConstant.city));
@@ -70,7 +70,7 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 		Object userId = httpSession.getAttribute("userId");
 		if (userId == null) {
 			// 未登录或者session失效
-			return new ResultModel<>(CME.unlogin);
+			return new ResultModel<>(CME.UNLOGIN);
 		}
 		logger.debug("userId:" + Integer.valueOf("" + userId));
 //		BsUser BsUser = BsUserMapper.selectByPrimaryKey(Integer.valueOf(""+userId));
@@ -87,7 +87,7 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 	public ResultModel<BsUser> save(BsUser bsUser) {
 		bsUserMapper.save(bsUser);
 //		int i = 1/0;
-		return new ResultModel<BsUser>(CME.success);
+		return new ResultModel<BsUser>(CME.SUCCESS);
 	}
 
 	@Override
@@ -131,7 +131,7 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 		if (i > 0) {
 			return new ResultModel<BsUser>(record);
 		}
-		return new ResultModel<BsUser>(CME.error);
+		return new ResultModel<BsUser>(CME.ERROR);
 	}
 
 	@Override
@@ -174,7 +174,7 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 	@Override
 	public ResultModel<BsUser> batchDeleteByPrimaryKey(BsUser record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsUser>(CME.unFindIdsToDelete);
+			return new ResultModel<BsUser>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsUserMapper.batchDeleteByPrimaryKey(record);
@@ -185,18 +185,18 @@ public class BsUserServiceImpl extends BaseServiceImpl implements BsUserService 
 	public ResultModel<BsUser> passApply(BsUser bsUser) {
 		bsUser.setUsrStatus(JConstant.status_1);
 		if(bsUserMapper.updateStatusById(bsUser) == 1) {
-			return new ResultModel<BsUser>(CME.success);
+			return new ResultModel<BsUser>(CME.SUCCESS);
 		}
-		return new ResultModel<>(CME.error);
+		return new ResultModel<>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsUser> noPassApply(BsUser bsUser) {
 		bsUser.setUsrStatus(JConstant.status_4);
 		if(bsUserMapper.updateStatusById(bsUser) == 1) {
-			return new ResultModel<BsUser>(CME.success);
+			return new ResultModel<BsUser>(CME.SUCCESS);
 		}
-		return new ResultModel<>(CME.error);
+		return new ResultModel<>(CME.ERROR);
 	}
 	
 

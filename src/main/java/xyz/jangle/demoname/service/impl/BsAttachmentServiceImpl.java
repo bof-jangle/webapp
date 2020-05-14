@@ -59,26 +59,26 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		if (i > 0) {
 			return new ResultModel<BsAttachment>(record);
 		}
-		return new ResultModel<BsAttachment>(CME.error);
+		return new ResultModel<BsAttachment>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsAttachment> deleteByPrimaryKey(BsAttachment record) {
 		int i = bsAttachmentMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsAttachment>(CME.success);
+			return new ResultModel<BsAttachment>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsAttachment>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsAttachment>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsAttachment> updateByPrimaryKey(BsAttachment record) {
 		int i = bsAttachmentMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsAttachment>(CME.success);
+			return new ResultModel<BsAttachment>(CME.SUCCESS);
 		}
-		return new ResultModel<BsAttachment>(CME.error);
+		return new ResultModel<BsAttachment>(CME.ERROR);
 	}
 	
 	@Override
@@ -111,21 +111,21 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 	@Override
 	public ResultModel<BsAttachment> batchDeleteByPrimaryKey(BsAttachment record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsAttachment>(CME.unFindIdsToDelete);
+			return new ResultModel<BsAttachment>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsAttachmentMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsAttachment>(CME.success);
+		return new ResultModel<BsAttachment>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsAttachment> batchDeleteByPrimaryKeyActually(BsAttachment record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsAttachment>(CME.unFindIdsToDelete);
+			return new ResultModel<BsAttachment>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsAttachmentMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsAttachment>(CME.success);
+		return new ResultModel<BsAttachment>(CME.SUCCESS);
 	}
 
 	@Override
@@ -138,7 +138,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		Map<String, Object> map = Jutils.getHashMapSO();
 		if (files == null) {
 			logger.error("未获取到附件");
-			return new ResultModelMap<>(CME.bsAttachmentFileNotFound);
+			return new ResultModelMap<>(CME.ATTACHMENT_FILE_NOT_FOUND);
 		}
 		for (int i = 0; i < files.length; i++) {
 			if (!files[i].isEmpty()) {

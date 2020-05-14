@@ -41,7 +41,7 @@ public class ResumeAccessRecordServiceImpl extends BaseServiceImpl implements Re
 		if (i > 0) {
 			return new ResultModel<ResumeAccessRecord>(record);
 		}
-		return new ResultModel<ResumeAccessRecord>(CME.error);
+		return new ResultModel<ResumeAccessRecord>(CME.ERROR);
 	}
 
 	@Override
@@ -62,19 +62,19 @@ public class ResumeAccessRecordServiceImpl extends BaseServiceImpl implements Re
 	public ResultModel<ResumeAccessRecord> deleteByPrimaryKey(ResumeAccessRecord record) {
 		int i = resumeAccessRecordMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<ResumeAccessRecord>(CME.success);
+			return new ResultModel<ResumeAccessRecord>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<ResumeAccessRecord>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<ResumeAccessRecord>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<ResumeAccessRecord> updateByPrimaryKey(ResumeAccessRecord record) {
 		int i = resumeAccessRecordMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<ResumeAccessRecord>(CME.success);
+			return new ResultModel<ResumeAccessRecord>(CME.SUCCESS);
 		}
-		return new ResultModel<ResumeAccessRecord>(CME.error);
+		return new ResultModel<ResumeAccessRecord>(CME.ERROR);
 	}
 
 	@Override
@@ -105,21 +105,21 @@ public class ResumeAccessRecordServiceImpl extends BaseServiceImpl implements Re
 	@Override
 	public ResultModel<ResumeAccessRecord> batchDeleteByPrimaryKey(ResumeAccessRecord record) {
 		if (Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<ResumeAccessRecord>(CME.unFindIdsToDelete);
+			return new ResultModel<ResumeAccessRecord>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		resumeAccessRecordMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<ResumeAccessRecord>(CME.success);
+		return new ResultModel<ResumeAccessRecord>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<ResumeAccessRecord> batchDeleteByPrimaryKeyActually(ResumeAccessRecord record) {
 		if (Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<ResumeAccessRecord>(CME.unFindIdsToDelete);
+			return new ResultModel<ResumeAccessRecord>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		resumeAccessRecordMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<ResumeAccessRecord>(CME.success);
+		return new ResultModel<ResumeAccessRecord>(CME.SUCCESS);
 	}
 
 	@Override

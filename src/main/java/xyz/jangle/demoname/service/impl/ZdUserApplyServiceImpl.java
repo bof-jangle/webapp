@@ -38,7 +38,7 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 	@Override
 	public ResultModel<ZdUserApply> insertOrUpdate(ZdUserApply record) {
 		if(Jutils.isEmpty(record.getZdUserApplyIp())) {
-			return new ResultModel<ZdUserApply>(CME.zdUserApply_ip_unsupport);
+			return new ResultModel<ZdUserApply>(CME.USER_APPLY_IP_UNSUPPORT);
 		}
 		int i = 0;
 		if (Jutils.isGreatThan0(record.getId()) || Jutils.isNotEmpty(record.getUuid())) {
@@ -47,7 +47,7 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 			// 判断是否已经存在用户申请
 			int countByApplyIp = zdUserApplyMapper.countByApplyIp(record);
 			if (countByApplyIp > 0) {
-				return new ResultModel<ZdUserApply>(CME.zdUserApply_ip_repeat);
+				return new ResultModel<ZdUserApply>(CME.USER_APPLY_IP_REPEAT);
 			}
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			record.setStatus(JConstant.status_1);
@@ -58,26 +58,26 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 		if (i > 0) {
 			return new ResultModel<ZdUserApply>(record);
 		}
-		return new ResultModel<ZdUserApply>(CME.error);
+		return new ResultModel<ZdUserApply>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<ZdUserApply> deleteByPrimaryKey(ZdUserApply record) {
 		int i = zdUserApplyMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<ZdUserApply>(CME.success);
+			return new ResultModel<ZdUserApply>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<ZdUserApply>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<ZdUserApply>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<ZdUserApply> updateByPrimaryKey(ZdUserApply record) {
 		int i = zdUserApplyMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<ZdUserApply>(CME.success);
+			return new ResultModel<ZdUserApply>(CME.SUCCESS);
 		}
-		return new ResultModel<ZdUserApply>(CME.error);
+		return new ResultModel<ZdUserApply>(CME.ERROR);
 	}
 
 	@Override
@@ -108,11 +108,11 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 	@Override
 	public ResultModel<ZdUserApply> batchDeleteByPrimaryKey(ZdUserApply record) {
 		if (Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<ZdUserApply>(CME.unFindIdsToDelete);
+			return new ResultModel<ZdUserApply>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		zdUserApplyMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<ZdUserApply>(CME.success);
+		return new ResultModel<ZdUserApply>(CME.SUCCESS);
 	}
 
 	@Override
@@ -132,20 +132,20 @@ public class ZdUserApplyServiceImpl extends BaseServiceImpl implements ZdUserApp
 		bsUser2.setJgApplyReason(userApply.getZdUserApplyReason());
 		bsUser2.setStatus(JConstant.status_1);
 		ResultModel<BsUser2> resultModel = BsUser2Service.insertOrUpdate(bsUser2);
-		if(resultModel.getCode().equals(CME.bsUser2_jgCode_repeat.getCode())) {
-			return new ResultModel<ZdUserApply>(CME.bsUser2_jgCode_repeat);
+		if(resultModel.getCode().equals(CME.BSUSER2_JGCODE_REPEAT.getCode())) {
+			return new ResultModel<ZdUserApply>(CME.BSUSER2_JGCODE_REPEAT);
 		}
 		// 2、更新申请状态为通过
 		zdUserApplyMapper.pass(record); // 返回值，更新失败的逻辑待补充
 		bsMailService.userApplySuccess(bsUser2);
-		return new ResultModel<ZdUserApply>(CME.success);
+		return new ResultModel<ZdUserApply>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<ZdUserApply> unPass(ZdUserApply record) {
 		// 1、更新申请状态为不通过
 		zdUserApplyMapper.unPass(record); // 返回值，更新失败的逻辑待补充
-		return new ResultModel<ZdUserApply>(CME.success);
+		return new ResultModel<ZdUserApply>(CME.SUCCESS);
 	}
 
 }

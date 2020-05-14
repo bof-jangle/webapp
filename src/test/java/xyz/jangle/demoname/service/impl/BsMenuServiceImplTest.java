@@ -46,18 +46,18 @@ public class BsMenuServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsMenu.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsMenuService.insertOrUpdate(testBsMenu).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMenuService.insertOrUpdate(testBsMenu).getCode());
 		testBsMenu.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsMenuService.insertOrUpdate(testBsMenu).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMenuService.insertOrUpdate(testBsMenu).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsMenuService.selectByPrimaryKey(testBsMenu).getModel());
-		assertEquals(CME.success.getCode(), bsMenuService.deleteByPrimaryKey(testBsMenu).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMenuService.deleteByPrimaryKey(testBsMenu).getCode());
 		assertEquals("2", bsMenuService.selectByPrimaryKey(testBsMenu).getModel().getStatus().toString());
 		testBsMenu.setId(1L);
-		assertEquals(CME.error.getCode(), bsMenuService.deleteByPrimaryKey(testBsMenu).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMenuService.deleteByPrimaryKey(testBsMenu).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsMenuServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsMenuService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsMenuService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMenuService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsMenuServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsMenuService.selectByPrimaryKey(testBsMenu).getModel().getDmDesc().equals(testString));
 		testBsMenu.setId(0L);
 		testBsMenu.setUuid("");
-		bsMenuService.updateByPrimaryKey(testBsMenu).getCode().equals(CME.error.getCode());
+		bsMenuService.updateByPrimaryKey(testBsMenu).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsMenuServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsMenu record = new BsMenu();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMenuService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMenuService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMenuService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMenuService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsMenu.getId().toString());
 		bsMenuService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsMenuService.selectByPrimaryKey(testBsMenu).getModel().getStatus().toString());

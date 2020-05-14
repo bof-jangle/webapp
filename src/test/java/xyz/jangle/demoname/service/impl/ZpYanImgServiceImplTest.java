@@ -46,18 +46,18 @@ public class ZpYanImgServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testZpYanImg.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), zpYanImgService.insertOrUpdate(testZpYanImg).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zpYanImgService.insertOrUpdate(testZpYanImg).getCode());
 		testZpYanImg.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), zpYanImgService.insertOrUpdate(testZpYanImg).getCode());
+		assertEquals(CME.ERROR.getCode(), zpYanImgService.insertOrUpdate(testZpYanImg).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(zpYanImgService.selectByPrimaryKey(testZpYanImg).getModel());
-		assertEquals(CME.success.getCode(), zpYanImgService.deleteByPrimaryKey(testZpYanImg).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zpYanImgService.deleteByPrimaryKey(testZpYanImg).getCode());
 		assertEquals("2", zpYanImgService.selectByPrimaryKey(testZpYanImg).getModel().getStatus().toString());
 		testZpYanImg.setId(1L);
-		assertEquals(CME.error.getCode(), zpYanImgService.deleteByPrimaryKey(testZpYanImg).getCode());
+		assertEquals(CME.ERROR.getCode(), zpYanImgService.deleteByPrimaryKey(testZpYanImg).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class ZpYanImgServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(zpYanImgService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), zpYanImgService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zpYanImgService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class ZpYanImgServiceImplTest extends JUnitRunSupport {
 		assertFalse(zpYanImgService.selectByPrimaryKey(testZpYanImg).getModel().getDmDesc().equals(testString));
 		testZpYanImg.setId(0L);
 		testZpYanImg.setUuid("");
-		zpYanImgService.updateByPrimaryKey(testZpYanImg).getCode().equals(CME.error.getCode());
+		zpYanImgService.updateByPrimaryKey(testZpYanImg).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,7 +98,7 @@ public class ZpYanImgServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		ZpYanImg record = new ZpYanImg();
-		assertEquals(CME.unFindIdsToDelete.getCode(), zpYanImgService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), zpYanImgService.batchDeleteByPrimaryKey(record).getCode());
 		record.setIds(testZpYanImg.getId().toString());
 		zpYanImgService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", zpYanImgService.selectByPrimaryKey(testZpYanImg).getModel().getStatus().toString());

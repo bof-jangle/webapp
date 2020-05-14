@@ -46,18 +46,18 @@ public class BsMailConfigServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsMailConfig.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsMailConfigService.insertOrUpdate(testBsMailConfig).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMailConfigService.insertOrUpdate(testBsMailConfig).getCode());
 		testBsMailConfig.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsMailConfigService.insertOrUpdate(testBsMailConfig).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMailConfigService.insertOrUpdate(testBsMailConfig).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsMailConfigService.selectByPrimaryKey(testBsMailConfig).getModel());
-		assertEquals(CME.success.getCode(), bsMailConfigService.deleteByPrimaryKey(testBsMailConfig).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMailConfigService.deleteByPrimaryKey(testBsMailConfig).getCode());
 		assertEquals("2", bsMailConfigService.selectByPrimaryKey(testBsMailConfig).getModel().getStatus().toString());
 		testBsMailConfig.setId(1L);
-		assertEquals(CME.error.getCode(), bsMailConfigService.deleteByPrimaryKey(testBsMailConfig).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMailConfigService.deleteByPrimaryKey(testBsMailConfig).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsMailConfigServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsMailConfigService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsMailConfigService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMailConfigService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsMailConfigServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsMailConfigService.selectByPrimaryKey(testBsMailConfig).getModel().getDmDesc().equals(testString));
 		testBsMailConfig.setId(0L);
 		testBsMailConfig.setUuid("");
-		bsMailConfigService.updateByPrimaryKey(testBsMailConfig).getCode().equals(CME.error.getCode());
+		bsMailConfigService.updateByPrimaryKey(testBsMailConfig).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsMailConfigServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsMailConfig record = new BsMailConfig();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMailConfigService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMailConfigService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMailConfigService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMailConfigService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsMailConfig.getId().toString());
 		bsMailConfigService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsMailConfigService.selectByPrimaryKey(testBsMailConfig).getModel().getStatus().toString());

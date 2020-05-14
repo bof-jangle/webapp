@@ -48,22 +48,22 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	public void testInsert() {
 		login();
 		testZdLyb.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
 		testZdLyb.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
+		assertEquals(CME.ERROR.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
 		loginByTest();
 		testZdLyb.setId(0L);
 		testZdLyb.setUuid(null);
-		assertEquals(CME.success.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdLybService.insertOrUpdate(testZdLyb).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(zdLybService.selectByPrimaryKey(testZdLyb).getModel());
-		assertEquals(CME.success.getCode(), zdLybService.deleteByPrimaryKey(testZdLyb).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdLybService.deleteByPrimaryKey(testZdLyb).getCode());
 		assertEquals("2", zdLybService.selectByPrimaryKey(testZdLyb).getModel().getStatus().toString());
 		testZdLyb.setId(1L);
-		assertEquals(CME.error.getCode(), zdLybService.deleteByPrimaryKey(testZdLyb).getCode());
+		assertEquals(CME.ERROR.getCode(), zdLybService.deleteByPrimaryKey(testZdLyb).getCode());
 	}
 
 	@Test
@@ -77,7 +77,7 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(zdLybService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), zdLybService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdLybService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -88,7 +88,7 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 		assertFalse(zdLybService.selectByPrimaryKey(testZdLyb).getModel().getDmDesc().equals(testString));
 		testZdLyb.setId(0L);
 		testZdLyb.setUuid("");
-		zdLybService.updateByPrimaryKey(testZdLyb).getCode().equals(CME.error.getCode());
+		zdLybService.updateByPrimaryKey(testZdLyb).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -104,8 +104,8 @@ public class ZdLybServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		ZdLyb record = new ZdLyb();
-		assertEquals(CME.unFindIdsToDelete.getCode(), zdLybService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), zdLybService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), zdLybService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), zdLybService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testZdLyb.getId().toString());
 		zdLybService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", zdLybService.selectByPrimaryKey(testZdLyb).getModel().getStatus().toString());

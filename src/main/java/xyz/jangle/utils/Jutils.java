@@ -147,7 +147,7 @@ public class Jutils {
 	 */
 	public static String getUserUuid(BsUser2Service bsUser2Service) {
 		ResultModel<BsUser2> currentLoggedIn = bsUser2Service.currentLoggedIn();
-		if(currentLoggedIn == null || currentLoggedIn.getCode().equals(CME.unlogin.getCode())) {
+		if(currentLoggedIn == null || currentLoggedIn.getCode().equals(CME.UNLOGIN.getCode())) {
 			return null;
 		} else {
 			return currentLoggedIn.getModel().getUuid();

@@ -90,7 +90,7 @@ public class BsUser2Ctrl {
 		bsUser2.setId(0L);
 		bsUser2.setStatus(JConstant.status_9);
 		ResultModel<BsUser2> resultModel = bsUser2Service.insertOrUpdate(bsUser2);
-		if(resultModel.getCode().equals(CME.exception.getCode())) {
+		if(resultModel.getCode().equals(CME.EXCEPTION.getCode())) {
 			if(resultModel.getExceptionCause().getClass().equals(MySQLIntegrityConstraintViolationException.class)) {
 				if(resultModel.getMessage().contains("idx_bs_user2_jg_apply_ip")) {
 					resultModel.setMessage("您已经有一个用户正在申请了");

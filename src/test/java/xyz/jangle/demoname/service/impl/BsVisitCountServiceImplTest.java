@@ -46,18 +46,18 @@ public class BsVisitCountServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsVisitCount.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsVisitCountService.insertOrUpdate(testBsVisitCount).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsVisitCountService.insertOrUpdate(testBsVisitCount).getCode());
 		testBsVisitCount.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsVisitCountService.insertOrUpdate(testBsVisitCount).getCode());
+		assertEquals(CME.ERROR.getCode(), bsVisitCountService.insertOrUpdate(testBsVisitCount).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsVisitCountService.selectByPrimaryKey(testBsVisitCount).getModel());
-		assertEquals(CME.success.getCode(), bsVisitCountService.deleteByPrimaryKey(testBsVisitCount).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsVisitCountService.deleteByPrimaryKey(testBsVisitCount).getCode());
 		assertEquals("2", bsVisitCountService.selectByPrimaryKey(testBsVisitCount).getModel().getStatus().toString());
 		testBsVisitCount.setId(1L);
-		assertEquals(CME.error.getCode(), bsVisitCountService.deleteByPrimaryKey(testBsVisitCount).getCode());
+		assertEquals(CME.ERROR.getCode(), bsVisitCountService.deleteByPrimaryKey(testBsVisitCount).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsVisitCountServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsVisitCountService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsVisitCountService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsVisitCountService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsVisitCountServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsVisitCountService.selectByPrimaryKey(testBsVisitCount).getModel().getDmDesc().equals(testString));
 		testBsVisitCount.setId(0L);
 		testBsVisitCount.setUuid("");
-		bsVisitCountService.updateByPrimaryKey(testBsVisitCount).getCode().equals(CME.error.getCode());
+		bsVisitCountService.updateByPrimaryKey(testBsVisitCount).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsVisitCountServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsVisitCount record = new BsVisitCount();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsVisitCountService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsVisitCountService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsVisitCountService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsVisitCountService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsVisitCount.getId().toString());
 		bsVisitCountService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsVisitCountService.selectByPrimaryKey(testBsVisitCount).getModel().getStatus().toString());

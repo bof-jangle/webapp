@@ -40,26 +40,26 @@ public class BsRoleUserRServiceImpl extends BaseServiceImpl implements BsRoleUse
 		if (i > 0) {
 			return new ResultModel<BsRoleUserR>(record);
 		}
-		return new ResultModel<BsRoleUserR>(CME.error);
+		return new ResultModel<BsRoleUserR>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsRoleUserR> deleteByPrimaryKey(BsRoleUserR record) {
 		int i = bsRoleUserRMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsRoleUserR>(CME.success);
+			return new ResultModel<BsRoleUserR>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsRoleUserR>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsRoleUserR>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsRoleUserR> updateByPrimaryKey(BsRoleUserR record) {
 		int i = bsRoleUserRMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsRoleUserR>(CME.success);
+			return new ResultModel<BsRoleUserR>(CME.SUCCESS);
 		}
-		return new ResultModel<BsRoleUserR>(CME.error);
+		return new ResultModel<BsRoleUserR>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsRoleUserRServiceImpl extends BaseServiceImpl implements BsRoleUse
 	@Override
 	public ResultModel<BsRoleUserR> batchDeleteByPrimaryKey(BsRoleUserR record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsRoleUserR>(CME.unFindIdsToDelete);
+			return new ResultModel<BsRoleUserR>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsRoleUserRMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsRoleUserR>(CME.success);
+		return new ResultModel<BsRoleUserR>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsRoleUserR> batchDeleteByPrimaryKeyActually(BsRoleUserR record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsRoleUserR>(CME.unFindIdsToDelete);
+			return new ResultModel<BsRoleUserR>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsRoleUserRMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsRoleUserR>(CME.success);
+		return new ResultModel<BsRoleUserR>(CME.SUCCESS);
 	}
 
 	@Override

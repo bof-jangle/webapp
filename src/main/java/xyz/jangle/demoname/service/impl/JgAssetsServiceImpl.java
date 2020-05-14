@@ -45,26 +45,26 @@ public class JgAssetsServiceImpl extends BaseServiceImpl implements JgAssetsServ
 		if (i > 0) {
 			return new ResultModel<JgAssets>(record);
 		}
-		return new ResultModel<JgAssets>(CME.error);
+		return new ResultModel<JgAssets>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<JgAssets> deleteByPrimaryKey(JgAssets record) {
 		int i = jgAssetsMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<JgAssets>(CME.success);
+			return new ResultModel<JgAssets>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<JgAssets>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<JgAssets>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<JgAssets> updateByPrimaryKey(JgAssets record) {
 		int i = jgAssetsMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<JgAssets>(CME.success);
+			return new ResultModel<JgAssets>(CME.SUCCESS);
 		}
-		return new ResultModel<JgAssets>(CME.error);
+		return new ResultModel<JgAssets>(CME.ERROR);
 	}
 	
 	@Override
@@ -115,21 +115,21 @@ public class JgAssetsServiceImpl extends BaseServiceImpl implements JgAssetsServ
 	@Override
 	public ResultModel<JgAssets> batchDeleteByPrimaryKey(JgAssets record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<JgAssets>(CME.unFindIdsToDelete);
+			return new ResultModel<JgAssets>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		jgAssetsMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<JgAssets>(CME.success);
+		return new ResultModel<JgAssets>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<JgAssets> batchDeleteByPrimaryKeyActually(JgAssets record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<JgAssets>(CME.unFindIdsToDelete);
+			return new ResultModel<JgAssets>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		jgAssetsMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<JgAssets>(CME.success);
+		return new ResultModel<JgAssets>(CME.SUCCESS);
 	}
 
 	@Override

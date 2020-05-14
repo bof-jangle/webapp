@@ -29,7 +29,7 @@ public class BsExcuteHistoryCtrl {
 	@ResponseBody
 	ResultModel<BsExcuteHistory> insert(BsExcuteHistory record) {
 		bsExcuteHistoryService.insertOrUpdate(record);
-		return new ResultModel<>(CME.success);
+		return new ResultModel<>(CME.SUCCESS);
 	}
 
 	// 删

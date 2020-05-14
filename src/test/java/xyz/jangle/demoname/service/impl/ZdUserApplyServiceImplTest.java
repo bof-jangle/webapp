@@ -47,24 +47,24 @@ public class ZdUserApplyServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testZdUserApply.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
 		testZdUserApply.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
+		assertEquals(CME.ERROR.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
 		testZdUserApply.setId(0L);
 		testZdUserApply.setUuid(null);	//同一IP地址重复申请的情况
-		assertEquals(CME.zdUserApply_ip_repeat.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
+		assertEquals(CME.USER_APPLY_IP_REPEAT.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
 		testZdUserApply.setZdUserApplyIp(null);
-		assertEquals(CME.zdUserApply_ip_unsupport.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
+		assertEquals(CME.USER_APPLY_IP_UNSUPPORT.getCode(), zdUserApplyService.insertOrUpdate(testZdUserApply).getCode());
 		
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(zdUserApplyService.selectByPrimaryKey(testZdUserApply).getModel());
-		assertEquals(CME.success.getCode(), zdUserApplyService.deleteByPrimaryKey(testZdUserApply).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdUserApplyService.deleteByPrimaryKey(testZdUserApply).getCode());
 		assertEquals("2", zdUserApplyService.selectByPrimaryKey(testZdUserApply).getModel().getStatus().toString());
 		testZdUserApply.setId(1L);
-		assertEquals(CME.error.getCode(), zdUserApplyService.deleteByPrimaryKey(testZdUserApply).getCode());
+		assertEquals(CME.ERROR.getCode(), zdUserApplyService.deleteByPrimaryKey(testZdUserApply).getCode());
 	}
 
 	@Test
@@ -78,7 +78,7 @@ public class ZdUserApplyServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(zdUserApplyService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), zdUserApplyService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), zdUserApplyService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class ZdUserApplyServiceImplTest extends JUnitRunSupport {
 		assertFalse(zdUserApplyService.selectByPrimaryKey(testZdUserApply).getModel().getDmDesc().equals(testString));
 		testZdUserApply.setId(0L);
 		testZdUserApply.setUuid("");
-		zdUserApplyService.updateByPrimaryKey(testZdUserApply).getCode().equals(CME.error.getCode());
+		zdUserApplyService.updateByPrimaryKey(testZdUserApply).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -105,7 +105,7 @@ public class ZdUserApplyServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		ZdUserApply record = new ZdUserApply();
-		assertEquals(CME.unFindIdsToDelete.getCode(), zdUserApplyService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), zdUserApplyService.batchDeleteByPrimaryKey(record).getCode());
 		record.setIds(testZdUserApply.getId().toString());
 		zdUserApplyService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", zdUserApplyService.selectByPrimaryKey(testZdUserApply).getModel().getStatus().toString());

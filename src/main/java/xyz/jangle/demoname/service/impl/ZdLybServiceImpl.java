@@ -52,26 +52,26 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 		if (i > 0) {
 			return new ResultModel<ZdLyb>(record);
 		}
-		return new ResultModel<ZdLyb>(CME.error);
+		return new ResultModel<ZdLyb>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<ZdLyb> deleteByPrimaryKey(ZdLyb record) {
 		int i = zdLybMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<ZdLyb>(CME.success);
+			return new ResultModel<ZdLyb>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<ZdLyb>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<ZdLyb>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<ZdLyb> updateByPrimaryKey(ZdLyb record) {
 		int i = zdLybMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<ZdLyb>(CME.success);
+			return new ResultModel<ZdLyb>(CME.SUCCESS);
 		}
-		return new ResultModel<ZdLyb>(CME.error);
+		return new ResultModel<ZdLyb>(CME.ERROR);
 	}
 	
 	@Override
@@ -104,21 +104,21 @@ public class ZdLybServiceImpl extends BaseServiceImpl implements ZdLybService {
 	@Override
 	public ResultModel<ZdLyb> batchDeleteByPrimaryKey(ZdLyb record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<ZdLyb>(CME.unFindIdsToDelete);
+			return new ResultModel<ZdLyb>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		zdLybMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<ZdLyb>(CME.success);
+		return new ResultModel<ZdLyb>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<ZdLyb> batchDeleteByPrimaryKeyActually(ZdLyb record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<ZdLyb>(CME.unFindIdsToDelete);
+			return new ResultModel<ZdLyb>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		zdLybMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<ZdLyb>(CME.success);
+		return new ResultModel<ZdLyb>(CME.SUCCESS);
 	}
 
 	@Override

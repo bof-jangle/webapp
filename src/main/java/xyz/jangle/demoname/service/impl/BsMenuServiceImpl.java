@@ -40,26 +40,26 @@ public class BsMenuServiceImpl extends BaseServiceImpl implements BsMenuService 
 		if (i > 0) {
 			return new ResultModel<BsMenu>(record);
 		}
-		return new ResultModel<BsMenu>(CME.error);
+		return new ResultModel<BsMenu>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsMenu> deleteByPrimaryKey(BsMenu record) {
 		int i = bsMenuMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsMenu>(CME.success);
+			return new ResultModel<BsMenu>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsMenu>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsMenu>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsMenu> updateByPrimaryKey(BsMenu record) {
 		int i = bsMenuMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsMenu>(CME.success);
+			return new ResultModel<BsMenu>(CME.SUCCESS);
 		}
-		return new ResultModel<BsMenu>(CME.error);
+		return new ResultModel<BsMenu>(CME.ERROR);
 	}
 	
 	@Override
@@ -98,21 +98,21 @@ public class BsMenuServiceImpl extends BaseServiceImpl implements BsMenuService 
 	@Override
 	public ResultModel<BsMenu> batchDeleteByPrimaryKey(BsMenu record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsMenu>(CME.unFindIdsToDelete);
+			return new ResultModel<BsMenu>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsMenuMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsMenu>(CME.success);
+		return new ResultModel<BsMenu>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsMenu> batchDeleteByPrimaryKeyActually(BsMenu record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsMenu>(CME.unFindIdsToDelete);
+			return new ResultModel<BsMenu>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsMenuMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsMenu>(CME.success);
+		return new ResultModel<BsMenu>(CME.SUCCESS);
 	}
 
 	@Override

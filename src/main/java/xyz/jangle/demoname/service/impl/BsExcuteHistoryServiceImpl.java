@@ -45,19 +45,19 @@ public class BsExcuteHistoryServiceImpl extends BaseServiceImpl implements BsExc
 	public ResultModel<BsExcuteHistory> deleteByPrimaryKey(BsExcuteHistory record) {
 		int i = bsExcuteHistoryMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsExcuteHistory>(CME.success);
+			return new ResultModel<BsExcuteHistory>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsExcuteHistory>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsExcuteHistory>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsExcuteHistory> updateByPrimaryKey(BsExcuteHistory record) {
 		int i = bsExcuteHistoryMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsExcuteHistory>(CME.success);
+			return new ResultModel<BsExcuteHistory>(CME.SUCCESS);
 		}
-		return new ResultModel<BsExcuteHistory>(CME.error);
+		return new ResultModel<BsExcuteHistory>(CME.ERROR);
 	}
 	
 	@Override
@@ -90,21 +90,21 @@ public class BsExcuteHistoryServiceImpl extends BaseServiceImpl implements BsExc
 	@Override
 	public ResultModel<BsExcuteHistory> batchDeleteByPrimaryKey(BsExcuteHistory record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsExcuteHistory>(CME.unFindIdsToDelete);
+			return new ResultModel<BsExcuteHistory>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsExcuteHistoryMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsExcuteHistory>(CME.success);
+		return new ResultModel<BsExcuteHistory>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsExcuteHistory> batchDeleteByPrimaryKeyActually(BsExcuteHistory record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsExcuteHistory>(CME.unFindIdsToDelete);
+			return new ResultModel<BsExcuteHistory>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsExcuteHistoryMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsExcuteHistory>(CME.success);
+		return new ResultModel<BsExcuteHistory>(CME.SUCCESS);
 	}
 
 	@Override

@@ -55,7 +55,7 @@ public class BsUserCtrl {
 		bsUser.setId(0L);
 		bsUser.setUsrStatus(JConstant.status_9);
 		ResultModel<BsUser> resultModel = bsUserService.insertOrUpdate(bsUser);
-		if(resultModel.getCode().equals(CME.exception.getCode())) {
+		if(resultModel.getCode().equals(CME.EXCEPTION.getCode())) {
 			if(resultModel.getExceptionCause().getClass().equals(MySQLIntegrityConstraintViolationException.class)) {
 				if(resultModel.getMessage().contains("idx_bs_user_extends1")) {
 					resultModel.setMessage("您已经有一个用户正在申请了");

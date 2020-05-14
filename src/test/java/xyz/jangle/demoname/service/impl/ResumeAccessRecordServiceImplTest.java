@@ -46,18 +46,18 @@ public class ResumeAccessRecordServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testResumeAccessRecord.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), resumeAccessRecordService.insertOrUpdate(testResumeAccessRecord).getCode());
+		assertEquals(CME.SUCCESS.getCode(), resumeAccessRecordService.insertOrUpdate(testResumeAccessRecord).getCode());
 		testResumeAccessRecord.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), resumeAccessRecordService.insertOrUpdate(testResumeAccessRecord).getCode());
+		assertEquals(CME.ERROR.getCode(), resumeAccessRecordService.insertOrUpdate(testResumeAccessRecord).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(resumeAccessRecordService.selectByPrimaryKey(testResumeAccessRecord).getModel());
-		assertEquals(CME.success.getCode(), resumeAccessRecordService.deleteByPrimaryKey(testResumeAccessRecord).getCode());
+		assertEquals(CME.SUCCESS.getCode(), resumeAccessRecordService.deleteByPrimaryKey(testResumeAccessRecord).getCode());
 		assertEquals("2", resumeAccessRecordService.selectByPrimaryKey(testResumeAccessRecord).getModel().getStatus().toString());
 		testResumeAccessRecord.setId(1L);
-		assertEquals(CME.error.getCode(), resumeAccessRecordService.deleteByPrimaryKey(testResumeAccessRecord).getCode());
+		assertEquals(CME.ERROR.getCode(), resumeAccessRecordService.deleteByPrimaryKey(testResumeAccessRecord).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class ResumeAccessRecordServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(resumeAccessRecordService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), resumeAccessRecordService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), resumeAccessRecordService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class ResumeAccessRecordServiceImplTest extends JUnitRunSupport {
 		assertFalse(resumeAccessRecordService.selectByPrimaryKey(testResumeAccessRecord).getModel().getDmDesc().equals(testString));
 		testResumeAccessRecord.setId(0L);
 		testResumeAccessRecord.setUuid("");
-		resumeAccessRecordService.updateByPrimaryKey(testResumeAccessRecord).getCode().equals(CME.error.getCode());
+		resumeAccessRecordService.updateByPrimaryKey(testResumeAccessRecord).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class ResumeAccessRecordServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		ResumeAccessRecord record = new ResumeAccessRecord();
-		assertEquals(CME.unFindIdsToDelete.getCode(), resumeAccessRecordService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), resumeAccessRecordService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), resumeAccessRecordService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), resumeAccessRecordService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testResumeAccessRecord.getId().toString());
 		resumeAccessRecordService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", resumeAccessRecordService.selectByPrimaryKey(testResumeAccessRecord).getModel().getStatus().toString());

@@ -46,7 +46,7 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 			int countByJgCode = bsUser2Mapper.countByJgCode(record);
 			if(countByJgCode > 0) {
 				// 存在重复的code
-				return new ResultModel<BsUser2>(CME.bsUser2_jgCode_repeat); 
+				return new ResultModel<BsUser2>(CME.BSUSER2_JGCODE_REPEAT); 
 			}
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			i = bsUser2Mapper.insert(record);
@@ -54,26 +54,26 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 		if (i > 0) {
 			return new ResultModel<BsUser2>(record);
 		}
-		return new ResultModel<BsUser2>(CME.error);
+		return new ResultModel<BsUser2>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsUser2> deleteByPrimaryKey(BsUser2 record) {
 		int i = bsUser2Mapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsUser2>(CME.success);
+			return new ResultModel<BsUser2>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsUser2>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsUser2>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsUser2> updateByPrimaryKey(BsUser2 record) {
 		int i = bsUser2Mapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsUser2>(CME.success);
+			return new ResultModel<BsUser2>(CME.SUCCESS);
 		}
-		return new ResultModel<BsUser2>(CME.error);
+		return new ResultModel<BsUser2>(CME.ERROR);
 	}
 	
 	@Override
@@ -106,11 +106,11 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 	@Override
 	public ResultModel<BsUser2> batchDeleteByPrimaryKey(BsUser2 record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsUser2>(CME.unFindIdsToDelete);
+			return new ResultModel<BsUser2>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsUser2Mapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsUser2>(CME.success);
+		return new ResultModel<BsUser2>(CME.SUCCESS);
 	}
 	
 	@Override
@@ -131,12 +131,12 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 			code = httpSession.getAttribute(JConstant.code);
 		} catch (Exception e) {
 			logger.error("获取Session的code属性时异常",e);
-			return new ResultModel<>(CME.unlogin);
+			return new ResultModel<>(CME.UNLOGIN);
 		}
 		logger.debug("bsUser2.code:" +  code);
 		BsUser2 bsUser2 = UserCacheMap2.get(UserCacheMap2.codePrev + code); // 如果登陆过，则缓存中会有信息。
 		if(bsUser2 == null) {
-			return new ResultModel<>(CME.unlogin);
+			return new ResultModel<>(CME.UNLOGIN);
 		}
 		bsUser2.setCity(""+httpSession.getAttribute(JConstant.city));
 		bsUser2.setIp(""+httpSession.getAttribute(JConstant.ip));
@@ -155,7 +155,7 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 		}
 		// 数据库校验未通过，则提示错误
 		if (model == null || !verifiedPassword(code,password,timeStamp,model)) {
-			return new ResultModel<BsUser2>(CME.loginFailed);
+			return new ResultModel<BsUser2>(CME.LOGIN_FAILED);
 		}
 //		model.setJgPassword(""); // 将密码置空
 		model.setCity((String) httpSession.getAttribute(JConstant.city));
@@ -183,18 +183,18 @@ public class BsUser2ServiceImpl extends BaseServiceImpl implements BsUser2Servic
 	public ResultModel<BsUser2> passApply(BsUser2 bsUser2) {
 		bsUser2.setStatus(JConstant.status_1);
 		if(bsUser2Mapper.updateStatusById(bsUser2) == 1) {
-			return new ResultModel<BsUser2>(CME.success);
+			return new ResultModel<BsUser2>(CME.SUCCESS);
 		}
-		return new ResultModel<>(CME.error);
+		return new ResultModel<>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsUser2> noPassApply(BsUser2 bsUser2) {
 		bsUser2.setStatus(JConstant.status_4);
 		if(bsUser2Mapper.updateStatusById(bsUser2) == 1) {
-			return new ResultModel<BsUser2>(CME.success);
+			return new ResultModel<BsUser2>(CME.SUCCESS);
 		}
-		return new ResultModel<>(CME.error);
+		return new ResultModel<>(CME.ERROR);
 	}
 	
 	

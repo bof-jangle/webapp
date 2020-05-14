@@ -40,13 +40,13 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsUser.setId(4L);
-		assertTrue(bsUserService.insertOrUpdate(testBsUser).getCode().equals(CME.error.getCode()));
+		assertTrue(bsUserService.insertOrUpdate(testBsUser).getCode().equals(CME.ERROR.getCode()));
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsUserService.selectByPrimaryKey(testBsUser).getModel());
-		assertTrue(bsUserService.deleteByPrimaryKey(testBsUser).getCode().equals(CME.success.getCode()));
+		assertTrue(bsUserService.deleteByPrimaryKey(testBsUser).getCode().equals(CME.SUCCESS.getCode()));
 		assertEquals("2", bsUserService.selectByPrimaryKey(testBsUser).getModel().getUsrStatus()+"");
 //		testBsUser.setId(1L);
 //		assertTrue(bsUserService.deleteByPrimaryKey(testBsUser).getCode().equals(CME.error.getCode()));
@@ -63,7 +63,7 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsUserService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertTrue(bsUserService.selectByParam(param).getCode().equals(CME.success.getCode()));
+		assertTrue(bsUserService.selectByParam(param).getCode().equals(CME.SUCCESS.getCode()));
 	}
 
 	@Test
@@ -73,7 +73,7 @@ public class BsUserServiceImplTest extends JUnitRunSupport {
 		bsUserService.updateByPrimaryKey(testBsUser);
 		assertFalse(bsUserService.selectByPrimaryKey(testBsUser).getModel().getUsrName().equals(testString));
 		testBsUser.setUsrId(0);
-		bsUserService.updateByPrimaryKey(testBsUser).getCode().equals(CME.error.getCode());
+		bsUserService.updateByPrimaryKey(testBsUser).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test

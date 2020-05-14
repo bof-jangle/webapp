@@ -46,18 +46,18 @@ public class BsMenuRoleRServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsMenuRoleR.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsMenuRoleRService.insertOrUpdate(testBsMenuRoleR).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMenuRoleRService.insertOrUpdate(testBsMenuRoleR).getCode());
 		testBsMenuRoleR.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsMenuRoleRService.insertOrUpdate(testBsMenuRoleR).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMenuRoleRService.insertOrUpdate(testBsMenuRoleR).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsMenuRoleRService.selectByPrimaryKey(testBsMenuRoleR).getModel());
-		assertEquals(CME.success.getCode(), bsMenuRoleRService.deleteByPrimaryKey(testBsMenuRoleR).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMenuRoleRService.deleteByPrimaryKey(testBsMenuRoleR).getCode());
 		assertEquals("2", bsMenuRoleRService.selectByPrimaryKey(testBsMenuRoleR).getModel().getStatus().toString());
 		testBsMenuRoleR.setId(1L);
-		assertEquals(CME.error.getCode(), bsMenuRoleRService.deleteByPrimaryKey(testBsMenuRoleR).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMenuRoleRService.deleteByPrimaryKey(testBsMenuRoleR).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsMenuRoleRServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsMenuRoleRService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsMenuRoleRService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMenuRoleRService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsMenuRoleRServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsMenuRoleRService.selectByPrimaryKey(testBsMenuRoleR).getModel().getDmDesc().equals(testString));
 		testBsMenuRoleR.setId(0L);
 		testBsMenuRoleR.setUuid("");
-		bsMenuRoleRService.updateByPrimaryKey(testBsMenuRoleR).getCode().equals(CME.error.getCode());
+		bsMenuRoleRService.updateByPrimaryKey(testBsMenuRoleR).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsMenuRoleRServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsMenuRoleR record = new BsMenuRoleR();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMenuRoleRService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMenuRoleRService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMenuRoleRService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMenuRoleRService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsMenuRoleR.getId().toString());
 		bsMenuRoleRService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsMenuRoleRService.selectByPrimaryKey(testBsMenuRoleR).getModel().getStatus().toString());

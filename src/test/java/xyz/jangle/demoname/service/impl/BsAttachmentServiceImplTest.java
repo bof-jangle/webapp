@@ -47,18 +47,18 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsAttachment.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsAttachmentService.insertOrUpdate(testBsAttachment).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsAttachmentService.insertOrUpdate(testBsAttachment).getCode());
 		testBsAttachment.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsAttachmentService.insertOrUpdate(testBsAttachment).getCode());
+		assertEquals(CME.ERROR.getCode(), bsAttachmentService.insertOrUpdate(testBsAttachment).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel());
-		assertEquals(CME.success.getCode(), bsAttachmentService.deleteByPrimaryKey(testBsAttachment).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsAttachmentService.deleteByPrimaryKey(testBsAttachment).getCode());
 		assertEquals(BsAttachment.tableName+"__deleted", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getAttSourceType().toString());
 		testBsAttachment.setId(1L);
-		assertEquals(CME.error.getCode(), bsAttachmentService.deleteByPrimaryKey(testBsAttachment).getCode());
+		assertEquals(CME.ERROR.getCode(), bsAttachmentService.deleteByPrimaryKey(testBsAttachment).getCode());
 	}
 
 	@Test
@@ -72,7 +72,7 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsAttachmentService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsAttachmentService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsAttachmentService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -83,7 +83,7 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getDmDesc().equals(testString));
 		testBsAttachment.setId(0L);
 		testBsAttachment.setUuid("");
-		bsAttachmentService.updateByPrimaryKey(testBsAttachment).getCode().equals(CME.error.getCode());
+		bsAttachmentService.updateByPrimaryKey(testBsAttachment).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -99,8 +99,8 @@ public class BsAttachmentServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsAttachment record = new BsAttachment();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsAttachmentService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsAttachmentService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsAttachmentService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsAttachmentService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsAttachment.getId().toString());
 		bsAttachmentService.batchDeleteByPrimaryKey(record);
 		assertEquals(BsAttachment.tableName+"__deleted", bsAttachmentService.selectByPrimaryKey(testBsAttachment).getModel().getAttSourceType().toString());

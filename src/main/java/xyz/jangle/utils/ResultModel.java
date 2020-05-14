@@ -11,9 +11,9 @@ public class ResultModel<T> {
 	/** model */
 	private T model;
 	/** 返回信息编码 */
-	private String code = CME.success.getCode();
+	private String code = CME.SUCCESS.getCode();
 	/** 返回信息 */
-	private String message = CME.success.getMessage();
+	private String message = CME.SUCCESS.getMessage();
 	/** 总数统计 */
 	private Long count;
 	/** 异常类型 */

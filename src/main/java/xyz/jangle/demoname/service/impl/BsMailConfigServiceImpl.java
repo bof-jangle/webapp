@@ -40,26 +40,26 @@ public class BsMailConfigServiceImpl extends BaseServiceImpl implements BsMailCo
 		if (i > 0) {
 			return new ResultModel<BsMailConfig>(record);
 		}
-		return new ResultModel<BsMailConfig>(CME.error);
+		return new ResultModel<BsMailConfig>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsMailConfig> deleteByPrimaryKey(BsMailConfig record) {
 		int i = bsMailConfigMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsMailConfig>(CME.success);
+			return new ResultModel<BsMailConfig>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsMailConfig>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsMailConfig>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsMailConfig> updateByPrimaryKey(BsMailConfig record) {
 		int i = bsMailConfigMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsMailConfig>(CME.success);
+			return new ResultModel<BsMailConfig>(CME.SUCCESS);
 		}
-		return new ResultModel<BsMailConfig>(CME.error);
+		return new ResultModel<BsMailConfig>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsMailConfigServiceImpl extends BaseServiceImpl implements BsMailCo
 	@Override
 	public ResultModel<BsMailConfig> batchDeleteByPrimaryKey(BsMailConfig record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsMailConfig>(CME.unFindIdsToDelete);
+			return new ResultModel<BsMailConfig>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsMailConfigMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsMailConfig>(CME.success);
+		return new ResultModel<BsMailConfig>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsMailConfig> batchDeleteByPrimaryKeyActually(BsMailConfig record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsMailConfig>(CME.unFindIdsToDelete);
+			return new ResultModel<BsMailConfig>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsMailConfigMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsMailConfig>(CME.success);
+		return new ResultModel<BsMailConfig>(CME.SUCCESS);
 	}
 	
 	@Override

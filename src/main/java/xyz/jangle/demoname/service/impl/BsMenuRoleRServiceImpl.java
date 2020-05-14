@@ -40,26 +40,26 @@ public class BsMenuRoleRServiceImpl extends BaseServiceImpl implements BsMenuRol
 		if (i > 0) {
 			return new ResultModel<BsMenuRoleR>(record);
 		}
-		return new ResultModel<BsMenuRoleR>(CME.error);
+		return new ResultModel<BsMenuRoleR>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsMenuRoleR> deleteByPrimaryKey(BsMenuRoleR record) {
 		int i = bsMenuRoleRMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsMenuRoleR>(CME.success);
+			return new ResultModel<BsMenuRoleR>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsMenuRoleR>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsMenuRoleR>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsMenuRoleR> updateByPrimaryKey(BsMenuRoleR record) {
 		int i = bsMenuRoleRMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsMenuRoleR>(CME.success);
+			return new ResultModel<BsMenuRoleR>(CME.SUCCESS);
 		}
-		return new ResultModel<BsMenuRoleR>(CME.error);
+		return new ResultModel<BsMenuRoleR>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsMenuRoleRServiceImpl extends BaseServiceImpl implements BsMenuRol
 	@Override
 	public ResultModel<BsMenuRoleR> batchDeleteByPrimaryKey(BsMenuRoleR record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsMenuRoleR>(CME.unFindIdsToDelete);
+			return new ResultModel<BsMenuRoleR>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsMenuRoleRMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsMenuRoleR>(CME.success);
+		return new ResultModel<BsMenuRoleR>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsMenuRoleR> batchDeleteByPrimaryKeyActually(BsMenuRoleR record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsMenuRoleR>(CME.unFindIdsToDelete);
+			return new ResultModel<BsMenuRoleR>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsMenuRoleRMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsMenuRoleR>(CME.success);
+		return new ResultModel<BsMenuRoleR>(CME.SUCCESS);
 	}
 
 	@Override

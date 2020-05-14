@@ -40,26 +40,26 @@ public class BsVisitCountServiceImpl extends BaseServiceImpl implements BsVisitC
 		if (i > 0) {
 			return new ResultModel<BsVisitCount>(record);
 		}
-		return new ResultModel<BsVisitCount>(CME.error);
+		return new ResultModel<BsVisitCount>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsVisitCount> deleteByPrimaryKey(BsVisitCount record) {
 		int i = bsVisitCountMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsVisitCount>(CME.success);
+			return new ResultModel<BsVisitCount>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsVisitCount>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsVisitCount>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsVisitCount> updateByPrimaryKey(BsVisitCount record) {
 		int i = bsVisitCountMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsVisitCount>(CME.success);
+			return new ResultModel<BsVisitCount>(CME.SUCCESS);
 		}
-		return new ResultModel<BsVisitCount>(CME.error);
+		return new ResultModel<BsVisitCount>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsVisitCountServiceImpl extends BaseServiceImpl implements BsVisitC
 	@Override
 	public ResultModel<BsVisitCount> batchDeleteByPrimaryKey(BsVisitCount record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsVisitCount>(CME.unFindIdsToDelete);
+			return new ResultModel<BsVisitCount>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsVisitCountMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsVisitCount>(CME.success);
+		return new ResultModel<BsVisitCount>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsVisitCount> batchDeleteByPrimaryKeyActually(BsVisitCount record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsVisitCount>(CME.unFindIdsToDelete);
+			return new ResultModel<BsVisitCount>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsVisitCountMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsVisitCount>(CME.success);
+		return new ResultModel<BsVisitCount>(CME.SUCCESS);
 	}
 
 	@Override

@@ -40,26 +40,26 @@ public class BsRoleServiceImpl extends BaseServiceImpl implements BsRoleService 
 		if (i > 0) {
 			return new ResultModel<BsRole>(record);
 		}
-		return new ResultModel<BsRole>(CME.error);
+		return new ResultModel<BsRole>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsRole> deleteByPrimaryKey(BsRole record) {
 		int i = bsRoleMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsRole>(CME.success);
+			return new ResultModel<BsRole>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsRole>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsRole>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsRole> updateByPrimaryKey(BsRole record) {
 		int i = bsRoleMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsRole>(CME.success);
+			return new ResultModel<BsRole>(CME.SUCCESS);
 		}
-		return new ResultModel<BsRole>(CME.error);
+		return new ResultModel<BsRole>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsRoleServiceImpl extends BaseServiceImpl implements BsRoleService 
 	@Override
 	public ResultModel<BsRole> batchDeleteByPrimaryKey(BsRole record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsRole>(CME.unFindIdsToDelete);
+			return new ResultModel<BsRole>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsRoleMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsRole>(CME.success);
+		return new ResultModel<BsRole>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsRole> batchDeleteByPrimaryKeyActually(BsRole record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsRole>(CME.unFindIdsToDelete);
+			return new ResultModel<BsRole>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsRoleMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsRole>(CME.success);
+		return new ResultModel<BsRole>(CME.SUCCESS);
 	}
 
 	@Override

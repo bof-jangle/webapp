@@ -40,26 +40,26 @@ public class BsTeamServiceImpl extends BaseServiceImpl implements BsTeamService 
 		if (i > 0) {
 			return new ResultModel<BsTeam>(record);
 		}
-		return new ResultModel<BsTeam>(CME.error);
+		return new ResultModel<BsTeam>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsTeam> deleteByPrimaryKey(BsTeam record) {
 		int i = bsTeamMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsTeam>(CME.success);
+			return new ResultModel<BsTeam>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsTeam>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsTeam>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsTeam> updateByPrimaryKey(BsTeam record) {
 		int i = bsTeamMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsTeam>(CME.success);
+			return new ResultModel<BsTeam>(CME.SUCCESS);
 		}
-		return new ResultModel<BsTeam>(CME.error);
+		return new ResultModel<BsTeam>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsTeamServiceImpl extends BaseServiceImpl implements BsTeamService 
 	@Override
 	public ResultModel<BsTeam> batchDeleteByPrimaryKey(BsTeam record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsTeam>(CME.unFindIdsToDelete);
+			return new ResultModel<BsTeam>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsTeamMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsTeam>(CME.success);
+		return new ResultModel<BsTeam>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsTeam> batchDeleteByPrimaryKeyActually(BsTeam record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsTeam>(CME.unFindIdsToDelete);
+			return new ResultModel<BsTeam>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsTeamMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsTeam>(CME.success);
+		return new ResultModel<BsTeam>(CME.SUCCESS);
 	}
 
 	@Override

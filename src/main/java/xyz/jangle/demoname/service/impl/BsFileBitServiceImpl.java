@@ -34,7 +34,7 @@ public class BsFileBitServiceImpl extends BaseServiceImpl implements BsFileBitSe
 		if (i > 0) {
 			return new ResultModel<BsFileBit>(record);
 		}
-		return new ResultModel<BsFileBit>(CME.error);
+		return new ResultModel<BsFileBit>(CME.ERROR);
 	}
 	
 	@Override
@@ -65,11 +65,11 @@ public class BsFileBitServiceImpl extends BaseServiceImpl implements BsFileBitSe
 	@Override
 	public ResultModel<BsFileBit> batchDeleteByPrimaryKeyActually(BsFileBit record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsFileBit>(CME.unFindIdsToDelete);
+			return new ResultModel<BsFileBit>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsFileBitMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsFileBit>(CME.success);
+		return new ResultModel<BsFileBit>(CME.SUCCESS);
 	}
 
 	@Override

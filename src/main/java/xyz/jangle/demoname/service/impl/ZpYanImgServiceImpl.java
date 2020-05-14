@@ -40,26 +40,26 @@ public class ZpYanImgServiceImpl extends BaseServiceImpl implements ZpYanImgServ
 		if (i > 0) {
 			return new ResultModel<ZpYanImg>(record);
 		}
-		return new ResultModel<ZpYanImg>(CME.error);
+		return new ResultModel<ZpYanImg>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<ZpYanImg> deleteByPrimaryKey(ZpYanImg record) {
 		int i = zpYanImgMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<ZpYanImg>(CME.success);
+			return new ResultModel<ZpYanImg>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<ZpYanImg>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<ZpYanImg>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<ZpYanImg> updateByPrimaryKey(ZpYanImg record) {
 		int i = zpYanImgMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<ZpYanImg>(CME.success);
+			return new ResultModel<ZpYanImg>(CME.SUCCESS);
 		}
-		return new ResultModel<ZpYanImg>(CME.error);
+		return new ResultModel<ZpYanImg>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,11 +92,11 @@ public class ZpYanImgServiceImpl extends BaseServiceImpl implements ZpYanImgServ
 	@Override
 	public ResultModel<ZpYanImg> batchDeleteByPrimaryKey(ZpYanImg record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<ZpYanImg>(CME.unFindIdsToDelete);
+			return new ResultModel<ZpYanImg>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		zpYanImgMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<ZpYanImg>(CME.success);
+		return new ResultModel<ZpYanImg>(CME.SUCCESS);
 	}
 
 }

@@ -58,7 +58,7 @@ public class BsFileBitServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsFileBit record = new BsFileBit();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsFileBitService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsFileBitService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsFileBit.getId().toString());
 		bsFileBitService.batchDeleteByPrimaryKeyActually(record);
 		assertEquals(null, bsFileBitService.selectByPrimaryKey(testBsFileBit).getModel());

@@ -94,7 +94,7 @@ public class ExecuteIntercept {
 		} catch (Throwable e) {
 			logger.error(e.toString());
 			txManager.rollback(status);//回滚事务
-			ResultModelMap<Object> resm = new ResultModelMap<Object>(CME.exception);
+			ResultModelMap<Object> resm = new ResultModelMap<Object>(CME.EXCEPTION);
 			resm.appendMessage(e.getMessage());
 			resm.setExceptionCause(e.getCause());
 			return resm;

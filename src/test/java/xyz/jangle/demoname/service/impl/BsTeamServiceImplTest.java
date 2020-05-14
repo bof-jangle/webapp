@@ -46,18 +46,18 @@ public class BsTeamServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsTeam.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsTeamService.insertOrUpdate(testBsTeam).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsTeamService.insertOrUpdate(testBsTeam).getCode());
 		testBsTeam.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsTeamService.insertOrUpdate(testBsTeam).getCode());
+		assertEquals(CME.ERROR.getCode(), bsTeamService.insertOrUpdate(testBsTeam).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsTeamService.selectByPrimaryKey(testBsTeam).getModel());
-		assertEquals(CME.success.getCode(), bsTeamService.deleteByPrimaryKey(testBsTeam).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsTeamService.deleteByPrimaryKey(testBsTeam).getCode());
 		assertEquals("2", bsTeamService.selectByPrimaryKey(testBsTeam).getModel().getStatus().toString());
 		testBsTeam.setId(1L);
-		assertEquals(CME.error.getCode(), bsTeamService.deleteByPrimaryKey(testBsTeam).getCode());
+		assertEquals(CME.ERROR.getCode(), bsTeamService.deleteByPrimaryKey(testBsTeam).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsTeamServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsTeamService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsTeamService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsTeamService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsTeamServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsTeamService.selectByPrimaryKey(testBsTeam).getModel().getDmDesc().equals(testString));
 		testBsTeam.setId(0L);
 		testBsTeam.setUuid("");
-		bsTeamService.updateByPrimaryKey(testBsTeam).getCode().equals(CME.error.getCode());
+		bsTeamService.updateByPrimaryKey(testBsTeam).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsTeamServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsTeam record = new BsTeam();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsTeamService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsTeamService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsTeamService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsTeamService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsTeam.getId().toString());
 		bsTeamService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsTeamService.selectByPrimaryKey(testBsTeam).getModel().getStatus().toString());

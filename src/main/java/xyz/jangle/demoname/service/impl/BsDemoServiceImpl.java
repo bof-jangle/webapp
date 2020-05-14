@@ -40,26 +40,26 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 		if (i > 0) {
 			return new ResultModel<BsDemo>(record);
 		}
-		return new ResultModel<BsDemo>(CME.error);
+		return new ResultModel<BsDemo>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsDemo> deleteByPrimaryKey(BsDemo record) {
 		int i = bsDemoMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsDemo>(CME.success);
+			return new ResultModel<BsDemo>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsDemo>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsDemo>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsDemo> updateByPrimaryKey(BsDemo record) {
 		int i = bsDemoMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsDemo>(CME.success);
+			return new ResultModel<BsDemo>(CME.SUCCESS);
 		}
-		return new ResultModel<BsDemo>(CME.error);
+		return new ResultModel<BsDemo>(CME.ERROR);
 	}
 	
 	@Override
@@ -95,11 +95,11 @@ public class BsDemoServiceImpl extends BaseServiceImpl implements BsDemoService 
 	@Override
 	public ResultModel<BsDemo> batchDeleteByPrimaryKey(BsDemo record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsDemo>(CME.unFindIdsToDelete);
+			return new ResultModel<BsDemo>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsDemoMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsDemo>(CME.success);
+		return new ResultModel<BsDemo>(CME.SUCCESS);
 	}
 
 }

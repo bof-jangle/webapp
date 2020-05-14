@@ -46,18 +46,18 @@ public class JgAssetsServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testJgAssets.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), jgAssetsService.insertOrUpdate(testJgAssets).getCode());
+		assertEquals(CME.SUCCESS.getCode(), jgAssetsService.insertOrUpdate(testJgAssets).getCode());
 		testJgAssets.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), jgAssetsService.insertOrUpdate(testJgAssets).getCode());
+		assertEquals(CME.ERROR.getCode(), jgAssetsService.insertOrUpdate(testJgAssets).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(jgAssetsService.selectByPrimaryKey(testJgAssets).getModel());
-		assertEquals(CME.success.getCode(), jgAssetsService.deleteByPrimaryKey(testJgAssets).getCode());
+		assertEquals(CME.SUCCESS.getCode(), jgAssetsService.deleteByPrimaryKey(testJgAssets).getCode());
 		assertEquals("2", jgAssetsService.selectByPrimaryKey(testJgAssets).getModel().getStatus().toString());
 		testJgAssets.setId(1L);
-		assertEquals(CME.error.getCode(), jgAssetsService.deleteByPrimaryKey(testJgAssets).getCode());
+		assertEquals(CME.ERROR.getCode(), jgAssetsService.deleteByPrimaryKey(testJgAssets).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class JgAssetsServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(jgAssetsService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), jgAssetsService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), jgAssetsService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class JgAssetsServiceImplTest extends JUnitRunSupport {
 		assertFalse(jgAssetsService.selectByPrimaryKey(testJgAssets).getModel().getDmDesc().equals(testString));
 		testJgAssets.setId(0L);
 		testJgAssets.setUuid("");
-		jgAssetsService.updateByPrimaryKey(testJgAssets).getCode().equals(CME.error.getCode());
+		jgAssetsService.updateByPrimaryKey(testJgAssets).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class JgAssetsServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		JgAssets record = new JgAssets();
-		assertEquals(CME.unFindIdsToDelete.getCode(), jgAssetsService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), jgAssetsService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), jgAssetsService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), jgAssetsService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testJgAssets.getId().toString());
 		jgAssetsService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", jgAssetsService.selectByPrimaryKey(testJgAssets).getModel().getStatus().toString());

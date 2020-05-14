@@ -40,26 +40,26 @@ public class BsTestServiceImpl extends BaseServiceImpl implements BsTestService 
 		if (i > 0) {
 			return new ResultModel<BsTest>(record);
 		}
-		return new ResultModel<BsTest>(CME.error);
+		return new ResultModel<BsTest>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsTest> deleteByPrimaryKey(BsTest record) {
 		int i = bsTestMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsTest>(CME.success);
+			return new ResultModel<BsTest>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsTest>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsTest>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsTest> updateByPrimaryKey(BsTest record) {
 		int i = bsTestMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsTest>(CME.success);
+			return new ResultModel<BsTest>(CME.SUCCESS);
 		}
-		return new ResultModel<BsTest>(CME.error);
+		return new ResultModel<BsTest>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BsTestServiceImpl extends BaseServiceImpl implements BsTestService 
 	@Override
 	public ResultModel<BsTest> batchDeleteByPrimaryKey(BsTest record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsTest>(CME.unFindIdsToDelete);
+			return new ResultModel<BsTest>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsTestMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsTest>(CME.success);
+		return new ResultModel<BsTest>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsTest> batchDeleteByPrimaryKeyActually(BsTest record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsTest>(CME.unFindIdsToDelete);
+			return new ResultModel<BsTest>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsTestMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsTest>(CME.success);
+		return new ResultModel<BsTest>(CME.SUCCESS);
 	}
 
 	@Override

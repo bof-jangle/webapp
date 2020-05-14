@@ -46,18 +46,18 @@ public class BsRoleServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsRole.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsRoleService.insertOrUpdate(testBsRole).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsRoleService.insertOrUpdate(testBsRole).getCode());
 		testBsRole.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsRoleService.insertOrUpdate(testBsRole).getCode());
+		assertEquals(CME.ERROR.getCode(), bsRoleService.insertOrUpdate(testBsRole).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsRoleService.selectByPrimaryKey(testBsRole).getModel());
-		assertEquals(CME.success.getCode(), bsRoleService.deleteByPrimaryKey(testBsRole).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsRoleService.deleteByPrimaryKey(testBsRole).getCode());
 		assertEquals("2", bsRoleService.selectByPrimaryKey(testBsRole).getModel().getStatus().toString());
 		testBsRole.setId(1L);
-		assertEquals(CME.error.getCode(), bsRoleService.deleteByPrimaryKey(testBsRole).getCode());
+		assertEquals(CME.ERROR.getCode(), bsRoleService.deleteByPrimaryKey(testBsRole).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsRoleServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsRoleService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsRoleService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsRoleService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsRoleServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsRoleService.selectByPrimaryKey(testBsRole).getModel().getDmDesc().equals(testString));
 		testBsRole.setId(0L);
 		testBsRole.setUuid("");
-		bsRoleService.updateByPrimaryKey(testBsRole).getCode().equals(CME.error.getCode());
+		bsRoleService.updateByPrimaryKey(testBsRole).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsRoleServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsRole record = new BsRole();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsRoleService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsRoleService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsRoleService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsRoleService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsRole.getId().toString());
 		bsRoleService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsRoleService.selectByPrimaryKey(testBsRole).getModel().getStatus().toString());

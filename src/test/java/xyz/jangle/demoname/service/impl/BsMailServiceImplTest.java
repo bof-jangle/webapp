@@ -46,18 +46,18 @@ public class BsMailServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testInsert() {
 		testBsMail.setId(0L);	//根据UUID更新
-		assertEquals(CME.success.getCode(), bsMailService.insertOrUpdate(testBsMail).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMailService.insertOrUpdate(testBsMail).getCode());
 		testBsMail.setId(1L);	//无对应的主键记录报错
-		assertEquals(CME.error.getCode(), bsMailService.insertOrUpdate(testBsMail).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMailService.insertOrUpdate(testBsMail).getCode());
 	}
 
 	@Test
 	public void testDeleteByPrimaryKey() {
 		assertNotNull(bsMailService.selectByPrimaryKey(testBsMail).getModel());
-		assertEquals(CME.success.getCode(), bsMailService.deleteByPrimaryKey(testBsMail).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMailService.deleteByPrimaryKey(testBsMail).getCode());
 		assertEquals("2", bsMailService.selectByPrimaryKey(testBsMail).getModel().getStatus().toString());
 		testBsMail.setId(1L);
-		assertEquals(CME.error.getCode(), bsMailService.deleteByPrimaryKey(testBsMail).getCode());
+		assertEquals(CME.ERROR.getCode(), bsMailService.deleteByPrimaryKey(testBsMail).getCode());
 	}
 
 	@Test
@@ -71,7 +71,7 @@ public class BsMailServiceImplTest extends JUnitRunSupport {
 		param.put("dmDesc", testString);
 		assertFalse(bsMailService.selectByParam(param).getList().isEmpty());
 		param.put("dmDesc", "&^%$*&");
-		assertEquals(CME.success.getCode(), bsMailService.selectByParam(param).getCode());
+		assertEquals(CME.SUCCESS.getCode(), bsMailService.selectByParam(param).getCode());
 	}
 
 	@Test
@@ -82,7 +82,7 @@ public class BsMailServiceImplTest extends JUnitRunSupport {
 		assertFalse(bsMailService.selectByPrimaryKey(testBsMail).getModel().getDmDesc().equals(testString));
 		testBsMail.setId(0L);
 		testBsMail.setUuid("");
-		bsMailService.updateByPrimaryKey(testBsMail).getCode().equals(CME.error.getCode());
+		bsMailService.updateByPrimaryKey(testBsMail).getCode().equals(CME.ERROR.getCode());
 	}
 
 	@Test
@@ -98,8 +98,8 @@ public class BsMailServiceImplTest extends JUnitRunSupport {
 	@Test
 	public void testBatchDeleteByPrimaryKey() {
 		BsMail record = new BsMail();
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMailService.batchDeleteByPrimaryKey(record).getCode());
-		assertEquals(CME.unFindIdsToDelete.getCode(), bsMailService.batchDeleteByPrimaryKeyActually(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMailService.batchDeleteByPrimaryKey(record).getCode());
+		assertEquals(CME.UNFIND_IDS_TO_DELETE.getCode(), bsMailService.batchDeleteByPrimaryKeyActually(record).getCode());
 		record.setIds(testBsMail.getId().toString());
 		bsMailService.batchDeleteByPrimaryKey(record);
 		assertEquals("2", bsMailService.selectByPrimaryKey(testBsMail).getModel().getStatus().toString());

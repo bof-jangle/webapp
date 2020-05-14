@@ -40,26 +40,26 @@ public class BaseDemoServiceImpl extends BaseServiceImpl implements BaseDemoServ
 		if (i > 0) {
 			return new ResultModel<BaseDemo>(record);
 		}
-		return new ResultModel<BaseDemo>(CME.error);
+		return new ResultModel<BaseDemo>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BaseDemo> deleteByPrimaryKey(BaseDemo record) {
 		int i = baseDemoMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BaseDemo>(CME.success);
+			return new ResultModel<BaseDemo>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BaseDemo>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BaseDemo>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BaseDemo> updateByPrimaryKey(BaseDemo record) {
 		int i = baseDemoMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BaseDemo>(CME.success);
+			return new ResultModel<BaseDemo>(CME.SUCCESS);
 		}
-		return new ResultModel<BaseDemo>(CME.error);
+		return new ResultModel<BaseDemo>(CME.ERROR);
 	}
 	
 	@Override
@@ -92,21 +92,21 @@ public class BaseDemoServiceImpl extends BaseServiceImpl implements BaseDemoServ
 	@Override
 	public ResultModel<BaseDemo> batchDeleteByPrimaryKey(BaseDemo record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BaseDemo>(CME.unFindIdsToDelete);
+			return new ResultModel<BaseDemo>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		baseDemoMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BaseDemo>(CME.success);
+		return new ResultModel<BaseDemo>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BaseDemo> batchDeleteByPrimaryKeyActually(BaseDemo record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BaseDemo>(CME.unFindIdsToDelete);
+			return new ResultModel<BaseDemo>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		baseDemoMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BaseDemo>(CME.success);
+		return new ResultModel<BaseDemo>(CME.SUCCESS);
 	}
 	
 	@Override

@@ -48,26 +48,26 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 			resultModel.setCount(count);
 			return resultModel;
 		}
-		return new ResultModel<BsVisit>(CME.error);
+		return new ResultModel<BsVisit>(CME.ERROR);
 	}
 
 	@Override
 	public ResultModel<BsVisit> deleteByPrimaryKey(BsVisit record) {
 		int i = bsVisitMapper.deleteByPrimaryKey(record.getId());
 		if (i > 0) {
-			return new ResultModel<BsVisit>(CME.success);
+			return new ResultModel<BsVisit>(CME.SUCCESS);
 		}
-		logger.error(CME.error.getMessage());
-		return new ResultModel<BsVisit>(CME.error);
+		logger.error(CME.ERROR.getMessage());
+		return new ResultModel<BsVisit>(CME.ERROR);
 	}
 	
 	@Override
 	public ResultModel<BsVisit> updateByPrimaryKey(BsVisit record) {
 		int i = bsVisitMapper.updateByPrimaryKey(record);
 		if (i > 0) {
-			return new ResultModel<BsVisit>(CME.success);
+			return new ResultModel<BsVisit>(CME.SUCCESS);
 		}
-		return new ResultModel<BsVisit>(CME.error);
+		return new ResultModel<BsVisit>(CME.ERROR);
 	}
 	
 	@Override
@@ -100,21 +100,21 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 	@Override
 	public ResultModel<BsVisit> batchDeleteByPrimaryKey(BsVisit record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsVisit>(CME.unFindIdsToDelete);
+			return new ResultModel<BsVisit>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsVisitMapper.batchDeleteByPrimaryKey(record);
-		return new ResultModel<BsVisit>(CME.success);
+		return new ResultModel<BsVisit>(CME.SUCCESS);
 	}
 
 	@Override
 	public ResultModel<BsVisit> batchDeleteByPrimaryKeyActually(BsVisit record) {
 		if(Jutils.isEmpty(record.getIds())) {
-			return new ResultModel<BsVisit>(CME.unFindIdsToDelete);
+			return new ResultModel<BsVisit>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsVisitMapper.batchDeleteByPrimaryKeyActually(record);
-		return new ResultModel<BsVisit>(CME.success);
+		return new ResultModel<BsVisit>(CME.SUCCESS);
 	}
 	
 	@Override
