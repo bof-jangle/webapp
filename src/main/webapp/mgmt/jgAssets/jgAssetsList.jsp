@@ -19,7 +19,7 @@
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
-	            	<span class="jangle-listjsp-remarks-span label label-info" >资产管理 </span>
+	            	<span class="jangle-listjsp-remarks-span label label-info" >我的资产 </span>
 	                <input type="text" class="form-control" name="jgAssetsName" placeholder="名称">
 	            </div>
 	            <input type="hidden" name="status" value="1">
