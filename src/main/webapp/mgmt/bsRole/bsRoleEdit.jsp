@@ -32,21 +32,18 @@
 				<input type="text" class="form-control" id="rolCode" name="rolCode" placeholder="请输入角色编码" />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc">拓展字段1：</label>
-				<input type="text" class="form-control" id="dmDesc" name="dmDesc" placeholder="请输入拓展字段1" />
+				<label for="rolCode">菜单权限：</label>
+				<input type="text" class="form-control" id="menuNames" name="menuNames"  />
 			</div>
 			<div class="form-group" >
-				<label for="dmDesc2">拓展字段2：</label>
-				<input type="text" class="form-control" id="dmDesc2" name="dmDesc2" placeholder="请输入拓展字段2" />
-			</div>
-			<div class="form-group">
-				<label for="input-id">附件：</label>
-				<div id="attListJ" style="display:inline-block" ></div>
-				<input class="form-control" id="input-id" name="file" multiple type="file" data-show-caption="true">
+				<label for="rolCode">包含用户：</label>
+				<input type="text" class="form-control" id="userNames" name="userNames"  />
 			</div>
 			<input type="hidden" name="id" id="id">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="uuid" id="uuid">	<!-- 主键ID隐藏域 -->
 			<input type="hidden" name="status" id="status" value = "1">	<!-- 状态隐藏域 -->
+			<input type="hidden" name="menuIds" id="menuIds" >	<!-- 菜单ID集合 -->
+			<input type="hidden" name="userUuids" id="userUuids">	<!-- 用户ID集合 -->
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">
@@ -125,7 +122,6 @@
 
 		// dom加载完成之后
 		$(function() {
-			initFileInput("input-id",null,fileInputParam);		//初始化附件
 
 			// TODO 额外的逻辑。
 
@@ -148,12 +144,26 @@
 						for ( var item in data.model) {
 							$("#" + item).val(data.model[item]);
 						}
+						var roles = data.map.roles;
+						var menus = data.map.menus;
+						var userUuids="",userNames="";
+						for(var i in roles){
+							userUuids += roles[i].bsUserUuid;
+							userNames += menus[i].dmDesc;
+						}
+						var menuNames="",menuIds="";
+						for(var i in menus){
+							menuNames += menus[i].dmDesc;
+							menuIds += menus[i].menuId;
+						}
+						$("#userUuids").val(userUuids);
+						$("#userNames").val(userNames);
+						$("#menuNames").val(menuNames);
+						$("#menuIds").val(menuIds);
 						$("#deleteButton").show(); // 显示删除按钮
 					}
 				}
 			});
-			// 加载附件
-			loadAttachmentJ(ps["id"],"bs_test",true);
 		})
 	</script>
 </body>

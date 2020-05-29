@@ -5,6 +5,7 @@ import java.util.Map;
 import xyz.jangle.demoname.model.BsRole;
 import xyz.jangle.utils.ResultModel;
 import xyz.jangle.utils.ResultModelList;
+import xyz.jangle.utils.ResultModelMap;
 
 /**
  * 角色管理 业务层
@@ -42,7 +43,7 @@ public interface BsRoleService {
 	 * @param record
 	 * @return
 	 */
-	ResultModel<BsRole> selectByPrimaryKey(BsRole record);
+	ResultModelMap<BsRole> selectByPrimaryKey(BsRole record);
 
 	/**
 	 * 	参查

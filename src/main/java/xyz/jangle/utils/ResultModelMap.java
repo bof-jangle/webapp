@@ -18,15 +18,20 @@ public class ResultModelMap<T> extends ResultModelList<T> {
 	public ResultModelMap(Map<String, Object> map) {
 		this.map = map;
 	}
-	
-	public ResultModelMap(CME cmEnum){
+
+	public ResultModelMap(CME cmEnum) {
 		this();
 		this.setCodeMessage(cmEnum);
 	}
 
+	public ResultModelMap(ResultModel<T> model) {
+		super(model.getCode(), model.getMessage());
+		setModel(model.getModel());
+	}
+
 	public Map<String, Object> getMap() {
 		if (map == null) {
-			return new HashMap<String, Object>();
+			map = new HashMap<String, Object>();
 		}
 		return map;
 	}
