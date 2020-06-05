@@ -1,8 +1,10 @@
 var userName;
 var userPassword;
 $(function() {
-	$("#ip").val(returnCitySN["cip"]);
-	$("#city").val(returnCitySN["cname"]);
+	if(returnCitySN){
+		$("#ip").val(returnCitySN["cip"]);
+		$("#city").val(returnCitySN["cname"]);
+	}
 	$("#userLoginForm").submit(function() {
 		// 重写form表单提交事件。
 		loginForUser();
