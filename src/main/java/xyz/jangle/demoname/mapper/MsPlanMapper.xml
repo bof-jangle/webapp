@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.MsPlanMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.MsPlan">
+		<id column="id" jdbcType="BIGINT" property="id" />
+			<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="status" jdbcType="INTEGER" property="status" />
+			<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+			<result column="dm_desc2" jdbcType="VARCHAR" property="dmDesc2" />
+			<result column="company" jdbcType="VARCHAR" property="company" />
+			<result column="work" jdbcType="VARCHAR" property="work" />
+			<result column="address" jdbcType="VARCHAR" property="address" />
+			<result column="tell_info" jdbcType="VARCHAR" property="tellInfo" />
+			<result column="goodness" jdbcType="VARCHAR" property="goodness" />
+			<result column="my_plan" jdbcType="VARCHAR" property="myPlan" />
+			<result column="remark" jdbcType="VARCHAR" property="remark" />
+	</resultMap>
+	<sql id="all_column">
+		<![CDATA[
+			id,
+			uuid,
+			create_time,
+			update_time,
+			status,
+			dm_desc,
+			dm_desc2,
+			company,
+			work,
+			address,
+			tell_info,
+			goodness,
+			my_plan,
+			remark
+		]]>
+	</sql>
+	<sql id="page_where">
+		<where>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		update ms_plan
+		set status = 2
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.MsPlan">
+		update ms_plan
+		set status = 2
+		where id in 
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.MsPlan">
+		delete from ms_plan
+		where status = 2
+		and id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.MsPlan" useGeneratedKeys="true" keyProperty="id">
+		insert into ms_plan ( 
+			uuid,
+			create_time,
+			update_time,
+			status,
+			dm_desc,
+			dm_desc2,
+			company,
+			work,
+			address,
+			tell_info,
+			goodness,
+			my_plan,
+			remark
+		)
+		values (
+			#{uuid,jdbcType=VARCHAR},
+			now(),
+			now(),
+			#{status,jdbcType=INTEGER},
+			#{dmDesc,jdbcType=VARCHAR},
+			#{dmDesc2,jdbcType=VARCHAR},
+			#{company,jdbcType=VARCHAR},
+			#{work,jdbcType=VARCHAR},
+			#{address,jdbcType=VARCHAR},
+			#{tellInfo,jdbcType=VARCHAR},
+			#{goodness,jdbcType=VARCHAR},
+			#{myPlan,jdbcType=VARCHAR},
+			#{remark,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="xyz.jangle.demoname.model.MsPlan">
+		<![CDATA[
+		update ms_plan
+		set 
+				update_time = now(),
+				status = #{status,jdbcType=INTEGER},
+				dm_desc = #{dmDesc,jdbcType=VARCHAR},
+				dm_desc2 = #{dmDesc2,jdbcType=VARCHAR},
+				company = #{company,jdbcType=VARCHAR},
+				work = #{work,jdbcType=VARCHAR},
+				address = #{address,jdbcType=VARCHAR},
+				tell_info = #{tellInfo,jdbcType=VARCHAR},
+				goodness = #{goodness,jdbcType=VARCHAR},
+				my_plan = #{myPlan,jdbcType=VARCHAR},
+				remark = #{remark,jdbcType=VARCHAR}
+		]]>
+		<if test="id != null and id gt 0">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="(id == null or id lt 1 ) and uuid != null and uuid != ''">
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		</if>
+		<if test="(id == null or id lt 1 ) and (uuid == null or uuid == '')">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from ms_plan
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from ms_plan
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from ms_plan
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.MsPlan">
+		select 
+		<include refid="all_column" />
+		from ms_plan
+		<include refid="page_where" />
+		order by id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.MsPlan">
+		select count(*)
+		from ms_plan
+		<include refid="page_where" />
+	</select>
+</mapper>
