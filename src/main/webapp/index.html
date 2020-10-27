@@ -22,11 +22,10 @@
 <!-- 		<span style="float: right;width:250px;" id="login"> <a href="login.html"><span>login</span></a> -->
 <!-- 		</span> -->
 <!-- 	</div> -->
-	<audio autoplay="autoplay" preload="auto" loop="loop">
-		<source src="/bsAttachmentCtrl/downLoadByYan.ctrl?id=6491" type="audio/mpeg">
-		<source src="/bsAttachmentCtrl/downLoadByYan.ctrl?id=6492" type="audio/mpeg">
-		<source src="/bsAttachmentCtrl/downLoadByYan.ctrl?id=6493" type="audio/mpeg">
-	</audio>
+<!-- 音乐播放 -->
+<!-- 	<audio autoplay="autoplay" preload="auto" loop="loop"> -->
+<!-- 		<source src="/bsAttachmentCtrl/downLoadByYan.ctrl?id=6491" type="audio/mpeg" /> -->
+<!-- 	</audio> -->
 	<div class="index-header" >
 		<span >
 			<a target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=PA4LCAoLCgUJC3xNTRJfU1E" style="text-decoration:none;"><img src="http://rescdn.qqmail.com/zh_CN/htmledition/images/function/qm_open/ico_mailme_01.png"/></a>
@@ -155,6 +154,7 @@
 						}
 					}
 					$("#login").append("<a href='javascript:logout();'><img alt='注销' src='images/userLogout.png' width='42' height='42'></a>");
+					autoAudio();
 				}
 			},
 			error : function(request, textStatus, errorThrown) {
@@ -200,6 +200,33 @@
 			rkday++;
 			$("#zjrkURL").text("2019-10-"+rkday);
 			$("#zjrkURL").attr("href","http://www.zjrjks.org/weChat.do?method=pInfo&uuid="+zjrkUuid);
+		}
+	</script>
+	<script type="text/javascript">
+		// 音乐列表自动播放。
+		var musicArr = {};	//音乐列表
+		var musicNum = 1;	// 播放序号
+		function autoAudio(){
+			$.ajax({
+				url:"/bsAttachmentCtrl/selectPage.ctrl?attSourceId=427&attSourceType=bs_test&status=1",
+				dataType:"json",
+				success:function(ret){
+					if(ret != null && ret.code =="10001"){
+						musicArr = ret.list;
+						var audio = new Audio();
+						audio.preload = true;
+						audio.src = "/bsAttachmentCtrl/downLoadByYan.ctrl?id="+musicArr[0].id;
+						audio.addEventListener('ended', playEndedHandler,false);
+						audio.play();
+						function playEndedHandler(){
+							var i = musicNum++ % musicArr.length;
+							audio.src = "/bsAttachmentCtrl/downLoadByYan.ctrl?id="+musicArr[i].id;
+							audio.play();
+						}
+					}
+				},error:function(){
+				}
+			});
 		}
 	</script>
 </body>
