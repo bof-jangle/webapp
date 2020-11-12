@@ -5,24 +5,50 @@
 <title>网站介绍</title>
 </head>
 <body>
-<h4>
-项目的整体设计方案：
-</h4>
-<ol>
-<li>
-后端采用SpringMvc + Spring + Mybatis 搭建结合log4j,aop,（spring-task,email，简易的消息提醒），（HashMap作为简单的缓存），（JUnit单元测试，测试覆盖率统计）。
-</li><li>
-前端使用jQuery+bootstrap进行设计，并进行复用框架搭建。
-</li><li>
-系统采用个人编写的自动化脚本+FreeMarker模版引擎进行前后端代码生成。
-</li><li>
-使用maven进行项目管理，采用git进行代码版本控制，托管于github。
-</li><li>
-服务器使用腾讯云服务器（Linux），结合云MySQL数据库进行部署。Web服务器使用Tomcat。域名采用阿里域名服务及解析服务。
-</li><li>
-服务器上采用自己编写的类似Jenkins功能的自动化部署应用，只要提交代码到github主干，则会hook应用进行代码更新->编译->打包->部署。
-</li>
-</ol>
+	<h4>项目的整体设计介绍：</h4>
+	<ol>
+		<li>后端结构
+			<ul>
+				<li>SpringMvc + Spring + Mybatis </li>
+				<li>log4j,aop实现事务控制.</li>
+				<li>spring-task + email，实现简易的消息提醒</li>
+				<li>HashMap作为简单的缓存</li>
+				<li>JUnit单元测试，测试覆盖率统计</li>
+			</ul>
+		</li>
+		<li>前端结构
+			<ul>
+				<li>使用JSP结合HTML5设计页面</li>
+				<li>jQuery+bootstrap架设列表和表单。</li>
+			</ul>
+		</li>
+		<li>快速开发
+			<ul>
+				<li>系统采用个人编写的自动化脚本+FreeMarker模版引擎进行前后端代码生成。</li>
+			</ul>
+		</li>
+		<li>代码管理
+			<ul>
+				<li>采用maven进行依赖管理。</li>
+				<li>采用git进行代码版本控制，托管于github。</li>
+			</ul>
+		</li>
+		<li>系统运维
+			<ul>
+				<li>服务器使用腾讯云服务器（Linux）。</li>
+				<li>结合云MySQL数据库进行部署。</li>
+				<li>Web服务器使用Tomcat。</li>
+				<li>域名采用阿里域名服务及解析服务。</li>
+			</ul>
+		</li>
+		<li>
+			持续集成
+			<ul><li>
+			服务器上采用自己编写的替代Jenkins功能的自动化部署程序，进行持续集成。<br/>(只要提交代码到github主干，则会hook应用进行代码更新->编译->打包->部署。)
+			</li>
+			</ul>
+		</li>
+	</ol>
 
 </body>
 </html>
