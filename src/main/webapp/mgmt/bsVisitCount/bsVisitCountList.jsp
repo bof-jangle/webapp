@@ -13,14 +13,14 @@
 <body>
 	<nav class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
-<!-- 	    <div class="navbar-header"> -->
-<!-- 	        <a class="navbar-brand" href="#">查询</a> -->
-<!-- 	    </div> -->
 	    <div>
 	        <form class="navbar-form" role="search" id="searchForm">
 	            <div class="form-group">
 	            	<span class="jangle-listjsp-remarks-span label label-info" >外来访客统计 </span>
+					<input type="date" value="" name="dmDesc"/>
+					<input type="date" value="" name="dmDesc2" />
 	            </div>
+	            <button type="button" class="btn btn-default" onclick="search()">查询</button>
 	            <div style="float:right !important;">
 				</div>
 	        </form>

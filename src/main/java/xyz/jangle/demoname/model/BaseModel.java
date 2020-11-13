@@ -112,7 +112,5 @@ public abstract class BaseModel {
 	public void setUuidsArray(String[] uuidsArray) {
 		this.uuidsArray = uuidsArray;
 	}
-	
-	
 
 }

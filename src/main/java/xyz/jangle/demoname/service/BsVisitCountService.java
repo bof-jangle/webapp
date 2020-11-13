@@ -56,6 +56,8 @@ public interface BsVisitCountService {
 	 * 	分查
 	 *
 	 * @param record
+	 * @param timeEnd 
+	 * @param timeStart 
 	 * @return
 	 */
 	ResultModelList<BsVisitCount> selectPage(BsVisitCount record);

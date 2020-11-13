@@ -112,6 +112,11 @@
 		from bs_visit_count
 		<include refid="page_where" />
 	</select>
+	<sql id="pageWhere">
+		<if test="dmDesc != null and dmDesc != '' and dmDesc2 != null and dmDesc2 != ''">
+			<![CDATA[and create_time > #{dmDesc,jdbcType=VARCHAR} and create_time <= #{dmDesc2,jdbcType=VARCHAR}]]>
+		</if>
+	</sql>
 	<select id="selectPage" resultMap="BaseResultMap"
 		parameterType="xyz.jangle.demoname.model.BsVisitCount">
 		select 
@@ -125,6 +130,7 @@
 		count(1) as visit_count 
 		from bs_visit 
 		where dm_desc2 != '浙江省绍兴市' 
+		<include refid="pageWhere" />
 		group by dm_desc,dm_desc2 
 		order by visit_count desc
 		limit #{pageStart,jdbcType=BIGINT},
@@ -136,6 +142,8 @@
  		select 
 		count(1) as visit_count 
 		from bs_visit 
-		where dm_desc2 != '浙江省绍兴市' group by dm_desc,dm_desc2 	) A;
+		where dm_desc2 != '浙江省绍兴市'
+		<include refid="pageWhere" />
+		 group by dm_desc,dm_desc2 	) A;
 	</select>
 </mapper>
