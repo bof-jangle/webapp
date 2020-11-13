@@ -18,6 +18,7 @@ import xyz.jangle.demoname.dao.BsAttachmentMapper;
 import xyz.jangle.demoname.model.BsAttachment;
 import xyz.jangle.demoname.model.BsFileBit;
 import xyz.jangle.demoname.service.BsAttachmentService;
+import xyz.jangle.demoname.service.BsDictService;
 import xyz.jangle.demoname.service.BsFileBitService;
 import xyz.jangle.demoname.service.BsMailService;
 import xyz.jangle.utils.CME;
@@ -29,6 +30,7 @@ import xyz.jangle.utils.ResultModelMap;
 
 /**
  * 附件上传存放管理 业务层
+ * 
  * @author jangle E-mail: jangle@jangle.xyz
  * @version Jangle生成工具v1.1
  */
@@ -43,10 +45,9 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 	private BsMailService bsMailService;
 	@Autowired
 	private HttpSession httpSession;
-	
-	
-	
-	
+	@Autowired
+	private BsDictService bsDictService;
+
 	@Override
 	public ResultModel<BsAttachment> insertOrUpdate(BsAttachment record) {
 		int i = 0;
@@ -71,7 +72,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		logger.error(CME.ERROR.getMessage());
 		return new ResultModel<BsAttachment>(CME.ERROR);
 	}
-	
+
 	@Override
 	public ResultModel<BsAttachment> updateByPrimaryKey(BsAttachment record) {
 		int i = bsAttachmentMapper.updateByPrimaryKey(record);
@@ -80,18 +81,17 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		}
 		return new ResultModel<BsAttachment>(CME.ERROR);
 	}
-	
+
 	@Override
 	public ResultModel<BsAttachment> selectByPrimaryKey(BsAttachment record) {
 		return new ResultModel<BsAttachment>(bsAttachmentMapper.selectByPrimaryKey(record.getId()));
 	}
-	
+
 	@Override
 	public ResultModelList<BsAttachment> selectByParam(Map<String, Object> param) {
 		List<BsAttachment> list = bsAttachmentMapper.selectByParam(param);
 		return new ResultModelList<>(list);
 	}
-
 
 	@Override
 	public ResultModelList<BsAttachment> selectAll() {
@@ -99,18 +99,17 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		return new ResultModelList<BsAttachment>(list);
 	}
 
-	
-
 	@Override
 	public ResultModelList<BsAttachment> selectPage(BsAttachment record) {
-		ResultModelList<BsAttachment> resultModelList = new ResultModelList<BsAttachment>(bsAttachmentMapper.selectPage(record));
+		ResultModelList<BsAttachment> resultModelList = new ResultModelList<BsAttachment>(
+				bsAttachmentMapper.selectPage(record));
 		resultModelList.setCount(bsAttachmentMapper.selectPageCount(record));
 		return resultModelList;
 	}
 
 	@Override
 	public ResultModel<BsAttachment> batchDeleteByPrimaryKey(BsAttachment record) {
-		if(Jutils.isEmpty(record.getIds())) {
+		if (Jutils.isEmpty(record.getIds())) {
 			return new ResultModel<BsAttachment>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
@@ -120,7 +119,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 
 	@Override
 	public ResultModel<BsAttachment> batchDeleteByPrimaryKeyActually(BsAttachment record) {
-		if(Jutils.isEmpty(record.getIds())) {
+		if (Jutils.isEmpty(record.getIds())) {
 			return new ResultModel<BsAttachment>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
@@ -132,7 +131,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 	public ResultModel<BsAttachment> selectByPrimaryKeyForAnnotation(BsAttachment record) {
 		return new ResultModel<BsAttachment>(bsAttachmentMapper.selectByPrimaryKeyForAnnotation(record.getId()));
 	}
-	
+
 	@Override
 	public ResultModelMap<BsAttachment> uploadBatch(MultipartFile[] files, BsAttachment record) {
 		Map<String, Object> map = Jutils.getHashMapSO();
@@ -145,7 +144,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 				String originalname = files[i].getOriginalFilename();
 				System.out.println(originalname);
 				try {
-					//					writeToLocal(files[i]); // TODO 将文件写入，可改为写入数据库，或文件服务器。
+					// writeToLocal(files[i]); // TODO 将文件写入，可改为写入数据库，或文件服务器。
 					BsFileBit bsFileBit = new BsFileBit();
 					bsFileBit.setBitContent(files[i].getBytes());
 					ResultModel<BsFileBit> bitResult = bsFileBitService.insertOrUpdate(bsFileBit);
@@ -168,7 +167,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		BsFileBit fileBit = new BsFileBit();
 		fileBit.setId(attachment.getAttId());
 		ResultModel<BsFileBit> resFile = bsFileBitService.selectByPrimaryKey(fileBit);
-		if(resFile.getModel() == null) {
+		if (resFile.getModel() == null) {
 			logger.error("下载时未找到文件实体");
 			return null;
 		}
@@ -180,7 +179,7 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 //			fileName = java.net.URLEncoder.encode(attachment.getAttName(),"UTF-8");
 			fileName = new String(attachment.getAttName().getBytes("UTF-8"), "ISO8859-1");
 		} catch (UnsupportedEncodingException e1) {
-			logger.error("附件文件名转换时异常",e1);
+			logger.error("附件文件名转换时异常", e1);
 		}
 		logger.error(fileName);
 		response.setHeader("Content-Disposition", "attachment;fileName=" + fileName);
@@ -194,6 +193,9 @@ public class BsAttachmentServiceImpl extends BaseServiceImpl implements BsAttach
 		}
 		attachment.setDmDesc((String) httpSession.getAttribute(JConstant.ip));
 		attachment.setAttExtends2((String) httpSession.getAttribute(JConstant.city));
+		if (bsDictService.noRecordForMyIp(attachment.getDmDesc())) {
+			return null;
+		}
 		bsMailService.insertOrUpdate(attachment);
 		return null;
 	}

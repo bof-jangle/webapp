@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import xyz.jangle.demoname.dao.BsVisitMapper;
 import xyz.jangle.demoname.model.BsVisit;
+import xyz.jangle.demoname.service.BsDictService;
 import xyz.jangle.demoname.service.BsMailService;
 import xyz.jangle.demoname.service.BsVisitService;
 import xyz.jangle.utils.CME;
@@ -19,6 +20,7 @@ import xyz.jangle.utils.ResultModelList;
 
 /**
  * 访问记录表 业务层
+ * 
  * @author jangle E-mail: jangle@jangle.xyz
  * @version Jangle生成工具v1.1
  */
@@ -29,9 +31,14 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 	private BsVisitMapper bsVisitMapper;
 	@Autowired
 	private BsMailService bsMailService;
-	
+	@Autowired
+	private BsDictService bsDictService;
+
 	@Override
 	public ResultModel<BsVisit> insertOrUpdate(BsVisit record) {
+		if (bsDictService.noRecordForMyIp(record.getDmDesc())) {
+			return new ResultModel<BsVisit>(CME.ERROR);
+		}
 		int i = 0;
 		if (Jutils.isGreatThan0(record.getId()) || Jutils.isNotEmpty(record.getUuid())) {
 			i = bsVisitMapper.updateByPrimaryKey(record);
@@ -39,7 +46,7 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 			record.setUuid(UUID.randomUUID().toString().replaceAll("-", ""));
 			i = bsVisitMapper.insert(record);
 		}
-		if(record.getStatus()!= null && record.getStatus() ==2) {
+		if (record.getStatus() != null && record.getStatus() == 2) {
 			bsMailService.insertOrUpdate(record);
 		}
 		if (i > 0) {
@@ -60,7 +67,7 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 		logger.error(CME.ERROR.getMessage());
 		return new ResultModel<BsVisit>(CME.ERROR);
 	}
-	
+
 	@Override
 	public ResultModel<BsVisit> updateByPrimaryKey(BsVisit record) {
 		int i = bsVisitMapper.updateByPrimaryKey(record);
@@ -69,26 +76,23 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 		}
 		return new ResultModel<BsVisit>(CME.ERROR);
 	}
-	
+
 	@Override
 	public ResultModel<BsVisit> selectByPrimaryKey(BsVisit record) {
 		return new ResultModel<BsVisit>(bsVisitMapper.selectByPrimaryKey(record.getId()));
 	}
-	
+
 	@Override
 	public ResultModelList<BsVisit> selectByParam(Map<String, Object> param) {
 		List<BsVisit> list = bsVisitMapper.selectByParam(param);
 		return new ResultModelList<>(list);
 	}
 
-
 	@Override
 	public ResultModelList<BsVisit> selectAll() {
 		List<BsVisit> list = bsVisitMapper.selectAll();
 		return new ResultModelList<BsVisit>(list);
 	}
-
-	
 
 	@Override
 	public ResultModelList<BsVisit> selectPage(BsVisit record) {
@@ -99,7 +103,7 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 
 	@Override
 	public ResultModel<BsVisit> batchDeleteByPrimaryKey(BsVisit record) {
-		if(Jutils.isEmpty(record.getIds())) {
+		if (Jutils.isEmpty(record.getIds())) {
 			return new ResultModel<BsVisit>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
@@ -109,14 +113,14 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 
 	@Override
 	public ResultModel<BsVisit> batchDeleteByPrimaryKeyActually(BsVisit record) {
-		if(Jutils.isEmpty(record.getIds())) {
+		if (Jutils.isEmpty(record.getIds())) {
 			return new ResultModel<BsVisit>(CME.UNFIND_IDS_TO_DELETE);
 		}
 		record.setIdsArray(record.getIds().split(JConstant.ywdh));
 		bsVisitMapper.batchDeleteByPrimaryKeyActually(record);
 		return new ResultModel<BsVisit>(CME.SUCCESS);
 	}
-	
+
 	@Override
 	public ResultModel<BsVisit> selectByPrimaryKeyForAnnotation(BsVisit record) {
 		return new ResultModel<BsVisit>(bsVisitMapper.selectByPrimaryKeyForAnnotation(record.getId()));
@@ -129,7 +133,5 @@ public class BsVisitServiceImpl extends BaseServiceImpl implements BsVisitServic
 		resultModel.setCount(count);
 		return resultModel;
 	}
-	
-	
 
 }
