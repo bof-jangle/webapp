@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="xyz.jangle.demoname.dao.BsDictMapper">
+	<resultMap id="BaseResultMap"
+		type="xyz.jangle.demoname.model.BsDict">
+		<id column="id" jdbcType="BIGINT" property="id" />
+			<result column="uuid" jdbcType="VARCHAR" property="uuid" />
+			<result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+			<result column="status" jdbcType="INTEGER" property="status" />
+			<result column="dm_desc" jdbcType="VARCHAR" property="dmDesc" />
+			<result column="dm_desc2" jdbcType="VARCHAR" property="dmDesc2" />
+			<result column="dkey" jdbcType="VARCHAR" property="dkey" />
+			<result column="dvalue" jdbcType="VARCHAR" property="dvalue" />
+	</resultMap>
+	<sql id="all_column">
+		<![CDATA[
+			id,
+			uuid,
+			create_time,
+			update_time,
+			status,
+			dm_desc,
+			dm_desc2,
+			dkey,
+			dvalue
+		]]>
+	</sql>
+	<sql id="page_where">
+		<where>
+			<if test="status != null and status != ''">
+				AND status = #{status}
+			</if>
+		</where>
+	</sql>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		update bs_dict
+		set status = 2
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<delete id="batchDeleteByPrimaryKey" parameterType="xyz.jangle.demoname.model.BsDict">
+		update bs_dict
+		set status = 2
+		where id in 
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<delete id="batchDeleteByPrimaryKeyActually" parameterType="xyz.jangle.demoname.model.BsDict">
+		delete from bs_dict
+		where status = 2
+		and id in
+		<foreach close=")" collection="idsArray" item="listItem" open="(" separator=",">
+                    #{listItem}
+        </foreach>
+	</delete>
+	<insert id="insert"
+		parameterType="xyz.jangle.demoname.model.BsDict" useGeneratedKeys="true" keyProperty="id">
+		insert into bs_dict ( 
+			uuid,
+			create_time,
+			update_time,
+			status,
+			dm_desc,
+			dm_desc2,
+			dkey,
+			dvalue
+		)
+		values (
+			#{uuid,jdbcType=VARCHAR},
+			now(),
+			now(),
+			#{status,jdbcType=INTEGER},
+			#{dmDesc,jdbcType=VARCHAR},
+			#{dmDesc2,jdbcType=VARCHAR},
+			#{dkey,jdbcType=VARCHAR},
+			#{dvalue,jdbcType=VARCHAR}
+		)
+	</insert>
+	<update id="updateByPrimaryKey"
+		parameterType="xyz.jangle.demoname.model.BsDict">
+		<![CDATA[
+		update bs_dict
+		set 
+				update_time = now(),
+				status = #{status,jdbcType=INTEGER},
+				dm_desc = #{dmDesc,jdbcType=VARCHAR},
+				dm_desc2 = #{dmDesc2,jdbcType=VARCHAR},
+				dkey = #{dkey,jdbcType=VARCHAR},
+				dvalue = #{dvalue,jdbcType=VARCHAR}
+		]]>
+		<if test="id != null and id gt 0">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+		<if test="(id == null or id lt 1 ) and uuid != null and uuid != ''">
+		where uuid = #{uuid,jdbcType=VARCHAR}
+		</if>
+		<if test="(id == null or id lt 1 ) and (uuid == null or uuid == '')">
+		where id = #{id,jdbcType=BIGINT}
+		</if>
+	</update>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"
+		resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_dict
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<select id="selectAll" resultMap="BaseResultMap">
+		select 
+		<include refid="all_column" />
+		from bs_dict
+	</select>
+	<select id="selectByParam" resultMap="BaseResultMap" parameterType="java.util.Map">
+		select 
+		<include refid="all_column" />
+		from bs_dict
+		<include refid="page_where" />
+	</select>
+	<select id="selectPage" resultMap="BaseResultMap"
+		parameterType="xyz.jangle.demoname.model.BsDict">
+		select 
+		<include refid="all_column" />
+		from bs_dict
+		<include refid="page_where" />
+		order by id DESC
+		limit #{pageStart,jdbcType=BIGINT},
+		#{pageSize,jdbcType=INTEGER}
+	</select>
+	<select id="selectPageCount" resultType="java.lang.Long"
+		parameterType="xyz.jangle.demoname.model.BsDict">
+		select count(*)
+		from bs_dict
+		<include refid="page_where" />
+	</select>
+</mapper>
