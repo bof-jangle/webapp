@@ -32,6 +32,7 @@ public class BsDictServiceImpl extends BaseServiceImpl implements BsDictService 
 	@Override
 	public ResultModel<BsDict> insertOrUpdate(BsDict record) {
 		int i = 0;
+		myIps = null;
 		if (Jutils.isGreatThan0(record.getId()) || Jutils.isNotEmpty(record.getUuid())) {
 			i = bsDictMapper.updateByPrimaryKey(record);
 		} else {
