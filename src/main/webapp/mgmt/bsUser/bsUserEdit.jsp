@@ -40,7 +40,7 @@
 			</div>
 			<div class="form-group" >
 				<label for="usrStatus">状态：</label>
-				<select id="usrStatus" name="usrStatus">
+				<select id="usrStatus" name="usrStatus" class="form-control">
 					<option value="0">禁用</option>
 					<option value="1">启用</option>
 				</select>

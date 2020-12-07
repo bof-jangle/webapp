@@ -49,7 +49,7 @@
 			</div>
 			<div class="form-group" >
 				<label for="status">状态：</label>
-				<select id="status" name="status">
+				<select id="status" name="status" class="form-control">
 					<option value="0">禁用</option>
 					<option value="1">启用</option>
 				</select>
