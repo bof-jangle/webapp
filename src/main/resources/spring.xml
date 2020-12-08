@@ -32,7 +32,7 @@
 
 
 	<!-- 配置文件的引入，用于在properties文件中读取配置参数 -->
-	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	<bean id="propertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
 		<property name="locations">
 		       <list>
 		              <value>classpath:data-source-config.properties</value>
