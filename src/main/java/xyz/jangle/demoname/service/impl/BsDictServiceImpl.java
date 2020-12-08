@@ -26,7 +26,7 @@ public class BsDictServiceImpl extends BaseServiceImpl implements BsDictService 
 
 	@Autowired
 	private BsDictMapper bsDictMapper;
-	private List<String> myIps = null;
+	private volatile List<String> myIps = null;
 	
 	
 	@Override
