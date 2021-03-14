@@ -1,0 +1,731 @@
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       mime.types;
+    default_type  application/octet-stream;
+
+    #log_format  main  '$remote_addr - $remote_user [$time_local] "$request" '
+    #                  '$status $body_bytes_sent "$http_referer" '
+    #                  '"$http_user_agent" "$http_x_forwarded_for"';
+
+    #access_log  logs/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    #keepalive_timeout  0;
+    #keepalive_timeout  65;
+    server_names_hash_bucket_size 512;
+    client_max_body_size 10000M;
+
+
+    #gzip  on;
+
+    server {
+        listen 80;
+	if ($host = "oa1.nx.gov"){
+	  rewrite  "^/(.*)$"  http://oa.nx.gov/ break;
+        }
+        
+        location / { 
+            proxy_pass http://localhost:8100/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+	location /oa2016/ { 
+            proxy_pass http://localhost:8200/oa2016/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+	location /Icons/ { 
+            proxy_pass http://localhost:8200/oa2016/Icons/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+	location /sso/ { 
+            proxy_pass http://localhost:8200/oa2016/sso/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+    
+    #老OA跳转到新OA
+    server {
+        listen     8888;
+        server_name  oa.nx.gov;
+	rewrite  "^/(.*)$"  http://oa.nx.gov/ break;
+    }
+    
+    # 测试是否正常
+    server {
+        listen     9999;
+        server_name  oa.nx.gov;
+	rewrite  "^/(.*)$"  http://oa.nx.gov/ break;
+    }
+
+    server {
+        listen 801;
+        
+        location / { 
+            proxy_pass http://localhost:8101/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    #区委办
+    server {
+        listen 802;
+        
+        location / { 
+            proxy_pass http://localhost:8102/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+    #
+    server {
+        listen 804;
+        
+        location / { 
+            proxy_pass http://localhost:8104/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+    #
+    server {
+        listen 805;
+        
+        location / { 
+            proxy_pass http://localhost:8105/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+    #区人力社保局
+    server {
+        listen 806;
+        
+        location / { 
+            proxy_pass http://localhost:8106/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+
+    }
+
+    #区人大
+    server {
+        listen 807;
+        
+        location / { 
+            proxy_pass http://localhost:8107/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+
+    #区住建局
+    server {
+        listen 808;
+        
+        location / { 
+            proxy_pass http://localhost:8108/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    #经开区
+    server {
+        listen 809;
+        
+        location / { 
+            proxy_pass http://localhost:8109/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    
+    #双林镇
+    server {
+        listen 810;
+        
+        location / { 
+            proxy_pass http://localhost:8110/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+    
+    #hfz
+    server {
+        listen 811;
+        
+        location / { 
+            proxy_pass http://localhost:8111/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    #fgj
+    server {
+        listen 812;
+        
+        location / { 
+            proxy_pass http://localhost:8112/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    #nxz
+    server {
+        listen 813;
+        
+        location / { 
+            proxy_pass http://localhost:8113/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    #daj
+    server {
+        listen 814;
+        
+        location / { 
+            proxy_pass http://localhost:8114/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+
+    server {
+        listen 8001;
+	server_name hzoa.app.hzwangda.com;
+	access_log logs/hzoa-access.log combined;
+
+        location / { 
+            proxy_pass http://172.21.5.91:815/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    server {
+        listen 8001;
+	server_name nxdocexchange.app.hzwangda.com ding.nanxun.gov.cn 10.21.122.27;
+	access_log logs/nxdocexchange-access.log combined;
+        
+        location / { 
+            proxy_pass http://localhost:8100/;
+            proxy_set_header Host ding.nanxun.gov.cn:806; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+	    proxy_set_header X-Forwarded-Scheme https;
+        }
+	
+	   location /zj-ding { 
+            proxy_pass http://localhost:8208/zj-ding;
+            proxy_set_header Host ding.nanxun.gov.cn:806; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+	    proxy_set_header X-Forwarded-Scheme $scheme;
+        }
+
+        location /oa2016/ { 
+            proxy_pass http://localhost:8200/oa2016/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+	
+        location /api/auth/doLogin { 
+            proxy_pass http://localhost:8200/oa2016/api/auth/doLogin; 
+            proxy_set_header Host $host; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/ { 
+            proxy_pass http://localhost:8200/oa2016/api/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /h5/ { 
+            proxy_pass http://localhost:8200/oa2016/h5/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app/ { 
+            proxy_pass http://localhost:8200/oa2016/app/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+
+        location /Services/OA/DocArchiveList { 
+            proxy_pass http://localhost:8100/Services/OA/DocArchiveList; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app { 
+            proxy_pass http://localhost:8200/oa2016/app; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/user/sync { 
+            proxy_pass http://localhost:8200/oa2016/api/user/sync; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /upload/ { 
+            proxy_pass http://localhost:8200/oa2016/upload/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    server {
+        listen 8001;
+	server_name nxoa.app.hzwangda.com;
+	access_log logs/nxoa-access.log combined;
+        
+        location / { 
+            proxy_pass http://localhost:8101/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /oa2016/ { 
+            proxy_pass http://localhost:8201/oa2016/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/auth/doLogin { 
+            proxy_pass http://localhost:8201/oa2016/api/auth/doLogin; 
+            proxy_set_header Host $host; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/ { 
+            proxy_pass http://localhost:8201/oa2016/api/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /h5/ { 
+            proxy_pass http://localhost:8201/oa2016/h5/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app/ { 
+            proxy_pass http://localhost:8201/oa2016/app/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+
+        location /Services/OA/DocArchiveList { 
+            proxy_pass http://localhost:8101/Services/OA/DocArchiveList; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app { 
+            proxy_pass http://localhost:8201/oa2016/app; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/user/sync { 
+            proxy_pass http://localhost:8201/oa2016/api/user/sync; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /upload/ { 
+            proxy_pass http://localhost:8201/oa2016/upload/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /8007/ { 
+            proxy_pass http://localhost:8107/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /8008/ { 
+            proxy_pass http://localhost:8108/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /8009/ { 
+            proxy_pass http://localhost:8109/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /8010/ { 
+            proxy_pass http://localhost:8110/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /8011/ { 
+            proxy_pass http://localhost:8111/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /8012/ { 
+            proxy_pass http://localhost:8112/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    server {
+        listen 8001;
+	server_name nxqfboa.app.hzwangda.com;
+	access_log logs/nxqfboa-access.log combined;
+        
+        location / { 
+            proxy_pass http://localhost:8101/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /oa2016/ { 
+            proxy_pass http://localhost:8201/oa2016/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/auth/doLogin { 
+            proxy_pass http://localhost:8201/oa2016/api/auth/doLogin; 
+            proxy_set_header Host $host; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/ { 
+            proxy_pass http://localhost:8201/oa2016/api/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /h5/ { 
+            proxy_pass http://localhost:8201/oa2016/h5/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app/ { 
+            proxy_pass http://localhost:8201/oa2016/app/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+
+        location /Services/OA/DocArchiveList { 
+            proxy_pass http://localhost:8101/Services/OA/DocArchiveList; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app { 
+            proxy_pass http://localhost:8201/oa2016/app; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/user/sync { 
+            proxy_pass http://localhost:8201/oa2016/api/user/sync; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /upload/ { 
+            proxy_pass http://localhost:8201/oa2016/upload/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    server {
+        listen 8001;
+	server_name nxqwboa.app.hzwangda.com;
+	access_log logs/nxqwboa-access.log combined;
+        
+        location / { 
+            proxy_pass http://localhost:8102/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /oa2016/ { 
+            proxy_pass http://localhost:8202/oa2016/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/auth/doLogin { 
+            proxy_pass http://localhost:8202/oa2016/api/auth/doLogin; 
+            proxy_set_header Host $host; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/ { 
+            proxy_pass http://localhost:8202/oa2016/api/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /h5/ { 
+            proxy_pass http://localhost:8202/oa2016/h5/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app/ { 
+            proxy_pass http://localhost:8202/oa2016/app/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+
+        location /Services/OA/DocArchiveList { 
+            proxy_pass http://localhost:8102/Services/OA/DocArchiveList; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app { 
+            proxy_pass http://localhost:8202/oa2016/app; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/user/sync { 
+            proxy_pass http://localhost:8202/oa2016/api/user/sync; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /upload/ { 
+            proxy_pass http://localhost:8202/oa2016/upload/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    
+    server {
+        listen 8001;
+	server_name nxsczoa.app.hzwangda.com;
+	access_log logs/nxoa-access.log combined;
+        
+        location / { 
+            proxy_pass http://localhost:8003/;
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /oa2016/ { 
+            proxy_pass http://localhost:8203/oa2016/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/auth/doLogin { 
+            proxy_pass http://localhost:8203/oa2016/api/auth/doLogin; 
+            proxy_set_header Host $host; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/ { 
+            proxy_pass http://localhost:8203/oa2016/api/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /h5/ { 
+            proxy_pass http://localhost:8203/oa2016/h5/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app/ { 
+            proxy_pass http://localhost:8203/oa2016/app/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+
+        location /Services/OA/DocArchiveList { 
+            proxy_pass http://localhost:8003/Services/OA/DocArchiveList; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /app { 
+            proxy_pass http://localhost:8203/oa2016/app; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /api/user/sync { 
+            proxy_pass http://localhost:8203/oa2016/api/user/sync; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+        location /upload/ { 
+            proxy_pass http://localhost:8203/oa2016/upload/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    server {
+        listen 8001;
+	server_name hzfgwoa.app.hzwangda.com;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://172.21.5.91:816/; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    
+    server {
+        listen 8005;
+	server_name nxoa.app.hzwangda.com;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://localhost:8105; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    
+    server {
+        listen 8006;
+	server_name nxoa.app.hzwangda.com;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://localhost:8106; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+        server {
+        listen 8007;
+	server_name nxoa.app.hzwangda.com;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://localhost:8107; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+        server {
+        listen 8008;
+	server_name nxoa.app.hzwangda.com;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://localhost:8108; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    server {
+        listen 8300;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://localhost:8333; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+
+    
+    server {
+        listen 8004;
+	server_name nxoa.app.hzwangda.com;
+	access_log logs/hzfgwoa-access.log combined;
+
+        location / { 
+            proxy_pass http://localhost:8104; 
+            proxy_set_header Host $host:$server_port; 
+            proxy_set_header X-Real-IP $remote_addr; 
+            proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; 
+        }
+    }
+}
