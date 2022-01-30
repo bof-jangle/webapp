@@ -29,7 +29,7 @@
 				outerLink = new String[]{"https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/css/fileinput.min.css"};
 			}else if("table".equals(cssArr[i])){
 				commentArr = new String[]{"bootstrap-table的样式"};
-				innerLink = new String[]{"bootstrap/bootstrap-table/1.8.1/bootstrap-table.min.css"};
+				innerLink = new String[]{"/cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.css"};
 			}else if("formJ".equals(cssArr[i])){
 				commentArr = new String[]{"Jangle的form表单样式"};
 				innerLink = new String[]{"/css/formJ.css"};
