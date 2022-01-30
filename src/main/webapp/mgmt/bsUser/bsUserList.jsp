@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>用户管理_列表页面</title>
     <jsp:include page="/css/includeCSS.jsp">
-    	<jsp:param value="table-out" name="csses"/>
+    	<jsp:param value="table" name="csses"/>
     </jsp:include>
 </head>
 <body>

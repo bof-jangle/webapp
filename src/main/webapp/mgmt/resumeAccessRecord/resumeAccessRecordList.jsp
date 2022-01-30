@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
 <title>简历访问记录_列表页面</title>
     <jsp:include page="/css/includeCSS.jsp">
-    	<jsp:param value="table-out" name="csses"/>
+    	<jsp:param value="table" name="csses"/>
     </jsp:include>
 </head>
 <body>
