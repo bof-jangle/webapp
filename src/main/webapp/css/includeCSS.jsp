@@ -6,7 +6,7 @@
 <!-- 引入基础背景css -->
 <link rel="stylesheet" type="text/css" href="/css/backSystem.css" />
 <!-- 引入bootstrap样式 -->
-<link rel="stylesheet" type="text/css" href="cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css"  />
+<link rel="stylesheet" type="text/css" href="/cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css"  />
 <%
     String csses = request.getParameter("csses");
     if(csses != null){

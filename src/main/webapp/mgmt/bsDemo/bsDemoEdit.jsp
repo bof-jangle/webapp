@@ -6,9 +6,9 @@
 <meta charset="UTF-8">
 <title>DEMO_编辑页面</title>
 <jsp:include page="/css/includeCSS.jsp">
-	<jsp:param value="validator-out,formJ" name="csses"/>
+	<jsp:param value="validator,formJ" name="csses"/>
 </jsp:include>
-<link href="https://cdn.bootcss.com/bootstrap-fileinput/5.0.4/css/fileinput.min.css" rel="stylesheet">
+<link href="../../fileUpload/css/fileinput.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="bodyTopDiv" style="margin-top: 20px;">
@@ -69,8 +69,8 @@
 	<jsp:include page="/js/includeJS.jsp">
 		<jsp:param value="validator-out,utilJ" name="jses"/>
 	</jsp:include>
-	<script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.4/js/fileinput.min.js"></script>
-	<script src="https://cdn.bootcss.com/bootstrap-fileinput/5.0.4/js/locales/zh.min.js"></script>
+	<script src="../../fileUpload/js/fileinput.min.js"></script>
+	<script src="../../fileUpload/js/zh.js"></script>
 	<script type="text/javascript" src="js/bsDemoEdit.js"></script>
 	<script type="text/javascript">
 		var fileInputParam = {}; //附件上传的拓展参数

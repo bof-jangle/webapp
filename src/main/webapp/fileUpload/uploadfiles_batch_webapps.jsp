@@ -5,12 +5,12 @@
 <title>文件批量上传</title>    
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 <link rel="stylesheet" href="/cdn.bootcss.com/bootstrap/3.3.2/css/bootstrap.min.css">    
-<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/css/fileinput.min.css" />  
+<link rel="stylesheet" href="../../fileUpload/css/fileinput.min.css" />  
 <script src="js/jquery-3.2.1.min.js"></script>    
 
 <script type="text/javascript" src="/cdn.bootcss.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>  
-<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/js/fileinput.min.js"></script>  
-<script type="text/javascript" src="https://cdn.bootcss.com/bootstrap-fileinput/4.2.3/js/fileinput_locale_zh.js"></script>   
+<script type="text/javascript" src="/fileUpload/js/fileinput.min.js"></script>  
+<script type="text/javascript" src="/fileUPload/js/zh.js"></script>   
   
 </head>  
 <body>  
