@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><!-- bootstrap依赖 -->
 <title>用户申请_编辑页面_Jangle生成工具v1.1</title>
 <jsp:include page="/css/includeCSS.jsp">
-	<jsp:param value="validator-out,formJ" name="csses"/>
+	<jsp:param value="validator,formJ" name="csses"/>
 </jsp:include>
 </head>
 <body>
@@ -42,7 +42,7 @@
 		</form>
 	</div>
 	<jsp:include page="/js/includeJS.jsp">
-		<jsp:param value="validator-out,utilJ" name="jses"/>
+		<jsp:param value="validator,utilJ" name="jses"/>
 	</jsp:include>
 	<script type="text/javascript" src="js/zdUserApplyEdit.js"></script>
 	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>
