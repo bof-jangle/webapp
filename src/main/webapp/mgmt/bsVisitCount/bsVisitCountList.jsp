@@ -48,7 +48,7 @@
 				</table>
 	</div>
     <jsp:include page="/js/includeJS.jsp">
-    	<jsp:param value="table-out,listJ" name="jses"/>
+    	<jsp:param value="table,listJ" name="jses"/>
     </jsp:include>
 	<script type="text/javascript">
 		var pathname = window.location.pathname;
