@@ -8,8 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>webapp Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<!-- 此处定义的是pom文件的全局属性(常量) -->
 	<properties>
-		<!-- 此处定义的是pom文件的全局属性(常量) -->
 		<spring.version>5.2.2.RELEASE</spring.version><!-- 声明spring版本号 -->
 		<jackson.version>2.9.9</jackson.version><!-- 声明jackson版本号 old 2.8.11 -->
 	</properties>
