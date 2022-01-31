@@ -20,7 +20,7 @@
 			commentArr = new String[]{};
 			if("table-out".equals(jsArr[i])){
 				commentArr = new String[]{"bootstrap-table的js文件","bootstrap-table的中文语言包"};
-				outerScript = new String[]{"https://cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js","https://cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"};
+				outerScript = new String[]{"/cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js","/cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"};
 			}else if("table".equals(jsArr[i])){
 				commentArr = new String[]{"bootstrap-table的js文件","bootstrap-table的中文语言包"};
 				outerScript = new String[]{"/cdn.bootcss.com/bootstrap-table/1.8.1/bootstrap-table.min.js","/cdn.bootcss.com/bootstrap-table/1.8.1/locale/bootstrap-table-zh-CN.min.js"};
